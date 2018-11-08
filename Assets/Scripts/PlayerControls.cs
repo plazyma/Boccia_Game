@@ -19,7 +19,7 @@ public class PlayerControls : MonoBehaviour {
         if (Input.GetKeyDown("right"))
         {
             //Restrict how far user can rotate
-            if (transform.rotation.eulerAngles.y < 90.0f || transform.rotation.eulerAngles.y > 250.0f)
+            if (transform.rotation.eulerAngles.y < 50.0f || transform.rotation.eulerAngles.y > 280.0f)
             {
                 //Show "arrow" to indicate where ball is pointing
                 //arrow.SetActive(true);
@@ -32,7 +32,7 @@ public class PlayerControls : MonoBehaviour {
         if (Input.GetKeyDown("left"))
         {
             //Restrict how far user can rotate
-            if (transform.rotation.eulerAngles.y < 120.0f || transform.rotation.eulerAngles.y > 270.0f)
+            if (transform.rotation.eulerAngles.y < 90.0f || transform.rotation.eulerAngles.y > 300.0f)
             {
                 //Show arrow to indicate where ball is pointing
                 //arrow.SetActive(true);

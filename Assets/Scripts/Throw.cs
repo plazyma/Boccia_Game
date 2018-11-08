@@ -4,39 +4,82 @@ using UnityEngine;
 
 public class Throw : MonoBehaviour {
     //Initializing
-    public float power;
-    public Rigidbody rb;
-    public GameObject player;
-	// Use this for initialization
-	void Start () {
-        rb = GetComponent<Rigidbody>();
-        rb.useGravity = false;
-        power = 0;
+    float power;
+    float power_z;
+    Rigidbody rb;
+    public GameObject ball;
+    Vector3 startPosition;
+    // Use this for initialization
+    void Start () {
+        rb = ball.GetComponent<Rigidbody>();
 
-        transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+        rb.useGravity = false;
+        power = 0.0f;
+
+        startPosition = new Vector3(-17.73f, 1.68f, 2.38f);
     }
 
     // Update is called once per frame
     void Update () {
-        //while space is pressed increase power
-        //TODO - Change how fast power is increased
-        if (Input.GetKey("space"))
+        //Increase x - power by 1
+        if (Input.GetKeyDown("up"))
         {
-            while (power < 10)
+            if (power < 10)
             {
-                power += 0.1f;
+                power += 1.0f;
 
                 print(power);
             }
         }
+        //Decrease x - power by 1
+        if(Input.GetKeyDown("down"))
+        {
+            if(power > 0)
+            {
+                power -= 1.0f;
+                print(power);
+            }
+        }
+        //Decrease z - power by 1
+        if(Input.GetKeyDown("left"))
+        {
+            if (power_z > -6)
+            {
+                power_z -= 1.0f;
+                print(power_z);
+            }
+        }
+        //Increase z - power by 1
+        if(Input.GetKeyDown("right"))
+        {
+            if(power_z < 6)
+            {
+                power_z += 1.0f;
+                print(power_z);
+            }
+        }
         //Apply force on release
-        if(Input.GetKeyUp("space"))
+        if (Input.GetKeyDown("space"))
         {
             //Apply force to ball
             //Z - Force based on rotation
-            //TODO - Update how z force is calculated
-            rb.AddForce(power, 0, -power * (player.transform.rotation.y), ForceMode.Impulse);
+            rb.AddForce(power, 0, -power_z, ForceMode.Impulse);
+
             rb.useGravity = true;
+        }
+        //Reset position of the ball
+        if(Input.GetKeyDown("r"))
+        {
+            //Set velocity to 0
+            rb.velocity = new Vector3(0.0f, 0.0f, 0.0f);
+            rb.angularVelocity = new Vector3(0.0f, 0.0f, 0.0f);
+
+            //rest position
+            ball.transform.position = startPosition;
+
+            rb.useGravity = false;
+
+            power = 0.0f;
         }
     }
 }
