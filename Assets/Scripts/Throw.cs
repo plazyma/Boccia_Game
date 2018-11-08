@@ -6,7 +6,7 @@ public class Throw : MonoBehaviour {
     //Initializing
     public float power;
     public Rigidbody rb;
-    public GameObject arrow;
+    public GameObject player;
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody>();
@@ -14,8 +14,6 @@ public class Throw : MonoBehaviour {
         power = 0;
 
         transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
-
-        arrow.SetActive(false);
     }
 
     // Update is called once per frame
@@ -24,7 +22,6 @@ public class Throw : MonoBehaviour {
         //TODO - Change how fast power is increased
         if (Input.GetKey("space"))
         {
-            arrow.SetActive(false);
             while (power < 10)
             {
                 power += 0.1f;
@@ -38,10 +35,8 @@ public class Throw : MonoBehaviour {
             //Apply force to ball
             //Z - Force based on rotation
             //TODO - Update how z force is calculated
-            rb.AddForce(power, 0, -power * (transform.rotation.y), ForceMode.Impulse);
+            rb.AddForce(power, 0, -power * (player.transform.rotation.y), ForceMode.Impulse);
             rb.useGravity = true;
         }
-
-        
     }
 }
