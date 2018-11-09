@@ -43,7 +43,8 @@ public class BallDistance : MonoBehaviour {
             }
 
             //DEBUG
-            Debug.Log("Shortest distance: " + closest.ToString() + shortest);
+          //  Debug.Log("Shortest distance: " + closest.ToString() + shortest);
+
         }
     }
 }
