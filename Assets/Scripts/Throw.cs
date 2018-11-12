@@ -82,4 +82,10 @@ public class Throw : MonoBehaviour {
             power = 0.0f;
         }
     }
+
+    //Return the power
+    public float getPower()
+    {
+        return power;
+    }
 }
