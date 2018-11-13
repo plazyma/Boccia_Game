@@ -9,8 +9,11 @@ public class PlayerControls : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
+        //reset forward at start
         
-	}
+        Debug.Log(transform.forward);
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -19,7 +22,7 @@ public class PlayerControls : MonoBehaviour {
         if (Input.GetKeyDown("right"))
         {
             //Restrict how far user can rotate
-            if (transform.rotation.eulerAngles.y < 50.0f || transform.rotation.eulerAngles.y > 280.0f)
+            if (transform.rotation.eulerAngles.y < 160.0f || transform.rotation.eulerAngles.y > 10.0f)
             {
                 //Show "arrow" to indicate where ball is pointing
                 //arrow.SetActive(true);
@@ -32,7 +35,7 @@ public class PlayerControls : MonoBehaviour {
         if (Input.GetKeyDown("left"))
         {
             //Restrict how far user can rotate
-            if (transform.rotation.eulerAngles.y < 90.0f || transform.rotation.eulerAngles.y > 300.0f)
+            if (transform.rotation.eulerAngles.y < 170.0f || transform.rotation.eulerAngles.y > 20.0f)
             {
                 //Show arrow to indicate where ball is pointing
                 //arrow.SetActive(true);
