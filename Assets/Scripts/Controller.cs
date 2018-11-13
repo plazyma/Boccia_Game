@@ -10,6 +10,7 @@ public class Controller : MonoBehaviour {
 
     public GameObject jack;
     public GameObject ball;
+    GameObject newBall;
     public GameObject player;
     public Color colour = Color.black;
 
@@ -64,7 +65,7 @@ public class Controller : MonoBehaviour {
             {
                 //set jack as thrown on this script, create a new ball and tell throw that there is a new ball
                 jackThrown = true;
-                Instantiate(ball, player.transform.position + (player.transform.forward *2), player.transform.rotation);
+                newBall = Instantiate(ball, player.transform.position + (player.transform.forward *2), player.transform.rotation);
                 
             }
             //set the colour depending on player
@@ -76,9 +77,10 @@ public class Controller : MonoBehaviour {
             {
                 colour = Color.green;
             }
-            ball.GetComponent<Renderer>().material.color = colour;
+
+            newBall.GetComponent<Renderer>().sharedMaterial.color = colour;
             //give throwscript the new ball
-            throwScript.setBall();
+            throwScript.setBall(newBall);
         }
 	}
 }

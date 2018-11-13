@@ -95,6 +95,7 @@ public class Throw : MonoBehaviour {
             //Apply force on release
             if (Input.GetKeyDown("space"))
             {
+                //rb.useGravity = true;
                 //Apply force to ball
                 //Z - Force based on rotation
                 //Steve - added more force due to mass changes for phsyics
@@ -140,10 +141,12 @@ public class Throw : MonoBehaviour {
     }
 
     //set the new ball to throw
-    public void setBall()
+    public void setBall(GameObject instBall)
     {
-        ball = cont.ball;
+        ball = instBall;
+
         rb = ball.GetComponent<Rigidbody>();
+
         ballThrown = false;
     }
 }
