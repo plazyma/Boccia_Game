@@ -9,7 +9,7 @@ public class Throw : MonoBehaviour {
     float power_z;
     Rigidbody rb;
     public GameObject ball;
-    Vector3 startPosition;
+    //Vector3 startPosition;
 
     public GameObject gameController;
     Controller cont;
@@ -30,7 +30,7 @@ public class Throw : MonoBehaviour {
         rb.useGravity = false;
         power = 0.0f;
 
-        startPosition = new Vector3(-17.73f, 1.68f, 2.38f);
+       // startPosition = new Vector3(-17.73f, 1.68f, 2.38f);
     }
 
     // Update is called once per frame
@@ -61,8 +61,6 @@ public class Throw : MonoBehaviour {
                 if (power < 10)
                 {
                     power += 1.0f;
-
-                    print(power);
                 }
             }
             //Decrease x - power by 1
@@ -71,7 +69,6 @@ public class Throw : MonoBehaviour {
                 if (power > 0)
                 {
                     power -= 1.0f;
-                    print(power);
                 }
             }
             //Decrease z - power by 1
@@ -80,7 +77,6 @@ public class Throw : MonoBehaviour {
                 if (power_z > -6)
                 {
                     power_z -= 1.0f;
-                    print(power_z);
                 }
             }
             //Increase z - power by 1
@@ -89,7 +85,6 @@ public class Throw : MonoBehaviour {
                 if (power_z < 6)
                 {
                     power_z += 1.0f;
-                    print(power_z);
                 }
             }
             //Apply force on release
@@ -141,6 +136,11 @@ public class Throw : MonoBehaviour {
     public float getPower()
     {
         return power;
+    }
+
+    public void setPower(float pow)
+    {
+        power = pow;
     }
 
     //set the new ball to throw

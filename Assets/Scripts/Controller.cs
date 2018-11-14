@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Controller : MonoBehaviour {
 
@@ -24,16 +25,20 @@ public class Controller : MonoBehaviour {
 
     public List<GameObject> ballList;
 
+    public GameObject winPanel;
+    public Text winText;
+
     //debug
     public int amountOfBalls = 0;
     public int greenBalls = 0;
     public int redBalls = 0;
 
-
+    public bool gameOver = false;
 
 
 	// Use this for initialization
 	void Start () {
+        winPanel.SetActive(false);
 
         //set random player at start 0-100 for larger random chances
         currentPlayer = Random.Range(0, 100);
@@ -76,12 +81,11 @@ public class Controller : MonoBehaviour {
                 {
                     newBall = Instantiate(redBall, player.transform.position + (player.transform.forward * 2), player.transform.rotation);
                     redBalls ++;
-                    
                 }
                 else if (currentPlayer == 2)
                 {
                     newBall = Instantiate(greenBall, player.transform.position + (player.transform.forward * 2), player.transform.rotation);
-                    greenBalls ++;
+                    greenBalls++;
                 }
                 ballList.Add(newBall);
                 //give throwscript the new ball
@@ -96,12 +100,16 @@ public class Controller : MonoBehaviour {
         //10 balls have been thrown
         if (amountOfBalls > 9)
         {
-            checkWinner();
+            if (!gameOver)
+            {
+                checkWinner();
+                gameOver = true;
+            }
         }
 	}
     public void spawnBall()
     {
-        if (amountOfBalls > 0 && throwScript.ballThrown && Time.time - throwScript.shotTime > 4)
+        if (amountOfBalls < 10 && throwScript.ballThrown && Time.time - throwScript.shotTime > 4)
         {
             if (amountOfBalls > 1)
             {
@@ -122,7 +130,7 @@ public class Controller : MonoBehaviour {
 
             if (currentPlayer == 1)
             {
-                
+                throwScript.setPower(0.0f);
                 currentPlayer = 2;
 
                 //create a new ball and tell throw that there is a new ball
@@ -131,6 +139,7 @@ public class Controller : MonoBehaviour {
             }
             else if (currentPlayer == 2)
             {
+                throwScript.setPower(0.0f);
                 currentPlayer = 1;
 
                 //create a new ball and tell throw that there is a new ball
@@ -153,11 +162,13 @@ public class Controller : MonoBehaviour {
         //make sure there is a green and red ball on the field before checking distances
         if (dist.FindClosestBall() == 1)
         {
+            //throwScript.setPower(0.0f);
             print("Player 1 is closest, returning player 1");
             return 1;
         }
         else if (dist.FindClosestBall() == 2)
         {
+            //throwScript.setPower(0.0f);
             print("Player 2 is closest, returning player 2");
             return 2;
         }
@@ -165,13 +176,25 @@ public class Controller : MonoBehaviour {
         {
             print("Something went wrong");            
         }
-        
+
         return 0;
     }
 
     public void checkWinner()
     {
         //do win stuff
+        if (dist.FindClosestBall() == 1)
+        {
+           // print("PLAYER 1 WINS");
+            winText.text = "Player 1 Wins!";
+        }
+        if(dist.FindClosestBall() == 2)
+        {
+            //print("PLAYER 2 WINS");
+            winText.text = "Player 2 Wins!";
+        }
+
+        winPanel.SetActive(true);
     }
 }
 

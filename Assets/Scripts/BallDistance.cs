@@ -7,6 +7,7 @@ public class BallDistance : MonoBehaviour {
 
     public Material redMaterial;
     public Material greenMaterial;
+    GameObject jack;
 
     //Declare list of balls
     //public List<GameObject> ballList = new List<GameObject>();
@@ -19,6 +20,7 @@ public class BallDistance : MonoBehaviour {
     //Find the closest ball to the jack
     public int FindClosestBall()
     {
+        jack = GameObject.FindWithTag("Jack");
         List<GameObject> ballList = new List<GameObject>();
         ballList.Clear();
         foreach (GameObject ball in GameObject.FindGameObjectsWithTag("Ball"))
@@ -35,8 +37,8 @@ public class BallDistance : MonoBehaviour {
         foreach (GameObject ball in ballList)
         {
             //Calculate distance between current ball and the jack
-            float distance = Vector3.Distance(ball.transform.position, transform.position);
-
+            float distance = Vector3.Distance(ball.transform.position, jack.transform.position);
+            //print(ball.ToString() + distance);
             //If the current ball's distance is lower 
             if (distance < shortest)
             {
@@ -64,9 +66,5 @@ public class BallDistance : MonoBehaviour {
         }
         return player;
     }
+
 }
-
-
-//DIFFERENTIATING BETWEEN TEAMS
-//MULTIPLE TAGS IN ONE TAG
-//USE PARENT/CHILD OBJECTS
