@@ -112,6 +112,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304d6cdac02f0074aaaf087120706172, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  redMaterial: {fileID: 2100000, guid: 9a7166b7459f5fb45bb7f07278e5a4f0, type: 2}
+  greenMaterial: {fileID: 2100000, guid: 80efd3f622fe3e44fb7a3936a4b191a6, type: 2}
   ballList: []
 --- !u!135 &135497014443903718
 SphereCollider:

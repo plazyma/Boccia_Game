@@ -26,7 +26,7 @@ public class PlayerControls : MonoBehaviour {
             {
                 //Show "arrow" to indicate where ball is pointing
                 //arrow.SetActive(true);
-                transform.Rotate(0.0f, 10.0f, 0.0f);
+                transform.Rotate(0.0f, 2.0f, 0.0f);
                 //DEBUG
                 print(transform.eulerAngles.y);
             }
@@ -39,7 +39,7 @@ public class PlayerControls : MonoBehaviour {
             {
                 //Show arrow to indicate where ball is pointing
                 //arrow.SetActive(true);
-                transform.Rotate(0.0f, -10.0f, 0.0f);
+                transform.Rotate(0.0f, -2.0f, 0.0f);
                 //DEBUG
                 print(transform.eulerAngles.y);
             }

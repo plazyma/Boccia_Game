@@ -99,16 +99,19 @@ public class Throw : MonoBehaviour {
                 //Apply force to ball
                 //Z - Force based on rotation
                 //Steve - added more force due to mass changes for phsyics
-                rb.AddForce(power*4, 0, -power_z*4, ForceMode.Impulse);
-
+                //rb.AddForce(power*4, 0, -power_z*4, ForceMode.Impulse);
+                rb.AddForce(transform.forward * power * 400);
                 rb.useGravity = true;
                 if (ball.tag == "Jack")
                 {
                     jackThrown = true;
                 }
+                else
+                {
+                    cont.amountOfBalls++;
+                }
                 //ball is thrown and can't be touched
                 ballThrown = true;
-
                 shotTime = Time.time;
             }
             

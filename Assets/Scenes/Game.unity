@@ -866,13 +866,19 @@ MonoBehaviour:
   jackThrown: 0
   firstThrows: 1
   jack: {fileID: 1144311498607778, guid: 47457128f471cb3439b929273acf878e, type: 2}
-  ball: {fileID: 1706684278022104, guid: 2b8bef9feb876984eab800b312706798, type: 2}
+  redBall: {fileID: 1268547179970782, guid: d6b67dd97eb97d94183f24eb3ae7bbbc, type: 2}
+  greenBall: {fileID: 1706684278022104, guid: 2b8bef9feb876984eab800b312706798, type: 2}
   player: {fileID: 256544273}
   colour: {r: 0, g: 0, b: 0, a: 1}
   throwScript: {fileID: 0}
   pControls: {fileID: 0}
+  dist: {fileID: 0}
+  redMaterial: {fileID: 2100000, guid: 9a7166b7459f5fb45bb7f07278e5a4f0, type: 2}
+  greenMaterial: {fileID: 2100000, guid: 80efd3f622fe3e44fb7a3936a4b191a6, type: 2}
   ballList: []
   amountOfBalls: 0
+  greenBalls: 0
+  redBalls: 0
 --- !u!4 &1630686050
 Transform:
   m_ObjectHideFlags: 0

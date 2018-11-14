@@ -9,18 +9,25 @@ public class Controller : MonoBehaviour {
     public bool firstThrows = true;
 
     public GameObject jack;
-    public GameObject ball;
+    public GameObject redBall;
+    public GameObject greenBall;
     GameObject newBall;
     public GameObject player;
     public Color colour = Color.black;
 
     public Throw throwScript;
     public PlayerControls pControls;
+    public BallDistance dist;
+
+    public Material redMaterial; 
+    public Material greenMaterial;
 
     public List<GameObject> ballList;
 
     //debug
     public int amountOfBalls = 0;
+    public int greenBalls = 0;
+    public int redBalls = 0;
 
 
 
@@ -42,6 +49,7 @@ public class Controller : MonoBehaviour {
         //get scripts from player and throw
         throwScript = player.GetComponent<Throw>();
         pControls = player.GetComponent<PlayerControls>();
+        
 
         //setup player for spawning balls
         Quaternion spawnRotation = Quaternion.identity;
@@ -50,37 +58,120 @@ public class Controller : MonoBehaviour {
 
         //spawn jack on initial run time
         Instantiate(jack, player.transform.position + playerForward ,spawnRotation);
-
-	}
+        dist = jack.GetComponent<BallDistance>();
+    }
 	
 	// Update is called once per frame
 	void Update ()
     {
 		if (throwScript.jackThrown && !jackThrown)
         {
-            Vector3 stopped = Vector3.zero;
-
-            //these are being triggered instantly due to initial velocity being 0
-            if (jack.GetComponent<Rigidbody>().velocity.x  <0.0001f && jack.GetComponent<Rigidbody>().velocity.y < 0.0001f && Time.time- throwScript.shotTime >1)
+            //after 4 seconds have passed since throwing
+            if (Time.time- throwScript.shotTime > 4)
             {
+
                 //set jack as thrown on this script, create a new ball and tell throw that there is a new ball
                 jackThrown = true;
-                newBall = Instantiate(ball, player.transform.position + (player.transform.forward *2), player.transform.rotation);
-                
-            }
-            //set the colour depending on player
-            if (currentPlayer == 1)
+                if (currentPlayer == 1)
+                {
+                    newBall = Instantiate(redBall, player.transform.position + (player.transform.forward * 2), player.transform.rotation);
+                    redBalls ++;
+                    
+                }
+                else if (currentPlayer == 2)
+                {
+                    newBall = Instantiate(greenBall, player.transform.position + (player.transform.forward * 2), player.transform.rotation);
+                    greenBalls ++;
+                }
+                ballList.Add(newBall);
+                //give throwscript the new ball
+                throwScript.setBall(newBall);
+               
+            }          
+        }
+        //spawn a new ball
+        spawnBall();
+        
+
+        //10 balls have been thrown
+        if (amountOfBalls > 9)
+        {
+            checkWinner();
+        }
+	}
+    public void spawnBall()
+    {
+        if (amountOfBalls > 0 && throwScript.ballThrown && Time.time - throwScript.shotTime > 4)
+        {
+            if (amountOfBalls > 1)
             {
-                colour = Color.red;   
-            }
-            else
-            {
-                colour = Color.green;
+                //check distance
+                currentPlayer = playerSelection();
+                if (redBalls > 4)
+                {
+                    print("all reds thrown");
+                    currentPlayer = 1;
+                }
+                if (greenBalls > 4)
+                {
+                    print("all greens thrown");
+                    currentPlayer = 2;
+                }
             }
 
-            newBall.GetComponent<Renderer>().sharedMaterial.color = colour;
+
+            if (currentPlayer == 1)
+            {
+                
+                currentPlayer = 2;
+
+                //create a new ball and tell throw that there is a new ball
+                newBall = Instantiate(greenBall, player.transform.position + (player.transform.forward * 2), player.transform.rotation);
+                greenBalls++;
+            }
+            else if (currentPlayer == 2)
+            {
+                currentPlayer = 1;
+
+                //create a new ball and tell throw that there is a new ball
+                newBall = Instantiate(redBall, player.transform.position + (player.transform.forward * 2), player.transform.rotation);
+                redBalls++;
+            }
+
+
+
+            ballList.Add(newBall);
+
+
             //give throwscript the new ball
             throwScript.setBall(newBall);
         }
-	}
+    }
+
+    public int playerSelection()
+    {
+        //make sure there is a green and red ball on the field before checking distances
+        if (dist.FindClosestBall() == 1)
+        {
+            print("Player 1 is closest, returning player 1");
+            return 1;
+        }
+        else if (dist.FindClosestBall() == 2)
+        {
+            print("Player 2 is closest, returning player 2");
+            return 2;
+        }
+        else
+        {
+            print("Something went wrong");            
+        }
+        
+        return 0;
+    }
+
+    public void checkWinner()
+    {
+        //do win stuff
+    }
 }
+
