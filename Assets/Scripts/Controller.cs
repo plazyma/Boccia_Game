@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class Controller : MonoBehaviour {
 
     public int currentPlayer;
@@ -90,20 +90,30 @@ public class Controller : MonoBehaviour {
                 ballList.Add(newBall);
                 //give throwscript the new ball
                 throwScript.setBall(newBall);
-               
+                throwScript.setPower(0.0f);
+                player.transform.eulerAngles = new Vector3 (0, 90,  0);
+
             }          
         }
         //spawn a new ball
-        spawnBall();
-        
+        if (!gameOver)
+        {
+            spawnBall();
+        }
 
         //10 balls have been thrown
-        if (amountOfBalls > 9)
+        if (amountOfBalls > 9 && Time.time - throwScript.shotTime > 5)
         {
             if (!gameOver)
             {
                 checkWinner();
                 gameOver = true;
+            }
+
+            if (Time.time - throwScript.shotTime > 10)
+            {
+                //reload the level
+                Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
             }
         }
 	}
@@ -111,6 +121,7 @@ public class Controller : MonoBehaviour {
     {
         if (amountOfBalls < 10 && throwScript.ballThrown && Time.time - throwScript.shotTime > 4)
         {
+            player.transform.eulerAngles = new Vector3(0, 90, 0);
             if (amountOfBalls > 1)
             {
                 //check distance

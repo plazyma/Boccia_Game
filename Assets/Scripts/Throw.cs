@@ -60,7 +60,7 @@ public class Throw : MonoBehaviour {
             {
                 if (power < 10)
                 {
-                    power += 1.0f;
+                    power += 0.5f;
                 }
             }
             //Decrease x - power by 1
@@ -68,7 +68,7 @@ public class Throw : MonoBehaviour {
             {
                 if (power > 0)
                 {
-                    power -= 1.0f;
+                    power -= 0.5f;
                 }
             }
             //Decrease z - power by 1
@@ -76,7 +76,7 @@ public class Throw : MonoBehaviour {
             {
                 if (power_z > -6)
                 {
-                    power_z -= 1.0f;
+                    power_z -= 0.5f;
                 }
             }
             //Increase z - power by 1
@@ -84,7 +84,7 @@ public class Throw : MonoBehaviour {
             {
                 if (power_z < 6)
                 {
-                    power_z += 1.0f;
+                    power_z += 0.5f;
                 }
             }
             //Apply force on release
