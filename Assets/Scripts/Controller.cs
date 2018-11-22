@@ -20,6 +20,17 @@ public class Controller : MonoBehaviour {
     public PlayerControls pControls;
     public BallDistance dist;
 
+
+    //jack camera
+    public GameObject jcam;
+    JackCamera jackCamera;
+    public GameObject cameraOverlay;
+
+
+    //scoreboard
+    GameObject scoreBoard;
+    Scoreboard score;
+
     public Material redMaterial; 
     public Material greenMaterial;
 
@@ -33,12 +44,19 @@ public class Controller : MonoBehaviour {
     public int greenBalls = 0;
     public int redBalls = 0;
 
+    public int player1Score = 0;
+    public int player2Score = 0;
+
     public bool gameOver = false;
 
 
 	// Use this for initialization
 	void Start () {
         winPanel.SetActive(false);
+
+        //setup scoreboard
+        scoreBoard = GameObject.FindGameObjectWithTag("ScoreBoard");
+        score = scoreBoard.GetComponent<Scoreboard>();
 
         //set random player at start 0-100 for larger random chances
         currentPlayer = Random.Range(0, 100);
@@ -56,20 +74,41 @@ public class Controller : MonoBehaviour {
         pControls = player.GetComponent<PlayerControls>();
         
 
-        //setup player for spawning balls
-        Quaternion spawnRotation = Quaternion.identity;
-        Vector3 playerForward = new Vector3(player.transform.forward.x * 2, player.transform.forward.y*2, player.transform.forward.z * 2);
-        Vector3 playerTransform = player.transform.position;
+       
 
         //spawn jack on initial run time
-        Instantiate(jack, player.transform.position + playerForward ,spawnRotation);
+        spawnJack();
+        
+
+        //setup jack camera
+        jcam = GameObject.FindGameObjectWithTag("JackCamera");
+        jackCamera = jcam.GetComponent<JackCamera>();
+        jackCamera.getJack();
+        cameraOverlay = GameObject.FindGameObjectWithTag("CameraOverlay");
+        cameraOverlay.SetActive(false);
+    }
+
+    void spawnJack()
+    {
+        //setup player for spawning balls
+        Quaternion spawnRotation = Quaternion.identity;
+        Vector3 playerForward = new Vector3(player.transform.forward.x * 2, player.transform.forward.y * 2, player.transform.forward.z * 2);
+        Vector3 playerTransform = player.transform.position;
+
+        jack = Instantiate(jack, player.transform.position + playerForward, spawnRotation);
         dist = jack.GetComponent<BallDistance>();
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-		if (throwScript.jackThrown && !jackThrown)
+        //update jack cam
+        if (Input.GetKeyDown("t"))
+        {
+            reset();
+        }
+
+        if (throwScript.jackThrown && !jackThrown)
         {
             //after 4 seconds have passed since throwing
             if (Time.time- throwScript.shotTime > 4)
@@ -93,6 +132,11 @@ public class Controller : MonoBehaviour {
                 throwScript.setPower(0.0f);
                 player.transform.eulerAngles = new Vector3 (0, 90,  0);
 
+                //update scoreboard
+                score.UpdateScoreboard();
+
+                //activate jack camera
+                cameraOverlay.SetActive(true);
             }          
         }
         //spawn a new ball
@@ -113,6 +157,7 @@ public class Controller : MonoBehaviour {
             if (Time.time - throwScript.shotTime > 10)
             {
                 //reload the level
+                //reset();
                 Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
             }
         }
@@ -147,6 +192,8 @@ public class Controller : MonoBehaviour {
                 //create a new ball and tell throw that there is a new ball
                 newBall = Instantiate(greenBall, player.transform.position + (player.transform.forward * 2), player.transform.rotation);
                 greenBalls++;
+                //update scoreboard
+                score.UpdateScoreboard();
             }
             else if (currentPlayer == 2)
             {
@@ -156,6 +203,8 @@ public class Controller : MonoBehaviour {
                 //create a new ball and tell throw that there is a new ball
                 newBall = Instantiate(redBall, player.transform.position + (player.transform.forward * 2), player.transform.rotation);
                 redBalls++;
+                //update scoreboard
+                score.UpdateScoreboard();
             }
 
 
@@ -198,14 +247,49 @@ public class Controller : MonoBehaviour {
         {
            // print("PLAYER 1 WINS");
             winText.text = "Player 1 Wins!";
+            player1Score++;
         }
         if(dist.FindClosestBall() == 2)
         {
             //print("PLAYER 2 WINS");
             winText.text = "Player 2 Wins!";
+            player2Score++;
         }
 
         winPanel.SetActive(true);
+    }
+
+    public void reset()
+    {
+
+        //reset the game
+        //List <GameObject> ballList = new List <GameObject>();
+
+        foreach (GameObject ball in GameObject.FindGameObjectsWithTag("Ball"))
+        {
+            Object.Destroy(ball);
+        }
+
+        for (int i = 0; i < amountOfBalls; i++)
+        {
+           // GameObject tempBall = GameObject.FindGameObjectWithTag("Ball");
+           // Object.Destroy(tempBall);
+
+        }
+        
+        redBalls = 0;
+        greenBalls = 0;
+
+        amountOfBalls = 0;
+
+        //remove balls
+        Object.Destroy(jack);
+        throwScript.jackThrown = false;
+        jackThrown = false;
+        spawnJack();
+
+        //reset connections to jack
+        jackCamera.getJack();
     }
 }
 

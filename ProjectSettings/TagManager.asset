@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Ball
   - Jack
+  - ScoreBoard
+  - JackCamera
+  - CameraOverlay
   layers:
   - Default
   - TransparentFX
