@@ -9,6 +9,7 @@ TagManager:
   - ScoreBoard
   - JackCamera
   - CameraOverlay
+  - CameraOutline
   layers:
   - Default
   - TransparentFX

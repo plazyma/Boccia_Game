@@ -25,6 +25,7 @@ public class Controller : MonoBehaviour {
     public GameObject jcam;
     JackCamera jackCamera;
     public GameObject cameraOverlay;
+	GameObject cameraOutline;
 
 
     //scoreboard
@@ -86,6 +87,8 @@ public class Controller : MonoBehaviour {
         jackCamera.getJack();
         cameraOverlay = GameObject.FindGameObjectWithTag("CameraOverlay");
         cameraOverlay.SetActive(false);
+		cameraOutline = GameObject.FindGameObjectWithTag("CameraOutline");
+        cameraOutline.SetActive(false);
     }
 
     void spawnJack()
@@ -137,6 +140,7 @@ public class Controller : MonoBehaviour {
 
                 //activate jack camera
                 cameraOverlay.SetActive(true);
+				cameraOutline.SetActive(true);
             }          
         }
         //spawn a new ball
