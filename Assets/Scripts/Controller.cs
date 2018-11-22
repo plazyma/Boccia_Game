@@ -93,12 +93,15 @@ public class Controller : MonoBehaviour {
 
     void spawnJack()
     {
+       
+        winPanel.SetActive(false);
         //setup player for spawning balls
         Quaternion spawnRotation = Quaternion.identity;
         Vector3 playerForward = new Vector3(player.transform.forward.x * 2, player.transform.forward.y * 2, player.transform.forward.z * 2);
         Vector3 playerTransform = player.transform.position;
 
         jack = Instantiate(jack, player.transform.position + playerForward, spawnRotation);
+        jack.GetComponent<Rigidbody>().useGravity = false;
         dist = jack.GetComponent<BallDistance>();
     }
 	
@@ -109,6 +112,10 @@ public class Controller : MonoBehaviour {
         if (Input.GetKeyDown("t"))
         {
             reset();
+        }
+        if(Input.GetKeyDown("j"))
+        {
+            jackCamera.getJack();
         }
 
         if (throwScript.jackThrown && !jackThrown)
@@ -150,7 +157,7 @@ public class Controller : MonoBehaviour {
         }
 
         //10 balls have been thrown
-        if (amountOfBalls > 9 && Time.time - throwScript.shotTime > 5)
+        if (amountOfBalls > 11 && Time.time - throwScript.shotTime > 5)
         {
             if (!gameOver)
             {
@@ -161,26 +168,26 @@ public class Controller : MonoBehaviour {
             if (Time.time - throwScript.shotTime > 10)
             {
                 //reload the level
-                //reset();
-                Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
+                reset();
+                //Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
             }
         }
 	}
     public void spawnBall()
     {
-        if (amountOfBalls < 10 && throwScript.ballThrown && Time.time - throwScript.shotTime > 4)
+        if (amountOfBalls < 12 && throwScript.ballThrown && Time.time - throwScript.shotTime > 4)
         {
             player.transform.eulerAngles = new Vector3(0, 90, 0);
             if (amountOfBalls > 1)
             {
                 //check distance
                 currentPlayer = playerSelection();
-                if (redBalls > 4)
+                if (redBalls > 5)
                 {
                     print("all reds thrown");
                     currentPlayer = 1;
                 }
-                if (greenBalls > 4)
+                if (greenBalls > 5)
                 {
                     print("all greens thrown");
                     currentPlayer = 2;
@@ -228,12 +235,14 @@ public class Controller : MonoBehaviour {
         {
             //throwScript.setPower(0.0f);
             print("Player 1 is closest, returning player 1");
+            
             return 1;
         }
         else if (dist.FindClosestBall() == 2)
         {
             //throwScript.setPower(0.0f);
             print("Player 2 is closest, returning player 2");
+            
             return 2;
         }
         else
@@ -265,20 +274,13 @@ public class Controller : MonoBehaviour {
 
     public void reset()
     {
-
+        print("reset start");
         //reset the game
         //List <GameObject> ballList = new List <GameObject>();
 
         foreach (GameObject ball in GameObject.FindGameObjectsWithTag("Ball"))
         {
             Object.Destroy(ball);
-        }
-
-        for (int i = 0; i < amountOfBalls; i++)
-        {
-           // GameObject tempBall = GameObject.FindGameObjectWithTag("Ball");
-           // Object.Destroy(tempBall);
-
         }
         
         redBalls = 0;
@@ -288,12 +290,20 @@ public class Controller : MonoBehaviour {
 
         //remove balls
         Object.Destroy(jack);
+
         throwScript.jackThrown = false;
+        throwScript.ballThrown = false;
+        throwScript.setPower(0);
+
         jackThrown = false;
         spawnJack();
-
+        score.UpdateScoreboard();
         //reset connections to jack
-        jackCamera.getJack();
+      //  jackCamera.getJack();
+        print("reset stop");
+
+        cameraOverlay.SetActive(false);
+        cameraOutline.SetActive(false);
     }
 }
 
