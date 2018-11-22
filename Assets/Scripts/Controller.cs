@@ -40,6 +40,9 @@ public class Controller : MonoBehaviour {
     public GameObject winPanel;
     public Text winText;
 
+    public GameObject gameWinPanel;
+    public Text gameWinText;
+
     //debug
     public int amountOfBalls = 0;
     public int greenBalls = 0;
@@ -48,13 +51,14 @@ public class Controller : MonoBehaviour {
     public int player1Score = 0;
     public int player2Score = 0;
 
-    public bool gameOver = false;
-
+    public bool gameOver;
 
 	// Use this for initialization
 	void Start () {
         winPanel.SetActive(false);
+        gameWinPanel.SetActive(false);
 
+        gameOver = false;
         //setup scoreboard
         scoreBoard = GameObject.FindGameObjectWithTag("ScoreBoard");
         score = scoreBoard.GetComponent<Scoreboard>();
@@ -73,14 +77,10 @@ public class Controller : MonoBehaviour {
         //get scripts from player and throw
         throwScript = player.GetComponent<Throw>();
         pControls = player.GetComponent<PlayerControls>();
-        
-
-       
 
         //spawn jack on initial run time
         spawnJack();
         
-
         //setup jack camera
         jcam = GameObject.FindGameObjectWithTag("JackCamera");
         jackCamera = jcam.GetComponent<JackCamera>();
@@ -165,11 +165,13 @@ public class Controller : MonoBehaviour {
                 gameOver = true;
             }
 
-            if (Time.time - throwScript.shotTime > 10)
+            if (player1Score < 2 && player2Score < 2)
             {
-                //reload the level
-                reset();
-                //Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
+                if (Time.time - throwScript.shotTime > 10)
+                {
+                    //reload the level
+                    reset();
+                }
             }
         }
 	}
@@ -194,7 +196,6 @@ public class Controller : MonoBehaviour {
                 }
             }
 
-
             if (currentPlayer == 1)
             {
                 throwScript.setPower(0.0f);
@@ -217,11 +218,7 @@ public class Controller : MonoBehaviour {
                 //update scoreboard
                 score.UpdateScoreboard();
             }
-
-
-
             ballList.Add(newBall);
-
 
             //give throwscript the new ball
             throwScript.setBall(newBall);
@@ -269,15 +266,39 @@ public class Controller : MonoBehaviour {
             player2Score++;
         }
 
-        winPanel.SetActive(true);
+        if(player1Score == 2)
+        {
+            gameWinText.text = "Player 1 Wins The Game!!!!!!!!!!";
+            gameWinPanel.SetActive(true);
+            if(Time.time - throwScript.shotTime > 10)
+            {
+                Scene scene = SceneManager.GetActiveScene();
+                SceneManager.LoadScene(scene.name);
+                print("after scene load");
+            }
+
+        }
+        if(player2Score == 2)
+        {
+            gameWinText.text = "Player 2 Wins The Game!!!!!!!!!";
+            gameWinPanel.SetActive(true);
+            if (Time.time - throwScript.shotTime > 10)
+            {
+                Scene scene = SceneManager.GetActiveScene();
+                SceneManager.LoadScene(scene.name);
+                print("after scene load");
+            }
+        }
+        if(player1Score < 2 && player2Score < 2)
+        {
+            winPanel.SetActive(true);
+        }
+
+        //winPanel.SetActive(true);
     }
 
     public void reset()
     {
-        print("reset start");
-        //reset the game
-        //List <GameObject> ballList = new List <GameObject>();
-
         foreach (GameObject ball in GameObject.FindGameObjectsWithTag("Ball"))
         {
             Object.Destroy(ball);
@@ -288,7 +309,7 @@ public class Controller : MonoBehaviour {
 
         amountOfBalls = 0;
 
-        //remove balls
+        //remove jack
         Object.Destroy(jack);
 
         throwScript.jackThrown = false;
@@ -298,12 +319,12 @@ public class Controller : MonoBehaviour {
         jackThrown = false;
         spawnJack();
         score.UpdateScoreboard();
-        //reset connections to jack
-      //  jackCamera.getJack();
-        print("reset stop");
+
 
         cameraOverlay.SetActive(false);
         cameraOutline.SetActive(false);
+
+        gameOver = false;
     }
 }
 
