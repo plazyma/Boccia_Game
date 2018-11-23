@@ -52,6 +52,7 @@ public class Controller : MonoBehaviour {
     public int player2Score = 0;
 
     public bool gameOver;
+    public float gameOverTime = 0.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -104,24 +105,30 @@ public class Controller : MonoBehaviour {
         jack.GetComponent<Rigidbody>().useGravity = false;
         dist = jack.GetComponent<BallDistance>();
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
         //update jack cam
         if (Input.GetKeyDown("t"))
         {
             reset();
         }
-        if(Input.GetKeyDown("j"))
+        if (Input.GetKeyDown("j"))
         {
             jackCamera.getJack();
+        }
+
+        if (Input.GetKeyDown("p"))
+        {
+            player1Score++;
+            score.UpdateScoreboard();
         }
 
         if (throwScript.jackThrown && !jackThrown)
         {
             //after 4 seconds have passed since throwing
-            if (Time.time- throwScript.shotTime > 4)
+            if (Time.time - throwScript.shotTime > 4)
             {
 
                 //set jack as thrown on this script, create a new ball and tell throw that there is a new ball
@@ -129,7 +136,7 @@ public class Controller : MonoBehaviour {
                 if (currentPlayer == 1)
                 {
                     newBall = Instantiate(redBall, player.transform.position + (player.transform.forward * 2), player.transform.rotation);
-                    redBalls ++;
+                    redBalls++;
                 }
                 else if (currentPlayer == 2)
                 {
@@ -140,15 +147,15 @@ public class Controller : MonoBehaviour {
                 //give throwscript the new ball
                 throwScript.setBall(newBall);
                 throwScript.setPower(0.0f);
-                player.transform.eulerAngles = new Vector3 (0, 90,  0);
+                player.transform.eulerAngles = new Vector3(0, 90, 0);
 
                 //update scoreboard
                 score.UpdateScoreboard();
 
                 //activate jack camera
                 cameraOverlay.SetActive(true);
-				cameraOutline.SetActive(true);
-            }          
+                cameraOutline.SetActive(true);
+            }
         }
         //spawn a new ball
         if (!gameOver)
@@ -174,7 +181,11 @@ public class Controller : MonoBehaviour {
                 }
             }
         }
-	}
+        if (gameOver && Time.time - throwScript.shotTime > 12)
+        {
+            reloadScene();
+        }
+    }
     public void spawnBall()
     {
         if (amountOfBalls < 12 && throwScript.ballThrown && Time.time - throwScript.shotTime > 4)
@@ -270,24 +281,14 @@ public class Controller : MonoBehaviour {
         {
             gameWinText.text = "Player 1 Wins The Game!!!!!!!!!!";
             gameWinPanel.SetActive(true);
-            if(Time.time - throwScript.shotTime > 10)
-            {
-                Scene scene = SceneManager.GetActiveScene();
-                SceneManager.LoadScene(scene.name);
-                print("after scene load");
-            }
+            gameOver = true;
 
         }
         if(player2Score == 2)
         {
             gameWinText.text = "Player 2 Wins The Game!!!!!!!!!";
             gameWinPanel.SetActive(true);
-            if (Time.time - throwScript.shotTime > 10)
-            {
-                Scene scene = SceneManager.GetActiveScene();
-                SceneManager.LoadScene(scene.name);
-                print("after scene load");
-            }
+            gameOver = true;
         }
         if(player1Score < 2 && player2Score < 2)
         {
@@ -297,6 +298,14 @@ public class Controller : MonoBehaviour {
         //winPanel.SetActive(true);
     }
 
+    public void reloadScene()
+    {
+        
+            Scene scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(scene.name);
+            print("after scene load");
+       
+    }
     public void reset()
     {
         foreach (GameObject ball in GameObject.FindGameObjectsWithTag("Ball"))
