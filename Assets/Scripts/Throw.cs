@@ -15,10 +15,16 @@ public class Throw : MonoBehaviour {
     Controller cont;
     public GameObject player;
 
+    public AudioSource audioSource;
+    public AudioClip audioClip;
+    public AudioClip audioClip2;
+
     public float shotTime;
     public bool ballFound = false;
     public bool ballThrown = false;
     public bool jackThrown = false;
+
+    public List<AudioClip> powerBarAudioClips = new List<AudioClip>();
 
     // Use this for initialization
     void Start () {
@@ -27,15 +33,32 @@ public class Throw : MonoBehaviour {
         cont = gameController.gameObject.GetComponent<Controller>();
         player = GameObject.FindGameObjectWithTag("Player");
 
-        rb.useGravity = false;
+        //rb.useGravity = false;
         power = 0.0f;
 
-       // startPosition = new Vector3(-17.73f, 1.68f, 2.38f);
+        // startPosition = new Vector3(-17.73f, 1.68f, 2.38f);
+        loadSound();
+    }
+
+    void loadSound()
+    {
+        //Load all sound clips
+        Object[] powerBarSounds = Resources.LoadAll("Power", typeof(AudioClip));
+
+        //Populate list
+        foreach(Object sound in powerBarSounds)
+        {
+            powerBarAudioClips.Add((AudioClip)sound);
+        }
     }
 
     // Update is called once per frame
     void Update () {
-
+        //If list of sounds is empty, populate it
+        if(powerBarAudioClips.Count == 0)
+        {
+            loadSound();
+        }
         //if there is no ball yet
         if (ballFound == false)
         {
@@ -53,13 +76,21 @@ public class Throw : MonoBehaviour {
             //update balls position until thrown
             ball.transform.position = transform.position + (transform.forward * 2);
 
-
-
             //Increase x - power by 1
             if (Input.GetKeyDown("up"))
             {
                 if (power < 10)
                 {
+                    //Convert power from float to int
+                    float current = power * 2;
+                    int currentB = (int)current;
+
+                    //Set clip based on power
+                    audioSource.clip = powerBarAudioClips[currentB];
+                    //Play
+                    audioSource.Play();
+
+                    //Increase power
                     power += 0.5f;
                 }
             }
@@ -68,7 +99,17 @@ public class Throw : MonoBehaviour {
             {
                 if (power > 0)
                 {
+                    //Decrease power
                     power -= 0.5f;
+
+                    //Convert power from float to int
+                    float current = power * 2;
+                    int currentB = (int)current;
+
+                    //Set clip based on power
+                    audioSource.clip = powerBarAudioClips[currentB];
+                    //Play
+                    audioSource.Play();
                 }
             }
             //Decrease z - power by 1
