@@ -6,18 +6,15 @@ public class PlayerControls : MonoBehaviour {
 
     //public fixed float positions[5];
 
-    
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         //reset forward at start
         
         Debug.Log(transform.forward);
-
     }
 	
 	// Update is called once per frame
 	void Update () {
-        print(Input.GetAxis("MouseX"));
         //When right is pressed rotate ball
         if (Input.GetKeyDown("right") || Input.GetAxis("DPadX") == 1 || Input.GetAxis("MouseX") > 0)
         {
@@ -29,7 +26,6 @@ public class PlayerControls : MonoBehaviour {
                 transform.Rotate(0.0f, 2.0f, 0.0f);
                 //DEBUG
                 //print(transform.eulerAngles.y);
-                print(Input.GetAxis("MouseX"));
             }
         }
         //When left is pressed rotate in opposite direction
@@ -43,7 +39,6 @@ public class PlayerControls : MonoBehaviour {
                 transform.Rotate(0.0f, -2.0f, 0.0f);
                 //DEBUG
                 //print(transform.eulerAngles.y);
-                print(Input.GetAxis("MouseX"));
             }
         }
     }

@@ -843,6 +843,7 @@ RectTransform:
   - {fileID: 1402889117}
   - {fileID: 1153037536}
   - {fileID: 1575261029}
+  - {fileID: 1624799062}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -916,8 +917,7 @@ MonoBehaviour:
   gameController: {fileID: 0}
   player: {fileID: 0}
   audioSource: {fileID: 1206438247}
-  audioClip: {fileID: 8300000, guid: 31586b1811a33dd4a851ca3c1206f7fc, type: 3}
-  audioClip2: {fileID: 8300000, guid: 0a1e1f28867fbf94890e83c8e96188ff, type: 3}
+  ballThrowSound: {fileID: 8300000, guid: d6f69d6ff773f7c438685fb7943053f5, type: 3}
   shotTime: 0
   ballFound: 0
   ballThrown: 0
@@ -934,6 +934,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77bb74bc30b7e2b448a6dac5c8315cd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ballsLeft: {fileID: 0}
+  ball_sprite: {fileID: 21300000, guid: 335c2c4ea30fa924fa9eed7a37cc0e92, type: 3}
+  ball_sprite2: {fileID: 21300000, guid: 52a4ca94cada93f4581690586de10186, type: 3}
 --- !u!136 &256544276
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1291,6 +1294,7 @@ GameObject:
   - component: {fileID: 458048161}
   - component: {fileID: 458048160}
   - component: {fileID: 458048159}
+  - component: {fileID: 458048162}
   m_Layer: 5
   m_Name: p1Balls
   m_TagString: Untagged
@@ -1372,6 +1376,20 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 458048157}
+--- !u!114 &458048162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 458048157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &466469089
 GameObject:
   m_ObjectHideFlags: 0
@@ -1516,7 +1534,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 9a10a32eccb9d2c4db0eab224f7b973f, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2209,7 +2227,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1127283097}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 00705bd8e85515c44b3f18587230ba95, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -2949,6 +2967,74 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1575261028}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1624799061
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1624799062}
+  - component: {fileID: 1624799064}
+  - component: {fileID: 1624799063}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1624799062
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1624799061}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 256258657}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1624799063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1624799061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 335c2c4ea30fa924fa9eed7a37cc0e92, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &1624799064
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1624799061}
 --- !u!1 &1625479590
 GameObject:
   m_ObjectHideFlags: 0
@@ -3020,6 +3106,11 @@ MonoBehaviour:
   dist: {fileID: 0}
   jcam: {fileID: 0}
   cameraOverlay: {fileID: 0}
+  audioSource: {fileID: 1206438247}
+  ballChangeSound: {fileID: 8300000, guid: 3c85c623dc5f75f44bace1e517ab8cb5, type: 3}
+  player1WinSound: {fileID: 8300000, guid: f70e97f22f7752c4583f39f179049981, type: 3}
+  player2WinSound: {fileID: 8300000, guid: 33c4e0200c1749a4aaec2d9ecbeb8c08, type: 3}
+  winSound: {fileID: 8300000, guid: 84d7680731ffc274d961415a62459d76, type: 3}
   redMaterial: {fileID: 2100000, guid: 9a7166b7459f5fb45bb7f07278e5a4f0, type: 2}
   greenMaterial: {fileID: 2100000, guid: 80efd3f622fe3e44fb7a3936a4b191a6, type: 2}
   ballList: []

@@ -16,8 +16,7 @@ public class Throw : MonoBehaviour {
     public GameObject player;
 
     public AudioSource audioSource;
-    public AudioClip audioClip;
-    public AudioClip audioClip2;
+    public AudioClip ballThrowSound;
 
     public float shotTime;
     public bool ballFound = false;
@@ -149,6 +148,8 @@ public class Throw : MonoBehaviour {
                 //ball is thrown and can't be touched
                 ballThrown = true;
                 shotTime = Time.time;
+                audioSource.clip = ballThrowSound;
+                audioSource.Play();
             }
             
         }
