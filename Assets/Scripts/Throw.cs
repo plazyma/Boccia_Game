@@ -77,7 +77,7 @@ public class Throw : MonoBehaviour {
             ball.transform.position = transform.position + (transform.forward * 2);
 
             //Increase x - power by 1
-            if (Input.GetKeyDown("up") || Input.GetButtonDown("A"))
+            if (Input.GetKeyDown("up") || Input.GetButtonDown("A") || Input.GetAxis("MouseScrollWheel") > 0)
             {
                 if (power < 10)
                 {
@@ -95,7 +95,7 @@ public class Throw : MonoBehaviour {
                 }
             }
             //Decrease x - power by 1
-            if (Input.GetKeyDown("down") || Input.GetButtonDown("B"))
+            if (Input.GetKeyDown("down") || Input.GetButtonDown("B") || Input.GetAxis("MouseScrollWheel") < 0)
             {
                 if (power > 0)
                 {
@@ -113,7 +113,7 @@ public class Throw : MonoBehaviour {
                 }
             }
             //Decrease z - power by 1
-            if (Input.GetKeyDown("left") || Input.GetAxis("DPadX") == -1)
+            if (Input.GetKeyDown("left") || Input.GetAxis("DPadX") == -1 || Input.GetAxis("MouseX") < 0)
             {
                 if (power_z > -6)
                 {
@@ -121,7 +121,7 @@ public class Throw : MonoBehaviour {
                 }
             }
             //Increase z - power by 1
-            if (Input.GetKeyDown("right") || Input.GetAxis("DPadX") == 1)
+            if (Input.GetKeyDown("right") || Input.GetAxis("DPadX") == 1 || Input.GetAxis("MouseX") > 0)
             {
                 if (power_z < 6)
                 {
@@ -129,7 +129,7 @@ public class Throw : MonoBehaviour {
                 }
             }
             //Apply force on release
-            if (Input.GetKeyDown("space") || Input.GetButtonDown("X"))
+            if (Input.GetKeyDown("space") || Input.GetButtonDown("X") || Input.GetButtonDown("LeftMouseButton"))
             {
                 //rb.useGravity = true;
                 //Apply force to ball
