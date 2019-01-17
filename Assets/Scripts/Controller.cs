@@ -130,6 +130,12 @@ public class Controller : MonoBehaviour {
             score.UpdateScoreboard();
         }
 
+        //quit the game
+        if (Input.GetKeyDown("q")|| Input.GetButtonDown("Start Button"))
+        {
+            Application.Quit();
+        }
+
         if (throwScript.jackThrown && !jackThrown)
         {
             //after 4 seconds have passed since throwing

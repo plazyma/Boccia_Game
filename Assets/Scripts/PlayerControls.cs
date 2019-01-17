@@ -65,10 +65,16 @@ public class PlayerControls : MonoBehaviour {
                 
             }
         }
+        if (Input.GetKeyDown("v"))
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
 
 
 
         //reset mouse position to the center of the screen
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }
