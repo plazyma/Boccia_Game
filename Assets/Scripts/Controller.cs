@@ -27,6 +27,12 @@ public class Controller : MonoBehaviour {
     public GameObject cameraOverlay;
 	GameObject cameraOutline;
 
+    //Audio
+    public AudioSource audioSource;
+    public AudioClip ballChangeSound;
+    public AudioClip player1WinSound;
+    public AudioClip player2WinSound;
+    public AudioClip winSound;
 
     //scoreboard
     GameObject scoreBoard;
@@ -93,8 +99,7 @@ public class Controller : MonoBehaviour {
     }
 
     void spawnJack()
-    {
-       
+    { 
         winPanel.SetActive(false);
         //setup player for spawning balls
         Quaternion spawnRotation = Quaternion.identity;
@@ -123,6 +128,12 @@ public class Controller : MonoBehaviour {
         {
             player1Score++;
             score.UpdateScoreboard();
+        }
+
+        //quit the game
+        if (Input.GetKeyDown("q")|| Input.GetButtonDown("Start Button"))
+        {
+            Application.Quit();
         }
 
         if (throwScript.jackThrown && !jackThrown)
@@ -217,6 +228,9 @@ public class Controller : MonoBehaviour {
                 greenBalls++;
                 //update scoreboard
                 score.UpdateScoreboard();
+
+                audioSource.clip = ballChangeSound;
+                audioSource.Play();
             }
             else if (currentPlayer == 2)
             {
@@ -228,6 +242,9 @@ public class Controller : MonoBehaviour {
                 redBalls++;
                 //update scoreboard
                 score.UpdateScoreboard();
+
+                audioSource.clip = ballChangeSound;
+                audioSource.Play();
             }
             ballList.Add(newBall);
 
@@ -269,12 +286,18 @@ public class Controller : MonoBehaviour {
            // print("PLAYER 1 WINS");
             winText.text = "Player 1 Wins!";
             player1Score++;
+
+            audioSource.clip = player1WinSound;
+            audioSource.Play();
         }
         if(dist.FindClosestBall() == 2)
         {
             //print("PLAYER 2 WINS");
             winText.text = "Player 2 Wins!";
             player2Score++;
+
+            audioSource.clip = player2WinSound;
+            audioSource.Play();
         }
 
         if(player1Score == 2)
@@ -283,12 +306,17 @@ public class Controller : MonoBehaviour {
             gameWinPanel.SetActive(true);
             gameOver = true;
 
+            audioSource.clip = winSound;
+            audioSource.Play();
         }
         if(player2Score == 2)
         {
             gameWinText.text = "Player 2 Wins The Game!!!!!!!!!";
             gameWinPanel.SetActive(true);
             gameOver = true;
+
+            audioSource.clip = winSound;
+            audioSource.Play();
         }
         if(player1Score < 2 && player2Score < 2)
         {

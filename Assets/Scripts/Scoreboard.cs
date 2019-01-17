@@ -25,7 +25,6 @@ public class Scoreboard : MonoBehaviour {
     player2Count = GameObject.Find("p2Balls").GetComponent<Text>();
     player1Score = GameObject.Find("p1Score").GetComponent<Text>();
     player2Score = GameObject.Find("p2Score").GetComponent<Text>();
-    
 
     //get the controller object
     cont = GameObject.FindGameObjectWithTag("GameController");
