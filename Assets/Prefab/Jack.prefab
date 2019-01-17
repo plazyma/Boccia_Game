@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 135497014443903718}
   - component: {fileID: 54291687023944628}
   - component: {fileID: 114589610593114592}
+  - component: {fileID: 114643926391496418}
   m_Layer: 0
   m_Name: Jack
   m_TagString: Jack
@@ -180,6 +181,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   redMaterial: {fileID: 2100000, guid: 9a7166b7459f5fb45bb7f07278e5a4f0, type: 2}
   greenMaterial: {fileID: 2100000, guid: 80efd3f622fe3e44fb7a3936a4b191a6, type: 2}
+--- !u!114 &114643926391496418
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1144311498607778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68fd35f3f561c014490d0cd6a0b18c32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ballCollisionSounds: []
 --- !u!135 &135497014443903718
 SphereCollider:
   m_ObjectHideFlags: 1
