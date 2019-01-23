@@ -10,6 +10,8 @@ TagManager:
   - JackCamera
   - CameraOverlay
   - CameraOutline
+  - CameraMain
+  - CameraAlt
   layers:
   - Default
   - TransparentFX
