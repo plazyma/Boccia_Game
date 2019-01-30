@@ -12,6 +12,7 @@ TagManager:
   - CameraOutline
   - CameraMain
   - CameraAlt
+  - ScoreBoard2
   layers:
   - Default
   - TransparentFX

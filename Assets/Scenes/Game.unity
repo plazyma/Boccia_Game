@@ -587,7 +587,7 @@ GameObject:
   - component: {fileID: 197124497}
   - component: {fileID: 197124496}
   m_Layer: 5
-  m_Name: p1Balls
+  m_Name: p1Balls2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -640,6 +640,10 @@ MonoBehaviour:
   player2Count: {fileID: 0}
   player1Score: {fileID: 0}
   player2Score: {fileID: 0}
+  player1Count2: {fileID: 0}
+  player2Count2: {fileID: 0}
+  player1Score2: {fileID: 0}
+  player2Score2: {fileID: 0}
   totalBalls: 6
   cont: {fileID: 0}
 --- !u!114 &197124498
@@ -732,6 +736,10 @@ MonoBehaviour:
   player2Count: {fileID: 0}
   player1Score: {fileID: 0}
   player2Score: {fileID: 0}
+  player1Count2: {fileID: 0}
+  player2Count2: {fileID: 0}
+  player1Score2: {fileID: 0}
+  player2Score2: {fileID: 0}
   totalBalls: 6
   cont: {fileID: 0}
 --- !u!114 &205334205
@@ -986,6 +994,10 @@ MonoBehaviour:
   player2Count: {fileID: 0}
   player1Score: {fileID: 0}
   player2Score: {fileID: 0}
+  player1Count2: {fileID: 0}
+  player2Count2: {fileID: 0}
+  player1Score2: {fileID: 0}
+  player2Score2: {fileID: 0}
   totalBalls: 6
   cont: {fileID: 0}
 --- !u!1 &256544273
@@ -1455,6 +1467,10 @@ MonoBehaviour:
   player2Count: {fileID: 0}
   player1Score: {fileID: 0}
   player2Score: {fileID: 0}
+  player1Count2: {fileID: 0}
+  player2Count2: {fileID: 0}
+  player1Score2: {fileID: 0}
+  player2Score2: {fileID: 0}
   totalBalls: 6
   cont: {fileID: 0}
 --- !u!114 &458048160
@@ -1502,7 +1518,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 458048157}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
@@ -1695,7 +1711,7 @@ GameObject:
   - component: {fileID: 590504840}
   m_Layer: 5
   m_Name: HUDCanvasAlt
-  m_TagString: ScoreBoard
+  m_TagString: ScoreBoard2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1715,6 +1731,10 @@ MonoBehaviour:
   player2Count: {fileID: 0}
   player1Score: {fileID: 0}
   player2Score: {fileID: 0}
+  player1Count2: {fileID: 0}
+  player2Count2: {fileID: 0}
+  player1Score2: {fileID: 0}
+  player2Score2: {fileID: 0}
   totalBalls: 6
   cont: {fileID: 0}
 --- !u!225 &590504842
@@ -1825,7 +1845,7 @@ GameObject:
   - component: {fileID: 605248538}
   - component: {fileID: 605248537}
   m_Layer: 5
-  m_Name: p2Score
+  m_Name: p2Score2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1864,6 +1884,10 @@ MonoBehaviour:
   player2Count: {fileID: 0}
   player1Score: {fileID: 0}
   player2Score: {fileID: 0}
+  player1Count2: {fileID: 0}
+  player2Count2: {fileID: 0}
+  player1Score2: {fileID: 0}
+  player2Score2: {fileID: 0}
   totalBalls: 6
   cont: {fileID: 0}
 --- !u!114 &605248538
@@ -2944,6 +2968,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.1707, y: 0.2800001, z: 1.9895197e-15}
   m_Center: {x: 0, y: -0.0000000037252903, z: -4.440892e-16}
+--- !u!114 &1127283102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1127283097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92289b0f9fb8fea46bd4078bf0116b61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1153037535
 GameObject:
   m_ObjectHideFlags: 0
@@ -3076,7 +3111,7 @@ GameObject:
   - component: {fileID: 1182716056}
   - component: {fileID: 1182716055}
   m_Layer: 5
-  m_Name: p2Balls
+  m_Name: p2Balls2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3115,6 +3150,10 @@ MonoBehaviour:
   player2Count: {fileID: 0}
   player1Score: {fileID: 0}
   player2Score: {fileID: 0}
+  player1Count2: {fileID: 0}
+  player2Count2: {fileID: 0}
+  player1Score2: {fileID: 0}
+  player2Score2: {fileID: 0}
   totalBalls: 6
   cont: {fileID: 0}
 --- !u!114 &1182716056
@@ -3292,7 +3331,7 @@ GameObject:
   - component: {fileID: 1210859881}
   - component: {fileID: 1210859880}
   m_Layer: 5
-  m_Name: p1Score
+  m_Name: p1Score2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3331,6 +3370,10 @@ MonoBehaviour:
   player2Count: {fileID: 0}
   player1Score: {fileID: 0}
   player2Score: {fileID: 0}
+  player1Count2: {fileID: 0}
+  player2Count2: {fileID: 0}
+  player1Score2: {fileID: 0}
+  player2Score2: {fileID: 0}
   totalBalls: 6
   cont: {fileID: 0}
 --- !u!114 &1210859881
@@ -4466,6 +4509,10 @@ MonoBehaviour:
   player2Count: {fileID: 0}
   player1Score: {fileID: 0}
   player2Score: {fileID: 0}
+  player1Count2: {fileID: 0}
+  player2Count2: {fileID: 0}
+  player1Score2: {fileID: 0}
+  player2Score2: {fileID: 0}
   totalBalls: 6
   cont: {fileID: 0}
 --- !u!114 &1714491937
@@ -4746,6 +4793,10 @@ MonoBehaviour:
   player2Count: {fileID: 0}
   player1Score: {fileID: 0}
   player2Score: {fileID: 0}
+  player1Count2: {fileID: 0}
+  player2Count2: {fileID: 0}
+  player1Score2: {fileID: 0}
+  player2Score2: {fileID: 0}
   totalBalls: 6
   cont: {fileID: 0}
 --- !u!114 &1855441046
