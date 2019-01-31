@@ -49,6 +49,11 @@ public class Controller : MonoBehaviour {
     public GameObject gameWinPanel;
     public Text gameWinText;
 
+    //Faultboxes
+    public GameObject faultBoxes;
+    FaultBoxes faultBoxesScript;
+    List<FaultBoxes> faultBoxList = new List<FaultBoxes>();
+
     //debug
     public int amountOfBalls = 0;
     public int greenBalls = 0;
@@ -96,6 +101,15 @@ public class Controller : MonoBehaviour {
         cameraOverlay.SetActive(false);
 		cameraOutline = GameObject.FindGameObjectWithTag("CameraOutline");
         cameraOutline.SetActive(false);
+
+        //Faultboxes
+        faultBoxes = GameObject.FindGameObjectWithTag("FaultBoxes");
+        faultBoxesScript = faultBoxes.GetComponentInChildren<FaultBoxes>();
+
+        foreach (FaultBoxes fault in faultBoxes.GetComponentInChildren<FaultBoxes>)
+        {
+
+        }
     }
 
     void spawnJack()
@@ -114,6 +128,7 @@ public class Controller : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+       
         //update jack cam
         if (Input.GetKeyDown("t"))
         {
@@ -138,10 +153,14 @@ public class Controller : MonoBehaviour {
 
         if (throwScript.jackThrown && !jackThrown)
         {
+
             //after 4 seconds have passed since throwing
             if (Time.time - throwScript.shotTime > 4)
             {
-
+                if (faultBoxesScript.CheckCollision())
+                {
+                    print("In Area!!!!!");
+                }
                 //set jack as thrown on this script, create a new ball and tell throw that there is a new ball
                 jackThrown = true;
                 if (currentPlayer == 1)
@@ -166,6 +185,8 @@ public class Controller : MonoBehaviour {
                 //activate jack camera
                 cameraOverlay.SetActive(true);
                 cameraOutline.SetActive(true);
+
+               
             }
         }
         //spawn a new ball
@@ -201,6 +222,7 @@ public class Controller : MonoBehaviour {
     {
         if (amountOfBalls < 12 && throwScript.ballThrown && Time.time - throwScript.shotTime > 4)
         {
+
             player.transform.eulerAngles = new Vector3(0, 90, 0);
             if (amountOfBalls > 1)
             {
@@ -250,6 +272,8 @@ public class Controller : MonoBehaviour {
 
             //give throwscript the new ball
             throwScript.setBall(newBall);
+
+            
         }
     }
 
