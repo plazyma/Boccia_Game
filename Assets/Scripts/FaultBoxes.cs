@@ -4,39 +4,42 @@ using UnityEngine;
 
 public class FaultBoxes : MonoBehaviour {
 
-    GameObject player;
-    Throw throwScript;
+    bool jackInArea;
 
-    bool inArea;
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        throwScript = player.GetComponent<Throw>();
+        jackInArea = false;
     }
  
-
+    //Object has entered a faulty area
     private void OnTriggerEnter(Collider other)
     {
-        inArea = true;
-        //print("Entered area");
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        inArea = false;
-        //print("Exited area");
-    }
-
-    void Update()
-    {
-        if (inArea)
+        //Check if the object is the jack
+        if(other.CompareTag("Jack"))
         {
-            print("In Area");
+            jackInArea = true;
         }
     }
 
-    public bool CheckCollision()
+    //Object has exited faulty area
+    private void OnTriggerExit(Collider other)
     {
-        return inArea;
+        //Check if the object is the jack
+        if (other.CompareTag("Jack"))
+        {
+            jackInArea = false;
+        }
+    }
+
+    //Return whether the jack is in a faulty area or not
+    public bool GetJackInArea()
+    {
+        return jackInArea;
+    }
+
+    //Force jack has left the area
+    public void SetJackInArea()
+    {
+        jackInArea = false;
     }
 }
