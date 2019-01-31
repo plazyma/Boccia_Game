@@ -59,8 +59,10 @@ public class SettingScript : MonoBehaviour {
         {
             string[] names = QualitySettings.names;
             {
-                GUILayout.BeginArea(new Rect(Screen.width / 6, Screen.height / 2, 350, 50));
-                GUILayout.BeginHorizontal();
+                //GUILayout.BeginArea(new Rect(Screen.width/2 - (Screen.width / 3.5f), Screen.height / 2 + Screen.height / 12, 350, 50));
+                GUILayout.BeginArea(new Rect(Screen.width / 2 - 50 , Screen.height / 2 + 10, 100, 350));
+                //GUILayout.BeginHorizontal();
+                GUILayout.BeginVertical();
                 for (int i = 0; i < names.Length; i++)
                 {
                     if (GUILayout.Button(names[i]))
@@ -68,8 +70,8 @@ public class SettingScript : MonoBehaviour {
                         QualitySettings.SetQualityLevel(i, true);
                     }
                 }
-
-                GUILayout.EndHorizontal();
+                GUILayout.EndVertical();
+                //GUILayout.EndHorizontal();
                 GUILayout.EndArea();
             }
         }
