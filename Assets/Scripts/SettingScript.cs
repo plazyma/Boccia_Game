@@ -10,6 +10,7 @@ public class SettingScript : MonoBehaviour {
     public GameObject settings;
     public GameObject soundSettings;
     public GameObject graphicSettings;
+    bool unloadUI = true;
 
     //game volume
     public Slider slider;
@@ -22,10 +23,35 @@ public class SettingScript : MonoBehaviour {
     void Start () {
         volumePercent = GameObject.Find("Volume Level").GetComponent<Text>();
         volumePercent.text = (int)gameVolume + "%";
+
+        //find settings options
+        mainMenu = GameObject.FindWithTag("Main Menu");
+        settings = GameObject.FindWithTag("Settings");
+        soundSettings = GameObject.FindWithTag("SoundSettings");
+        graphicSettings = GameObject.FindWithTag("GraphicSettings");
+
+       
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void Awake()
+    {
+        //find settings options
+        mainMenu = GameObject.FindWithTag("Main Menu");
+        settings = GameObject.FindWithTag("Settings");
+        soundSettings = GameObject.FindWithTag("SoundSettings");
+        graphicSettings = GameObject.FindWithTag("GraphicSettings");
+    }
+    // Update is called once per frame
+    void Update () {
+        if (unloadUI && mainMenu.activeInHierarchy == true)
+        {
+            // reset screen
+            settings.SetActive(false);
+            graphicSettings.SetActive(false);
+            soundSettings.SetActive(false);
+            unloadUI = false;
+        }
+        
     }
     void OnGUI()
     {

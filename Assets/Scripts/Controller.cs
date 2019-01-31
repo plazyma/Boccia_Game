@@ -106,10 +106,10 @@ public class Controller : MonoBehaviour {
         faultBoxes = GameObject.FindGameObjectWithTag("FaultBoxes");
         faultBoxesScript = faultBoxes.GetComponentInChildren<FaultBoxes>();
 
-        foreach (FaultBoxes fault in faultBoxes.GetComponentInChildren<FaultBoxes>)
-        {
+        //foreach (FaultBoxes fault in faultBoxes.GetComponentInChildren<FaultBoxes>)
+        //{
 
-        }
+        //}
     }
 
     void spawnJack()
