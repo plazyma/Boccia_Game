@@ -190,6 +190,7 @@ GameObject:
   - component: {fileID: 84101782}
   - component: {fileID: 84101781}
   - component: {fileID: 84101780}
+  - component: {fileID: 84101783}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -264,6 +265,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 84101778}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &84101783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 84101778}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9c93fedad695384ca2b49b3eff5730c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &113289730
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,15 +323,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: f2b2d936e04e1d1449401df0d6805898, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1043,6 +1055,7 @@ MonoBehaviour:
   ballThrown: 0
   jackThrown: 0
   powerBarAudioClips: []
+  faultBoxes: {fileID: 0}
 --- !u!114 &256544275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2080,6 +2093,7 @@ GameObject:
   - component: {fileID: 645183111}
   - component: {fileID: 645183110}
   - component: {fileID: 645183109}
+  - component: {fileID: 645183112}
   m_Layer: 0
   m_Name: Cube (2)
   m_TagString: Untagged
@@ -2154,6 +2168,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 645183107}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &645183112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 645183107}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9c93fedad695384ca2b49b3eff5730c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &691550322
 GameObject:
   m_ObjectHideFlags: 0
@@ -2968,17 +2993,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.1707, y: 0.2800001, z: 1.9895197e-15}
   m_Center: {x: 0, y: -0.0000000037252903, z: -4.440892e-16}
---- !u!114 &1127283102
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1127283097}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92289b0f9fb8fea46bd4078bf0116b61, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1153037535
 GameObject:
   m_ObjectHideFlags: 0
@@ -4223,7 +4237,7 @@ GameObject:
   - component: {fileID: 1625479591}
   m_Layer: 0
   m_Name: Faultboxes
-  m_TagString: Untagged
+  m_TagString: FaultBoxes
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4296,6 +4310,7 @@ MonoBehaviour:
   winText: {fileID: 1713284515}
   gameWinPanel: {fileID: 374672781}
   gameWinText: {fileID: 2044617631}
+  faultBoxes: {fileID: 0}
   amountOfBalls: 0
   greenBalls: 0
   redBalls: 0
@@ -4370,8 +4385,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 52a4ca94cada93f4581690586de10186, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -4581,6 +4596,7 @@ GameObject:
   - component: {fileID: 1829766382}
   - component: {fileID: 1829766381}
   - component: {fileID: 1829766380}
+  - component: {fileID: 1829766383}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -4655,6 +4671,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1829766378}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1829766383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1829766378}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9c93fedad695384ca2b49b3eff5730c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1839558221
 GameObject:
   m_ObjectHideFlags: 0
