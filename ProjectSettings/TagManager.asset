@@ -10,6 +10,14 @@ TagManager:
   - JackCamera
   - CameraOverlay
   - CameraOutline
+  - CameraMain
+  - CameraAlt
+  - ScoreBoard2
+  - FaultBoxes
+  - Settings
+  - GraphicSettings
+  - SoundSettings
+  - Main Menu
   layers:
   - Default
   - TransparentFX
