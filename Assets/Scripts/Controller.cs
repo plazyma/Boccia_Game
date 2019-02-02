@@ -8,6 +8,7 @@ public class Controller : MonoBehaviour {
     public int currentPlayer;
     public bool jackThrown = false;
     public bool firstThrows = true;
+    public bool faultyJack = false;
 
     public GameObject jack;
     public GameObject redBall;
@@ -52,7 +53,7 @@ public class Controller : MonoBehaviour {
     //Faultboxes
     public GameObject faultBoxes;
     FaultBoxes faultBoxesScript;
-    List<FaultBoxes> faultBoxList = new List<FaultBoxes>();
+    public List<FaultBoxes> faultBoxList = new List<FaultBoxes>();
 
     //debug
     public int amountOfBalls = 0;
@@ -65,8 +66,8 @@ public class Controller : MonoBehaviour {
     public bool gameOver;
     public float gameOverTime = 0.0f;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start() {
         winPanel.SetActive(false);
         gameWinPanel.SetActive(false);
 
@@ -92,24 +93,25 @@ public class Controller : MonoBehaviour {
 
         //spawn jack on initial run time
         spawnJack();
-        
+
         //setup jack camera
         jcam = GameObject.FindGameObjectWithTag("JackCamera");
         jackCamera = jcam.GetComponent<JackCamera>();
         jackCamera.getJack();
         cameraOverlay = GameObject.FindGameObjectWithTag("CameraOverlay");
         cameraOverlay.SetActive(false);
-		cameraOutline = GameObject.FindGameObjectWithTag("CameraOutline");
+        cameraOutline = GameObject.FindGameObjectWithTag("CameraOutline");
         cameraOutline.SetActive(false);
 
         //Faultboxes
         faultBoxes = GameObject.FindGameObjectWithTag("FaultBoxes");
         faultBoxesScript = faultBoxes.GetComponentInChildren<FaultBoxes>();
 
-        //foreach (FaultBoxes fault in faultBoxes.GetComponentInChildren<FaultBoxes>)
-        //{
-
-        //}
+        //Populate list with FaultBoxes scripts
+        foreach (FaultBoxes fault in faultBoxes.GetComponentsInChildren<FaultBoxes>())
+        {
+            faultBoxList.Add(fault);
+        }  
     }
 
     void spawnJack()
@@ -123,11 +125,21 @@ public class Controller : MonoBehaviour {
         jack = Instantiate(jack, player.transform.position + playerForward, spawnRotation);
         jack.GetComponent<Rigidbody>().useGravity = false;
         dist = jack.GetComponent<BallDistance>();
+
+        throwScript.jackThrown = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Debug
+        if(Input.GetKeyDown("'"))
+        {
+            foreach(FaultBoxes fault in faultBoxList)
+            {
+                print(fault.GetJackInArea());
+            }
+        }
        
         //update jack cam
         if (Input.GetKeyDown("t"))
@@ -157,42 +169,82 @@ public class Controller : MonoBehaviour {
             //after 4 seconds have passed since throwing
             if (Time.time - throwScript.shotTime > 4)
             {
-                if (faultBoxesScript.CheckCollision())
+                jackThrown = true;
+                //Check all faulty areas for jack
+                foreach (FaultBoxes fault in faultBoxList)
                 {
-                    print("In Area!!!!!");
+                    if (fault.GetJackInArea())
+                    {
+                        print(" Jack In Area");
+                        //Faulty throw
+                        faultyJack = true;
+
+                        //Reset fault check
+                        fault.SetJackInArea();
+                    }
                 }
                 //set jack as thrown on this script, create a new ball and tell throw that there is a new ball
-                jackThrown = true;
-                if (currentPlayer == 1)
+
+                if (!faultyJack)
                 {
-                    newBall = Instantiate(redBall, player.transform.position + (player.transform.forward * 2), player.transform.rotation);
-                    redBalls++;
+                    if (currentPlayer == 1)
+                    {
+                        newBall = Instantiate(redBall, player.transform.position + (player.transform.forward * 2), player.transform.rotation);
+                        redBalls++;
+                    }
+                    else if (currentPlayer == 2)
+                    {
+                        newBall = Instantiate(greenBall, player.transform.position + (player.transform.forward * 2), player.transform.rotation);
+                        greenBalls++;
+                    }
+                    ballList.Add(newBall);
+                    //give throwscript the new ball
+                    throwScript.setBall(newBall);
+                    throwScript.setPower(0.0f);
+                    player.transform.eulerAngles = new Vector3(0, 90, 0);
+
+                    //update scoreboard
+                    score.UpdateScoreboard();
+
+                    //activate jack camera
+                    cameraOverlay.SetActive(true);
+                    cameraOutline.SetActive(true);
                 }
-                else if (currentPlayer == 2)
-                {
-                    newBall = Instantiate(greenBall, player.transform.position + (player.transform.forward * 2), player.transform.rotation);
-                    greenBalls++;
-                }
-                ballList.Add(newBall);
-                //give throwscript the new ball
-                throwScript.setBall(newBall);
-                throwScript.setPower(0.0f);
-                player.transform.eulerAngles = new Vector3(0, 90, 0);
-
-                //update scoreboard
-                score.UpdateScoreboard();
-
-                //activate jack camera
-                cameraOverlay.SetActive(true);
-                cameraOutline.SetActive(true);
-
-               
+              
             }
         }
         //spawn a new ball
         if (!gameOver)
         {
-            spawnBall();
+            //If faulty jack throw
+            if(faultyJack)
+            {
+                //Destroy jack
+                Object.Destroy(jack);
+
+                //Reset bools
+                throwScript.jackThrown = false;
+                throwScript.ballThrown = false;
+
+                jackThrown = false;
+                //Reset power
+                throwScript.setPower(0);
+
+                //Reset player rotation               
+                player.transform.eulerAngles = new Vector3(0, 90, 0);
+
+                //Spawn new jack
+                spawnJack();
+
+                //Reset bool
+                faultyJack = false;
+
+            }
+            else
+            {
+                spawnBall();
+            }
+            
         }
 
         //10 balls have been thrown
@@ -272,8 +324,6 @@ public class Controller : MonoBehaviour {
 
             //give throwscript the new ball
             throwScript.setBall(newBall);
-
-            
         }
     }
 

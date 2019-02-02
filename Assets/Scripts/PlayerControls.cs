@@ -6,7 +6,7 @@ public class PlayerControls : MonoBehaviour {
 
     //public fixed float positions[5];
     public float rotationSpeed = 20.0f;
-    public float keyboardRotModifier = 1.5f;
+    public float keyboardRotModifier = 2.0f;
     
 
     // Use this for initialization
