@@ -235,7 +235,7 @@ public class Controller : MonoBehaviour {
 
                 //Spawn new jack
                 spawnJack();
-
+                jack.GetComponent<Collision>().enabled = true;
                 //Reset bool
                 faultyJack = false;
 
