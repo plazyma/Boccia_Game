@@ -10,7 +10,9 @@ public class Controller : MonoBehaviour {
     public bool firstThrows = true;
     public bool faultyJack = false;
 
-    public GameObject jack;
+    public GameObject jackPrefab;
+    GameObject jack;
+
     public GameObject redBall;
     public GameObject greenBall;
     GameObject newBall;
@@ -60,6 +62,9 @@ public class Controller : MonoBehaviour {
     public int greenBalls = 0;
     public int redBalls = 0;
 
+    public int greenBallsFaulty = 0;
+    public int redBallsFaulty = 0;
+
     public int player1Score = 0;
     public int player2Score = 0;
 
@@ -105,13 +110,13 @@ public class Controller : MonoBehaviour {
 
         //Faultboxes
         faultBoxes = GameObject.FindGameObjectWithTag("FaultBoxes");
-        faultBoxesScript = faultBoxes.GetComponentInChildren<FaultBoxes>();
 
         //Populate list with FaultBoxes scripts
         foreach (FaultBoxes fault in faultBoxes.GetComponentsInChildren<FaultBoxes>())
         {
             faultBoxList.Add(fault);
-        }  
+        }
+        score.UpdateScoreboard();
     }
 
     void spawnJack()
@@ -122,7 +127,7 @@ public class Controller : MonoBehaviour {
         Vector3 playerForward = new Vector3(player.transform.forward.x * 2, player.transform.forward.y * 2, player.transform.forward.z * 2);
         Vector3 playerTransform = player.transform.position;
 
-        jack = Instantiate(jack, player.transform.position + playerForward, spawnRotation);
+        jack = Instantiate(jackPrefab, player.transform.position + playerForward, spawnRotation);
         jack.GetComponent<Rigidbody>().useGravity = false;
         dist = jack.GetComponent<BallDistance>();
 
@@ -137,7 +142,7 @@ public class Controller : MonoBehaviour {
         {
             foreach(FaultBoxes fault in faultBoxList)
             {
-                print(fault.GetJackInArea());
+                print(fault.GetJackFault());
             }
         }
        
@@ -153,8 +158,12 @@ public class Controller : MonoBehaviour {
 
         if (Input.GetKeyDown("p"))
         {
-            player1Score++;
+           // player1Score++;
             score.UpdateScoreboard();
+            foreach(FaultBoxes fault in faultBoxList)
+            {
+                fault.deleteBalls();
+            }
         }
 
         //quit the game
@@ -173,14 +182,14 @@ public class Controller : MonoBehaviour {
                 //Check all faulty areas for jack
                 foreach (FaultBoxes fault in faultBoxList)
                 {
-                    if (fault.GetJackInArea())
+                    if (fault.GetJackFault())
                     {
                         print(" Jack In Area");
                         //Faulty throw
                         faultyJack = true;
 
                         //Reset fault check
-                        fault.SetJackInArea();
+                        fault.SetJackFaultFalse();
                     }
                 }
                 //set jack as thrown on this script, create a new ball and tell throw that there is a new ball
@@ -227,6 +236,7 @@ public class Controller : MonoBehaviour {
                 throwScript.ballThrown = false;
 
                 jackThrown = false;
+
                 //Reset power
                 throwScript.setPower(0);
 
@@ -235,14 +245,19 @@ public class Controller : MonoBehaviour {
 
                 //Spawn new jack
                 spawnJack();
-                jack.GetComponent<Collision>().enabled = true;
+
+                //Script gets disabled on jack creation - force enable
+                //jack.GetComponent<Collision>().enabled = true;
+
                 //Reset bool
                 faultyJack = false;
 
             }
             else
             {
+
                 spawnBall();
+ 
             }
             
         }
@@ -274,12 +289,55 @@ public class Controller : MonoBehaviour {
     {
         if (amountOfBalls < 12 && throwScript.ballThrown && Time.time - throwScript.shotTime > 4)
         {
+            //Get a list of all the fault box checks
+            List<bool> ballFaults = new List<bool>();
+            foreach (FaultBoxes fault in faultBoxList)
+            {
+                ballFaults.Add(fault.GetBallFault());
+            }
+
+            //Loop through list of faults, starting with 2 - don't want to check the boxes before the "v line"
+            for (int i = 2; i < ballFaults.Count; i++)
+            {
+                if (ballFaults[i] == true)
+                {
+                    //Destroy ball
+                    Object.Destroy(newBall);
+
+                    //Reset check
+                    faultBoxList[i].SetBallFaultFalse();
+
+                    //Increase counter
+                    if (currentPlayer == 1)
+                    {
+                        redBallsFaulty++;
+                    }
+                    else
+                    {
+                        greenBallsFaulty++;
+                    }
+                }
+            }
+
+            //foreach(FaultBoxes fault in faultBoxList)
+            //{
+            //    fault.deleteBalls();
+            //}
 
             player.transform.eulerAngles = new Vector3(0, 90, 0);
             if (amountOfBalls > 1)
             {
+                //Temporary currentPlayer - if distance returns 0
+                int currentPlayerTemp = currentPlayer;
                 //check distance
                 currentPlayer = playerSelection();
+
+                //If distance returned 0 - keep the same player
+                if(currentPlayer == 0)
+                {
+                    currentPlayer = currentPlayerTemp;
+                }
+
                 if (redBalls > 5)
                 {
                     print("all reds thrown");

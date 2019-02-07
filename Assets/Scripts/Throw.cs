@@ -25,9 +25,6 @@ public class Throw : MonoBehaviour {
 
     public List<AudioClip> powerBarAudioClips = new List<AudioClip>();
 
-    public GameObject faultBoxes;
-    FaultBoxes faultBoxesScript;
-
     // Use this for initialization
     void Start () {
         //get controller, player and some scripts
@@ -40,9 +37,6 @@ public class Throw : MonoBehaviour {
 
         // startPosition = new Vector3(-17.73f, 1.68f, 2.38f);
         loadSound();
-
-        faultBoxes = GameObject.FindGameObjectWithTag("FaultBoxes");
-        faultBoxesScript = faultBoxes.GetComponentInChildren<FaultBoxes>();
     }
 
     void loadSound()

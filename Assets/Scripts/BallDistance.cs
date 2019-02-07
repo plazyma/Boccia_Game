@@ -29,7 +29,7 @@ public class BallDistance : MonoBehaviour {
         }
 
         //Declaring variables
-        float shortest = 20;
+        float shortest = 200;
         GameObject closest = gameObject;
         int player = 0;
 
