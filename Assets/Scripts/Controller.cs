@@ -9,6 +9,7 @@ public class Controller : MonoBehaviour {
     public bool jackThrown = false;
     public bool firstThrows = true;
     public bool faultyJack = false;
+    bool ballOnField = false;
 
     public GameObject jackPrefab;
     GameObject jack;
@@ -255,9 +256,7 @@ public class Controller : MonoBehaviour {
             }
             else
             {
-
-                spawnBall();
- 
+                spawnBall(); 
             }
             
         }
@@ -289,51 +288,31 @@ public class Controller : MonoBehaviour {
     {
         if (amountOfBalls < 12 && throwScript.ballThrown && Time.time - throwScript.shotTime > 4)
         {
-            //Get a list of all the fault box checks
-            List<bool> ballFaults = new List<bool>();
-            foreach (FaultBoxes fault in faultBoxList)
-            {
-                ballFaults.Add(fault.GetBallFault());
-            }
-
             //Loop through list of faults, starting with 2 - don't want to check the boxes before the "v line"
-            for (int i = 2; i < ballFaults.Count; i++)
+            for (int i = 2; i < faultBoxList.Count; i++)
             {
-                if (ballFaults[i] == true)
-                {
-                    //Destroy ball
-                    Object.Destroy(newBall);
-
-                    //Reset check
-                    faultBoxList[i].SetBallFaultFalse();
-
-                    //Increase counter
-                    if (currentPlayer == 1)
-                    {
-                        redBallsFaulty++;
-                    }
-                    else
-                    {
-                        greenBallsFaulty++;
-                    }
-                }
+                faultBoxList[i].deleteBalls();
             }
-
-            //foreach(FaultBoxes fault in faultBoxList)
-            //{
-            //    fault.deleteBalls();
-            //}
 
             player.transform.eulerAngles = new Vector3(0, 90, 0);
             if (amountOfBalls > 1)
             {
-                //Temporary currentPlayer - if distance returns 0
+                //Store current player
                 int currentPlayerTemp = currentPlayer;
                 //check distance
                 currentPlayer = playerSelection();
 
-                //If distance returned 0 - keep the same player
-                if(currentPlayer == 0)
+                //Closest player returned - need to swap players - further player throws
+                if (currentPlayer == 1)
+                {
+                    currentPlayer = 2;
+                }
+                else if (currentPlayer == 2)
+                {
+                    currentPlayer = 1;
+                }
+                //If 0 returned == no balls on field - keep same player
+                else if (currentPlayer == 0)
                 {
                     currentPlayer = currentPlayerTemp;
                 }
@@ -341,19 +320,30 @@ public class Controller : MonoBehaviour {
                 if (redBalls > 5)
                 {
                     print("all reds thrown");
-                    currentPlayer = 1;
+                    currentPlayer = 2;
                 }
                 if (greenBalls > 5)
                 {
                     print("all greens thrown");
+                    currentPlayer = 1;
+                }
+            }
+            //Swap on the first throw only if no faulty balls
+            if (amountOfBalls == 1 && (redBallsFaulty == 0 && greenBallsFaulty == 0))
+            {
+                if (currentPlayer == 1)
+                {
                     currentPlayer = 2;
+                }
+                else if (currentPlayer == 2)
+                {
+                    currentPlayer = 1;
                 }
             }
 
-            if (currentPlayer == 1)
+            if (currentPlayer == 2)
             {
                 throwScript.setPower(0.0f);
-                currentPlayer = 2;
 
                 //create a new ball and tell throw that there is a new ball
                 newBall = Instantiate(greenBall, player.transform.position + (player.transform.forward * 2), player.transform.rotation);
@@ -364,10 +354,9 @@ public class Controller : MonoBehaviour {
                 audioSource.clip = ballChangeSound;
                 audioSource.Play();
             }
-            else if (currentPlayer == 2)
+            else if (currentPlayer == 1)
             {
                 throwScript.setPower(0.0f);
-                currentPlayer = 1;
 
                 //create a new ball and tell throw that there is a new ball
                 newBall = Instantiate(redBall, player.transform.position + (player.transform.forward * 2), player.transform.rotation);

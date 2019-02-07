@@ -8,7 +8,7 @@ public class BallDistance : MonoBehaviour {
     public Material redMaterial;
     public Material greenMaterial;
     GameObject jack;
-
+    public List<GameObject> ballList = new List<GameObject>();
     //Declare list of balls
     //public List<GameObject> ballList = new List<GameObject>();
 
@@ -21,7 +21,7 @@ public class BallDistance : MonoBehaviour {
     public int FindClosestBall()
     {
         jack = GameObject.FindWithTag("Jack");
-        List<GameObject> ballList = new List<GameObject>();
+       
         ballList.Clear();
         foreach (GameObject ball in GameObject.FindGameObjectsWithTag("Ball"))
         {
