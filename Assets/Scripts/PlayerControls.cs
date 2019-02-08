@@ -7,14 +7,15 @@ public class PlayerControls : MonoBehaviour {
     //public fixed float positions[5];
     public float rotationSpeed = 20.0f;
     public float keyboardRotModifier = 2.0f;
-    
+
+    public GameObject arenaBoundary;
 
     // Use this for initialization
     void Start () {
         //reset forward at start
         
         Debug.Log(transform.forward);
-
+        arenaBoundary = GameObject.Find("ArenaWalls");
     }
 	
 	// Update is called once per frame
@@ -69,6 +70,18 @@ public class PlayerControls : MonoBehaviour {
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+        }
+
+        if(Input.GetKeyDown("/"))
+        {
+            if(arenaBoundary.activeSelf)
+            {
+                arenaBoundary.SetActive(false);
+            }
+            else
+            {
+                arenaBoundary.SetActive(true);
+            }
         }
 
 
