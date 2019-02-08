@@ -4,11 +4,20 @@ using UnityEngine;
 
 public class FaultBoxes : MonoBehaviour {
 
-    bool jackInArea;
+    bool jackFault;
+    bool ballFault;
 
+    Controller gameController;
+
+    List<Collider> faultyBalls;
     void Start()
     {
-        jackInArea = false;
+        jackFault = false;
+        ballFault = false;
+
+        faultyBalls = new List<Collider>();
+
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<Controller>();
     }
  
     //Object has entered a faulty area
@@ -17,7 +26,16 @@ public class FaultBoxes : MonoBehaviour {
         //Check if the object is the jack
         if(other.CompareTag("Jack"))
         {
-            jackInArea = true;
+            jackFault = true;
+        }
+        if(other.CompareTag("Ball"))
+        {
+            ballFault = true;
+            if(!faultyBalls.Contains(other))
+            {
+                faultyBalls.Add(other);
+                print("OBJECT ADDED");
+            }
         }
     }
 
@@ -27,19 +45,60 @@ public class FaultBoxes : MonoBehaviour {
         //Check if the object is the jack
         if (other.CompareTag("Jack"))
         {
-            jackInArea = false;
+            jackFault = false;
+        }
+        if(other.CompareTag("Ball"))
+        {
+            ballFault = false;
+        }
+
+        if (faultyBalls.Contains(other))
+        {
+            faultyBalls.Remove(other);
+            print("OBJECT REMOVED");
+        }
+    }
+
+    public void deleteBalls()
+    {
+        if (faultyBalls.Count > 0)
+        {
+            foreach (Collider ball in faultyBalls)
+            {
+                Destroy(ball.gameObject);
+                faultyBalls.Remove(ball);
+
+                if (ball.GetComponent<BallStats>().playerThrown == 1)
+                {
+                    gameController.redBallsFaulty++;
+                }
+                else if (ball.GetComponent<BallStats>().playerThrown == 2)
+                {
+                    gameController.greenBallsFaulty++;
+                }
+            }
         }
     }
 
     //Return whether the jack is in a faulty area or not
-    public bool GetJackInArea()
+    public bool GetJackFault()
     {
-        return jackInArea;
+        return jackFault;
     }
 
     //Force jack has left the area
-    public void SetJackInArea()
+    public void SetJackFaultFalse()
     {
-        jackInArea = false;
+        jackFault = false;
+    }
+
+    public bool GetBallFault()
+    {
+        return ballFault;
+    }
+
+    public void SetBallFaultFalse()
+    {
+        ballFault = false;
     }
 }
