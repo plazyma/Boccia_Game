@@ -18,6 +18,7 @@ TagManager:
   - GraphicSettings
   - SoundSettings
   - Main Menu
+  - CentreBox
   layers:
   - Default
   - TransparentFX

@@ -57,6 +57,7 @@ public class Controller : MonoBehaviour {
     public GameObject faultBoxes;
     FaultBoxes faultBoxesScript;
     public List<FaultBoxes> faultBoxList = new List<FaultBoxes>();
+    public GameObject faultBoxCross;
 
     //debug
     public int amountOfBalls = 0;
@@ -159,12 +160,12 @@ public class Controller : MonoBehaviour {
 
         if (Input.GetKeyDown("p"))
         {
-           // player1Score++;
+            player1Score++;
             score.UpdateScoreboard();
-            foreach(FaultBoxes fault in faultBoxList)
-            {
-                fault.deleteBalls();
-            }
+            // jack.transform.position = faultBoxCross.transform.position;
+            
+            //print(jack.transform.localScale.z);
+            //jack.transform.position = new Vector3(jack.transform.position.x, jack.transform.position.y, jack.transform.position.z + (jack.GetComponent<SphereCollider>().radius * jack.transform.localScale.z));
         }
 
         //quit the game
@@ -183,14 +184,17 @@ public class Controller : MonoBehaviour {
                 //Check all faulty areas for jack
                 foreach (FaultBoxes fault in faultBoxList)
                 {
-                    if (fault.GetJackFault())
+                    if (fault != faultBoxList[faultBoxList.Count - 1])
                     {
-                        print(" Jack In Area");
-                        //Faulty throw
-                        faultyJack = true;
+                        if (fault.GetJackFault())
+                        {
+                            print(" Jack In Area");
+                            //Faulty throw
+                            faultyJack = true;
 
-                        //Reset fault check
-                        fault.SetJackFaultFalse();
+                            //Reset fault check
+                            fault.SetJackFaultFalse();
+                        }
                     }
                 }
                 //set jack as thrown on this script, create a new ball and tell throw that there is a new ball
@@ -289,10 +293,12 @@ public class Controller : MonoBehaviour {
         if (amountOfBalls < 12 && throwScript.ballThrown && Time.time - throwScript.shotTime > 4)
         {
             //Loop through list of faults, starting with 2 - don't want to check the boxes before the "v line"
-            for (int i = 2; i < faultBoxList.Count; i++)
+            for (int i = 2; i < faultBoxList.Count - 1; i++)
             {
                 faultBoxList[i].deleteBalls();
+                faultBoxList[i].ResetJack(jack);
             }
+            //faultBoxList[6].ResetJack(jack);
 
             player.transform.eulerAngles = new Vector3(0, 90, 0);
             if (amountOfBalls > 1)

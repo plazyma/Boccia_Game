@@ -9,7 +9,8 @@ public class FaultBoxes : MonoBehaviour {
 
     Controller gameController;
 
-    List<Collider> faultyBalls;
+    public GameObject centreBox;
+    public List<Collider> faultyBalls;
     void Start()
     {
         jackFault = false;
@@ -18,6 +19,11 @@ public class FaultBoxes : MonoBehaviour {
         faultyBalls = new List<Collider>();
 
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<Controller>();
+
+        if(!centreBox)
+        {
+            centreBox = GameObject.FindGameObjectWithTag("CentreBox");
+        }
     }
  
     //Object has entered a faulty area
@@ -100,5 +106,13 @@ public class FaultBoxes : MonoBehaviour {
     public void SetBallFaultFalse()
     {
         ballFault = false;
+    }
+
+    public void ResetJack(GameObject jack)
+    {
+        if (jackFault)
+        {
+            jack.transform.position = centreBox.transform.position;
+        }
     }
 }
