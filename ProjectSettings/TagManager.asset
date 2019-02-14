@@ -19,6 +19,10 @@ TagManager:
   - SoundSettings
   - Main Menu
   - CentreBox
+  - GlobalObject
+  - P1Name
+  - P2Name
+  - PlayGameButton
   layers:
   - Default
   - TransparentFX
