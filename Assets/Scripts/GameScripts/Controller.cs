@@ -212,8 +212,9 @@ public class Controller : MonoBehaviour {
                     }
                     ballList.Add(newBall);
                     //give throwscript the new ball
-                    throwScript.setBall(newBall);
                     throwScript.setPower(0.0f);
+                    throwScript.setBall(newBall);
+
                     player.transform.eulerAngles = new Vector3(0, 90, 0);
 
                     //update scoreboard

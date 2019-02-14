@@ -27,6 +27,9 @@ public class Throw : MonoBehaviour {
 
     public AimAssist aimAssistScript;
 
+    public Powerbar powerBar;
+    public Powerbar powerBar2;
+
     // Use this for initialization
     void Start () {
         //get controller, player and some scripts
@@ -43,6 +46,15 @@ public class Throw : MonoBehaviour {
         if(!aimAssistScript)
         {
             aimAssistScript = GetComponent<AimAssist>();
+        }
+
+        if(!powerBar)
+        {
+            powerBar = GameObject.FindGameObjectWithTag("ScoreBoard").GetComponent<Powerbar>();
+        }
+        if(!powerBar2)
+        {
+            powerBar2 = GameObject.FindGameObjectWithTag("ScoreBoard2").GetComponent<Powerbar>();
         }
     }
 
@@ -73,7 +85,9 @@ public class Throw : MonoBehaviour {
                 ball = GameObject.FindGameObjectWithTag("Jack");
                 rb = ball.GetComponent<Rigidbody>();
             }
-
+            //Update powerbar
+            powerBar.updatePowerBar();
+            powerBar2.updatePowerBar();
         }
         //if ball isn't thrown
         if (ballThrown == false)
@@ -99,6 +113,10 @@ public class Throw : MonoBehaviour {
                     //Increase power
                     power += 1.0f;
 
+                    //Update powerbar
+                    powerBar.updatePowerBar();
+                    powerBar2.updatePowerBar();
+
                     //Update aim assist
                     aimAssistScript.CalculateAimIncreased();
                 }
@@ -119,6 +137,10 @@ public class Throw : MonoBehaviour {
                     audioSource.clip = powerBarAudioClips[currentB];
                     //Play
                     audioSource.Play();
+
+                    //Update powerbar
+                    powerBar.updatePowerBar();
+                    powerBar2.updatePowerBar();
 
                     //Update aim assist
                     aimAssistScript.CalculateAimReduced();
@@ -207,6 +229,11 @@ public class Throw : MonoBehaviour {
 
         ballThrown = false;
 
+        //Reset aim assist
         aimAssistScript.ResetAim();
+
+        //Update powerbar
+        powerBar.updatePowerBar();
+        powerBar2.updatePowerBar();
     }
 }

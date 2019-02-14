@@ -10,14 +10,12 @@ public class AimAssist : MonoBehaviour {
     public Throw throwScript;
 	// Use this for initialization
 	void Start () {
-        if(!gameController)
-        {
-            gameController = GameObject.FindGameObjectWithTag("GameController");
-        }
+        //Find player
         if(!player)
         {
             player = GameObject.FindGameObjectWithTag("Player");
         }
+        //Populate list with aim assist objects
 		if(aimPlanes.Count == 0)
         {
             foreach(Transform child in transform)
@@ -29,6 +27,7 @@ public class AimAssist : MonoBehaviour {
                 }
             }
         }
+        //Get throw script
         if(!throwScript)
         {
             throwScript = GetComponent<Throw>();
@@ -39,9 +38,11 @@ public class AimAssist : MonoBehaviour {
 	void Update () {
 		
 	}
-
+    
+    //Enable aim assist objects when increasing power
     public void CalculateAimIncreased()
     {
+        //When power is less than 7, enable (power *2) +2 objects
         if (throwScript.getPower() < 7)
         {
             for (int i = 0; i < (throwScript.getPower() * 2) + 2; i++)
@@ -49,13 +50,15 @@ public class AimAssist : MonoBehaviour {
                 aimPlanes[i].SetActive(true);
             }
         }
-        else if(throwScript.getPower() < 9)
+        //When power is less than 9, enable (power *2) +3 objects
+        else if (throwScript.getPower() < 9)
         {
             for (int i = 0; i < (throwScript.getPower() * 2) + 3; i++)
             {
                 aimPlanes[i].SetActive(true);
             }
         }
+        //Enable power * 2 + 4 objects
         else
         {
             for (int i = 0; i < (throwScript.getPower() * 2) + 4; i++)
@@ -66,6 +69,7 @@ public class AimAssist : MonoBehaviour {
     }
     public void CalculateAimReduced()
     {
+        //When power is below 6, disable objects between current power *2 +2 and power + 1 *2 +2 (previous power)
         if (throwScript.getPower() < 6)
         {
             for (int i = (int)(throwScript.getPower() * 2) + 2; i < ((throwScript.getPower() + 1) * 2) + 2; i++)
@@ -102,6 +106,7 @@ public class AimAssist : MonoBehaviour {
             }
         }
     }
+    //Disable all objects
     public void ResetAim()
     {
         for(int i = 0; i < aimPlanes.Count; i++)

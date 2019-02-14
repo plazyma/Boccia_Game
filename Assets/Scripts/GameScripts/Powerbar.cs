@@ -10,9 +10,10 @@ public class Powerbar : MonoBehaviour {
 	void Start () {
         powerSlider = GetComponentInChildren<Slider>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    //Update the slider to be equal to the power
+    public void updatePowerBar()
+    {
         powerSlider.value = player.GetComponent<Throw>().getPower();
-	}
+    }
 }
