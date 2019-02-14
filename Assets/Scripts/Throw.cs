@@ -25,6 +25,8 @@ public class Throw : MonoBehaviour {
 
     public List<AudioClip> powerBarAudioClips = new List<AudioClip>();
 
+    public AimAssist aimAssistScript;
+
     // Use this for initialization
     void Start () {
         //get controller, player and some scripts
@@ -37,6 +39,11 @@ public class Throw : MonoBehaviour {
 
         // startPosition = new Vector3(-17.73f, 1.68f, 2.38f);
         loadSound();
+
+        if(!aimAssistScript)
+        {
+            aimAssistScript = GetComponent<AimAssist>();
+        }
     }
 
     void loadSound()
@@ -91,6 +98,9 @@ public class Throw : MonoBehaviour {
 
                     //Increase power
                     power += 1.0f;
+
+                    //Update aim assist
+                    aimAssistScript.CalculateAimIncreased();
                 }
             }
             //Decrease x - power by 1
@@ -109,6 +119,9 @@ public class Throw : MonoBehaviour {
                     audioSource.clip = powerBarAudioClips[currentB];
                     //Play
                     audioSource.Play();
+
+                    //Update aim assist
+                    aimAssistScript.CalculateAimReduced();
                 }
             }
             //Decrease z - power by 1
@@ -194,6 +207,6 @@ public class Throw : MonoBehaviour {
 
         ballThrown = false;
 
-       
+        aimAssistScript.ResetAim();
     }
 }

@@ -9,7 +9,6 @@ public class Controller : MonoBehaviour {
     public bool jackThrown = false;
     public bool firstThrows = true;
     public bool faultyJack = false;
-    bool ballOnField = false;
 
     public GameObject jackPrefab;
     GameObject jack;
