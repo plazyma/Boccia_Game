@@ -9784,6 +9784,7 @@ GameObject:
   - component: {fileID: 590504845}
   - component: {fileID: 590504844}
   - component: {fileID: 590504843}
+  - component: {fileID: 590504841}
   - component: {fileID: 590504842}
   - component: {fileID: 590504840}
   m_Layer: 5
@@ -9820,6 +9821,18 @@ MonoBehaviour:
   player2Fault2: {fileID: 0}
   totalBalls: 6
   cont: {fileID: 0}
+--- !u!114 &590504841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 590504839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdd2850f0fa26c947b350d13f8afe4ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 256544273}
 --- !u!225 &590504842
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -16805,8 +16818,8 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1062958201}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 1916.2728}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.0019237, y: 1.0019221, z: 1.0019237}
   m_Children:
   - {fileID: 1763403874}
@@ -16814,9 +16827,9 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2167.4358, y: -2381.792}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 10, y: 10}
   m_Pivot: {x: 0, y: 0}
 --- !u!1 &1076931979
 GameObject:
