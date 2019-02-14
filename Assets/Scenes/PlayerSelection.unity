@@ -410,6 +410,7 @@ MonoBehaviour:
   p1name: empty
   p2name: empty
   cont: {fileID: 0}
+  banner: {fileID: 0}
 --- !u!1 &753772836
 GameObject:
   m_ObjectHideFlags: 0
@@ -697,7 +698,7 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 21300000, guid: bf83c8ebcd721cf44ac560e73caa7882, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: 8962d8db396b98b4084da4e381d2652a, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -741,7 +742,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 4ea80c3d236d4b64b804aa3359c48e28, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 75174f409741e034ba70e640f73d3b21, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -768,6 +769,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 0}
   buttonClick: {fileID: 0}
+  button: {fileID: 1375496370}
+  playSprite: {fileID: 21300000, guid: 4ea80c3d236d4b64b804aa3359c48e28, type: 3}
+  playPressedSprite: {fileID: 21300000, guid: bf83c8ebcd721cf44ac560e73caa7882, type: 3}
+  field: {fileID: 0}
 --- !u!1 &1378190163
 GameObject:
   m_ObjectHideFlags: 0
@@ -904,6 +909,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 0}
   buttonClick: {fileID: 0}
+  button: {fileID: 0}
+  playSprite: {fileID: 0}
+  playPressedSprite: {fileID: 0}
+  field: {fileID: 0}
 --- !u!1 &1474135998
 GameObject:
   m_ObjectHideFlags: 0
@@ -1012,7 +1021,7 @@ GameObject:
   - component: {fileID: 1648594734}
   m_Layer: 5
   m_Name: InputField
-  m_TagString: Untagged
+  m_TagString: InputField
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1052,6 +1061,7 @@ MonoBehaviour:
   p1name: 
   p2name: empty
   cont: {fileID: 0}
+  banner: {fileID: 0}
 --- !u!114 &1648594735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1102,8 +1112,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1648594734}
-        m_MethodName: checkNames
-        m_Mode: 0
+        m_MethodName: 
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1113,8 +1123,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1288440767}
-        m_MethodName: set_text
-        m_Mode: 5
+        m_MethodName: 
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1124,8 +1134,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 2046686317}
-        m_MethodName: set_text
-        m_Mode: 5
+        m_MethodName: 
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1135,8 +1145,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 874497384}
-        m_MethodName: set_text
-        m_Mode: 5
+        m_MethodName: 
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1365,7 +1375,7 @@ GameObject:
   - component: {fileID: 2046686317}
   m_Layer: 5
   m_Name: Text
-  m_TagString: Untagged
+  m_TagString: NameBanner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

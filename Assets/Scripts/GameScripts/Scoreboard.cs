@@ -71,35 +71,41 @@ public class Scoreboard : MonoBehaviour {
         p2BallsLeft = totalBalls - gameController.greenBalls;
 
         // update the scores and balls thrown
-        player1Count.text = "Player1 Balls Left: " + p1BallsLeft;
-        player2Count.text = "Player2 Balls Left: " + p2BallsLeft;
+        player1Count.text = GlobalVariables.player1 + " Balls Left: " + p1BallsLeft;
+        player2Count.text = GlobalVariables.player2 + " Balls Left: " + p2BallsLeft;
 
-        player1Score.text = "Player1 Score: " + gameController.player1Score;
-        player2Score.text = "Player2 Score: " + gameController.player2Score;
+        player1Score.text = GlobalVariables.player1 + " Score: " + gameController.player1Score;
+        player2Score.text = GlobalVariables.player2 + " Score: " + gameController.player2Score;
 
-        player1Fault.text = "Player1 Fault: " + gameController.redBallsFaulty;
-        player2Fault.text = "Player2 Fault: " + gameController.greenBallsFaulty;
+        player1Fault.text = GlobalVariables.player1 + " Fault: " + gameController.redBallsFaulty;
+        player2Fault.text = GlobalVariables.player2 + " Fault: " + gameController.greenBallsFaulty;
 
         //Second scoreboard
-        player1Count2.text = "Player1 Balls Left: " + p1BallsLeft;
-        player2Count2.text = "Player2 Balls Left: " + p2BallsLeft;
+        player1Count2.text = GlobalVariables.player1 + " Balls Left: " + p1BallsLeft;
+        player2Count2.text = GlobalVariables.player2 + " Balls Left: " + p2BallsLeft;
 
-        player1Score2.text = "Player1 Score: " + gameController.player1Score;
-        player2Score2.text = "Player2 Score: " + gameController.player2Score;
+        player1Score2.text = GlobalVariables.player1 + " Score: " + gameController.player1Score;
+        player2Score2.text = GlobalVariables.player2 + " Score: " + gameController.player2Score;
 
-        player1Fault2.text = "Player1 Fault: " + gameController.redBallsFaulty;
-        player2Fault2.text = "Player2 Fault: " + gameController.greenBallsFaulty;
+        player1Fault2.text = GlobalVariables.player1 + " Fault: " + gameController.redBallsFaulty;
+        player2Fault2.text = GlobalVariables.player2 + " Fault: " + gameController.greenBallsFaulty;
+
+        
 
         //Move text indicating the current player
-        if(gameController.currentPlayer == 1)
+        if (gameController.currentPlayer == 1)
         {
-            currentPlayer.rectTransform.anchoredPosition = new Vector3(-290, 0 , 0);
-            currentPlayer2.rectTransform.anchoredPosition = new Vector3(-290, 0, 0);
+            //currentPlayer.rectTransform.anchoredPosition = new Vector3(-290, 0 , 0);
+            //currentPlayer2.rectTransform.anchoredPosition = new Vector3(-290, 0, 0);
+            currentPlayer.text = "Current Player: \n" + GlobalVariables.player1;
+            currentPlayer2.text = "Current Player: \n" + GlobalVariables.player1;
         }
         else if(gameController.currentPlayer == 2)
         {
-            currentPlayer.rectTransform.anchoredPosition = new Vector3(290, 0, 0);
-            currentPlayer2.rectTransform.anchoredPosition = new Vector3(290, 0, 0);
+            //currentPlayer.rectTransform.anchoredPosition = new Vector3(290, 0, 0);
+            //currentPlayer2.rectTransform.anchoredPosition = new Vector3(290, 0, 0);
+            currentPlayer.text = "Current Player: \n" + GlobalVariables.player2;
+            currentPlayer2.text = "Current Player: \n" + GlobalVariables.player2;
         }
     }
 }

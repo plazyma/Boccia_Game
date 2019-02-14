@@ -3,7 +3,27 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - AimAssist
+  - ScoreBoard
+  - JackCamera
+  - ScoreBoard2
+  - CameraOutline
+  - CameraOverlay
+  - CentreBox
+  - FaultBoxes
+  - CameraMain
+  - Jack
+  - Ball
+  - Main Menu
+  - GraphicSettings
+  - Settings
+  - SoundSettings
+  - GlobalObject
+  - PlayGameButton
+  - P1Name
+  - InputField
+  - NameBanner
   layers:
   - Default
   - TransparentFX

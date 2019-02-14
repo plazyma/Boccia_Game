@@ -7,6 +7,7 @@ public class CameraView : MonoBehaviour
     public Camera cameraAlt;
     public Camera cameraMain;
     GameObject jack;
+    GameObject scoreboard2;
 
     Vector3 origCameraRot;
 
@@ -41,6 +42,9 @@ public class CameraView : MonoBehaviour
 
         //Disable second camera
         cameraAlt.enabled = false;
+
+        //get hud2
+        scoreboard2 = GameObject.FindWithTag("ScoreBoard2");
     }
 
     // Update is called once per frame
@@ -60,6 +64,9 @@ public class CameraView : MonoBehaviour
                 //Switch cameras
                 cameraAlt.enabled = false;
                 cameraMain.enabled = true;
+
+                //disable second HUD
+                scoreboard2.SetActive(false);
             }
 
             //Top down view
@@ -74,6 +81,9 @@ public class CameraView : MonoBehaviour
                 //Adjust position and rotation based on jack
                 cameraAlt.transform.position = jack.transform.position + topPos;
                 cameraAlt.transform.eulerAngles = topRot;
+
+                //enable second HUD
+                scoreboard2.SetActive(true);
             }
 
             //Side on from the right
@@ -88,6 +98,9 @@ public class CameraView : MonoBehaviour
                 //Adjust position and rotation based on jack
                 cameraAlt.transform.position = jack.transform.position + rightPos;
                 cameraAlt.transform.eulerAngles = rightRot;
+
+                //enable second HUD
+                scoreboard2.SetActive(true);
             }
 
             //Side on from the left
@@ -102,6 +115,9 @@ public class CameraView : MonoBehaviour
                 //Adjust position and rotation based on jack
                 cameraAlt.transform.position = jack.transform.position + leftPos;
                 cameraAlt.transform.eulerAngles = leftRot;
+
+                //enable second HUD
+                scoreboard2.SetActive(true);
             }
         }
     }
