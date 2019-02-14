@@ -21,7 +21,7 @@ public class PlayerControls : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //When right is pressed rotate ball
-        if (Input.GetKey("right") || Input.GetAxis("DPadX") == 1 || Input.GetAxis("MouseX") > 0 || Input.GetAxis("Joystick") > 0.5)
+        if (Input.GetKey("right") || Input.GetAxis("DPadX") == 1 );//|| // Input.GetAxis("MouseX") > 0 || Input.GetAxis("Joystick") > 0.5)
         {
             //Restrict how far user can rotate
             if (transform.localEulerAngles.y < 160 && transform.localEulerAngles.y > 10)
@@ -44,7 +44,7 @@ public class PlayerControls : MonoBehaviour {
             }
         }
         //When left is pressed rotate in opposite direction
-        if (Input.GetKey("left") || Input.GetAxis("DPadX") == -1 || Input.GetAxis("MouseX") < 0 || Input.GetAxis("Joystick") < -0.5)
+        if (Input.GetKey("left") || Input.GetAxis("DPadX") == -1 );//|| Input.GetAxis("MouseX") < 0 || Input.GetAxis("Joystick") < -0.5)
         {
             //Restrict how far user can rotate
             if (transform.localEulerAngles.y < 170 && transform.localEulerAngles.y > 20)

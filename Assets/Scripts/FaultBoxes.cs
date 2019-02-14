@@ -8,7 +8,6 @@ public class FaultBoxes : MonoBehaviour {
     bool ballFault;
 
     Controller gameController;
-
     public GameObject centreBox;
     public List<Collider> faultyBalls;
     void Start()

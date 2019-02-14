@@ -19,10 +19,14 @@ TagManager:
   - SoundSettings
   - Main Menu
   - CentreBox
+<<<<<<< HEAD
   - GlobalObject
   - P1Name
   - P2Name
   - PlayGameButton
+=======
+  - AimAssist
+>>>>>>> Nikodem
   layers:
   - Default
   - TransparentFX
