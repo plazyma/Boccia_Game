@@ -3,30 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Ball
-  - Jack
-  - ScoreBoard
-  - JackCamera
-  - CameraOverlay
-  - CameraOutline
-  - CameraMain
-  - CameraAlt
-  - ScoreBoard2
-  - FaultBoxes
-  - Settings
-  - GraphicSettings
-  - SoundSettings
-  - Main Menu
-  - CentreBox
-<<<<<<< HEAD
-  - GlobalObject
-  - P1Name
-  - P2Name
-  - PlayGameButton
-=======
-  - AimAssist
->>>>>>> Nikodem
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -36,7 +13,7 @@ TagManager:
   - UI
   - 
   - 
-  - PostProcessing
+  - 
   - 
   - 
   - 
