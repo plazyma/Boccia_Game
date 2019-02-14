@@ -19,6 +19,7 @@ TagManager:
   - SoundSettings
   - Main Menu
   - CentreBox
+  - AimAssist
   layers:
   - Default
   - TransparentFX
