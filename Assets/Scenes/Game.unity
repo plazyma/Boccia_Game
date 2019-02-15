@@ -4392,6 +4392,8 @@ MonoBehaviour:
   jackThrown: 0
   powerBarAudioClips: []
   aimAssistScript: {fileID: 0}
+  powerBar: {fileID: 0}
+  powerBar2: {fileID: 0}
 --- !u!114 &256544275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7184,7 +7186,7 @@ GameObject:
   m_Component:
   - component: {fileID: 435229000}
   m_Layer: 0
-  m_Name: ArenaWalls
+  m_Name: ArenaWalls2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
