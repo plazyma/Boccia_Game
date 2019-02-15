@@ -26743,6 +26743,7 @@ MonoBehaviour:
   dist: {fileID: 0}
   jcam: {fileID: 0}
   cameraOverlay: {fileID: 0}
+  cameraAlt: {fileID: 869895149}
   audioSource: {fileID: 1206438247}
   ballChangeSound: {fileID: 8300000, guid: 3c85c623dc5f75f44bace1e517ab8cb5, type: 3}
   player1WinSound: {fileID: 8300000, guid: f70e97f22f7752c4583f39f179049981, type: 3}

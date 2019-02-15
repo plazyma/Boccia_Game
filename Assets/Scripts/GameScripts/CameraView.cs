@@ -61,12 +61,8 @@ public class CameraView : MonoBehaviour
             //Go back to original view
             if (Input.GetKeyDown("0"))
             {
-                //Switch cameras
-                cameraAlt.enabled = false;
-                cameraMain.enabled = true;
-
-                //disable second HUD
-                scoreboard2.SetActive(false);
+                //reset the camera
+                cameraReset();
             }
 
             //Top down view
@@ -120,5 +116,16 @@ public class CameraView : MonoBehaviour
                 scoreboard2.SetActive(true);
             }
         }
+    }
+
+    //reset camera after throw
+    public void cameraReset()
+    {
+        //Switch cameras
+        cameraAlt.enabled = false;
+        cameraMain.enabled = true;
+
+        //disable second HUD
+        scoreboard2.SetActive(false);
     }
 }

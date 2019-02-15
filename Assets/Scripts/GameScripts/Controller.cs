@@ -29,6 +29,8 @@ public class Controller : MonoBehaviour {
     JackCamera jackCamera;
     public GameObject cameraOverlay;
 	GameObject cameraOutline;
+    public Camera cameraAlt;
+    CameraView camAlt;
 
     //Audio
     public AudioSource audioSource;
@@ -108,6 +110,8 @@ public class Controller : MonoBehaviour {
         cameraOverlay.SetActive(false);
         cameraOutline = GameObject.FindGameObjectWithTag("CameraOutline");
         cameraOutline.SetActive(false);
+
+        camAlt = player.GetComponent<CameraView>();
 
         //Faultboxes
         faultBoxes = GameObject.FindGameObjectWithTag("FaultBoxes");
@@ -349,6 +353,9 @@ public class Controller : MonoBehaviour {
 
             if (currentPlayer == 2)
             {
+                //reset camera
+                camAlt.cameraReset();
+
                 throwScript.setPower(0.0f);
 
                 //create a new ball and tell throw that there is a new ball
@@ -362,6 +369,8 @@ public class Controller : MonoBehaviour {
             }
             else if (currentPlayer == 1)
             {
+                //reset camera
+                camAlt.cameraReset();
                 throwScript.setPower(0.0f);
 
                 //create a new ball and tell throw that there is a new ball
