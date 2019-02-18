@@ -22,7 +22,7 @@ public class Controller : MonoBehaviour {
     public Throw throwScript;
     public PlayerControls pControls;
     public BallDistance dist;
-
+    public AimAssist aimAssistScript;
 
     //jack camera
     public GameObject jcam;
@@ -112,6 +112,9 @@ public class Controller : MonoBehaviour {
         cameraOutline.SetActive(false);
 
         camAlt = player.GetComponent<CameraView>();
+
+        //Aim Assist
+        aimAssistScript = player.GetComponent<AimAssist>();
 
         //Faultboxes
         faultBoxes = GameObject.FindGameObjectWithTag("FaultBoxes");
@@ -496,6 +499,22 @@ public class Controller : MonoBehaviour {
 
         cameraOverlay.SetActive(false);
         cameraOutline.SetActive(false);
+
+        //Clear fault box lists
+        foreach (FaultBoxes fault in faultBoxList)
+        {
+            fault.clearCollisionList();
+        }
+
+        //Clear fault count
+        redBallsFaulty = 0;
+        greenBallsFaulty = 0;
+
+        //Clear aim assist
+        aimAssistScript.ResetAim();
+
+        //Reset player position
+        player.transform.eulerAngles = new Vector3(0, 90, 0);
 
         gameOver = false;
     }
