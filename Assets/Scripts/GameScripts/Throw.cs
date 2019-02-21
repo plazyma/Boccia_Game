@@ -94,7 +94,8 @@ public class Throw : MonoBehaviour {
         {
            
             //update balls position until thrown
-            ball.transform.position = transform.position + (transform.forward * 2);
+            ball.transform.position = transform.position + (transform.forward*2.0f);
+            ball.transform.rotation = transform.rotation;
 
             //Increase x - power by 1
             if (Input.GetKeyDown("up") || Input.GetButtonDown("A") || Input.GetAxis("MouseScrollWheel") > 0)
@@ -171,6 +172,7 @@ public class Throw : MonoBehaviour {
                 //Steve - added more force due to mass changes for phsyics
                 //rb.AddForce(power*4, 0, -power_z*4, ForceMode.Impulse);
                 rb.AddForce(transform.forward * power * 400);
+                rb.AddTorque(100, 0, 0, ForceMode.Force);
                 rb.useGravity = true;
                 if (ball.tag == "Jack")
                 {

@@ -8,7 +8,6 @@ TagManager:
   - ScoreBoard
   - JackCamera
   - ScoreBoard2
-  - CameraOutline
   - CameraOverlay
   - CentreBox
   - FaultBoxes
@@ -26,6 +25,7 @@ TagManager:
   - NameBanner
   - BlueCounter
   - OrangeCounter
+  - CameraOverlay2
   layers:
   - Default
   - TransparentFX
