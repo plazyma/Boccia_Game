@@ -26,6 +26,14 @@ TagManager:
   - NameBanner
   - BlueCounter
   - OrangeCounter
+  - Orange
+  - Blue
+  - BlueCounter2
+  - OrangeCounter2
+  - Orange2
+  - Blue2
+  - PowerBarFill
+  - PowerBarFill2
   layers:
   - Default
   - TransparentFX

@@ -11,6 +11,8 @@ public class FaultBoxes : MonoBehaviour
     Controller gameController;
     public GameObject centreBox;
     public List<GameObject> faultyBalls;
+    Scoreboard scoreBoardScript;
+    Scoreboard scoreBoardScript2;
     void Start()
     {
         jackFault = false;
@@ -24,6 +26,8 @@ public class FaultBoxes : MonoBehaviour
         {
             centreBox = GameObject.FindGameObjectWithTag("CentreBox");
         }
+        scoreBoardScript = GameObject.FindGameObjectWithTag("ScoreBoard").GetComponent<Scoreboard>();
+        scoreBoardScript2 = GameObject.FindGameObjectWithTag("ScoreBoard2").GetComponent<Scoreboard>();
     }
 
     //Object has entered a faulty area
@@ -84,6 +88,9 @@ public class FaultBoxes : MonoBehaviour
                     gameController.greenBallsFaulty++;
                 }
             }
+            //Update scoreboard
+            scoreBoardScript.UpdateScoreboard();
+            scoreBoardScript2.UpdateScoreboard();
         }
     }
 

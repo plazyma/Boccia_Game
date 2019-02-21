@@ -34,33 +34,33 @@ public class Scoreboard : MonoBehaviour {
     public GameObject cont;
     Controller gameController;
 
-    //Orange ball counter
-    public List<Sprite> orangeBallCounterList;
-    public Image orangeBallCounter;
+    //Orange ball counter UI components
+    public List<Image> orangeBalls;
+    public List<Image> orangeBalls2;
 
-    //Blue ball counter
-    public List<Sprite> blueBallCounterList;
-    public Image blueBallCounter;
+    //Blue ball counter UI components
+    public List<Image> blueBalls;
+    public List<Image> blueBalls2;
+
+    //Sprites of balls for counter
+    public Sprite orangeBallSprite;
+    public Sprite blueBallSprite;
+    public Sprite blankBallSprite;
+    public Sprite faultBallSprite;
+
+    //Keep track of previous value of faulty throws
+    int prevRedballsFaulty = 0;
+    int prevGreenBallsFaulty = 0;
 
     // Use this for initialization
     void Start () {
-
-        //player1Count = GameObject.Find("p1Balls").GetComponent<Text>();
-        //player2Count = GameObject.Find("p2Balls").GetComponent<Text>();
-        //player1Score = GameObject.Find("p1Score").GetComponent<Text>();
-        //player2Score = GameObject.Find("p2Score").GetComponent<Text>();
-
-        player1Fault = GameObject.Find("p1Fault").GetComponent<Text>();
-        player2Fault = GameObject.Find("p2Fault").GetComponent<Text>();
+        //Find score UI object
+        player1Score = GameObject.Find("p1Score").GetComponent<Text>();
+        player2Score = GameObject.Find("p2Score").GetComponent<Text>();
 
         ////Scoreboard for second camera
-        //player1Count2 = GameObject.Find("p1Balls2").GetComponent<Text>();
-        //player2Count2 = GameObject.Find("p2Balls2").GetComponent<Text>();
-        //player1Score2 = GameObject.Find("p1Score2").GetComponent<Text>();
-        //player2Score2 = GameObject.Find("p2Score2").GetComponent<Text>();
-
-        //player1Fault2 = GameObject.Find("p1Fault2").GetComponent<Text>();
-        //player2Fault2 = GameObject.Find("p2Fault2").GetComponent<Text>();
+        player1Score2 = GameObject.Find("p1Score2").GetComponent<Text>();
+        player2Score2 = GameObject.Find("p2Score2").GetComponent<Text>();
 
         //currentPlayer = GameObject.Find("currentPlayer").GetComponent<Text>();
         //currentPlayer2 = GameObject.Find("currentPlayer2").GetComponent<Text>();
@@ -69,42 +69,37 @@ public class Scoreboard : MonoBehaviour {
         cont = GameObject.FindGameObjectWithTag("GameController");
         gameController = cont.GetComponent<Controller>();
 
-
-        orangeBallCounterList = new List<Sprite>();
-        Object[] orangeBallResources = Resources.LoadAll("HUD/Ball Counter/Orange", typeof(Sprite));
-
-        foreach(Object sprite in orangeBallResources)
-        {
-            orangeBallCounterList.Add((Sprite)sprite);
-        }
-
-        blueBallCounterList = new List<Sprite>();
-        Object[] blueBallResources = Resources.LoadAll("HUD/Ball Counter/Blue", typeof(Sprite));
-
-        foreach(Object sprite in blueBallResources)
-        {
-            blueBallCounterList.Add((Sprite)sprite);
-        }
-
-        if (!blueBallCounter)
-        {
-            foreach (Transform child in GameObject.FindGameObjectWithTag("ScoreBoard").transform)
+        //Find all the orange ball counter components
+         foreach(Transform child in GameObject.FindGameObjectWithTag("OrangeCounter").GetComponentsInChildren<Transform>())
+         {
+            if (child.CompareTag("Orange"))
             {
-                if(child.CompareTag("BlueCounter"))
-                {
-                    blueBallCounter = child.GetComponent<Image>();
-                }
+                orangeBalls.Add(child.GetComponent<Image>());
+            }
+         }
+
+        foreach (Transform child in GameObject.FindGameObjectWithTag("OrangeCounter2").GetComponentsInChildren<Transform>())
+        {
+            if (child.CompareTag("Orange"))
+            {
+                orangeBalls2.Add(child.GetComponent<Image>());
             }
         }
 
-        if (!orangeBallCounter)
+        //Find all the blue ball counter components
+        foreach (Transform child in GameObject.FindGameObjectWithTag("BlueCounter").GetComponentsInChildren<Transform>())
         {
-            foreach (Transform child in GameObject.FindGameObjectWithTag("ScoreBoard").transform)
+            if (child.CompareTag("Blue"))
             {
-                if (child.CompareTag("OrangeCounter"))
-                {
-                    orangeBallCounter = child.GetComponent<Image>();
-                }
+                blueBalls.Add(child.GetComponent<Image>());
+            }
+        }
+
+        foreach (Transform child in GameObject.FindGameObjectWithTag("BlueCounter2").GetComponentsInChildren<Transform>())
+        {
+            if (child.CompareTag("Blue"))
+            {
+                blueBalls2.Add(child.GetComponent<Image>());
             }
         }
 
@@ -120,22 +115,69 @@ public class Scoreboard : MonoBehaviour {
         //// update the scores and balls thrown
         //player1Count.text = GlobalVariables.player1 + " Balls Left: " + p1BallsLeft;
         //player2Count.text = GlobalVariables.player2 + " Balls Left: " + p2BallsLeft;
-
         //player1Score.text = GlobalVariables.player1 + " Score: " + gameController.player1Score;
-        //player2Score.text = GlobalVariables.player2 + " Score: " + gameController.player2Score;
+       // player2Score.text = GlobalVariables.player2 + " Score: " + gameController.player2Score;
+        player1Score.text = gameController.player1Score.ToString();
+        player2Score.text = gameController.player2Score.ToString();
 
-        player1Fault.text = GlobalVariables.player1 + " Fault: " + gameController.redBallsFaulty;
-        player2Fault.text = GlobalVariables.player2 + " Fault: " + gameController.greenBallsFaulty;
+        player1Score2.text = gameController.player1Score.ToString();
+        player2Score2.text = gameController.player2Score.ToString();
 
+        //Loop
+        for (int i = 0; i < 6; i++)
+        {
+            if (gameController.currentPlayer == 1)
+            {
+                if (p1BallsLeft == i)
+                {
+                    //If the faulty ball counter has changed since the last time
+                    if (prevRedballsFaulty != gameController.redBallsFaulty)
+                    {
+                        //Cross sprite
+                        orangeBalls[i].sprite = faultBallSprite;
+                        orangeBalls2[i].sprite = faultBallSprite;
+                        //Update previous fault counter
+                        prevRedballsFaulty = gameController.redBallsFaulty;
+                    }
+                    else
+                    {
+                        //Blank sprite
+                        orangeBalls[i].sprite = blankBallSprite;
+                        orangeBalls2[i].sprite = blankBallSprite;
+                    }
+                }
+            }
+            else if (gameController.currentPlayer == 2)
+            {
+                if (p2BallsLeft == i)
+                { 
+                    //If the faulty ball counter has changed since the last time
+                    if (prevGreenBallsFaulty != gameController.greenBallsFaulty)
+                    {
+                        //Cross sprite
+                        blueBalls[i].sprite = faultBallSprite;
+                        blueBalls2[i].sprite = faultBallSprite;
+                        //Update previous fault counter
+                        prevGreenBallsFaulty = gameController.greenBallsFaulty;
+                    }
+                    else
+                    {
+                        //Blank sprite
+                        blueBalls[i].sprite = blankBallSprite;
+                        blueBalls2[i].sprite = blankBallSprite;
+                    }
+                }
+            }
+        }
         ////Second scoreboard
         //player1Count2.text = GlobalVariables.player1 + " Balls Left: " + p1BallsLeft;
         //player2Count2.text = GlobalVariables.player2 + " Balls Left: " + p2BallsLeft;
 
         //player1Score2.text = GlobalVariables.player1 + " Score: " + gameController.player1Score;
         //player2Score2.text = GlobalVariables.player2 + " Score: " + gameController.player2Score;
-     
-        orangeBallCounter.sprite = orangeBallCounterList[gameController.redBalls];
-        blueBallCounter.sprite = blueBallCounterList[gameController.greenBalls];
+
+        //orangeBallCounter.sprite = orangeBallCounterList[gameController.redBalls];
+        //blueBallCounter.sprite = blueBallCounterList[gameController.greenBalls];
         ////Move text indicating the current player
         //if (gameController.currentPlayer == 1)
         //{
@@ -151,5 +193,18 @@ public class Scoreboard : MonoBehaviour {
         //    currentPlayer.text = "Current Player: \n" + GlobalVariables.player2;
         //    currentPlayer2.text = "Current Player: \n" + GlobalVariables.player2;
         //}
+    }
+
+    //Reset the scoreboard
+    public void resetScoreboard()
+    {
+        for(int i = 0; i < 6; i++)
+        {
+            orangeBalls[i].sprite = orangeBallSprite;
+            orangeBalls2[i].sprite = orangeBallSprite;
+
+            blueBalls[i].sprite = blueBallSprite;
+            blueBalls2[i].sprite = blueBallSprite;
+        }
     }
 }

@@ -40,8 +40,8 @@ public class Controller : MonoBehaviour {
     public AudioClip winSound;
 
     //scoreboard
-    GameObject scoreBoard;
-    Scoreboard score;
+    Scoreboard scoreboardScript;
+    Scoreboard scoreboardScript2;
 
     public Material redMaterial; 
     public Material greenMaterial;
@@ -81,8 +81,8 @@ public class Controller : MonoBehaviour {
 
         gameOver = false;
         //setup scoreboard
-        scoreBoard = GameObject.FindGameObjectWithTag("ScoreBoard");
-        score = scoreBoard.GetComponent<Scoreboard>();
+        scoreboardScript = GameObject.FindGameObjectWithTag("ScoreBoard").GetComponent<Scoreboard>();
+        scoreboardScript2 = GameObject.FindGameObjectWithTag("ScoreBoard2").GetComponent<Scoreboard>();
 
         //set random player at start 0-100 for larger random chances
         currentPlayer = Random.Range(0, 100);
@@ -124,7 +124,7 @@ public class Controller : MonoBehaviour {
         {
             faultBoxList.Add(fault);
         }
-        score.UpdateScoreboard();
+        scoreboardScript.UpdateScoreboard();
     }
 
     void spawnJack()
@@ -167,9 +167,10 @@ public class Controller : MonoBehaviour {
         if (Input.GetKeyDown("p"))
         {
             player1Score++;
-            score.UpdateScoreboard();
+            scoreboardScript.UpdateScoreboard();
+            scoreboardScript2.UpdateScoreboard();
             // jack.transform.position = faultBoxCross.transform.position;
-            
+
             //print(jack.transform.localScale.z);
             //jack.transform.position = new Vector3(jack.transform.position.x, jack.transform.position.y, jack.transform.position.z + (jack.GetComponent<SphereCollider>().radius * jack.transform.localScale.z));
         }
@@ -225,7 +226,7 @@ public class Controller : MonoBehaviour {
                     player.transform.eulerAngles = new Vector3(0, 90, 0);
 
                     //update scoreboard
-                    score.UpdateScoreboard();
+                    //score.UpdateScoreboard();
 
                     //activate jack camera
                     cameraOverlay.SetActive(true);
@@ -305,7 +306,6 @@ public class Controller : MonoBehaviour {
                 faultBoxList[i].deleteBalls();
                 faultBoxList[i].ResetJack(jack);
             }
-            //faultBoxList[6].ResetJack(jack);
 
             player.transform.eulerAngles = new Vector3(0, 90, 0);
             if (amountOfBalls > 1)
@@ -365,7 +365,7 @@ public class Controller : MonoBehaviour {
                 newBall = Instantiate(greenBall, player.transform.position + (player.transform.forward * 2), player.transform.rotation);
                 greenBalls++;
                 //update scoreboard
-                score.UpdateScoreboard();
+                //score.UpdateScoreboard();
 
                 audioSource.clip = ballChangeSound;
                 audioSource.Play();
@@ -380,7 +380,7 @@ public class Controller : MonoBehaviour {
                 newBall = Instantiate(redBall, player.transform.position + (player.transform.forward * 2), player.transform.rotation);
                 redBalls++;
                 //update scoreboard
-                score.UpdateScoreboard();
+                //score.UpdateScoreboard();
 
                 audioSource.clip = ballChangeSound;
                 audioSource.Play();
@@ -494,7 +494,12 @@ public class Controller : MonoBehaviour {
 
         jackThrown = false;
         spawnJack();
-        score.UpdateScoreboard();
+
+        //Reset scoreboard
+        scoreboardScript.UpdateScoreboard();
+        scoreboardScript2.UpdateScoreboard();
+        scoreboardScript.resetScoreboard();
+        scoreboardScript2.resetScoreboard();
 
 
         cameraOverlay.SetActive(false);
