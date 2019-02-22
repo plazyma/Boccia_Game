@@ -24,7 +24,6 @@ TagManager:
   - P1Name
   - InputField
   - NameBanner
-<<<<<<< HEAD
   - BlueCounter
   - OrangeCounter
   - Orange
@@ -35,8 +34,6 @@ TagManager:
   - Blue2
   - PowerBarFill
   - PowerBarFill2
-=======
->>>>>>> parent of f7c5016... Added new crowd and stadium
   layers:
   - Default
   - TransparentFX

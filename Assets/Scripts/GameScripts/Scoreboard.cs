@@ -34,7 +34,6 @@ public class Scoreboard : MonoBehaviour {
     public GameObject cont;
     Controller gameController;
 
-<<<<<<< HEAD
     //Orange ball counter UI components
     public List<Image> orangeBalls;
     public List<Image> orangeBalls2;
@@ -42,8 +41,6 @@ public class Scoreboard : MonoBehaviour {
     //Blue ball counter UI components
     public List<Image> blueBalls;
     public List<Image> blueBalls2;
-=======
->>>>>>> parent of f7c5016... Added new crowd and stadium
 
     //Sprites of balls for counter
     public Sprite orangeBallSprite;
@@ -51,16 +48,9 @@ public class Scoreboard : MonoBehaviour {
     public Sprite blankBallSprite;
     public Sprite faultBallSprite;
 
-<<<<<<< HEAD
     //Keep track of previous value of faulty throws
     int prevRedballsFaulty = 0;
     int prevGreenBallsFaulty = 0;
-=======
-        player1Count = GameObject.Find("p1Balls").GetComponent<Text>();
-        player2Count = GameObject.Find("p2Balls").GetComponent<Text>();
-        player1Score = GameObject.Find("p1Score").GetComponent<Text>();
-        player2Score = GameObject.Find("p2Score").GetComponent<Text>();
->>>>>>> parent of f7c5016... Added new crowd and stadium
 
     // Use this for initialization
     void Start () {
@@ -68,28 +58,16 @@ public class Scoreboard : MonoBehaviour {
         player1Score = GameObject.Find("p1Score").GetComponent<Text>();
         player2Score = GameObject.Find("p2Score").GetComponent<Text>();
 
-<<<<<<< HEAD
         ////Scoreboard for second camera
         player1Score2 = GameObject.Find("p1Score2").GetComponent<Text>();
         player2Score2 = GameObject.Find("p2Score2").GetComponent<Text>();
-=======
-        //Scoreboard for second camera
-        player1Count2 = GameObject.Find("p1Balls2").GetComponent<Text>();
-        player2Count2 = GameObject.Find("p2Balls2").GetComponent<Text>();
-        player1Score2 = GameObject.Find("p1Score2").GetComponent<Text>();
-        player2Score2 = GameObject.Find("p2Score2").GetComponent<Text>();
 
-        player1Fault2 = GameObject.Find("p1Fault2").GetComponent<Text>();
-        player2Fault2 = GameObject.Find("p2Fault2").GetComponent<Text>();
->>>>>>> parent of f7c5016... Added new crowd and stadium
-
-        currentPlayer = GameObject.Find("currentPlayer").GetComponent<Text>();
-        currentPlayer2 = GameObject.Find("currentPlayer2").GetComponent<Text>();
+        //currentPlayer = GameObject.Find("currentPlayer").GetComponent<Text>();
+        //currentPlayer2 = GameObject.Find("currentPlayer2").GetComponent<Text>();
 
         //get the controller object
         cont = GameObject.FindGameObjectWithTag("GameController");
         gameController = cont.GetComponent<Controller>();
-<<<<<<< HEAD
 
         //Find all the orange ball counter components
          foreach(Transform child in GameObject.FindGameObjectWithTag("OrangeCounter").GetComponentsInChildren<Transform>())
@@ -125,10 +103,8 @@ public class Scoreboard : MonoBehaviour {
             }
         }
 
-=======
->>>>>>> parent of f7c5016... Added new crowd and stadium
         UpdateScoreboard();
-	}
+    }
 	
     public void UpdateScoreboard()
     {
@@ -136,7 +112,6 @@ public class Scoreboard : MonoBehaviour {
         p1BallsLeft = totalBalls - gameController.redBalls;
         p2BallsLeft = totalBalls - gameController.greenBalls;
 
-<<<<<<< HEAD
         //// update the scores and balls thrown
         //player1Count.text = GlobalVariables.player1 + " Balls Left: " + p1BallsLeft;
         //player2Count.text = GlobalVariables.player2 + " Balls Left: " + p2BallsLeft;
@@ -144,19 +119,10 @@ public class Scoreboard : MonoBehaviour {
        // player2Score.text = GlobalVariables.player2 + " Score: " + gameController.player2Score;
         player1Score.text = gameController.player1Score.ToString();
         player2Score.text = gameController.player2Score.ToString();
-=======
-        // update the scores and balls thrown
-        player1Count.text = GlobalVariables.player1 + " Balls Left: " + p1BallsLeft;
-        player2Count.text = GlobalVariables.player2 + " Balls Left: " + p2BallsLeft;
-
-        player1Score.text = GlobalVariables.player1 + " Score: " + gameController.player1Score;
-        player2Score.text = GlobalVariables.player2 + " Score: " + gameController.player2Score;
->>>>>>> parent of f7c5016... Added new crowd and stadium
 
         player1Score2.text = gameController.player1Score.ToString();
         player2Score2.text = gameController.player2Score.ToString();
 
-<<<<<<< HEAD
         //Loop
         for (int i = 0; i < 6; i++)
         {
@@ -227,35 +193,6 @@ public class Scoreboard : MonoBehaviour {
         //    currentPlayer.text = "Current Player: \n" + GlobalVariables.player2;
         //    currentPlayer2.text = "Current Player: \n" + GlobalVariables.player2;
         //}
-=======
-        //Second scoreboard
-        player1Count2.text = GlobalVariables.player1 + " Balls Left: " + p1BallsLeft;
-        player2Count2.text = GlobalVariables.player2 + " Balls Left: " + p2BallsLeft;
-
-        player1Score2.text = GlobalVariables.player1 + " Score: " + gameController.player1Score;
-        player2Score2.text = GlobalVariables.player2 + " Score: " + gameController.player2Score;
-
-        player1Fault2.text = GlobalVariables.player1 + " Fault: " + gameController.redBallsFaulty;
-        player2Fault2.text = GlobalVariables.player2 + " Fault: " + gameController.greenBallsFaulty;
-
-        
-
-        //Move text indicating the current player
-        if (gameController.currentPlayer == 1)
-        {
-            //currentPlayer.rectTransform.anchoredPosition = new Vector3(-290, 0 , 0);
-            //currentPlayer2.rectTransform.anchoredPosition = new Vector3(-290, 0, 0);
-            currentPlayer.text = "Current Player: \n" + GlobalVariables.player1;
-            currentPlayer2.text = "Current Player: \n" + GlobalVariables.player1;
-        }
-        else if(gameController.currentPlayer == 2)
-        {
-            //currentPlayer.rectTransform.anchoredPosition = new Vector3(290, 0, 0);
-            //currentPlayer2.rectTransform.anchoredPosition = new Vector3(290, 0, 0);
-            currentPlayer.text = "Current Player: \n" + GlobalVariables.player2;
-            currentPlayer2.text = "Current Player: \n" + GlobalVariables.player2;
-        }
->>>>>>> parent of f7c5016... Added new crowd and stadium
     }
 
     //Reset the scoreboard
