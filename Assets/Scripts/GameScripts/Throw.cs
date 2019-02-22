@@ -81,6 +81,9 @@ public class Throw : MonoBehaviour {
         {
             loadSound();
         }
+
+      
+
         //if there is no ball yet
         if (ballFound == false)
         {

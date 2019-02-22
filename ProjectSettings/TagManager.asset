@@ -36,6 +36,7 @@ TagManager:
   - PowerBarFill2
   - Screen
   - Screen2
+  - MusicPlayer
   layers:
   - Default
   - TransparentFX

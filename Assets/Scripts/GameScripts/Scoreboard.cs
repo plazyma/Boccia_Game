@@ -62,7 +62,7 @@ public class Scoreboard : MonoBehaviour {
         player1Score2 = GameObject.Find("p1Score2").GetComponent<Text>();
         player2Score2 = GameObject.Find("p2Score2").GetComponent<Text>();
 
-        //currentPlayer = GameObject.Find("currentPlayer").GetComponent<Text>();
+        currentPlayer = GameObject.Find("currentPlayer").GetComponent<Text>();
         //currentPlayer2 = GameObject.Find("currentPlayer2").GetComponent<Text>();
 
         //get the controller object
@@ -179,20 +179,20 @@ public class Scoreboard : MonoBehaviour {
         //orangeBallCounter.sprite = orangeBallCounterList[gameController.redBalls];
         //blueBallCounter.sprite = blueBallCounterList[gameController.greenBalls];
         ////Move text indicating the current player
-        //if (gameController.currentPlayer == 1)
-        //{
-        //    //currentPlayer.rectTransform.anchoredPosition = new Vector3(-290, 0 , 0);
-        //    //currentPlayer2.rectTransform.anchoredPosition = new Vector3(-290, 0, 0);
-        //    currentPlayer.text = "Current Player: \n" + GlobalVariables.player1;
-        //    currentPlayer2.text = "Current Player: \n" + GlobalVariables.player1;
-        //}
-        //else if(gameController.currentPlayer == 2)
-        //{
-        //    //currentPlayer.rectTransform.anchoredPosition = new Vector3(290, 0, 0);
-        //    //currentPlayer2.rectTransform.anchoredPosition = new Vector3(290, 0, 0);
-        //    currentPlayer.text = "Current Player: \n" + GlobalVariables.player2;
-        //    currentPlayer2.text = "Current Player: \n" + GlobalVariables.player2;
-        //}
+        if (gameController.currentPlayer == 1)
+        {
+            //currentPlayer.rectTransform.anchoredPosition = new Vector3(-290, 0 , 0);
+            //currentPlayer2.rectTransform.anchoredPosition = new Vector3(-290, 0, 0);
+            currentPlayer.text = "Current Player: \n" + GlobalVariables.player1;
+            //currentPlayer2.text = "Current Player: \n" + GlobalVariables.player1;
+        }
+        else if (gameController.currentPlayer == 2)
+        {
+            //currentPlayer.rectTransform.anchoredPosition = new Vector3(290, 0, 0);
+            //currentPlayer2.rectTransform.anchoredPosition = new Vector3(290, 0, 0);
+            currentPlayer.text = "Current Player: \n" + GlobalVariables.player2;
+            //currentPlayer2.text = "Current Player: \n" + GlobalVariables.player2;
+        }
     }
 
     //Reset the scoreboard

@@ -38,6 +38,8 @@ public class Controller : MonoBehaviour {
     public AudioClip player1WinSound;
     public AudioClip player2WinSound;
     public AudioClip winSound;
+    public GameObject musicSource;
+    bool paused = false;
 
     //scoreboard
     Scoreboard scoreboardScript;
@@ -124,6 +126,9 @@ public class Controller : MonoBehaviour {
             faultBoxList.Add(fault);
         }
         scoreboardScript.UpdateScoreboard();
+
+        //get the music player
+        musicSource = GameObject.FindGameObjectWithTag("MusicPlayer");
     }
 
     void spawnJack()
@@ -152,7 +157,19 @@ public class Controller : MonoBehaviour {
                 print(fault.GetJackFault());
             }
         }
-       
+
+        //pause and unpause the music
+        if (Input.GetKeyDown("m") && paused == false)
+        {
+            musicSource.GetComponent<AudioSource>().Pause();
+            paused = true;
+        }
+        else if (Input.GetKeyDown("m") && paused == true)
+        {
+            musicSource.GetComponent<AudioSource>().Play();
+            paused = false;
+        }
+
         //update jack cam
         if (Input.GetKeyDown("t"))
         {
