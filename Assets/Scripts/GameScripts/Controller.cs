@@ -43,7 +43,6 @@ public class Controller : MonoBehaviour {
 
     //scoreboard
     Scoreboard scoreboardScript;
-    Scoreboard scoreboardScript2;
 
     public Material redMaterial; 
     public Material greenMaterial;
@@ -84,7 +83,6 @@ public class Controller : MonoBehaviour {
         gameOver = false;
         //setup scoreboard
         scoreboardScript = GameObject.FindGameObjectWithTag("ScoreBoard").GetComponent<Scoreboard>();
-        scoreboardScript2 = GameObject.FindGameObjectWithTag("ScoreBoard2").GetComponent<Scoreboard>();
 
         //set random player at start 0-100 for larger random chances
         currentPlayer = Random.Range(0, 100);
@@ -184,7 +182,6 @@ public class Controller : MonoBehaviour {
         {
             player1Score++;
             scoreboardScript.UpdateScoreboard();
-            scoreboardScript2.UpdateScoreboard();
             // jack.transform.position = faultBoxCross.transform.position;
 
             //print(jack.transform.localScale.z);
@@ -513,9 +510,7 @@ public class Controller : MonoBehaviour {
 
         //Reset scoreboard
         scoreboardScript.UpdateScoreboard();
-        scoreboardScript2.UpdateScoreboard();
         scoreboardScript.resetScoreboard();
-        scoreboardScript2.resetScoreboard();
 
 
         cameraOverlay.SetActive(true);

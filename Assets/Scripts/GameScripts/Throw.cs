@@ -54,12 +54,7 @@ public class Throw : MonoBehaviour {
         {
             powerBar = GameObject.FindGameObjectWithTag("ScoreBoard").GetComponent<Powerbar>();
         }
-        if(!powerBar2)
-        {
-            powerBar2 = GameObject.FindGameObjectWithTag("ScoreBoard2").GetComponent<Powerbar>();
-        }
         scoreBoardScript = GameObject.FindGameObjectWithTag("ScoreBoard").GetComponent<Scoreboard>();
-        scoreBoardScript2 = GameObject.FindGameObjectWithTag("ScoreBoard2").GetComponent<Scoreboard>();
     }
 
     void loadSound()
@@ -94,7 +89,6 @@ public class Throw : MonoBehaviour {
             }
             //Update powerbar
             powerBar.updatePowerBar();
-            //powerBar2.updatePowerBar();
         }
         //if ball isn't thrown
         if (ballThrown == false)
@@ -129,7 +123,6 @@ public class Throw : MonoBehaviour {
                 }
                 //Update powerbar
                 powerBar.updatePowerBar();
-                //powerBar2.updatePowerBar();
             }
             //Decrease x - power by 1
             if (Input.GetKeyDown("down") || Input.GetButtonDown("B") || Input.GetAxis("MouseScrollWheel") < 0)
@@ -155,7 +148,6 @@ public class Throw : MonoBehaviour {
                 }
                 //Update powerbar
                 powerBar.updatePowerBar();
-                //powerBar2.updatePowerBar();
             }
             //Decrease z - power by 1
             if (Input.GetKeyDown("left") || Input.GetAxis("DPadX") == -1 || Input.GetAxis("MouseX") < 0)
@@ -199,7 +191,6 @@ public class Throw : MonoBehaviour {
 
                 //Update scoreboard
                 scoreBoardScript.UpdateScoreboard();
-                scoreBoardScript2.UpdateScoreboard();
             }
             
         }

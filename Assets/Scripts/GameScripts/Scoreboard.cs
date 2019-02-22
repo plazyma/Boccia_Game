@@ -205,6 +205,9 @@ public class Scoreboard : MonoBehaviour {
 
             blueBalls[i].sprite = blueBallSprite;
             blueBalls2[i].sprite = blueBallSprite;
+			
+			prevGreenBallsFaulty = 0;
+			prevRedballsFaulty = 0;
         }
     }
 }

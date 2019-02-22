@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class Powerbar : MonoBehaviour
 {
 
-    Slider powerSlider;
     public GameObject player;
     public Image powerBarFill;
     public Image powerBarFill2;
@@ -13,11 +12,7 @@ public class Powerbar : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        powerSlider = GetComponentInChildren<Slider>();
-
         powerBarSprites = new List<Sprite>();
-
-        Object[] powerBarResources = Resources.LoadAll("HUD/Powerbar", typeof(Sprite));
 
         foreach (Object power in Resources.LoadAll("HUD/Powerbar", typeof(Sprite)))
         {
