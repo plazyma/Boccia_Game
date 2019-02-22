@@ -34,6 +34,8 @@ TagManager:
   - Blue2
   - PowerBarFill
   - PowerBarFill2
+  - Screen
+  - Screen2
   layers:
   - Default
   - TransparentFX

@@ -28,7 +28,7 @@ public class Controller : MonoBehaviour {
     public GameObject jcam;
     JackCamera jackCamera;
     public GameObject cameraOverlay;
-	GameObject cameraOutline;
+    public GameObject cameraOverlay2;
     public Camera cameraAlt;
     CameraView camAlt;
 
@@ -106,10 +106,9 @@ public class Controller : MonoBehaviour {
         jcam = GameObject.FindGameObjectWithTag("JackCamera");
         jackCamera = jcam.GetComponent<JackCamera>();
         jackCamera.getJack();
-        cameraOverlay = GameObject.FindGameObjectWithTag("CameraOverlay");
-        cameraOverlay.SetActive(false);
-        cameraOutline = GameObject.FindGameObjectWithTag("CameraOutline");
-        cameraOutline.SetActive(false);
+        cameraOverlay = GameObject.FindGameObjectWithTag("Screen");
+        cameraOverlay2 = GameObject.FindGameObjectWithTag("Screen2");
+
 
         camAlt = player.GetComponent<CameraView>();
 
@@ -229,8 +228,8 @@ public class Controller : MonoBehaviour {
                     //score.UpdateScoreboard();
 
                     //activate jack camera
-                    cameraOverlay.SetActive(true);
-                    cameraOutline.SetActive(true);
+                    cameraOverlay.SetActive(false);
+                    cameraOverlay2.SetActive(false);
                 }
               
             }
@@ -502,8 +501,8 @@ public class Controller : MonoBehaviour {
         scoreboardScript2.resetScoreboard();
 
 
-        cameraOverlay.SetActive(false);
-        cameraOutline.SetActive(false);
+        cameraOverlay.SetActive(true);
+        cameraOverlay2.SetActive(true);
 
         //Clear fault box lists
         foreach (FaultBoxes fault in faultBoxList)

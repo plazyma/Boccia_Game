@@ -99,6 +99,7 @@ public class Throw : MonoBehaviour {
            
             //update balls position until thrown
             ball.transform.position = transform.position + (transform.forward * 2);
+            ball.transform.rotation = transform.rotation;
 
             //Increase x - power by 1
             if (Input.GetKeyDown("up") || Input.GetButtonDown("A") || Input.GetAxis("MouseScrollWheel") > 0)
