@@ -8,7 +8,6 @@ TagManager:
   - ScoreBoard
   - JackCamera
   - ScoreBoard2
-  - CameraOutline
   - CameraOverlay
   - CentreBox
   - FaultBoxes
@@ -26,6 +25,7 @@ TagManager:
   - NameBanner
   - BlueCounter
   - OrangeCounter
+<<<<<<< HEAD
   - Orange
   - Blue
   - BlueCounter2
@@ -34,6 +34,9 @@ TagManager:
   - Blue2
   - PowerBarFill
   - PowerBarFill2
+=======
+  - CameraOverlay2
+>>>>>>> Steven
   layers:
   - Default
   - TransparentFX
