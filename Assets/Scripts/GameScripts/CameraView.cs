@@ -6,6 +6,7 @@ public class CameraView : MonoBehaviour
 {
     public Camera cameraAlt;
     public Camera cameraMain;
+    public Camera cameraMove;
     GameObject jack;
     GameObject scoreboard2;
 
@@ -115,6 +116,21 @@ public class CameraView : MonoBehaviour
                 //enable second HUD
                 scoreboard2.SetActive(true);
             }
+          
+        }
+        if (Input.GetKeyDown("c"))
+        {
+            if (cameraMain.enabled == true)
+            {
+                cameraMove.enabled = true;
+                cameraMain.enabled = false;
+            }
+            else if(cameraMain.enabled == false)
+            {
+                cameraMove.enabled = false;
+                cameraMain.enabled = true;
+            }
+
         }
     }
 
