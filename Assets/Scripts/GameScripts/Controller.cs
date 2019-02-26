@@ -22,13 +22,13 @@ public class Controller : MonoBehaviour {
     public Throw throwScript;
     public PlayerControls pControls;
     public BallDistance dist;
-
+    public AimAssist aimAssistScript;
 
     //jack camera
     public GameObject jcam;
     JackCamera jackCamera;
     public GameObject cameraOverlay;
-	GameObject cameraOutline;
+    public GameObject cameraOverlay2;
     public Camera cameraAlt;
     CameraView camAlt;
 
@@ -38,10 +38,11 @@ public class Controller : MonoBehaviour {
     public AudioClip player1WinSound;
     public AudioClip player2WinSound;
     public AudioClip winSound;
+    public GameObject musicSource;
+    bool paused = false;
 
     //scoreboard
-    GameObject scoreBoard;
-    Scoreboard score;
+    Scoreboard scoreboardScript;
 
     public Material redMaterial; 
     public Material greenMaterial;
@@ -81,8 +82,7 @@ public class Controller : MonoBehaviour {
 
         gameOver = false;
         //setup scoreboard
-        scoreBoard = GameObject.FindGameObjectWithTag("ScoreBoard");
-        score = scoreBoard.GetComponent<Scoreboard>();
+        scoreboardScript = GameObject.FindGameObjectWithTag("ScoreBoard").GetComponent<Scoreboard>();
 
         //set random player at start 0-100 for larger random chances
         currentPlayer = Random.Range(0, 100);
@@ -106,12 +106,14 @@ public class Controller : MonoBehaviour {
         jcam = GameObject.FindGameObjectWithTag("JackCamera");
         jackCamera = jcam.GetComponent<JackCamera>();
         jackCamera.getJack();
-        cameraOverlay = GameObject.FindGameObjectWithTag("CameraOverlay");
-        cameraOverlay.SetActive(false);
-        cameraOutline = GameObject.FindGameObjectWithTag("CameraOutline");
-        cameraOutline.SetActive(false);
+        cameraOverlay = GameObject.FindGameObjectWithTag("Screen");
+        cameraOverlay2 = GameObject.FindGameObjectWithTag("Screen2");
+
 
         camAlt = player.GetComponent<CameraView>();
+
+        //Aim Assist
+        aimAssistScript = player.GetComponent<AimAssist>();
 
         //Faultboxes
         faultBoxes = GameObject.FindGameObjectWithTag("FaultBoxes");
@@ -121,7 +123,10 @@ public class Controller : MonoBehaviour {
         {
             faultBoxList.Add(fault);
         }
-        score.UpdateScoreboard();
+        scoreboardScript.UpdateScoreboard();
+
+        //get the music player
+        musicSource = GameObject.FindGameObjectWithTag("MusicPlayer");
     }
 
     void spawnJack()
@@ -150,7 +155,19 @@ public class Controller : MonoBehaviour {
                 print(fault.GetJackFault());
             }
         }
-       
+
+        //pause and unpause the music
+        if (Input.GetKeyDown("m") && paused == false)
+        {
+            musicSource.GetComponent<AudioSource>().Pause();
+            paused = true;
+        }
+        else if (Input.GetKeyDown("m") && paused == true)
+        {
+            musicSource.GetComponent<AudioSource>().Play();
+            paused = false;
+        }
+
         //update jack cam
         if (Input.GetKeyDown("t"))
         {
@@ -164,9 +181,9 @@ public class Controller : MonoBehaviour {
         if (Input.GetKeyDown("p"))
         {
             player1Score++;
-            score.UpdateScoreboard();
+            scoreboardScript.UpdateScoreboard();
             // jack.transform.position = faultBoxCross.transform.position;
-            
+
             //print(jack.transform.localScale.z);
             //jack.transform.position = new Vector3(jack.transform.position.x, jack.transform.position.y, jack.transform.position.z + (jack.GetComponent<SphereCollider>().radius * jack.transform.localScale.z));
         }
@@ -222,11 +239,11 @@ public class Controller : MonoBehaviour {
                     player.transform.eulerAngles = new Vector3(0, 90, 0);
 
                     //update scoreboard
-                    score.UpdateScoreboard();
+                    //score.UpdateScoreboard();
 
                     //activate jack camera
-                    cameraOverlay.SetActive(true);
-                    cameraOutline.SetActive(true);
+                    cameraOverlay.SetActive(false);
+                    cameraOverlay2.SetActive(false);
                 }
               
             }
@@ -302,7 +319,6 @@ public class Controller : MonoBehaviour {
                 faultBoxList[i].deleteBalls();
                 faultBoxList[i].ResetJack(jack);
             }
-            //faultBoxList[6].ResetJack(jack);
 
             player.transform.eulerAngles = new Vector3(0, 90, 0);
             if (amountOfBalls > 1)
@@ -362,7 +378,7 @@ public class Controller : MonoBehaviour {
                 newBall = Instantiate(greenBall, player.transform.position + (player.transform.forward * 2), player.transform.rotation);
                 greenBalls++;
                 //update scoreboard
-                score.UpdateScoreboard();
+                //score.UpdateScoreboard();
 
                 audioSource.clip = ballChangeSound;
                 audioSource.Play();
@@ -377,7 +393,7 @@ public class Controller : MonoBehaviour {
                 newBall = Instantiate(redBall, player.transform.position + (player.transform.forward * 2), player.transform.rotation);
                 redBalls++;
                 //update scoreboard
-                score.UpdateScoreboard();
+                //score.UpdateScoreboard();
 
                 audioSource.clip = ballChangeSound;
                 audioSource.Play();
@@ -491,11 +507,30 @@ public class Controller : MonoBehaviour {
 
         jackThrown = false;
         spawnJack();
-        score.UpdateScoreboard();
+
+        //Reset scoreboard
+        scoreboardScript.UpdateScoreboard();
+        scoreboardScript.resetScoreboard();
 
 
-        cameraOverlay.SetActive(false);
-        cameraOutline.SetActive(false);
+        cameraOverlay.SetActive(true);
+        cameraOverlay2.SetActive(true);
+
+        //Clear fault box lists
+        foreach (FaultBoxes fault in faultBoxList)
+        {
+            fault.clearCollisionList();
+        }
+
+        //Clear fault count
+        redBallsFaulty = 0;
+        greenBallsFaulty = 0;
+
+        //Clear aim assist
+        aimAssistScript.ResetAim();
+
+        //Reset player position
+        player.transform.eulerAngles = new Vector3(0, 90, 0);
 
         gameOver = false;
     }

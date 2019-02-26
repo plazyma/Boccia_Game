@@ -1,0 +1,238 @@
+fileFormatVersion: 2
+guid: 0edf8cbf4a1272b49813f63f6cef8601
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: back low bleecher
+    100002: back up bleecher
+    100004: banner back
+    100006: banner left
+    100008: banner right
+    100010: Boccia Court
+    100012: corner left entrance
+    100014: corner right entrance
+    100016: Ground
+    100018: left low bleecher
+    100020: left low entrance
+    100022: left up bleecher
+    100024: left up entrance
+    100026: leftt low corner bleecher
+    100028: leftt up corner bleecher
+    100030: long wall 001
+    100032: Ramp right
+    100034: Ramp rileft
+    100036: right low bleecher
+    100038: right low corner bleecher
+    100040: right low entrance
+    100042: right up bleecher
+    100044: right up corner bleecher
+    100046: right up entrance
+    100048: //RootNode
+    100050: Wall_bottom_left
+    100052: Wall_bottom_right
+    100054: Wall_top_left
+    100056: Wall_top_right
+    400000: back low bleecher
+    400002: back up bleecher
+    400004: banner back
+    400006: banner left
+    400008: banner right
+    400010: Boccia Court
+    400012: corner left entrance
+    400014: corner right entrance
+    400016: Ground
+    400018: left low bleecher
+    400020: left low entrance
+    400022: left up bleecher
+    400024: left up entrance
+    400026: leftt low corner bleecher
+    400028: leftt up corner bleecher
+    400030: long wall 001
+    400032: Ramp right
+    400034: Ramp rileft
+    400036: right low bleecher
+    400038: right low corner bleecher
+    400040: right low entrance
+    400042: right up bleecher
+    400044: right up corner bleecher
+    400046: right up entrance
+    400048: //RootNode
+    400050: Wall_bottom_left
+    400052: Wall_bottom_right
+    400054: Wall_top_left
+    400056: Wall_top_right
+    2100000: Walls
+    2100002: Barriers
+    2100004: Entrances
+    2100006: Ramps
+    2100008: BleechersBottom
+    2100010: Ground
+    2100012: Court
+    2100014: BleechersTop
+    2100016: BleechersBackLow
+    2100018: BleechersCorners
+    2300000: back low bleecher
+    2300002: back up bleecher
+    2300004: banner back
+    2300006: banner left
+    2300008: banner right
+    2300010: Boccia Court
+    2300012: corner left entrance
+    2300014: corner right entrance
+    2300016: Ground
+    2300018: left low bleecher
+    2300020: left low entrance
+    2300022: left up bleecher
+    2300024: left up entrance
+    2300026: leftt low corner bleecher
+    2300028: leftt up corner bleecher
+    2300030: long wall 001
+    2300032: Ramp right
+    2300034: Ramp rileft
+    2300036: right low bleecher
+    2300038: right low corner bleecher
+    2300040: right low entrance
+    2300042: right up bleecher
+    2300044: right up corner bleecher
+    2300046: right up entrance
+    2300048: Wall_bottom_left
+    2300050: Wall_bottom_right
+    2300052: Wall_top_left
+    2300054: Wall_top_right
+    3300000: back low bleecher
+    3300002: back up bleecher
+    3300004: banner back
+    3300006: banner left
+    3300008: banner right
+    3300010: Boccia Court
+    3300012: corner left entrance
+    3300014: corner right entrance
+    3300016: Ground
+    3300018: left low bleecher
+    3300020: left low entrance
+    3300022: left up bleecher
+    3300024: left up entrance
+    3300026: leftt low corner bleecher
+    3300028: leftt up corner bleecher
+    3300030: long wall 001
+    3300032: Ramp right
+    3300034: Ramp rileft
+    3300036: right low bleecher
+    3300038: right low corner bleecher
+    3300040: right low entrance
+    3300042: right up bleecher
+    3300044: right up corner bleecher
+    3300046: right up entrance
+    3300048: Wall_bottom_left
+    3300050: Wall_bottom_right
+    3300052: Wall_top_left
+    3300054: Wall_top_right
+    4300000: long wall 001
+    4300002: banner right
+    4300004: right low entrance
+    4300006: Ramp right
+    4300008: corner left entrance
+    4300010: right low bleecher
+    4300012: Ground
+    4300014: Boccia Court
+    4300016: right up bleecher
+    4300018: right up entrance
+    4300020: left low bleecher
+    4300022: left low entrance
+    4300024: left up bleecher
+    4300026: left up entrance
+    4300028: back low bleecher
+    4300030: back up bleecher
+    4300032: right low corner bleecher
+    4300034: leftt low corner bleecher
+    4300036: leftt up corner bleecher
+    4300038: right up corner bleecher
+    4300040: corner right entrance
+    4300042: banner left
+    4300044: banner back
+    4300046: Wall_top_left
+    4300048: Wall_bottom_left
+    4300050: Wall_top_right
+    4300052: Wall_bottom_right
+    4300054: Ramp rileft
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

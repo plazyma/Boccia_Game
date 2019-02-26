@@ -3,7 +3,26 @@ guid: 2da9bf2fc2e1e4b42b69034786078049
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - player1Count: {instanceID: 0}
+  - player2Count: {instanceID: 0}
+  - player1Score: {instanceID: 0}
+  - player2Score: {instanceID: 0}
+  - player1Fault: {instanceID: 0}
+  - player2Fault: {instanceID: 0}
+  - currentPlayer: {instanceID: 0}
+  - currentPlayer2: {instanceID: 0}
+  - player1Count2: {instanceID: 0}
+  - player2Count2: {instanceID: 0}
+  - player1Score2: {instanceID: 0}
+  - player2Score2: {instanceID: 0}
+  - player1Fault2: {instanceID: 0}
+  - player2Fault2: {instanceID: 0}
+  - cont: {instanceID: 0}
+  - orangeBallSprite: {instanceID: 0}
+  - blueBallSprite: {instanceID: 0}
+  - blankBallSprite: {instanceID: 0}
+  - faultBallSprite: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

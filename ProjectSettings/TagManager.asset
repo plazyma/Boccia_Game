@@ -24,6 +24,19 @@ TagManager:
   - P1Name
   - InputField
   - NameBanner
+  - BlueCounter
+  - OrangeCounter
+  - Orange
+  - Blue
+  - BlueCounter2
+  - OrangeCounter2
+  - Orange2
+  - Blue2
+  - PowerBarFill
+  - PowerBarFill2
+  - Screen
+  - Screen2
+  - MusicPlayer
   layers:
   - Default
   - TransparentFX
