@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 
@@ -9,19 +10,17 @@ public class BallDistance : MonoBehaviour {
     public Material greenMaterial;
     GameObject jack;
     public List<GameObject> ballList = new List<GameObject>();
-    //Declare list of balls
-    //public List<GameObject> ballList = new List<GameObject>();
+    GameObject closestBall;
 
     // Use this for initialization
     void Start () {
+        
     }
-   
 
     //Find the closest ball to the jack
     public int FindClosestBall()
     {
         jack = GameObject.FindWithTag("Jack");
-       
         ballList.Clear();
         foreach (GameObject ball in GameObject.FindGameObjectsWithTag("Ball"))
         {
@@ -30,7 +29,7 @@ public class BallDistance : MonoBehaviour {
 
         //Declaring variables
         float shortest = 200;
-        GameObject closest = gameObject;
+        closestBall = gameObject;
         int player = 0;
 
         //Iterate through list
@@ -44,10 +43,10 @@ public class BallDistance : MonoBehaviour {
             {
                 //This is the closest ball
                 shortest = distance;
-                closest = ball;
+                closestBall = ball;
 
                 //get the script for the closest ball
-                BallStats stats = closest.GetComponent<BallStats>();
+                BallStats stats = closestBall.GetComponent<BallStats>();
 
                 //if the ball was thrown by X player then return that value
                 if (stats.getPlayer() == 1)
@@ -61,10 +60,60 @@ public class BallDistance : MonoBehaviour {
             }
 
             //DEBUG
-            Debug.Log("Shortest distance: " + closest.ToString() + shortest);
+            Debug.Log("Shortest distance: " + closestBall.ToString() + shortest);
 
         }
         return player;
+    }
+
+    //Struct to hold the ball and its distance to the jack
+    struct BallData
+    {
+        public GameObject ball;
+        public float distanceToJack;
+    }
+
+    //Calculate the score
+    public int CalculateScore()
+    {
+        int score = 0;
+
+        BallData ballData = new BallData();
+        List<BallData> balls = new List<BallData>();
+
+        //Loop through list of balls
+        foreach(GameObject ball in ballList)
+        {
+            //Calculate distance to jack
+            float distance = Vector3.Distance(ball.transform.position, jack.transform.position);
+
+            //Add to list of struct to hold the ball and its distance
+            ballData.ball = ball;
+            ballData.distanceToJack = distance;
+
+            balls.Add(ballData);
+        }
+
+        //Order the list by distance
+        balls = balls.OrderBy(e => e.distanceToJack).ToList();
+
+        //Loop list
+        foreach(BallData ball in balls)
+        {
+            //If the current ball was thrown by the same player as the closest ball
+            if(ball.ball.GetComponent<BallStats>().getPlayer() == closestBall.GetComponent<BallStats>().getPlayer())
+            {
+                //Increase score
+                score++;
+            }
+            else
+            {
+                //Quit loop
+                break;
+            }
+        }
+
+        return score;
     }
 
 }

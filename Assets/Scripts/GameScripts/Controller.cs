@@ -75,6 +75,8 @@ public class Controller : MonoBehaviour {
     public bool gameOver;
     public float gameOverTime = 0.0f;
 
+    int currentRound = 0;
+
     // Use this for initialization
     void Start() {
         winPanel.SetActive(false);
@@ -180,12 +182,18 @@ public class Controller : MonoBehaviour {
 
         if (Input.GetKeyDown("p"))
         {
-            player1Score++;
+            //player1Score++;
             scoreboardScript.UpdateScoreboard();
             // jack.transform.position = faultBoxCross.transform.position;
-
+            print(dist.CalculateScore());
             //print(jack.transform.localScale.z);
             //jack.transform.position = new Vector3(jack.transform.position.x, jack.transform.position.y, jack.transform.position.z + (jack.GetComponent<SphereCollider>().radius * jack.transform.localScale.z));
+        }
+        if(Input.GetKeyDown("[5]"))
+        {
+            amountOfBalls = amountOfBalls + 2;
+            greenBalls++;
+            redBalls++;
         }
 
         //quit the game
@@ -214,6 +222,8 @@ public class Controller : MonoBehaviour {
 
                             //Reset fault check
                             fault.SetJackFaultFalse();
+
+                            aimAssistScript.ResetAim();
                         }
                     }
                 }
@@ -295,7 +305,7 @@ public class Controller : MonoBehaviour {
                 gameOver = true;
             }
 
-            if (player1Score < 2 && player2Score < 2)
+            if (currentRound == 1)
             {
                 if (Time.time - throwScript.shotTime > 10)
                 {
@@ -303,10 +313,13 @@ public class Controller : MonoBehaviour {
                     reset();
                 }
             }
-        }
-        if (gameOver && Time.time - throwScript.shotTime > 12)
-        {
-            reloadScene();
+            else
+            {
+                if (gameOver && Time.time - throwScript.shotTime > 12)
+                {
+                    reloadScene();
+                }
+            }
         }
     }
     public void spawnBall()
@@ -432,50 +445,52 @@ public class Controller : MonoBehaviour {
 
     public void checkWinner()
     {
-        //do win stuff
-        if (dist.FindClosestBall() == 1)
+        if (currentRound < 2)
         {
-           // print("PLAYER 1 WINS");
-            winText.text = "Player 1 Wins!";
-            player1Score++;
+            //do win stuff
+            if (dist.FindClosestBall() == 1)
+            {
+                // print("PLAYER 1 WINS");
+                winText.text = "Player 1 Wins!";
+                player1Score = player1Score + dist.CalculateScore();
 
-            audioSource.clip = player1WinSound;
-            audioSource.Play();
+                winPanel.SetActive(true);
+                audioSource.clip = player1WinSound;
+                audioSource.Play();
+            }
+            else if (dist.FindClosestBall() == 2)
+            {
+                //print("PLAYER 2 WINS");
+                winText.text = "Player 2 Wins!";
+                player2Score = player2Score + dist.CalculateScore();
+                winPanel.SetActive(true);
+                audioSource.clip = player2WinSound;
+                audioSource.Play();
+            }
+            currentRound++;
         }
-        if(dist.FindClosestBall() == 2)
+        else
         {
-            //print("PLAYER 2 WINS");
-            winText.text = "Player 2 Wins!";
-            player2Score++;
+            if (player1Score > player2Score)
+            {
+                gameWinText.text = "Player 1 Wins The Game!!!!!!!!!!";
+                gameWinPanel.SetActive(true);
+                gameOver = true;
 
-            audioSource.clip = player2WinSound;
-            audioSource.Play();
+                audioSource.clip = winSound;
+                audioSource.Play();
+            }
+            else
+            {
+                gameWinText.text = "Player 2 Wins The Game!!!!!!!!!";
+                gameWinPanel.SetActive(true);
+                gameOver = true;
+
+                audioSource.clip = winSound;
+                audioSource.Play();
+            }
         }
-
-        if(player1Score == 2)
-        {
-            gameWinText.text = "Player 1 Wins The Game!!!!!!!!!!";
-            gameWinPanel.SetActive(true);
-            gameOver = true;
-
-            audioSource.clip = winSound;
-            audioSource.Play();
-        }
-        if(player2Score == 2)
-        {
-            gameWinText.text = "Player 2 Wins The Game!!!!!!!!!";
-            gameWinPanel.SetActive(true);
-            gameOver = true;
-
-            audioSource.clip = winSound;
-            audioSource.Play();
-        }
-        if(player1Score < 2 && player2Score < 2)
-        {
-            winPanel.SetActive(true);
-        }
-
-        //winPanel.SetActive(true);
+        scoreboardScript.UpdateScoreboard();
     }
 
     public void reloadScene()
