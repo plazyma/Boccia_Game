@@ -39,6 +39,8 @@ TagManager:
   - MusicPlayer
   - Selector
   - Letter
+  - PlayerChangePanel
+  - GlobalVariables
   layers:
   - Default
   - TransparentFX

@@ -58,6 +58,11 @@ public class Controller : MonoBehaviour {
     public GameObject gameWinPanel;
     public Text gameWinText;
 
+    public GameObject playerChangePanel;
+    public List<Image> playerChangePanelImages = new List<Image>();
+
+    public List<Sprite> playerChangePanelSprites = new List<Sprite>();
+
     //Faultboxes
     public GameObject faultBoxes;
     FaultBoxes faultBoxesScript;
@@ -82,12 +87,15 @@ public class Controller : MonoBehaviour {
     int currentRound = 0;
     const int maximumRounds = 4;
 
-    public Animation crowdAnimator;
+    float playerChangePanelTimer = 0;
+
+    GlobalVariables globalVariablesScript;
 
     // Use this for initialization
     void Start() {
         winPanel.SetActive(false);
         gameWinPanel.SetActive(false);
+        playerChangePanel.SetActive(false);
 
         gameOver = false;
         //setup scoreboard
@@ -136,6 +144,21 @@ public class Controller : MonoBehaviour {
 
         //get the music player
         musicSource = GameObject.FindGameObjectWithTag("MusicPlayer");
+
+        foreach (Image im in playerChangePanel.GetComponentsInChildren<Image>())
+        {
+            if (!im.CompareTag("PlayerChangePanel"))
+            {
+                playerChangePanelImages.Add(im);
+            }
+        }
+
+        foreach(Object sprite in Resources.LoadAll("Letters", typeof(Sprite)))
+        {
+            playerChangePanelSprites.Add((Sprite)sprite);
+        }
+
+        globalVariablesScript = GameObject.FindGameObjectWithTag("GlobalVariables").GetComponent<GlobalVariables>();
     }
 
     void spawnJack()
@@ -189,11 +212,9 @@ public class Controller : MonoBehaviour {
 
         if (Input.GetKeyDown("p"))
         {
-            //player1Score++;
-            scoreboardScript.UpdateScoreboard();
-            // jack.transform.position = faultBoxCross.transform.position;
-            //print(jack.transform.localScale.z);
-            //jack.transform.position = new Vector3(jack.transform.position.x, jack.transform.position.y, jack.transform.position.z + (jack.GetComponent<SphereCollider>().radius * jack.transform.localScale.z));
+            char a = 'a';
+
+            print(a);
         }
         if(Input.GetKeyDown("[5]"))
         {
@@ -327,6 +348,18 @@ public class Controller : MonoBehaviour {
                 }
             }
         }
+
+        //Deactive player change panel after a timer
+        if(playerChangePanel.activeSelf)
+        {
+            playerChangePanelTimer += Time.deltaTime;
+
+            if(playerChangePanelTimer > 2)
+            {
+                playerChangePanel.SetActive(false);
+                playerChangePanelTimer = 0;
+            }
+        }
     }
     public void spawnBall()
     {
@@ -354,15 +387,23 @@ public class Controller : MonoBehaviour {
                 if (currentPlayer == 1)
                 {
                     currentPlayer = 2;
+                    
                 }
                 else if (currentPlayer == 2)
                 {
                     currentPlayer = 1;
+                    
                 }
                 //If 0 returned == no balls on field - keep same player
                 else if (currentPlayer == 0)
                 {
                     currentPlayer = currentPlayerTemp;
+                }
+
+                //If the player has changed, activate panel indicating so
+                if(currentPlayerTemp != currentPlayer)
+                {
+                    setPlayerChangePanel(currentPlayer);
                 }
 
                 if (redBalls > 5)
@@ -382,10 +423,12 @@ public class Controller : MonoBehaviour {
                 if (currentPlayer == 1)
                 {
                     currentPlayer = 2;
+                    setPlayerChangePanel(currentPlayer);
                 }
                 else if (currentPlayer == 2)
                 {
                     currentPlayer = 1;
+                    setPlayerChangePanel(currentPlayer);
                 }
             }
 
@@ -500,6 +543,29 @@ public class Controller : MonoBehaviour {
             }
         }
         scoreboardScript.UpdateScoreboard();
+    }
+
+    //Activate panel indicating players have changed
+    private void setPlayerChangePanel(int currPlayer)
+    {
+        //Turn player names into a char array
+        char[] playerName;
+        if(currPlayer == 1)
+        {
+            playerName = GlobalVariables.player1.ToCharArray();
+        }
+        else 
+        {
+            playerName = GlobalVariables.player2.ToCharArray();
+        }
+
+        //Loop through all panel images to change
+        for(int i = 0; i < playerChangePanelImages.Count; i++)
+        {
+            //Set image sprite to the value at char array position - 65 (based on unicode decimal)
+            playerChangePanelImages[i].sprite = playerChangePanelSprites[playerName[i] - 65];
+        }
+        playerChangePanel.SetActive(true);
     }
 
     public void reloadScene()

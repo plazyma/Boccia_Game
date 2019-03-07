@@ -14,8 +14,8 @@ public class GlobalVariables : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //set initial names and set do not destroy for the global object
-        player1 = "Player 1 name here";
-        player2 = "Player 2 name here";
+        player1 = "CVT";
+        player2 = "PQW";
         DontDestroyOnLoad(gameObject);
 
     }
