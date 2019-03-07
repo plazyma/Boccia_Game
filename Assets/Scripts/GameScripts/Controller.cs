@@ -75,7 +75,9 @@ public class Controller : MonoBehaviour {
     public bool gameOver;
     public float gameOverTime = 0.0f;
 
+    //Rounds
     int currentRound = 0;
+    const int maximumRounds = 4;
 
     // Use this for initialization
     void Start() {
@@ -305,7 +307,7 @@ public class Controller : MonoBehaviour {
                 gameOver = true;
             }
 
-            if (currentRound == 1)
+            if (currentRound < maximumRounds)
             {
                 if (Time.time - throwScript.shotTime > 10)
                 {
@@ -445,7 +447,7 @@ public class Controller : MonoBehaviour {
 
     public void checkWinner()
     {
-        if (currentRound < 2)
+        if (currentRound < maximumRounds)
         {
             //do win stuff
             if (dist.FindClosestBall() == 1)
