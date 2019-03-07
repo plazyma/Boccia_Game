@@ -72,6 +72,7 @@ GameObject:
   - component: {fileID: 4040683914423022}
   - component: {fileID: 95592344789696172}
   - component: {fileID: 23161125460476546}
+  - component: {fileID: 114845995261177328}
   m_Layer: 0
   m_Name: Cheer_Mii
   m_TagString: Untagged
@@ -102,8 +103,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1663751490097898}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -34.856136, y: 0.8611455, z: -22.23945}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -18.111217, y: -12.362674, z: -24.157597}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children:
   - {fileID: 4232710465581894}
@@ -380,7 +381,7 @@ Animator:
   m_GameObject: {fileID: 1663751490097898}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 6cbab777124080c4aa96df8075040e94, type: 3}
-  m_Controller: {fileID: 9100000, guid: 8e3a3e0d402dfde458e9390a4bd56d42, type: 2}
+  m_Controller: {fileID: 9100000, guid: 313e9fa7348157f4087122ba46498ee9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -389,3 +390,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114845995261177328
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1663751490097898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a827346422fd9364dbb2683b56258d4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  miiAnimator: {fileID: 95592344789696172}
+  throwScript: {fileID: 0}

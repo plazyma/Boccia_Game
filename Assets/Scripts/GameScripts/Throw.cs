@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 
 public class Throw : MonoBehaviour {
     //Initializing
@@ -32,6 +33,7 @@ public class Throw : MonoBehaviour {
 
     Scoreboard scoreBoardScript;
     Scoreboard scoreBoardScript2;
+
     // Use this for initialization
     void Start () {
         //get controller, player and some scripts
@@ -77,8 +79,6 @@ public class Throw : MonoBehaviour {
             loadSound();
         }
 
-      
-
         //if there is no ball yet
         if (ballFound == false)
         {
@@ -115,8 +115,6 @@ public class Throw : MonoBehaviour {
                     //Increase power
                     power += 1.0f;
 
-                  
-
                     //Update aim assist
                     aimAssistScript.CalculateAimIncreased();
                     print(power);
@@ -140,8 +138,6 @@ public class Throw : MonoBehaviour {
                     audioSource.clip = powerBarAudioClips[currentB];
                     //Play
                     audioSource.Play();
-
-                   
 
                     //Update aim assist
                     aimAssistScript.CalculateAimReduced();

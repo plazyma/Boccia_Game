@@ -6,7 +6,7 @@ public class FaultBoxes : MonoBehaviour
 {
 
     bool jackFault;
-    bool ballFault;
+    public bool ballFault;
 
     Controller gameController;
     public GameObject centreBox;
@@ -67,7 +67,7 @@ public class FaultBoxes : MonoBehaviour
         }
     }
 
-    public void deleteBalls()
+    public bool deleteBalls()
     {
         if (faultyBalls.Count > 0)
         {
@@ -88,6 +88,13 @@ public class FaultBoxes : MonoBehaviour
             }
             //Update scoreboard
             scoreBoardScript.UpdateScoreboard();
+
+            ballFault = false;
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 

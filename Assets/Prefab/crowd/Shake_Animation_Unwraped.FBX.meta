@@ -30,7 +30,7 @@ ModelImporter:
     4300002: ch3 head
     4300004: ch3 arms
     4300006: Arm_002
-    7400000: Take 001
+    7400000: Shake_Box
     9500000: //RootNode
   externalObjects: {}
   materials:
@@ -61,7 +61,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Take 001
+      name: Shake_Box
       takeName: Take 001
       firstFrame: 0
       lastFrame: 240

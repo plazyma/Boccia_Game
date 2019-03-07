@@ -10,6 +10,9 @@ public class Controller : MonoBehaviour {
     public bool firstThrows = true;
     public bool faultyJack = false;
 
+    public bool faultyBall = false;
+    public bool successBall = false;
+
     public GameObject jackPrefab;
     GameObject jack;
 
@@ -78,6 +81,8 @@ public class Controller : MonoBehaviour {
     //Rounds
     int currentRound = 0;
     const int maximumRounds = 4;
+
+    public Animation crowdAnimator;
 
     // Use this for initialization
     void Start() {
@@ -187,7 +192,6 @@ public class Controller : MonoBehaviour {
             //player1Score++;
             scoreboardScript.UpdateScoreboard();
             // jack.transform.position = faultBoxCross.transform.position;
-            print(dist.CalculateScore());
             //print(jack.transform.localScale.z);
             //jack.transform.position = new Vector3(jack.transform.position.x, jack.transform.position.y, jack.transform.position.z + (jack.GetComponent<SphereCollider>().radius * jack.transform.localScale.z));
         }
@@ -331,7 +335,10 @@ public class Controller : MonoBehaviour {
             //Loop through list of faults, starting with 2 - don't want to check the boxes before the "v line"
             for (int i = 2; i < faultBoxList.Count - 1; i++)
             {
-                faultBoxList[i].deleteBalls();
+                if(faultBoxList[i].deleteBalls())
+                {
+                    faultyBall = true;
+                }
                 faultBoxList[i].ResetJack(jack);
             }
 

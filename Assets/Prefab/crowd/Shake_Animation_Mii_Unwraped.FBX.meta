@@ -29,7 +29,7 @@ ModelImporter:
     4300002: Box002
     4300004: ch2 arms
     4300006: Arm_1
-    7400000: Take 001
+    7400000: Shake_Mii
     9500000: //RootNode
   externalObjects: {}
   materials:
@@ -60,7 +60,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Take 001
+      name: Shake_Mii
       takeName: Take 001
       firstFrame: 0
       lastFrame: 240

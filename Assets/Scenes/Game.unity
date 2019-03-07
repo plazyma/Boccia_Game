@@ -20,11 +20,11 @@ RenderSettings:
   m_FogDensity: 0.009
   m_LinearFogStart: 0
   m_LinearFogEnd: 180
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 0.1, g: 0.1, b: 0.1, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 4
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 1c5ff5865985f35489ffc6ff72caec3a, type: 2}
   m_HaloStrength: 0.641
@@ -2175,7 +2175,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &56723977
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3075,34 +3075,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4040683914423022, guid: f7d9bc3a639826a4890d6be5b11a44cd,
     type: 2}
   m_PrefabInternal: {fileID: 990570858}
---- !u!1 &83330169
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 83330170}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &83330170
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 83330169}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 572019284}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &84101778
 GameObject:
   m_ObjectHideFlags: 0
@@ -3200,6 +3172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9c93fedad695384ca2b49b3eff5730c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ballFault: 0
   centreBox: {fileID: 912034400}
   faultyBalls: []
 --- !u!1001 &84309464
@@ -4084,7 +4057,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.30980393, b: 1, a: 1}
+  m_Color: {r: 0.047058824, g: 0.61960787, b: 0.90588236, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -7231,7 +7204,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &221436868
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7388,7 +7361,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.31161737, b: 1, a: 1}
+  m_Color: {r: 0.047058824, g: 0.61960787, b: 0.90588236, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -8313,7 +8286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.23137257, b: 0.75294125, a: 1}
+  m_Color: {r: 0.047058824, g: 0.61960787, b: 0.90588236, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -8616,7 +8589,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!225 &256258653
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -8673,7 +8646,7 @@ Canvas:
   m_GameObject: {fileID: 256258652}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 2
+  m_RenderMode: 1
   m_Camera: {fileID: 2025094265}
   m_PlaneDistance: 1
   m_PixelPerfect: 1
@@ -8691,9 +8664,9 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 256258652}
-  m_LocalRotation: {x: 0.14808394, y: 0.69142693, z: -0.14808394, w: 0.69142693}
-  m_LocalPosition: {x: 0, y: 0, z: 3.2199996}
-  m_LocalScale: {x: 0.0031595577, y: 0.0031595577, z: 0.0031595577}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1861713502}
   - {fileID: 2090049922}
@@ -8722,9 +8695,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -31.772717, y: 1.482443}
-  m_SizeDelta: {x: 1323, y: 633}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &256258658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9449,7 +9422,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.23137257, b: 0.75294125, a: 1}
+  m_Color: {r: 0.047058824, g: 0.61960787, b: 0.90588236, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -14552,7 +14525,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &415085748
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20320,7 +20293,6 @@ Transform:
   - {fileID: 1294361819}
   - {fileID: 1827849273}
   - {fileID: 1024441841}
-  - {fileID: 83330170}
   - {fileID: 2053168430}
   - {fileID: 1240022745}
   - {fileID: 1969038083}
@@ -20947,7 +20919,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &604875066
 RectTransform:
   m_ObjectHideFlags: 0
@@ -22348,6 +22320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9c93fedad695384ca2b49b3eff5730c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ballFault: 0
   centreBox: {fileID: 912034400}
   faultyBalls: []
 --- !u!4 &645342732 stripped
@@ -23527,6 +23500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9c93fedad695384ca2b49b3eff5730c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ballFault: 0
   centreBox: {fileID: 912034400}
   faultyBalls: []
 --- !u!65 &668561024
@@ -23851,7 +23825,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4941493411151974, guid: b68d898bd37de324fbecd369b8416f05, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1277262070578804, guid: b68d898bd37de324fbecd369b8416f05, type: 2}
       propertyPath: m_Name
@@ -27187,7 +27161,7 @@ RectTransform:
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: -10}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -30826,6 +30800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9c93fedad695384ca2b49b3eff5730c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ballFault: 0
   centreBox: {fileID: 912034400}
   faultyBalls: []
 --- !u!65 &912034403
@@ -33914,7 +33889,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1012461890
 RectTransform:
   m_ObjectHideFlags: 0
@@ -34500,7 +34475,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4040683914423022, guid: f7d9bc3a639826a4890d6be5b11a44cd, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4040683914423022, guid: f7d9bc3a639826a4890d6be5b11a44cd, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -35230,7 +35205,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1047259444
 RectTransform:
   m_ObjectHideFlags: 0
@@ -35780,7 +35755,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.23137257, b: 0.75294125, a: 1}
+  m_Color: {r: 0.047058824, g: 0.61960787, b: 0.90588236, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -36648,7 +36623,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1094243928
 RectTransform:
   m_ObjectHideFlags: 0
@@ -37114,7 +37089,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.23137257, b: 0.75294125, a: 1}
+  m_Color: {r: 0.047058824, g: 0.61960787, b: 0.90588236, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -37334,11 +37309,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4941493411151974, guid: b68d898bd37de324fbecd369b8416f05, type: 2}
       propertyPath: m_RootOrder
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4941493411151974, guid: b68d898bd37de324fbecd369b8416f05, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -180
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b68d898bd37de324fbecd369b8416f05, type: 2}
@@ -43121,7 +43092,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1279126884
 RectTransform:
   m_ObjectHideFlags: 0
@@ -44272,10 +44243,6 @@ Prefab:
     - target: {fileID: 1130941458714256, guid: ae4e6128808cac94bb1e6168f26f8de9, type: 2}
       propertyPath: m_Name
       value: Clap_Box (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4785229080755524, guid: ae4e6128808cac94bb1e6168f26f8de9, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -180
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ae4e6128808cac94bb1e6168f26f8de9, type: 2}
@@ -45508,10 +45475,6 @@ Prefab:
     - target: {fileID: 1277262070578804, guid: b68d898bd37de324fbecd369b8416f05, type: 2}
       propertyPath: m_Name
       value: Cheer_Box (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4941493411151974, guid: b68d898bd37de324fbecd369b8416f05, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -180
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b68d898bd37de324fbecd369b8416f05, type: 2}
@@ -48188,7 +48151,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1419625181
 RectTransform:
   m_ObjectHideFlags: 0
@@ -48870,6 +48833,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9c93fedad695384ca2b49b3eff5730c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ballFault: 0
   centreBox: {fileID: 912034400}
   faultyBalls: []
 --- !u!65 &1433032991
@@ -49455,7 +49419,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1445300969
 RectTransform:
   m_ObjectHideFlags: 0
@@ -55608,7 +55572,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1607556140
 RectTransform:
   m_ObjectHideFlags: 0
@@ -56855,6 +56819,8 @@ MonoBehaviour:
   jackThrown: 0
   firstThrows: 1
   faultyJack: 0
+  faultyBall: 0
+  successBall: 0
   jackPrefab: {fileID: 1144311498607778, guid: 47457128f471cb3439b929273acf878e, type: 2}
   redBall: {fileID: 1268547179970782, guid: d6b67dd97eb97d94183f24eb3ae7bbbc, type: 2}
   greenBall: {fileID: 1706684278022104, guid: 2b8bef9feb876984eab800b312706798, type: 2}
@@ -56893,6 +56859,7 @@ MonoBehaviour:
   player2Score: 0
   gameOver: 0
   gameOverTime: 0
+  crowdAnimator: {fileID: 0}
 --- !u!4 &1630686050
 Transform:
   m_ObjectHideFlags: 0
@@ -58880,34 +58847,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f7d9bc3a639826a4890d6be5b11a44cd, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1684516756
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1684516757}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1684516757
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1684516756}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1964818607}
-  m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1684562778
 Prefab:
   m_ObjectHideFlags: 0
@@ -59673,6 +59612,27 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b68d898bd37de324fbecd369b8416f05, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1703587667 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1137807789094620, guid: 25cafca8dba2de348b12edac60278842,
+    type: 2}
+  m_PrefabInternal: {fileID: 1900320630}
+--- !u!111 &1703587670
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1703587667}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: 6cbab777124080c4aa96df8075040e94, type: 3}
+  - {fileID: 7400000, guid: c30abb3398213af4dba04284c4375393, type: 3}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!4 &1705549366 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4458125793284676, guid: 25cafca8dba2de348b12edac60278842,
@@ -63674,6 +63634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9c93fedad695384ca2b49b3eff5730c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ballFault: 0
   centreBox: {fileID: 912034400}
   faultyBalls: []
 --- !u!1 &1830517820
@@ -66073,9 +66034,10 @@ Prefab:
       propertyPath: m_Name
       value: Clap_Mii (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 4458125793284676, guid: 25cafca8dba2de348b12edac60278842, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -180
+    - target: {fileID: 95001278979382916, guid: 25cafca8dba2de348b12edac60278842,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 25cafca8dba2de348b12edac60278842, type: 2}
@@ -68682,7 +68644,6 @@ Transform:
   - {fileID: 1150355409}
   - {fileID: 213955925}
   - {fileID: 641879976}
-  - {fileID: 1684516757}
   m_Father: {fileID: 1439974013}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -68870,6 +68831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9c93fedad695384ca2b49b3eff5730c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ballFault: 0
   centreBox: {fileID: 912034400}
   faultyBalls: []
 --- !u!65 &1966903802
@@ -69930,7 +69892,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 73.55, y: -22.3}
+  m_AnchoredPosition: {x: 74.3, y: -22.3}
   m_SizeDelta: {x: 3, y: 45}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &2015961351
@@ -69945,7 +69907,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.23137257, b: 0.75294125, a: 1}
+  m_Color: {r: 0.047058824, g: 0.61960787, b: 0.90588236, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -70595,7 +70557,7 @@ RectTransform:
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: -10}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -70620,7 +70582,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2042209428
 RectTransform:
   m_ObjectHideFlags: 0
@@ -71717,11 +71679,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4785229080755524, guid: ae4e6128808cac94bb1e6168f26f8de9, type: 2}
       propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4785229080755524, guid: ae4e6128808cac94bb1e6168f26f8de9, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -180
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ae4e6128808cac94bb1e6168f26f8de9, type: 2}
@@ -71816,7 +71774,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2057865104
 RectTransform:
   m_ObjectHideFlags: 0
@@ -72850,10 +72808,6 @@ Prefab:
     - target: {fileID: 4458125793284676, guid: 25cafca8dba2de348b12edac60278842, type: 2}
       propertyPath: m_RootOrder
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4458125793284676, guid: 25cafca8dba2de348b12edac60278842, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -180
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 25cafca8dba2de348b12edac60278842, type: 2}
