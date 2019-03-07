@@ -37,6 +37,8 @@ TagManager:
   - Screen
   - Screen2
   - MusicPlayer
+  - Selector
+  - Letter
   layers:
   - Default
   - TransparentFX

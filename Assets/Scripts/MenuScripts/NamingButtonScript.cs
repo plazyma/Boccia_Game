@@ -46,7 +46,7 @@ public class NamingButtonScript : MonoBehaviour {
     {
         //audioSource.clip = buttonClick;
         //audioSource.Play();
-       
+
         if (!gameReady)
         {
             nameScript.checkNames();
@@ -66,4 +66,10 @@ public class NamingButtonScript : MonoBehaviour {
         //audioSource.Play();
         SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
+
+    bool dothis()
+        {
+
+        return true;
+        }
 }
