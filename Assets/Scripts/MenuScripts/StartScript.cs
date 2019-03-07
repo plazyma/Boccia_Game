@@ -14,4 +14,12 @@ public class StartScript : MonoBehaviour {
         // Only specifying the sceneName or sceneBuildIndex will load the Scene with the Single mode
         SceneManager.LoadScene("PlayerSelection", LoadSceneMode.Single);
     }
+
+    public void QuickPlay()
+    {
+        audioSource.clip = buttonClick;
+        audioSource.Play();
+        // Only specifying the sceneName or sceneBuildIndex will load the Scene with the Single mode
+        SceneManager.LoadScene("Game", LoadSceneMode.Single);
+    }
 }
