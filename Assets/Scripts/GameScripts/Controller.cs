@@ -52,12 +52,6 @@ public class Controller : MonoBehaviour {
 
     public List<GameObject> ballList;
 
-    public GameObject winPanel;
-    public Text winText;
-
-    public GameObject gameWinPanel;
-    public Text gameWinText;
-
     public GameObject playerChangePanel;
     public List<Image> playerChangePanelImages = new List<Image>();
 
@@ -95,6 +89,8 @@ public class Controller : MonoBehaviour {
 
     float playerChangePanelTimer = 0;
     float gameStartPanelTimer = 0;
+
+    float panelAliveTime = 2.0f;
 
     // Use this for initialization
     void Start() {
@@ -193,8 +189,6 @@ public class Controller : MonoBehaviour {
         }
 
         //Disable all panels
-        winPanel.SetActive(false);
-        gameWinPanel.SetActive(false);
         playerChangePanel.SetActive(false);
 
 
@@ -204,7 +198,6 @@ public class Controller : MonoBehaviour {
 
     void spawnJack()
     { 
-        winPanel.SetActive(false);
         //setup player for spawning balls
         Quaternion spawnRotation = Quaternion.identity;
         Vector3 playerForward = new Vector3(player.transform.forward.x * 2, player.transform.forward.y * 2, player.transform.forward.z * 2);
@@ -396,7 +389,7 @@ public class Controller : MonoBehaviour {
         {
             playerChangePanelTimer += Time.deltaTime;
 
-            if(playerChangePanelTimer > 2)
+            if(playerChangePanelTimer > panelAliveTime)
             {
                 playerChangePanel.SetActive(false);
                 playerChangePanelTimer = 0;
@@ -408,7 +401,7 @@ public class Controller : MonoBehaviour {
         {
             gameStartPanelTimer += Time.deltaTime;
 
-            if(gameStartPanelTimer > 2)
+            if(gameStartPanelTimer > panelAliveTime)
             {
                 gameStartPanel.SetActive(false);
                 gameStartPanelTimer = 0;
@@ -457,7 +450,7 @@ public class Controller : MonoBehaviour {
                 //If the player has changed, activate panel indicating so
                 if(currentPlayerTemp != currentPlayer)
                 {
-                    setPlayerChangePanel(currentPlayer);
+                    SetPlayerChangePanel(currentPlayer);
                 }
 
                 if (redBalls > 5)
@@ -477,12 +470,12 @@ public class Controller : MonoBehaviour {
                 if (currentPlayer == 1)
                 {
                     currentPlayer = 2;
-                    setPlayerChangePanel(currentPlayer);
+                    SetPlayerChangePanel(currentPlayer);
                 }
                 else if (currentPlayer == 2)
                 {
                     currentPlayer = 1;
-                    setPlayerChangePanel(currentPlayer);
+                    SetPlayerChangePanel(currentPlayer);
                 }
             }
 
@@ -557,19 +550,23 @@ public class Controller : MonoBehaviour {
             if (dist.FindClosestBall() == 1)
             {
                 // print("PLAYER 1 WINS");
-                winText.text = "Player 1 Wins!";
                 player1Score = player1Score + dist.CalculateScore();
 
-                winPanel.SetActive(true);
+                //Make winner panel display for longer
+                panelAliveTime = 4.0f;
+                SetPlayerChangePanel(1);
+
                 audioSource.clip = player1WinSound;
                 audioSource.Play();
             }
             else if (dist.FindClosestBall() == 2)
             {
                 //print("PLAYER 2 WINS");
-                winText.text = "Player 2 Wins!";
                 player2Score = player2Score + dist.CalculateScore();
-                winPanel.SetActive(true);
+                //Make winner panel display for longer
+                panelAliveTime = 4.0f;
+                SetPlayerChangePanel(2);
+
                 audioSource.clip = player2WinSound;
                 audioSource.Play();
             }
@@ -579,8 +576,9 @@ public class Controller : MonoBehaviour {
         {
             if (player1Score > player2Score)
             {
-                gameWinText.text = "Player 1 Wins The Game!!!!!!!!!!";
-                gameWinPanel.SetActive(true);
+                //Make winner panel display for longer
+                panelAliveTime = 4.0f;
+                SetPlayerChangePanel(1);
                 gameOver = true;
 
                 audioSource.clip = winSound;
@@ -588,8 +586,9 @@ public class Controller : MonoBehaviour {
             }
             else
             {
-                gameWinText.text = "Player 2 Wins The Game!!!!!!!!!";
-                gameWinPanel.SetActive(true);
+                //Make winner panel display for longer
+                panelAliveTime = 4.0f;
+                SetPlayerChangePanel(1);
                 gameOver = true;
 
                 audioSource.clip = winSound;
@@ -600,7 +599,7 @@ public class Controller : MonoBehaviour {
     }
 
     //Activate panel indicating players have changed
-    private void setPlayerChangePanel(int currPlayer)
+    private void SetPlayerChangePanel(int currPlayer)
     {
         //Turn player names into a char array
         char[] playerName;
@@ -700,6 +699,9 @@ public class Controller : MonoBehaviour {
 
         //Reset player position
         player.transform.eulerAngles = new Vector3(0, 90, 0);
+
+        //Reset panel alive time
+        panelAliveTime = 2.0f;
 
         gameOver = false;
     }

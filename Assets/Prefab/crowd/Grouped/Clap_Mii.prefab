@@ -54,7 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4458125793284676}
   - component: {fileID: 95001278979382916}
-  - component: {fileID: 114383175848031342}
+  - component: {fileID: 114090754830885696}
   m_Layer: 0
   m_Name: Clap_Mii
   m_TagString: Untagged
@@ -129,7 +129,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1137807789094620}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.079414, y: -12.362674, z: -24.157597}
+  m_LocalPosition: {x: -12.547489, y: -12.362674, z: -24.157597}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children:
   - {fileID: 4447734632072438}
@@ -345,7 +345,7 @@ Animator:
   m_GameObject: {fileID: 1137807789094620}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: c30abb3398213af4dba04284c4375393, type: 3}
-  m_Controller: {fileID: 9100000, guid: 8e3a3e0d402dfde458e9390a4bd56d42, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4e3809cdd1a49d14abc11a5c1914ace0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -354,7 +354,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114383175848031342
+--- !u!114 &114090754830885696
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -367,3 +367,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   miiAnimator: {fileID: 0}
   throwScript: {fileID: 0}
+  gameController: {fileID: 0}
+  faultBoxList: []
