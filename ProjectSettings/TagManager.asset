@@ -39,6 +39,11 @@ TagManager:
   - MusicPlayer
   - Selector
   - Letter
+  - PlayerChangePanel
+  - GlobalVariables
+  - GameStartPanelP1
+  - GameStartPanelP2
+  - GameStartPanel
   layers:
   - Default
   - TransparentFX

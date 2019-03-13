@@ -52,11 +52,16 @@ public class Controller : MonoBehaviour {
 
     public List<GameObject> ballList;
 
-    public GameObject winPanel;
-    public Text winText;
+    public GameObject playerChangePanel;
+    public List<Image> playerChangePanelImages = new List<Image>();
 
-    public GameObject gameWinPanel;
-    public Text gameWinText;
+    public List<Sprite> playerChangePanelSprites = new List<Sprite>();
+
+    public GameObject gameStartPanel;
+    public GameObject gameStartPanelPlayer1;
+    public GameObject gameStartPanelPlayer2;
+    public List<Image> gameStartPanelPlayer1Images = new List<Image>();
+    public List<Image> gameStartPanelPlayer2Images = new List<Image>();
 
     //Faultboxes
     public GameObject faultBoxes;
@@ -82,12 +87,14 @@ public class Controller : MonoBehaviour {
     int currentRound = 0;
     const int maximumRounds = 4;
 
-    public Animation crowdAnimator;
+    float playerChangePanelTimer = 0;
+    float gameStartPanelTimer = 0;
+
+    float panelAliveTime = 2.0f;
 
     // Use this for initialization
     void Start() {
-        winPanel.SetActive(false);
-        gameWinPanel.SetActive(false);
+
 
         gameOver = false;
         //setup scoreboard
@@ -136,11 +143,61 @@ public class Controller : MonoBehaviour {
 
         //get the music player
         musicSource = GameObject.FindGameObjectWithTag("MusicPlayer");
+
+        //Load in player change panel if it isnt already
+        if (!playerChangePanel)
+        {
+            playerChangePanel = GameObject.FindGameObjectWithTag("PlayerChangePanel");
+        }
+
+        //Load in images 
+        foreach (Image im in playerChangePanel.GetComponentsInChildren<Image>())
+        {
+            if (!im.CompareTag("PlayerChangePanel"))
+            {
+                playerChangePanelImages.Add(im);
+            }
+        }
+
+        //Load panels
+        gameStartPanel = GameObject.FindGameObjectWithTag("GameStartPanel");
+        gameStartPanelPlayer1 = GameObject.FindGameObjectWithTag("GameStartPanelP1");
+        gameStartPanelPlayer2 = GameObject.FindGameObjectWithTag("GameStartPanelP2");
+
+        //Load in sprites
+        foreach(Object sprite in Resources.LoadAll("Letters", typeof(Sprite)))
+        {
+            playerChangePanelSprites.Add((Sprite)sprite);
+        }
+
+        //Load images
+        foreach(Image im in gameStartPanelPlayer1.GetComponentsInChildren<Image>())
+        {
+            if(!im.CompareTag("GameStartPanelP1"))
+            {
+                gameStartPanelPlayer1Images.Add(im);
+            }
+        }
+
+        //Load images
+        foreach (Image im in gameStartPanelPlayer2.GetComponentsInChildren<Image>())
+        {
+            if (!im.CompareTag("GameStartPanelP2"))
+            {
+                gameStartPanelPlayer2Images.Add(im);
+            }
+        }
+
+        //Disable all panels
+        playerChangePanel.SetActive(false);
+
+
+        //Display panel
+        GameStartPanel();
     }
 
     void spawnJack()
     { 
-        winPanel.SetActive(false);
         //setup player for spawning balls
         Quaternion spawnRotation = Quaternion.identity;
         Vector3 playerForward = new Vector3(player.transform.forward.x * 2, player.transform.forward.y * 2, player.transform.forward.z * 2);
@@ -189,11 +246,9 @@ public class Controller : MonoBehaviour {
 
         if (Input.GetKeyDown("p"))
         {
-            //player1Score++;
-            scoreboardScript.UpdateScoreboard();
-            // jack.transform.position = faultBoxCross.transform.position;
-            //print(jack.transform.localScale.z);
-            //jack.transform.position = new Vector3(jack.transform.position.x, jack.transform.position.y, jack.transform.position.z + (jack.GetComponent<SphereCollider>().radius * jack.transform.localScale.z));
+            char a = 'a';
+
+            print(a);
         }
         if(Input.GetKeyDown("[5]"))
         {
@@ -207,6 +262,7 @@ public class Controller : MonoBehaviour {
         {
             Application.Quit();
         }
+
 
         if (throwScript.jackThrown && !jackThrown)
         {
@@ -268,7 +324,7 @@ public class Controller : MonoBehaviour {
         if (!gameOver)
         {
             //If faulty jack throw
-            if(faultyJack)
+            if (faultyJack)
             {
                 //Destroy jack
                 Object.Destroy(jack);
@@ -327,6 +383,30 @@ public class Controller : MonoBehaviour {
                 }
             }
         }
+
+        //Deactive player change panel after a timer
+        if(playerChangePanel.activeSelf)
+        {
+            playerChangePanelTimer += Time.deltaTime;
+
+            if(playerChangePanelTimer > panelAliveTime)
+            {
+                playerChangePanel.SetActive(false);
+                playerChangePanelTimer = 0;
+            }
+        }
+
+        //Disable game start panel after a timer
+        if(gameStartPanel.activeSelf)
+        {
+            gameStartPanelTimer += Time.deltaTime;
+
+            if(gameStartPanelTimer > panelAliveTime)
+            {
+                gameStartPanel.SetActive(false);
+                gameStartPanelTimer = 0;
+            }
+        }
     }
     public void spawnBall()
     {
@@ -354,15 +434,23 @@ public class Controller : MonoBehaviour {
                 if (currentPlayer == 1)
                 {
                     currentPlayer = 2;
+                    
                 }
                 else if (currentPlayer == 2)
                 {
                     currentPlayer = 1;
+                    
                 }
                 //If 0 returned == no balls on field - keep same player
                 else if (currentPlayer == 0)
                 {
                     currentPlayer = currentPlayerTemp;
+                }
+
+                //If the player has changed, activate panel indicating so
+                if(currentPlayerTemp != currentPlayer)
+                {
+                    SetPlayerChangePanel(currentPlayer);
                 }
 
                 if (redBalls > 5)
@@ -382,10 +470,12 @@ public class Controller : MonoBehaviour {
                 if (currentPlayer == 1)
                 {
                     currentPlayer = 2;
+                    SetPlayerChangePanel(currentPlayer);
                 }
                 else if (currentPlayer == 2)
                 {
                     currentPlayer = 1;
+                    SetPlayerChangePanel(currentPlayer);
                 }
             }
 
@@ -460,19 +550,23 @@ public class Controller : MonoBehaviour {
             if (dist.FindClosestBall() == 1)
             {
                 // print("PLAYER 1 WINS");
-                winText.text = "Player 1 Wins!";
                 player1Score = player1Score + dist.CalculateScore();
 
-                winPanel.SetActive(true);
+                //Make winner panel display for longer
+                panelAliveTime = 4.0f;
+                SetPlayerChangePanel(1);
+
                 audioSource.clip = player1WinSound;
                 audioSource.Play();
             }
             else if (dist.FindClosestBall() == 2)
             {
                 //print("PLAYER 2 WINS");
-                winText.text = "Player 2 Wins!";
                 player2Score = player2Score + dist.CalculateScore();
-                winPanel.SetActive(true);
+                //Make winner panel display for longer
+                panelAliveTime = 4.0f;
+                SetPlayerChangePanel(2);
+
                 audioSource.clip = player2WinSound;
                 audioSource.Play();
             }
@@ -482,8 +576,9 @@ public class Controller : MonoBehaviour {
         {
             if (player1Score > player2Score)
             {
-                gameWinText.text = "Player 1 Wins The Game!!!!!!!!!!";
-                gameWinPanel.SetActive(true);
+                //Make winner panel display for longer
+                panelAliveTime = 4.0f;
+                SetPlayerChangePanel(1);
                 gameOver = true;
 
                 audioSource.clip = winSound;
@@ -491,8 +586,9 @@ public class Controller : MonoBehaviour {
             }
             else
             {
-                gameWinText.text = "Player 2 Wins The Game!!!!!!!!!";
-                gameWinPanel.SetActive(true);
+                //Make winner panel display for longer
+                panelAliveTime = 4.0f;
+                SetPlayerChangePanel(1);
                 gameOver = true;
 
                 audioSource.clip = winSound;
@@ -500,6 +596,54 @@ public class Controller : MonoBehaviour {
             }
         }
         scoreboardScript.UpdateScoreboard();
+    }
+
+    //Activate panel indicating players have changed
+    private void SetPlayerChangePanel(int currPlayer)
+    {
+        //Turn player names into a char array
+        char[] playerName;
+        if(currPlayer == 1)
+        {
+            playerName = GlobalVariables.player1.ToCharArray();
+        }
+        else 
+        {
+            playerName = GlobalVariables.player2.ToCharArray();
+        }
+
+        //Loop through all panel images to change
+        for(int i = 0; i < playerChangePanelImages.Count; i++)
+        {
+            //Set image sprite to the value at char array position - 65 (based on unicode decimal)
+            playerChangePanelImages[i].sprite = playerChangePanelSprites[playerName[i] - 65];
+        }
+        playerChangePanel.SetActive(true);
+    }
+
+    //Display player 1 name vs player 2 name and the logos
+    private void GameStartPanel()
+    {
+        //Get in players names into an array
+        char[] player1Name = GlobalVariables.player1.ToCharArray();
+        char[] player2Name = GlobalVariables.player2.ToCharArray();
+
+        //Loop through images to change sprites
+        for(int i = 0; i < gameStartPanelPlayer1Images.Count; i++)
+        {
+            //Set sprite to the value at array position - 65 (based on unicode decimal)
+            gameStartPanelPlayer1Images[i].sprite = playerChangePanelSprites[player1Name[i] - 65];
+        }
+
+        //Loop through images to change sprites
+        for (int i = 0; i < gameStartPanelPlayer2Images.Count; i++)
+        {
+            //Set sprite to the value at array position - 65 (based on unicode decimal)
+            gameStartPanelPlayer2Images[i].sprite = playerChangePanelSprites[player2Name[i] - 65];
+        }
+
+        //Enable panel
+        gameStartPanel.SetActive(true);
     }
 
     public void reloadScene()
@@ -555,6 +699,9 @@ public class Controller : MonoBehaviour {
 
         //Reset player position
         player.transform.eulerAngles = new Vector3(0, 90, 0);
+
+        //Reset panel alive time
+        panelAliveTime = 2.0f;
 
         gameOver = false;
     }
