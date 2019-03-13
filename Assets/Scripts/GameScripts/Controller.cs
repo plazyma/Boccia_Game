@@ -63,6 +63,12 @@ public class Controller : MonoBehaviour {
 
     public List<Sprite> playerChangePanelSprites = new List<Sprite>();
 
+    public GameObject gameStartPanel;
+    public GameObject gameStartPanelPlayer1;
+    public GameObject gameStartPanelPlayer2;
+    public List<Image> gameStartPanelPlayer1Images = new List<Image>();
+    public List<Image> gameStartPanelPlayer2Images = new List<Image>();
+
     //Faultboxes
     public GameObject faultBoxes;
     FaultBoxes faultBoxesScript;
@@ -88,14 +94,11 @@ public class Controller : MonoBehaviour {
     const int maximumRounds = 4;
 
     float playerChangePanelTimer = 0;
-
-    GlobalVariables globalVariablesScript;
+    float gameStartPanelTimer = 0;
 
     // Use this for initialization
     void Start() {
-        winPanel.SetActive(false);
-        gameWinPanel.SetActive(false);
-        playerChangePanel.SetActive(false);
+
 
         gameOver = false;
         //setup scoreboard
@@ -145,6 +148,13 @@ public class Controller : MonoBehaviour {
         //get the music player
         musicSource = GameObject.FindGameObjectWithTag("MusicPlayer");
 
+        //Load in player change panel if it isnt already
+        if (!playerChangePanel)
+        {
+            playerChangePanel = GameObject.FindGameObjectWithTag("PlayerChangePanel");
+        }
+
+        //Load in images 
         foreach (Image im in playerChangePanel.GetComponentsInChildren<Image>())
         {
             if (!im.CompareTag("PlayerChangePanel"))
@@ -153,12 +163,43 @@ public class Controller : MonoBehaviour {
             }
         }
 
+        //Load panels
+        gameStartPanel = GameObject.FindGameObjectWithTag("GameStartPanel");
+        gameStartPanelPlayer1 = GameObject.FindGameObjectWithTag("GameStartPanelP1");
+        gameStartPanelPlayer2 = GameObject.FindGameObjectWithTag("GameStartPanelP2");
+
+        //Load in sprites
         foreach(Object sprite in Resources.LoadAll("Letters", typeof(Sprite)))
         {
             playerChangePanelSprites.Add((Sprite)sprite);
         }
 
-        globalVariablesScript = GameObject.FindGameObjectWithTag("GlobalVariables").GetComponent<GlobalVariables>();
+        //Load images
+        foreach(Image im in gameStartPanelPlayer1.GetComponentsInChildren<Image>())
+        {
+            if(!im.CompareTag("GameStartPanelP1"))
+            {
+                gameStartPanelPlayer1Images.Add(im);
+            }
+        }
+
+        //Load images
+        foreach (Image im in gameStartPanelPlayer2.GetComponentsInChildren<Image>())
+        {
+            if (!im.CompareTag("GameStartPanelP2"))
+            {
+                gameStartPanelPlayer2Images.Add(im);
+            }
+        }
+
+        //Disable all panels
+        winPanel.SetActive(false);
+        gameWinPanel.SetActive(false);
+        playerChangePanel.SetActive(false);
+
+
+        //Display panel
+        GameStartPanel();
     }
 
     void spawnJack()
@@ -229,6 +270,7 @@ public class Controller : MonoBehaviour {
             Application.Quit();
         }
 
+
         if (throwScript.jackThrown && !jackThrown)
         {
 
@@ -289,7 +331,7 @@ public class Controller : MonoBehaviour {
         if (!gameOver)
         {
             //If faulty jack throw
-            if(faultyJack)
+            if (faultyJack)
             {
                 //Destroy jack
                 Object.Destroy(jack);
@@ -358,6 +400,18 @@ public class Controller : MonoBehaviour {
             {
                 playerChangePanel.SetActive(false);
                 playerChangePanelTimer = 0;
+            }
+        }
+
+        //Disable game start panel after a timer
+        if(gameStartPanel.activeSelf)
+        {
+            gameStartPanelTimer += Time.deltaTime;
+
+            if(gameStartPanelTimer > 2)
+            {
+                gameStartPanel.SetActive(false);
+                gameStartPanelTimer = 0;
             }
         }
     }
@@ -566,6 +620,31 @@ public class Controller : MonoBehaviour {
             playerChangePanelImages[i].sprite = playerChangePanelSprites[playerName[i] - 65];
         }
         playerChangePanel.SetActive(true);
+    }
+
+    //Display player 1 name vs player 2 name and the logos
+    private void GameStartPanel()
+    {
+        //Get in players names into an array
+        char[] player1Name = GlobalVariables.player1.ToCharArray();
+        char[] player2Name = GlobalVariables.player2.ToCharArray();
+
+        //Loop through images to change sprites
+        for(int i = 0; i < gameStartPanelPlayer1Images.Count; i++)
+        {
+            //Set sprite to the value at array position - 65 (based on unicode decimal)
+            gameStartPanelPlayer1Images[i].sprite = playerChangePanelSprites[player1Name[i] - 65];
+        }
+
+        //Loop through images to change sprites
+        for (int i = 0; i < gameStartPanelPlayer2Images.Count; i++)
+        {
+            //Set sprite to the value at array position - 65 (based on unicode decimal)
+            gameStartPanelPlayer2Images[i].sprite = playerChangePanelSprites[player2Name[i] - 65];
+        }
+
+        //Enable panel
+        gameStartPanel.SetActive(true);
     }
 
     public void reloadScene()
