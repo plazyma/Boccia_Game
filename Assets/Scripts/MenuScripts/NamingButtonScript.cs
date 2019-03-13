@@ -22,8 +22,6 @@ public class NamingButtonScript : MonoBehaviour {
     
     // Use this for initialization
     void Start () {
-        field = GameObject.FindWithTag("InputField");
-        nameScript = field.GetComponent<NamingScript>();
     }
 	
 	// Update is called once per frame
@@ -49,8 +47,7 @@ public class NamingButtonScript : MonoBehaviour {
 
         if (!gameReady)
         {
-            nameScript.checkNames();
-            if (nameScript.p2name != "empty")
+            if (nameScript.p2name != "XYZ")
             {
                 setGameReady();
             }
