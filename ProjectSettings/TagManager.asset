@@ -44,6 +44,7 @@ TagManager:
   - GameStartPanelP1
   - GameStartPanelP2
   - GameStartPanel
+  - RoundNumber
   layers:
   - Default
   - TransparentFX

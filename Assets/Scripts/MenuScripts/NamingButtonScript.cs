@@ -18,7 +18,7 @@ public class NamingButtonScript : MonoBehaviour {
     NamingScript nameScript;
 
     bool gameReady = false;
-
+    
     
     // Use this for initialization
     void Start () {
