@@ -10,27 +10,32 @@ public class SettingScript : MonoBehaviour {
     public GameObject settings;
     public GameObject soundSettings;
     public GameObject graphicSettings;
+    public GameObject gameSettings;
+
     bool unloadUI = true;
 
     //game volume
     public Slider slider;
-    public float gameVolume = 100.0f;
+    public float volume = 100.0f;
     public Text volumePercent;
-
  
 
     // Use this for initialization
     void Start () {
-        volumePercent = GameObject.Find("Volume Level").GetComponent<Text>();
-        volumePercent.text = (int)gameVolume + "%";
+
+        //volumePercent = GameObject.Find("Volume Level").GetComponent<Text>();
+        
+
+        
 
         //find settings options
         mainMenu = GameObject.FindWithTag("Main Menu");
         settings = GameObject.FindWithTag("Settings");
         soundSettings = GameObject.FindWithTag("SoundSettings");
         graphicSettings = GameObject.FindWithTag("GraphicSettings");
+        gameSettings = GameObject.FindWithTag("GameSettings");
 
-       
+
     }
 
     private void Awake()
@@ -40,6 +45,7 @@ public class SettingScript : MonoBehaviour {
         settings = GameObject.FindWithTag("Settings");
         soundSettings = GameObject.FindWithTag("SoundSettings");
         graphicSettings = GameObject.FindWithTag("GraphicSettings");
+        gameSettings = GameObject.FindWithTag("GameSettings");
     }
     // Update is called once per frame
     void Update () {
@@ -49,7 +55,13 @@ public class SettingScript : MonoBehaviour {
             settings.SetActive(false);
             graphicSettings.SetActive(false);
             soundSettings.SetActive(false);
+            gameSettings.SetActive(false);
             unloadUI = false;
+        }
+
+        if (soundSettings.activeInHierarchy == true && !CompareTag("ReturnButton"))
+        {
+            volumePercent.text = (int)volume + "%";
         }
         
     }
@@ -78,9 +90,24 @@ public class SettingScript : MonoBehaviour {
     }
     public void AdjustVolume()
     {
-        gameVolume = slider.value*100;
-        AudioListener.volume = slider.value;
-        volumePercent.text = (int)gameVolume + "%";
+        volume = slider.value*100;
+        GlobalVariables.masterVolume = slider.value;
+        AudioListener.volume = GlobalVariables.masterVolume;
+        volumePercent.text = (int)volume + "%";
+    }
+
+    public void AdjustSecondaryVolume()
+    {
+        volume = slider.value * 100;
+        if (name == "Music")
+        {
+            GlobalVariables.musicVolume = slider.value;
+        }
+        else if (name == "SFX")
+        {
+            GlobalVariables.audioVolume = slider.value;
+        }
+        volumePercent.text = (int)volume + "%";
     }
 
     public void gotoSettings()
@@ -88,6 +115,7 @@ public class SettingScript : MonoBehaviour {
         mainMenu.SetActive(false);
         soundSettings.SetActive(false);
         graphicSettings.SetActive(false);
+        gameSettings.SetActive(false);
         settings.SetActive(true);
     }
 
@@ -106,6 +134,11 @@ public class SettingScript : MonoBehaviour {
     public void gotoMainMenu()
     {
         mainMenu.SetActive(true);
+        settings.SetActive(false);
+    }
+    public void gotoGameSettings()
+    {
+        gameSettings.SetActive(true);
         settings.SetActive(false);
     }
         

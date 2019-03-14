@@ -44,6 +44,8 @@ TagManager:
   - GameStartPanelP1
   - GameStartPanelP2
   - GameStartPanel
+  - GameSettings
+  - ReturnButton
   layers:
   - Default
   - TransparentFX

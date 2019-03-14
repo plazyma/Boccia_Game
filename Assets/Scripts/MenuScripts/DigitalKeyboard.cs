@@ -61,6 +61,8 @@ public class DigitalKeyboard : MonoBehaviour {
         p1Name = "";
         p2Name = "";
 
+        
+
         //find the text on screen
         banner = GameObject.FindGameObjectWithTag("NameBanner");
     }
@@ -74,6 +76,7 @@ public class DigitalKeyboard : MonoBehaviour {
             if (loadButtons)
             {
             
+
                 foreach (GameObject letter in GameObject.FindGameObjectsWithTag("Letter"))
                 {
                     letters.Add(letter);
@@ -90,6 +93,9 @@ public class DigitalKeyboard : MonoBehaviour {
                     }
                 }
                 defaultSprite = letter1.GetComponent<Image>().sprite;
+
+                //hide the button 
+                cont.SetActive(false);
             }
             
             loadButtons = false;
@@ -98,7 +104,7 @@ public class DigitalKeyboard : MonoBehaviour {
             moveButtons();
             
         }
-        if (Input.GetAxis("MouseX") != 0 || Input.GetAxis("MouseY")!= 0)
+        if (Input.GetAxis("MouseX") != 0 || Input.GetAxis("MouseY")!= 0 && selectorObject.GetComponent<Renderer>().enabled == true)
         {
             selectorObject.GetComponent<Renderer>().enabled = false;
         }
@@ -232,8 +238,11 @@ public class DigitalKeyboard : MonoBehaviour {
             {
                 //add letter to name list
                 playerName.Add(selectedLetter);
+
                 //update name
                 updateName();
+
+                
             }
             
             
@@ -241,6 +250,15 @@ public class DigitalKeyboard : MonoBehaviour {
         if (Input.GetKeyDown("backspace") || Input.GetButtonDown("B"))
         {
             deleteLetter();
+        }
+        if (playerName.Count == 3)
+        {
+            //show the button 
+            cont.SetActive(true);
+        }
+        if (playerName.Count < 3 && cont.activeInHierarchy == true)
+        {
+            cont.SetActive(false);
         }
     }
     public void deleteLetter()
@@ -257,7 +275,8 @@ public class DigitalKeyboard : MonoBehaviour {
 
     public void onClick(GameObject let)
     {
-        if(name == "Back")
+        
+        if (name == "Back")
         {
             //return to the main menu
             back.GetComponent<NamingButtonScript>().returnToMenu();
@@ -330,6 +349,8 @@ public class DigitalKeyboard : MonoBehaviour {
                 selectorObject.GetComponent<DigitalKeyboard>().playerName.Add(let);
                 //update name
                 selectorObject.GetComponent<DigitalKeyboard>().updateName();
+
+                
             }
         }
         EventSystem.current.SetSelectedGameObject(null);
