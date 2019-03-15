@@ -46,6 +46,7 @@ TagManager:
   - GameStartPanel
   - GameSettings
   - ReturnButton
+  - RoundNumber
   layers:
   - Default
   - TransparentFX

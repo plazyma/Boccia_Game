@@ -9,6 +9,7 @@ public class PlayerControls : MonoBehaviour {
     public float keyboardRotModifier = 2.0f;
 
     public GameObject arenaBoundary;
+    Controller gameController;
 
     // Use this for initialization
     void Start () {
@@ -16,71 +17,77 @@ public class PlayerControls : MonoBehaviour {
         
         Debug.Log(transform.forward);
         arenaBoundary = GameObject.Find("ArenaWalls");
+
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<Controller>();
     }
 	
 	// Update is called once per frame
 	void Update () {
-        //When right is pressed rotate ball
-        if (Input.GetKey("right") || Input.GetAxis("DPadX") == 1 ||  Input.GetAxis("MouseX") > 0 )//|| Input.GetAxis("Joystick") > 0.5)
+        //If game is unpaused
+        if (gameController.GetPlayRound())
         {
-            //Restrict how far user can rotate
-            if (transform.localEulerAngles.y < 160 && transform.localEulerAngles.y > 10)
+            //When right is pressed rotate ball
+            if (Input.GetKey("right") || Input.GetAxis("DPadX") == 1 || Input.GetAxis("MouseX") > 0)//|| Input.GetAxis("Joystick") > 0.5)
             {
-                //adjust rotation for keyboard
-                if (Input.GetKey("right"))
+                //Restrict how far user can rotate
+                if (transform.localEulerAngles.y < 160 && transform.localEulerAngles.y > 10)
                 {
+                    //adjust rotation for keyboard
+                    if (Input.GetKey("right"))
+                    {
 
-                    transform.Rotate(0.0f, rotationSpeed* keyboardRotModifier * Time.deltaTime, 0.0f);
+                        transform.Rotate(0.0f, rotationSpeed * keyboardRotModifier * Time.deltaTime, 0.0f);
+                    }
+                    else
+                    {
+                        transform.Rotate(0.0f, rotationSpeed * Time.deltaTime, 0.0f);
+                    }
+                    //Show "arrow" to indicate where ball is pointing
+                    //arrow.SetActive(true);
+
+                    //DEBUG
+                    //print(transform.eulerAngles.y);
+                }
+            }
+            //When left is pressed rotate in opposite direction
+            if (Input.GetKey("left") || Input.GetAxis("DPadX") == -1 || Input.GetAxis("MouseX") < 0) //|| Input.GetAxis("Joystick") < -0.5)
+            {
+                //Restrict how far user can rotate
+                if (transform.localEulerAngles.y < 170 && transform.localEulerAngles.y > 20)
+                {
+                    //Show arrow to indicate where ball is pointing
+                    //arrow.SetActive(true);
+                    //adjust rotation for keyboard
+                    if (Input.GetKey("left"))
+                    {
+
+                        transform.Rotate(0.0f, -rotationSpeed * keyboardRotModifier * Time.deltaTime, 0.0f);
+                    }
+                    else
+                    {
+                        transform.Rotate(0.0f, -rotationSpeed * Time.deltaTime, 0.0f);
+                    }
+                    //DEBUG
+                    // print(transform.eulerAngles.y);
+
+                }
+            }
+            if (Input.GetKeyDown("v"))
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+
+            if (Input.GetKeyDown("/"))
+            {
+                if (arenaBoundary.activeSelf)
+                {
+                    arenaBoundary.SetActive(false);
                 }
                 else
                 {
-                    transform.Rotate(0.0f, rotationSpeed * Time.deltaTime, 0.0f);
+                    arenaBoundary.SetActive(true);
                 }
-                //Show "arrow" to indicate where ball is pointing
-                //arrow.SetActive(true);
-               
-                //DEBUG
-                //print(transform.eulerAngles.y);
-            }
-        }
-        //When left is pressed rotate in opposite direction
-        if (Input.GetKey("left") || Input.GetAxis("DPadX") == -1 || Input.GetAxis("MouseX") < 0 ) //|| Input.GetAxis("Joystick") < -0.5)
-        {
-            //Restrict how far user can rotate
-            if (transform.localEulerAngles.y < 170 && transform.localEulerAngles.y > 20)
-            {
-                //Show arrow to indicate where ball is pointing
-                //arrow.SetActive(true);
-                //adjust rotation for keyboard
-                if (Input.GetKey("left"))
-                {
-
-                    transform.Rotate(0.0f, -rotationSpeed * keyboardRotModifier * Time.deltaTime, 0.0f);
-                }
-                else
-                {
-                    transform.Rotate(0.0f, -rotationSpeed * Time.deltaTime, 0.0f);
-                }
-                //DEBUG
-               // print(transform.eulerAngles.y);
-                
-            }
-        }
-        if (Input.GetKeyDown("v"))
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
-
-        if(Input.GetKeyDown("/"))
-        {
-            if(arenaBoundary.activeSelf)
-            {
-                arenaBoundary.SetActive(false);
-            }
-            else
-            {
-                arenaBoundary.SetActive(true);
             }
         }
 

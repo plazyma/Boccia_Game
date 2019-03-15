@@ -7,7 +7,6 @@ using UnityEditor;
 public class Throw : MonoBehaviour {
     //Initializing
     float power;
-    float power_z;
     Rigidbody rb;
     public GameObject ball;
     //Vector3 startPosition;
@@ -98,95 +97,84 @@ public class Throw : MonoBehaviour {
             ball.transform.position = transform.position + (transform.forward * 2);
             ball.transform.rotation = transform.rotation;
 
-            //Increase x - power by 1
-            if (Input.GetKeyDown("up") || Input.GetButtonDown("A") || Input.GetAxis("MouseScrollWheel") > 0)
+            //If game is unpaused
+            if (cont.GetPlayRound())
             {
-                if (power < 10)
+                //Increase x - power by 1
+                if (Input.GetKeyDown("up") || Input.GetButtonDown("A") || Input.GetAxis("MouseScrollWheel") > 0)
                 {
-                    //Convert power from float to int
-                    float current = power * 2;
-                    int currentB = (int)current;
+                    if (power < 10)
+                    {
+                        //Convert power from float to int
+                        float current = power * 2;
+                        int currentB = (int)current;
 
-                    //Set clip based on power
-                    audioSource.clip = powerBarAudioClips[currentB];
-                    //Play
+                        //Set clip based on power
+                        audioSource.clip = powerBarAudioClips[currentB];
+                        //Play
+                        audioSource.Play();
+
+                        //Increase power
+                        power += 1.0f;
+
+                        //Update aim assist
+                        aimAssistScript.CalculateAimIncreased();
+                        print(power);
+                    }
+                    //Update powerbar
+                    powerBar.updatePowerBar();
+                }
+                //Decrease x - power by 1
+                if (Input.GetKeyDown("down") || Input.GetButtonDown("B") || Input.GetAxis("MouseScrollWheel") < 0)
+                {
+                    if (power > 0)
+                    {
+                        //Decrease power
+                        power -= 1.0f;
+
+                        //Convert power from float to int
+                        float current = power * 2;
+                        int currentB = (int)current;
+
+                        //Set clip based on power
+                        audioSource.clip = powerBarAudioClips[currentB];
+                        //Play
+                        audioSource.Play();
+
+                        //Update aim assist
+                        aimAssistScript.CalculateAimReduced();
+                    }
+                    //Update powerbar
+                    powerBar.updatePowerBar();
+                }
+
+                //Apply force on release
+                if (Input.GetKeyDown("space") || Input.GetButtonDown("X") || Input.GetButtonDown("LeftMouseButton"))
+                {
+                    //rb.useGravity = true;
+                    //Apply force to ball
+                    //Z - Force based on rotation
+                    //Steve - added more force due to mass changes for phsyics
+                    //rb.AddForce(power*4, 0, -power_z*4, ForceMode.Impulse);
+                    rb.AddForce(transform.forward * power * 400);
+                    rb.useGravity = true;
+                    if (ball.tag == "Jack")
+                    {
+                        jackThrown = true;
+                    }
+                    else
+                    {
+                        cont.amountOfBalls++;
+                    }
+                    //ball is thrown and can't be touched
+                    ballThrown = true;
+                    shotTime = Time.time;
+                    audioSource.clip = ballThrowSound;
                     audioSource.Play();
 
-                    //Increase power
-                    power += 1.0f;
-
-                    //Update aim assist
-                    aimAssistScript.CalculateAimIncreased();
-                    print(power);
+                    //Update scoreboard
+                    scoreBoardScript.UpdateScoreboard();
                 }
-                //Update powerbar
-                powerBar.updatePowerBar();
-            }
-            //Decrease x - power by 1
-            if (Input.GetKeyDown("down") || Input.GetButtonDown("B") || Input.GetAxis("MouseScrollWheel") < 0)
-            {
-                if (power > 0)
-                {
-                    //Decrease power
-                    power -= 1.0f;
-
-                    //Convert power from float to int
-                    float current = power * 2;
-                    int currentB = (int)current;
-
-                    //Set clip based on power
-                    audioSource.clip = powerBarAudioClips[currentB];
-                    //Play
-                    audioSource.Play();
-
-                    //Update aim assist
-                    aimAssistScript.CalculateAimReduced();
-                }
-                //Update powerbar
-                powerBar.updatePowerBar();
-            }
-            //Decrease z - power by 1
-            if (Input.GetKeyDown("left") || Input.GetAxis("DPadX") == -1 || Input.GetAxis("MouseX") < 0)
-            {
-                if (power_z > -6)
-                {
-                    power_z -= 0.5f;
-                }
-            }
-            //Increase z - power by 1
-            if (Input.GetKeyDown("right") || Input.GetAxis("DPadX") == 1 || Input.GetAxis("MouseX") > 0)
-            {
-                if (power_z < 6)
-                {
-                    power_z += 0.5f;
-                }
-            }
-            //Apply force on release
-            if (Input.GetKeyDown("space") || Input.GetButtonDown("X") || Input.GetButtonDown("LeftMouseButton"))
-            {
-                //rb.useGravity = true;
-                //Apply force to ball
-                //Z - Force based on rotation
-                //Steve - added more force due to mass changes for phsyics
-                //rb.AddForce(power*4, 0, -power_z*4, ForceMode.Impulse);
-                rb.AddForce(transform.forward * power * 400);
-                rb.useGravity = true;
-                if (ball.tag == "Jack")
-                {
-                    jackThrown = true;
-                }
-                else
-                {
-                    cont.amountOfBalls++;
-                }
-                //ball is thrown and can't be touched
-                ballThrown = true;
-                shotTime = Time.time;
-                audioSource.clip = ballThrowSound;
-                audioSource.Play();
-
-                //Update scoreboard
-                scoreBoardScript.UpdateScoreboard();
             }
             
         }
