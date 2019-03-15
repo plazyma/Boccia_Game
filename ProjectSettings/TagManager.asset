@@ -48,6 +48,7 @@ TagManager:
   - ReturnButton
   - RoundNumber
   - AimLine
+  - AudioPlayer
   layers:
   - Default
   - TransparentFX

@@ -41454,7 +41454,7 @@ GameObject:
   - component: {fileID: 1206438247}
   m_Layer: 0
   m_Name: Audio
-  m_TagString: Untagged
+  m_TagString: AudioPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57744,6 +57744,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1630686050}
   - component: {fileID: 1630686049}
+  - component: {fileID: 1630686051}
   m_Layer: 0
   m_Name: GameController
   m_TagString: GameController
@@ -57810,6 +57811,7 @@ MonoBehaviour:
   player2Score: 0
   gameOver: 0
   gameOverTime: 0
+  audioVolumeScript: {fileID: 0}
 --- !u!4 &1630686050
 Transform:
   m_ObjectHideFlags: 0
@@ -57823,6 +57825,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1630686051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1630686048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc5bcc0d402e0a1449f7f079fa10dbb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
+  musicSource: {fileID: 0}
 --- !u!1001 &1630812345
 Prefab:
   m_ObjectHideFlags: 0

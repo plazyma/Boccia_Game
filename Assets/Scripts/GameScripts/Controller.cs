@@ -91,6 +91,8 @@ public class Controller : MonoBehaviour {
     //Play Round bool
     bool playRound = false;
 
+    public AudioVolume audioVolumeScript;
+
     // Use this for initialization
     void Start() {
         gameOver = false;
@@ -183,6 +185,13 @@ public class Controller : MonoBehaviour {
             {
                 gameStartPanelPlayer2Images.Add(im);
             }
+        }
+
+        if(!audioVolumeScript)
+        {
+            audioVolumeScript = GetComponent<AudioVolume>();
+
+            audioVolumeScript.SetVolumeLevels();
         }
 
         //Disable all panels
