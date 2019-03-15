@@ -227,6 +227,7 @@ public class Controller : MonoBehaviour {
             {
                 gameStartPanel.SetActive(false);
             }
+            aimAssistScript.SetHardAimAssist();
         }
 
         //If game is unpaused
@@ -608,6 +609,9 @@ public class Controller : MonoBehaviour {
 
         playerChangePanel.SetActive(true);
         playRound = false;
+
+        //Disable aiming line
+        aimAssistScript.DisableHardAimAssist();
     }
 
     //Display player 1 name vs player 2 name and the logos
@@ -708,7 +712,7 @@ public class Controller : MonoBehaviour {
 
         //Clear aim assist
         aimAssistScript.ResetAim();
-
+        aimAssistScript.DisableHardAimAssist();
         //Reset player position
         player.transform.eulerAngles = new Vector3(0, 90, 0);
 

@@ -47,6 +47,7 @@ TagManager:
   - GameSettings
   - ReturnButton
   - RoundNumber
+  - AimLine
   layers:
   - Default
   - TransparentFX
