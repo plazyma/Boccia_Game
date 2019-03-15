@@ -9,8 +9,10 @@ public class AimAssist : MonoBehaviour {
     public List<GameObject> aimPlanes;
     public Throw throwScript;
     public GameObject aimLine;
-	// Use this for initialization
-	void Start () {
+
+    public GameObject arenaBoundary;
+    // Use this for initialization
+    void Awake () {
         //Find player
         if(!player)
         {
@@ -40,9 +42,15 @@ public class AimAssist : MonoBehaviour {
         if(!aimLine)
         {
             aimLine = GameObject.FindGameObjectWithTag("AimLine");
+
+            arenaBoundary = GameObject.Find("ArenaWalls");
         }
-        aimLine.SetActive(false);
-	}
+
+        if (!arenaBoundary)
+        {
+            arenaBoundary = GameObject.Find("ArenaWalls");
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -132,7 +140,7 @@ public class AimAssist : MonoBehaviour {
         }
     }
 
-    public void SetHardAimAssist()
+    public void EnableHardAimAssist()
     {
         if ((gameController.currentPlayer == 1 && !GlobalVariables.aim1) || (gameController.currentPlayer == 2 && !GlobalVariables.aim2))
         {
@@ -147,5 +155,17 @@ public class AimAssist : MonoBehaviour {
     public void DisableHardAimAssist()
     {
         aimLine.SetActive(false);
+    }
+
+    public void EnableArenaBoundary()
+    {
+        if ((gameController.currentPlayer == 1 && GlobalVariables.walls1) || (gameController.currentPlayer == 2 && GlobalVariables.walls2))
+        {
+            arenaBoundary.SetActive(true);
+        }
+        else
+        {
+            arenaBoundary.SetActive(false);
+        }
     }
 }

@@ -6,7 +6,7 @@ public class AudioVolume : MonoBehaviour {
     public AudioSource audioSource;
     public AudioSource musicSource;
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         //Find audio source
 		if(!audioSource)
         {

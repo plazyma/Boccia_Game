@@ -236,7 +236,9 @@ public class Controller : MonoBehaviour {
             {
                 gameStartPanel.SetActive(false);
             }
-            aimAssistScript.SetHardAimAssist();
+
+            aimAssistScript.EnableHardAimAssist();
+            aimAssistScript.EnableArenaBoundary();
         }
 
         //If game is unpaused
