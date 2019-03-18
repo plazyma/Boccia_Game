@@ -93,6 +93,8 @@ public class Controller : MonoBehaviour {
 
     public AudioVolume audioVolumeScript;
 
+    public PauseMenu pauseMenuScript;
+
     // Use this for initialization
     void Start() {
         gameOver = false;
@@ -192,6 +194,13 @@ public class Controller : MonoBehaviour {
             audioVolumeScript = GetComponent<AudioVolume>();
 
             audioVolumeScript.SetVolumeLevels();
+        }
+
+        if(!pauseMenuScript)
+        {
+            pauseMenuScript = GetComponent<PauseMenu>();
+
+            pauseMenuScript.HidePauseMenu();
         }
 
         //Disable all panels

@@ -43,7 +43,6 @@ public class AimAssist : MonoBehaviour {
         {
             aimLine = GameObject.FindGameObjectWithTag("AimLine");
 
-            arenaBoundary = GameObject.Find("ArenaWalls");
         }
 
         if (!arenaBoundary)
@@ -51,9 +50,14 @@ public class AimAssist : MonoBehaviour {
             arenaBoundary = GameObject.Find("ArenaWalls");
         }
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void Start()
+    {
+        aimLine.SetActive(false);
+    }
+
+    // Update is called once per frame
+    void Update () {
 
 
     }
