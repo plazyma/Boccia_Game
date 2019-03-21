@@ -23485,7 +23485,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 9a10a32eccb9d2c4db0eab224f7b973f, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -43354,7 +43354,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -60271,6 +60271,7 @@ MonoBehaviour:
   player1WinSound: {fileID: 8300000, guid: f70e97f22f7752c4583f39f179049981, type: 3}
   player2WinSound: {fileID: 8300000, guid: 33c4e0200c1749a4aaec2d9ecbeb8c08, type: 3}
   winSound: {fileID: 8300000, guid: 84d7680731ffc274d961415a62459d76, type: 3}
+  fault: {fileID: 8300000, guid: 6b4374901ded0ab42be7602c2999ab33, type: 3}
   musicSource: {fileID: 0}
   redMaterial: {fileID: 2100000, guid: 9a7166b7459f5fb45bb7f07278e5a4f0, type: 2}
   greenMaterial: {fileID: 2100000, guid: 80efd3f622fe3e44fb7a3936a4b191a6, type: 2}

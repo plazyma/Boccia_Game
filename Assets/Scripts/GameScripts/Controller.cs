@@ -41,6 +41,7 @@ public class Controller : MonoBehaviour {
     public AudioClip player1WinSound;
     public AudioClip player2WinSound;
     public AudioClip winSound;
+    public AudioClip fault;
     public GameObject musicSource;
     bool paused = false;
 
@@ -374,8 +375,16 @@ public class Controller : MonoBehaviour {
                 if(faultBoxList[i].deleteBalls())
                 {
                     faultyBall = true;
+
                 }
                 faultBoxList[i].ResetJack(jack);
+            }
+
+            if(faultyBall)
+            {
+                audioSource.clip = fault;
+                audioSource.Play();
+                faultyBall = false;
             }
 
             player.transform.eulerAngles = new Vector3(0, 90, 0);
@@ -440,8 +449,11 @@ public class Controller : MonoBehaviour {
                 //update scoreboard
                 //score.UpdateScoreboard();
 
-                audioSource.clip = ballChangeSound;
-                audioSource.Play();
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.clip = ballChangeSound;
+                    audioSource.Play();
+                }
             }
             else if (currentPlayer == 1)
             {
@@ -455,8 +467,11 @@ public class Controller : MonoBehaviour {
                 //update scoreboard
                 //score.UpdateScoreboard();
 
-                audioSource.clip = ballChangeSound;
-                audioSource.Play();
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.clip = ballChangeSound;
+                    audioSource.Play();
+                }
             }
             ballList.Add(newBall);
 
