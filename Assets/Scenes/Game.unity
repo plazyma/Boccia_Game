@@ -31599,7 +31599,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &900667909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31611,6 +31611,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f709cfe11f6bbe4fbedcc1ede38aa97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  logoLoad:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   debugText1: 
   debugText2: 
   mv: 1
@@ -31620,6 +31634,8 @@ MonoBehaviour:
   wallss2: 1
   aimm1: 1
   aimm2: 1
+  teams1: 0
+  teams2: 0
 --- !u!4 &900667910
 Transform:
   m_ObjectHideFlags: 0

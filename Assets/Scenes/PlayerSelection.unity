@@ -500,8 +500,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f709cfe11f6bbe4fbedcc1ede38aa97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  logoLoad:
+  - {fileID: 21300000, guid: 335818c3fd3170c49b6699a7cf85e4f2, type: 3}
+  - {fileID: 21300000, guid: 556aae78c6993d44b9996fac0a37b519, type: 3}
+  - {fileID: 21300000, guid: 6d5500353aba84143bda49cc318fbf56, type: 3}
+  - {fileID: 21300000, guid: 558f2ccefc42f7943bfca9f284fed6ad, type: 3}
+  - {fileID: 21300000, guid: fe5e8a72b8ce736419d62e873c3dd4ec, type: 3}
+  - {fileID: 21300000, guid: d69fff4d54b02d94fb746bacc59d85ad, type: 3}
+  - {fileID: 21300000, guid: dc42ee03343a73840a8a6e2ec182a731, type: 3}
+  - {fileID: 21300000, guid: 81b096c0c04cd8349b17393865182e56, type: 3}
+  - {fileID: 21300000, guid: 4096454276e500e4480ace4d94943f62, type: 3}
+  - {fileID: 21300000, guid: bdbc818271ae76544a376ccdbd9c78e2, type: 3}
+  - {fileID: 21300000, guid: 8e30f0a875d21f940b0ae620b8db9506, type: 3}
+  - {fileID: 21300000, guid: 7d14f454d30ecce40bccf6a33d25ee08, type: 3}
+  - {fileID: 21300000, guid: 46d43c220c7b5a64fa23d8c9f600cccb, type: 3}
   debugText1: 
   debugText2: 
+  mv: 1
+  av: 1
+  muv: 1
+  wallss1: 1
+  wallss2: 1
+  aimm1: 1
+  aimm2: 1
+  teams1: 0
+  teams2: 0
 --- !u!4 &139332800
 Transform:
   m_ObjectHideFlags: 0
@@ -686,6 +709,8 @@ MonoBehaviour:
   button: {fileID: 0}
   playSprite: {fileID: 0}
   playPressedSprite: {fileID: 0}
+  teamLogo: {fileID: 0}
+  currentTeam: 0
 --- !u!1 &184253642
 GameObject:
   m_ObjectHideFlags: 0
@@ -738,6 +763,8 @@ MonoBehaviour:
   button: {fileID: 0}
   playSprite: {fileID: 0}
   playPressedSprite: {fileID: 0}
+  teamLogo: {fileID: 0}
+  currentTeam: 0
 --- !u!114 &184253644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -893,6 +920,8 @@ MonoBehaviour:
   button: {fileID: 0}
   playSprite: {fileID: 0}
   playPressedSprite: {fileID: 0}
+  teamLogo: {fileID: 0}
+  currentTeam: 0
 --- !u!114 &196617972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1151,6 +1180,8 @@ MonoBehaviour:
   button: {fileID: 0}
   playSprite: {fileID: 0}
   playPressedSprite: {fileID: 0}
+  teamLogo: {fileID: 0}
+  currentTeam: 0
 --- !u!1 &355554522
 GameObject:
   m_ObjectHideFlags: 0
@@ -1221,6 +1252,8 @@ MonoBehaviour:
   button: {fileID: 0}
   playSprite: {fileID: 0}
   playPressedSprite: {fileID: 0}
+  teamLogo: {fileID: 0}
+  currentTeam: 0
 --- !u!114 &355554525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1317,6 +1350,7 @@ GameObject:
   - component: {fileID: 380222100}
   - component: {fileID: 380222099}
   - component: {fileID: 380222098}
+  - component: {fileID: 380222101}
   m_Layer: 5
   m_Name: RightButton
   m_TagString: Untagged
@@ -1381,7 +1415,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 380222099}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 380222101}
+        m_MethodName: changeTeamLogo
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &380222099
@@ -1417,6 +1462,41 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 380222096}
+--- !u!114 &380222101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 380222096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72b25d8564a8b7549a4a655aa6e964c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  letters: []
+  playerName: []
+  playerNumber: 1
+  p1Name: 
+  p2Name: 
+  letter1: {fileID: 0}
+  letter2: {fileID: 0}
+  letter3: {fileID: 0}
+  selectedLetter: {fileID: 0}
+  up: {fileID: 0}
+  down: {fileID: 0}
+  left: {fileID: 0}
+  right: {fileID: 0}
+  back: {fileID: 0}
+  cont: {fileID: 0}
+  del: {fileID: 0}
+  defaultSprite: {fileID: 0}
+  selectorObject: {fileID: 702826545}
+  banner: {fileID: 0}
+  button: {fileID: 0}
+  playSprite: {fileID: 0}
+  playPressedSprite: {fileID: 0}
+  teamLogo: {fileID: 1566569856}
+  currentTeam: 0
 --- !u!1 &394088799
 GameObject:
   m_ObjectHideFlags: 0
@@ -1505,6 +1585,8 @@ MonoBehaviour:
   button: {fileID: 0}
   playSprite: {fileID: 0}
   playPressedSprite: {fileID: 0}
+  teamLogo: {fileID: 0}
+  currentTeam: 0
 --- !u!114 &398899711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1890,6 +1972,8 @@ MonoBehaviour:
   button: {fileID: 0}
   playSprite: {fileID: 0}
   playPressedSprite: {fileID: 0}
+  teamLogo: {fileID: 0}
+  currentTeam: 0
 --- !u!1 &523023009
 GameObject:
   m_ObjectHideFlags: 0
@@ -1960,6 +2044,8 @@ MonoBehaviour:
   button: {fileID: 0}
   playSprite: {fileID: 0}
   playPressedSprite: {fileID: 0}
+  teamLogo: {fileID: 0}
+  currentTeam: 0
 --- !u!114 &523023012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2276,6 +2362,8 @@ MonoBehaviour:
   button: {fileID: 0}
   playSprite: {fileID: 0}
   playPressedSprite: {fileID: 0}
+  teamLogo: {fileID: 0}
+  currentTeam: 0
 --- !u!1 &664261558
 GameObject:
   m_ObjectHideFlags: 0
@@ -2346,6 +2434,8 @@ MonoBehaviour:
   button: {fileID: 0}
   playSprite: {fileID: 0}
   playPressedSprite: {fileID: 0}
+  teamLogo: {fileID: 0}
+  currentTeam: 0
 --- !u!114 &664261561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2500,6 +2590,8 @@ MonoBehaviour:
   button: {fileID: 1375496370}
   playSprite: {fileID: 21300000, guid: 4ea80c3d236d4b64b804aa3359c48e28, type: 3}
   playPressedSprite: {fileID: 21300000, guid: bf83c8ebcd721cf44ac560e73caa7882, type: 3}
+  teamLogo: {fileID: 1566569856}
+  currentTeam: 0
 --- !u!23 &702826548
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2697,6 +2789,8 @@ MonoBehaviour:
   button: {fileID: 0}
   playSprite: {fileID: 0}
   playPressedSprite: {fileID: 0}
+  teamLogo: {fileID: 0}
+  currentTeam: 0
 --- !u!1 &711559165
 GameObject:
   m_ObjectHideFlags: 0
@@ -2749,6 +2843,8 @@ MonoBehaviour:
   button: {fileID: 0}
   playSprite: {fileID: 0}
   playPressedSprite: {fileID: 0}
+  teamLogo: {fileID: 0}
+  currentTeam: 0
 --- !u!114 &711559167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3105,6 +3201,8 @@ MonoBehaviour:
   button: {fileID: 0}
   playSprite: {fileID: 0}
   playPressedSprite: {fileID: 0}
+  teamLogo: {fileID: 0}
+  currentTeam: 0
 --- !u!114 &821782835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3376,6 +3474,8 @@ MonoBehaviour:
   button: {fileID: 0}
   playSprite: {fileID: 0}
   playPressedSprite: {fileID: 0}
+  teamLogo: {fileID: 0}
+  currentTeam: 0
 --- !u!114 &895586833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3675,6 +3775,8 @@ MonoBehaviour:
   button: {fileID: 0}
   playSprite: {fileID: 0}
   playPressedSprite: {fileID: 0}
+  teamLogo: {fileID: 0}
+  currentTeam: 0
 --- !u!1 &962091597
 GameObject:
   m_ObjectHideFlags: 0
@@ -3727,6 +3829,8 @@ MonoBehaviour:
   button: {fileID: 0}
   playSprite: {fileID: 0}
   playPressedSprite: {fileID: 0}
+  teamLogo: {fileID: 0}
+  currentTeam: 0
 --- !u!114 &962091599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3900,6 +4004,8 @@ MonoBehaviour:
   button: {fileID: 0}
   playSprite: {fileID: 0}
   playPressedSprite: {fileID: 0}
+  teamLogo: {fileID: 0}
+  currentTeam: 0
 --- !u!114 &1060911915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4037,6 +4143,8 @@ MonoBehaviour:
   button: {fileID: 0}
   playSprite: {fileID: 0}
   playPressedSprite: {fileID: 0}
+  teamLogo: {fileID: 0}
+  currentTeam: 0
 --- !u!114 &1086215379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4338,6 +4446,8 @@ MonoBehaviour:
   button: {fileID: 0}
   playSprite: {fileID: 0}
   playPressedSprite: {fileID: 0}
+  teamLogo: {fileID: 0}
+  currentTeam: 0
 --- !u!1 &1288440765
 GameObject:
   m_ObjectHideFlags: 0
@@ -4464,6 +4574,8 @@ MonoBehaviour:
   button: {fileID: 0}
   playSprite: {fileID: 0}
   playPressedSprite: {fileID: 0}
+  teamLogo: {fileID: 0}
+  currentTeam: 0
 --- !u!114 &1306685680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4657,6 +4769,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1375496374}
+        m_MethodName: confirmAndResetTeamLogo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 0
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1375496371
@@ -4742,6 +4865,8 @@ MonoBehaviour:
   button: {fileID: 0}
   playSprite: {fileID: 0}
   playPressedSprite: {fileID: 0}
+  teamLogo: {fileID: 0}
+  currentTeam: 0
 --- !u!23 &1375496375
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4951,6 +5076,8 @@ MonoBehaviour:
   button: {fileID: 0}
   playSprite: {fileID: 0}
   playPressedSprite: {fileID: 0}
+  teamLogo: {fileID: 0}
+  currentTeam: 0
 --- !u!1 &1421870012
 GameObject:
   m_ObjectHideFlags: 0
@@ -5021,6 +5148,8 @@ MonoBehaviour:
   button: {fileID: 0}
   playSprite: {fileID: 0}
   playPressedSprite: {fileID: 0}
+  teamLogo: {fileID: 0}
+  currentTeam: 0
 --- !u!114 &1421870015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5205,6 +5334,8 @@ MonoBehaviour:
   button: {fileID: 0}
   playSprite: {fileID: 0}
   playPressedSprite: {fileID: 0}
+  teamLogo: {fileID: 0}
+  currentTeam: 0
 --- !u!114 &1556306918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5403,7 +5534,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 5eb3ecdb6bc9c9c418ece67079bfd229, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 335818c3fd3170c49b6699a7cf85e4f2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5832,6 +5963,8 @@ MonoBehaviour:
   button: {fileID: 0}
   playSprite: {fileID: 0}
   playPressedSprite: {fileID: 0}
+  teamLogo: {fileID: 0}
+  currentTeam: 0
 --- !u!1 &1782940775
 GameObject:
   m_ObjectHideFlags: 0
@@ -5989,6 +6122,8 @@ MonoBehaviour:
   button: {fileID: 0}
   playSprite: {fileID: 0}
   playPressedSprite: {fileID: 0}
+  teamLogo: {fileID: 0}
+  currentTeam: 0
 --- !u!114 &1858134400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6356,6 +6491,8 @@ MonoBehaviour:
   button: {fileID: 0}
   playSprite: {fileID: 0}
   playPressedSprite: {fileID: 0}
+  teamLogo: {fileID: 0}
+  currentTeam: 0
 --- !u!1 &1939796890
 GameObject:
   m_ObjectHideFlags: 0
@@ -6426,6 +6563,8 @@ MonoBehaviour:
   button: {fileID: 0}
   playSprite: {fileID: 0}
   playPressedSprite: {fileID: 0}
+  teamLogo: {fileID: 0}
+  currentTeam: 0
 --- !u!114 &1939796893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6581,6 +6720,8 @@ MonoBehaviour:
   button: {fileID: 0}
   playSprite: {fileID: 0}
   playPressedSprite: {fileID: 0}
+  teamLogo: {fileID: 0}
+  currentTeam: 0
 --- !u!114 &1994122917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6831,6 +6972,7 @@ GameObject:
   - component: {fileID: 2050105387}
   - component: {fileID: 2050105386}
   - component: {fileID: 2050105385}
+  - component: {fileID: 2050105388}
   m_Layer: 5
   m_Name: LeftButton
   m_TagString: Untagged
@@ -6895,7 +7037,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2050105386}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2050105388}
+        m_MethodName: changeTeamLogo
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &2050105386
@@ -6931,3 +7084,38 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2050105383}
+--- !u!114 &2050105388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2050105383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72b25d8564a8b7549a4a655aa6e964c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  letters: []
+  playerName: []
+  playerNumber: 1
+  p1Name: 
+  p2Name: 
+  letter1: {fileID: 0}
+  letter2: {fileID: 0}
+  letter3: {fileID: 0}
+  selectedLetter: {fileID: 0}
+  up: {fileID: 0}
+  down: {fileID: 0}
+  left: {fileID: 0}
+  right: {fileID: 0}
+  back: {fileID: 0}
+  cont: {fileID: 0}
+  del: {fileID: 0}
+  defaultSprite: {fileID: 0}
+  selectorObject: {fileID: 702826545}
+  banner: {fileID: 0}
+  button: {fileID: 0}
+  playSprite: {fileID: 0}
+  playPressedSprite: {fileID: 0}
+  teamLogo: {fileID: 1566569856}
+  currentTeam: 0

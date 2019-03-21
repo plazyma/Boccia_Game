@@ -54,6 +54,12 @@ public class DigitalKeyboard : MonoBehaviour {
     //store the buttons variable
     bool loadButtons = true;
 
+
+    // team selection
+    public GameObject teamLogo;
+    public int currentTeam = 0;
+
+
     // Use this for initialization
     void Start () {
 
@@ -108,6 +114,54 @@ public class DigitalKeyboard : MonoBehaviour {
         {
             selectorObject.GetComponent<Renderer>().enabled = false;
         }
+    }
+
+    public void changeTeamLogo(int direction)
+    {
+        //if the current team value gets to the end of the array then
+        if (direction == 1)
+        {  
+            if (selectorObject.GetComponent<DigitalKeyboard>().currentTeam < (GlobalVariables.TOTALTEAMS - 1))
+            {
+                selectorObject.GetComponent<DigitalKeyboard>().currentTeam++;
+            }
+            else
+            {
+                selectorObject.GetComponent<DigitalKeyboard>().currentTeam = 0;
+            }
+        }
+        //if the current team value gets to the start of the array then
+        else if (direction == 0)
+        {
+            if (selectorObject.GetComponent<DigitalKeyboard>().currentTeam > 0 )
+            {
+                selectorObject.GetComponent<DigitalKeyboard>().currentTeam--;
+            }
+            else
+            {
+                selectorObject.GetComponent<DigitalKeyboard>().currentTeam = GlobalVariables.TOTALTEAMS - 1;
+            }
+        }
+
+        //update logo back to first team
+        selectorObject.GetComponent<DigitalKeyboard>().teamLogo.GetComponent<Image>().sprite = GlobalVariables.teamLogos[selectorObject.GetComponent<DigitalKeyboard>().currentTeam];
+
+    }
+
+    public void confirmAndResetTeamLogo()
+    {
+        if (selectorObject.GetComponent<DigitalKeyboard>().playerNumber == 1)
+        {
+            GlobalVariables.team1 = selectorObject.GetComponent<DigitalKeyboard>().currentTeam;
+        }
+        else
+        {
+            GlobalVariables.team2 = selectorObject.GetComponent<DigitalKeyboard>().currentTeam;
+        }
+
+        //reset logo back to first team
+        selectorObject.GetComponent<DigitalKeyboard>().teamLogo.GetComponent<Image>().sprite = GlobalVariables.teamLogos[0];
+        selectorObject.GetComponent<DigitalKeyboard>().currentTeam = 0;
     }
 
 
@@ -284,6 +338,9 @@ public class DigitalKeyboard : MonoBehaviour {
         }
         else if (name == "Continue")
         {
+            //update player
+            confirmAndResetTeamLogo();
+
             if (selectorObject.GetComponent<DigitalKeyboard>().playerName.Count >= 3)
             {
                 //if it is player one
