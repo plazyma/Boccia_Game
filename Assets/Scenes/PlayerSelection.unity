@@ -146,7 +146,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -10.243126, y: 223.85394}
+  m_AnchoredPosition: {x: -10.243126, y: 199}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &39027910
@@ -308,7 +308,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &72660719
 RectTransform:
   m_ObjectHideFlags: 0
@@ -696,13 +696,15 @@ MonoBehaviour:
   letter2: {fileID: 0}
   letter3: {fileID: 0}
   selectedLetter: {fileID: 0}
-  up: {fileID: 1378190163}
+  up: {fileID: 2050105383}
   down: {fileID: 646123208}
   left: {fileID: 1421870012}
   right: {fileID: 937932387}
   back: {fileID: 0}
   cont: {fileID: 0}
   del: {fileID: 0}
+  tLeft: {fileID: 0}
+  tRight: {fileID: 0}
   defaultSprite: {fileID: 0}
   selectorObject: {fileID: 702826545}
   banner: {fileID: 0}
@@ -750,13 +752,15 @@ MonoBehaviour:
   letter2: {fileID: 0}
   letter3: {fileID: 0}
   selectedLetter: {fileID: 0}
-  up: {fileID: 1375496368}
+  up: {fileID: 380222096}
   down: {fileID: 196617970}
   left: {fileID: 664261558}
   right: {fileID: 1086215377}
   back: {fileID: 0}
   cont: {fileID: 0}
   del: {fileID: 0}
+  tLeft: {fileID: 0}
+  tRight: {fileID: 0}
   defaultSprite: {fileID: 0}
   selectorObject: {fileID: 702826545}
   banner: {fileID: 0}
@@ -914,6 +918,8 @@ MonoBehaviour:
   back: {fileID: 0}
   cont: {fileID: 0}
   del: {fileID: 0}
+  tLeft: {fileID: 0}
+  tRight: {fileID: 0}
   defaultSprite: {fileID: 0}
   selectorObject: {fileID: 702826545}
   banner: {fileID: 0}
@@ -1174,6 +1180,8 @@ MonoBehaviour:
   back: {fileID: 0}
   cont: {fileID: 0}
   del: {fileID: 0}
+  tLeft: {fileID: 0}
+  tRight: {fileID: 0}
   defaultSprite: {fileID: 0}
   selectorObject: {fileID: 702826545}
   banner: {fileID: 0}
@@ -1246,6 +1254,8 @@ MonoBehaviour:
   back: {fileID: 0}
   cont: {fileID: 0}
   del: {fileID: 0}
+  tLeft: {fileID: 0}
+  tRight: {fileID: 0}
   defaultSprite: {fileID: 0}
   selectorObject: {fileID: 702826545}
   banner: {fileID: 0}
@@ -1353,7 +1363,7 @@ GameObject:
   - component: {fileID: 380222101}
   m_Layer: 5
   m_Name: RightButton
-  m_TagString: Untagged
+  m_TagString: TeamRight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1365,7 +1375,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 380222096}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 164.99992}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 72660719}
@@ -1448,8 +1458,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: d6d6422f3fa805a44b154f7c2d55238d, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1482,13 +1492,15 @@ MonoBehaviour:
   letter2: {fileID: 0}
   letter3: {fileID: 0}
   selectedLetter: {fileID: 0}
-  up: {fileID: 0}
-  down: {fileID: 0}
-  left: {fileID: 0}
-  right: {fileID: 0}
+  up: {fileID: 1375496368}
+  down: {fileID: 1939796890}
+  left: {fileID: 2050105383}
+  right: {fileID: 2050105383}
   back: {fileID: 0}
   cont: {fileID: 0}
   del: {fileID: 0}
+  tLeft: {fileID: 0}
+  tRight: {fileID: 0}
   defaultSprite: {fileID: 0}
   selectorObject: {fileID: 702826545}
   banner: {fileID: 0}
@@ -1579,6 +1591,8 @@ MonoBehaviour:
   back: {fileID: 0}
   cont: {fileID: 0}
   del: {fileID: 0}
+  tLeft: {fileID: 0}
+  tRight: {fileID: 0}
   defaultSprite: {fileID: 0}
   selectorObject: {fileID: 702826545}
   banner: {fileID: 0}
@@ -1725,7 +1739,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 260.09943}
+  m_AnchoredPosition: {x: 0, y: 235.2456}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &506738323
@@ -1959,13 +1973,15 @@ MonoBehaviour:
   letter2: {fileID: 0}
   letter3: {fileID: 0}
   selectedLetter: {fileID: 0}
-  up: {fileID: 1378190163}
+  up: {fileID: 2050105383}
   down: {fileID: 1928912305}
   left: {fileID: 937932387}
   right: {fileID: 710019538}
   back: {fileID: 0}
   cont: {fileID: 0}
   del: {fileID: 0}
+  tLeft: {fileID: 0}
+  tRight: {fileID: 0}
   defaultSprite: {fileID: 0}
   selectorObject: {fileID: 702826545}
   banner: {fileID: 0}
@@ -2038,6 +2054,8 @@ MonoBehaviour:
   back: {fileID: 0}
   cont: {fileID: 0}
   del: {fileID: 0}
+  tLeft: {fileID: 0}
+  tRight: {fileID: 0}
   defaultSprite: {fileID: 0}
   selectorObject: {fileID: 702826545}
   banner: {fileID: 0}
@@ -2063,7 +2081,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -2072,8 +2090,9 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
+    m_HighlightedSprite: {fileID: 21300000, guid: 4c6224612c255994b8156b449c096255,
+      type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: fc7a1cfa9c7573449a3485eed992b438, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -2117,9 +2136,9 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 6459ab01bdf799b4385b7110f4281a66, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fc7a1cfa9c7573449a3485eed992b438, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -2147,7 +2166,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &594624466
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2356,6 +2375,8 @@ MonoBehaviour:
   back: {fileID: 0}
   cont: {fileID: 0}
   del: {fileID: 0}
+  tLeft: {fileID: 0}
+  tRight: {fileID: 0}
   defaultSprite: {fileID: 0}
   selectorObject: {fileID: 702826545}
   banner: {fileID: 0}
@@ -2421,13 +2442,15 @@ MonoBehaviour:
   letter2: {fileID: 0}
   letter3: {fileID: 0}
   selectedLetter: {fileID: 0}
-  up: {fileID: 1375496368}
+  up: {fileID: 380222096}
   down: {fileID: 711559165}
   left: {fileID: 1994122914}
   right: {fileID: 184253642}
   back: {fileID: 0}
   cont: {fileID: 0}
   del: {fileID: 0}
+  tLeft: {fileID: 0}
+  tRight: {fileID: 0}
   defaultSprite: {fileID: 0}
   selectorObject: {fileID: 702826545}
   banner: {fileID: 0}
@@ -2584,6 +2607,8 @@ MonoBehaviour:
   back: {fileID: 1378190163}
   cont: {fileID: 1375496368}
   del: {fileID: 0}
+  tLeft: {fileID: 2050105383}
+  tRight: {fileID: 380222096}
   defaultSprite: {fileID: 21300000, guid: cd52fc7e3b8976846b66a1ec585dec9f, type: 3}
   selectorObject: {fileID: 702826545}
   banner: {fileID: 0}
@@ -2776,13 +2801,15 @@ MonoBehaviour:
   letter2: {fileID: 0}
   letter3: {fileID: 0}
   selectedLetter: {fileID: 0}
-  up: {fileID: 1378190163}
+  up: {fileID: 2050105383}
   down: {fileID: 1193897604}
   left: {fileID: 519261308}
   right: {fileID: 1994122914}
   back: {fileID: 0}
   cont: {fileID: 0}
   del: {fileID: 0}
+  tLeft: {fileID: 0}
+  tRight: {fileID: 0}
   defaultSprite: {fileID: 0}
   selectorObject: {fileID: 702826545}
   banner: {fileID: 0}
@@ -2837,6 +2864,8 @@ MonoBehaviour:
   back: {fileID: 0}
   cont: {fileID: 0}
   del: {fileID: 0}
+  tLeft: {fileID: 0}
+  tRight: {fileID: 0}
   defaultSprite: {fileID: 0}
   selectorObject: {fileID: 702826545}
   banner: {fileID: 0}
@@ -2983,7 +3012,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 101.000496, y: 260.09943}
+  m_AnchoredPosition: {x: 101.000496, y: 235.2456}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &727742597
@@ -3195,6 +3224,8 @@ MonoBehaviour:
   back: {fileID: 0}
   cont: {fileID: 0}
   del: {fileID: 0}
+  tLeft: {fileID: 0}
+  tRight: {fileID: 0}
   defaultSprite: {fileID: 0}
   selectorObject: {fileID: 702826545}
   banner: {fileID: 0}
@@ -3468,6 +3499,8 @@ MonoBehaviour:
   back: {fileID: 0}
   cont: {fileID: 0}
   del: {fileID: 0}
+  tLeft: {fileID: 0}
+  tRight: {fileID: 0}
   defaultSprite: {fileID: 0}
   selectorObject: {fileID: 702826545}
   banner: {fileID: 0}
@@ -3762,13 +3795,15 @@ MonoBehaviour:
   letter2: {fileID: 0}
   letter3: {fileID: 0}
   selectedLetter: {fileID: 0}
-  up: {fileID: 1378190163}
+  up: {fileID: 2050105383}
   down: {fileID: 1717173397}
   left: {fileID: 162269977}
   right: {fileID: 519261308}
   back: {fileID: 0}
   cont: {fileID: 0}
   del: {fileID: 0}
+  tLeft: {fileID: 0}
+  tRight: {fileID: 0}
   defaultSprite: {fileID: 0}
   selectorObject: {fileID: 702826545}
   banner: {fileID: 0}
@@ -3823,6 +3858,8 @@ MonoBehaviour:
   back: {fileID: 0}
   cont: {fileID: 0}
   del: {fileID: 0}
+  tLeft: {fileID: 0}
+  tRight: {fileID: 0}
   defaultSprite: {fileID: 0}
   selectorObject: {fileID: 702826545}
   banner: {fileID: 0}
@@ -3998,6 +4035,8 @@ MonoBehaviour:
   back: {fileID: 0}
   cont: {fileID: 0}
   del: {fileID: 0}
+  tLeft: {fileID: 0}
+  tRight: {fileID: 0}
   defaultSprite: {fileID: 0}
   selectorObject: {fileID: 702826545}
   banner: {fileID: 0}
@@ -4130,13 +4169,15 @@ MonoBehaviour:
   letter2: {fileID: 0}
   letter3: {fileID: 0}
   selectedLetter: {fileID: 0}
-  up: {fileID: 1375496368}
+  up: {fileID: 380222096}
   down: {fileID: 1306685678}
   left: {fileID: 184253642}
   right: {fileID: 1939796890}
   back: {fileID: 0}
   cont: {fileID: 0}
   del: {fileID: 0}
+  tLeft: {fileID: 0}
+  tRight: {fileID: 0}
   defaultSprite: {fileID: 0}
   selectorObject: {fileID: 702826545}
   banner: {fileID: 0}
@@ -4440,6 +4481,8 @@ MonoBehaviour:
   back: {fileID: 0}
   cont: {fileID: 0}
   del: {fileID: 0}
+  tLeft: {fileID: 0}
+  tRight: {fileID: 0}
   defaultSprite: {fileID: 0}
   selectorObject: {fileID: 702826545}
   banner: {fileID: 0}
@@ -4568,6 +4611,8 @@ MonoBehaviour:
   back: {fileID: 0}
   cont: {fileID: 0}
   del: {fileID: 0}
+  tLeft: {fileID: 0}
+  tRight: {fileID: 0}
   defaultSprite: {fileID: 0}
   selectorObject: {fileID: 702826545}
   banner: {fileID: 0}
@@ -4745,8 +4790,9 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 21300000, guid: 8962d8db396b98b4084da4e381d2652a, type: 3}
+    m_HighlightedSprite: {fileID: 21300000, guid: 5a63b4e0f16cf3046a80985462896e34,
+      type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: 64a9ab0aba52c054fa39ed2c7fc28e30, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -4801,9 +4847,9 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 75174f409741e034ba70e640f73d3b21, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 64a9ab0aba52c054fa39ed2c7fc28e30, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -4859,6 +4905,8 @@ MonoBehaviour:
   back: {fileID: 0}
   cont: {fileID: 0}
   del: {fileID: 0}
+  tLeft: {fileID: 0}
+  tRight: {fileID: 0}
   defaultSprite: {fileID: 0}
   selectorObject: {fileID: 702826545}
   banner: {fileID: 0}
@@ -4967,8 +5015,9 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 21300000, guid: 9d0a3ae058fd8824a93f1010561ba612, type: 3}
+    m_HighlightedSprite: {fileID: 21300000, guid: ae8f313732d36e54a9081cb3bbe5ee66,
+      type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: 414dd1e6a6040a847a37259ffe2db834, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -5012,9 +5061,9 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 961d5eac275954947b1ce9027de58b0a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 414dd1e6a6040a847a37259ffe2db834, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -5070,6 +5119,8 @@ MonoBehaviour:
   back: {fileID: 0}
   cont: {fileID: 0}
   del: {fileID: 0}
+  tLeft: {fileID: 0}
+  tRight: {fileID: 0}
   defaultSprite: {fileID: 0}
   selectorObject: {fileID: 702826545}
   banner: {fileID: 0}
@@ -5135,13 +5186,15 @@ MonoBehaviour:
   letter2: {fileID: 0}
   letter3: {fileID: 0}
   selectedLetter: {fileID: 0}
-  up: {fileID: 1375496368}
+  up: {fileID: 380222096}
   down: {fileID: 1556306915}
   left: {fileID: 1939796890}
   right: {fileID: 162269977}
   back: {fileID: 0}
   cont: {fileID: 0}
   del: {fileID: 0}
+  tLeft: {fileID: 0}
+  tRight: {fileID: 0}
   defaultSprite: {fileID: 0}
   selectorObject: {fileID: 702826545}
   banner: {fileID: 0}
@@ -5328,6 +5381,8 @@ MonoBehaviour:
   back: {fileID: 0}
   cont: {fileID: 0}
   del: {fileID: 0}
+  tLeft: {fileID: 0}
+  tRight: {fileID: 0}
   defaultSprite: {fileID: 0}
   selectorObject: {fileID: 702826545}
   banner: {fileID: 0}
@@ -5448,7 +5503,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1566569856}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 165}
   m_LocalScale: {x: 2.5, y: 2.5, z: 5}
   m_Children: []
   m_Father: {fileID: 394088800}
@@ -5957,6 +6012,8 @@ MonoBehaviour:
   back: {fileID: 0}
   cont: {fileID: 0}
   del: {fileID: 0}
+  tLeft: {fileID: 0}
+  tRight: {fileID: 0}
   defaultSprite: {fileID: 0}
   selectorObject: {fileID: 702826545}
   banner: {fileID: 0}
@@ -6116,6 +6173,8 @@ MonoBehaviour:
   back: {fileID: 0}
   cont: {fileID: 0}
   del: {fileID: 0}
+  tLeft: {fileID: 0}
+  tRight: {fileID: 0}
   defaultSprite: {fileID: 0}
   selectorObject: {fileID: 702826545}
   banner: {fileID: 0}
@@ -6244,7 +6303,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -101.000496, y: 260.1}
+  m_AnchoredPosition: {x: -101.000496, y: 235.24619}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!64 &1918613349
@@ -6485,6 +6544,8 @@ MonoBehaviour:
   back: {fileID: 0}
   cont: {fileID: 0}
   del: {fileID: 0}
+  tLeft: {fileID: 0}
+  tRight: {fileID: 0}
   defaultSprite: {fileID: 0}
   selectorObject: {fileID: 702826545}
   banner: {fileID: 0}
@@ -6550,13 +6611,15 @@ MonoBehaviour:
   letter2: {fileID: 0}
   letter3: {fileID: 0}
   selectedLetter: {fileID: 0}
-  up: {fileID: 1375496368}
+  up: {fileID: 380222096}
   down: {fileID: 1556306915}
   left: {fileID: 1086215377}
   right: {fileID: 1421870012}
   back: {fileID: 0}
   cont: {fileID: 0}
   del: {fileID: 0}
+  tLeft: {fileID: 0}
+  tRight: {fileID: 0}
   defaultSprite: {fileID: 0}
   selectorObject: {fileID: 702826545}
   banner: {fileID: 0}
@@ -6707,13 +6770,15 @@ MonoBehaviour:
   letter2: {fileID: 0}
   letter3: {fileID: 0}
   selectedLetter: {fileID: 0}
-  up: {fileID: 1378190163}
+  up: {fileID: 2050105383}
   down: {fileID: 895586831}
   left: {fileID: 710019538}
   right: {fileID: 664261558}
   back: {fileID: 0}
   cont: {fileID: 0}
   del: {fileID: 0}
+  tLeft: {fileID: 0}
+  tRight: {fileID: 0}
   defaultSprite: {fileID: 0}
   selectorObject: {fileID: 702826545}
   banner: {fileID: 0}
@@ -6975,7 +7040,7 @@ GameObject:
   - component: {fileID: 2050105388}
   m_Layer: 5
   m_Name: LeftButton
-  m_TagString: Untagged
+  m_TagString: TeamLeft
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6987,7 +7052,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2050105383}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 164.99992}
   m_LocalScale: {x: 0.99976873, y: 0.99976873, z: 0.99976873}
   m_Children:
   - {fileID: 594624466}
@@ -7070,8 +7135,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 9b4615480dffa54468b8e77f65d60190, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -7104,13 +7169,15 @@ MonoBehaviour:
   letter2: {fileID: 0}
   letter3: {fileID: 0}
   selectedLetter: {fileID: 0}
-  up: {fileID: 0}
-  down: {fileID: 0}
-  left: {fileID: 0}
-  right: {fileID: 0}
+  up: {fileID: 1378190163}
+  down: {fileID: 937932387}
+  left: {fileID: 380222096}
+  right: {fileID: 380222096}
   back: {fileID: 0}
   cont: {fileID: 0}
   del: {fileID: 0}
+  tLeft: {fileID: 0}
+  tRight: {fileID: 0}
   defaultSprite: {fileID: 0}
   selectorObject: {fileID: 702826545}
   banner: {fileID: 0}

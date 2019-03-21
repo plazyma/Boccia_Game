@@ -8,7 +8,7 @@ public class GlobalVariables : MonoBehaviour {
     public static string player2;
     public static int team1 = 0,team2 = 1;
 
-    public static bool walls1 = false, walls2 = true;
+    public static bool walls1 = true, walls2 = true;
     public static bool aim1 = true, aim2 = true;
 
     public static Sprite teamLogo1, teamLogo2;
