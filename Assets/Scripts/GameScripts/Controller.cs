@@ -344,9 +344,20 @@ public class Controller : MonoBehaviour {
                 }
                 else
                 {
-                    if (gameOver && Time.time - throwScript.shotTime > 12)
+                    if (player1Score == player2Score)
                     {
-                        reloadScene();
+                        if (Time.time - throwScript.shotTime > 10)
+                        {
+                            currentRound++;
+                            reset();
+                        }
+                    }
+                    else
+                    {
+                        if (gameOver && Time.time - throwScript.shotTime > 12)
+                        {
+                            reloadScene();
+                        }
                     }
                 }
             }
@@ -491,7 +502,6 @@ public class Controller : MonoBehaviour {
                 // print("PLAYER 1 WINS");
                 player1Score = player1Score + dist.CalculateScore();
 
-                //Make winner panel display for longer
                 splashScreensScript.RoundOverPanel(1);
 
                 audioSource.clip = player1WinSound;
@@ -501,7 +511,7 @@ public class Controller : MonoBehaviour {
             {
                 //print("PLAYER 2 WINS");
                 player2Score = player2Score + dist.CalculateScore();
-                //Make winner panel display for longer
+
                 splashScreensScript.RoundOverPanel(2);
 
                 audioSource.clip = player2WinSound;
@@ -510,23 +520,41 @@ public class Controller : MonoBehaviour {
         }
         else
         {
-            if (player1Score > player2Score)
+            if(dist.FindClosestBall() == 1)
             {
-                //Make winner panel display for longer
-                splashScreensScript.GameOverPanel(1);
-                gameOver = true;
+                player1Score += dist.CalculateScore();
 
-                audioSource.clip = winSound;
-                audioSource.Play();
+                if (player1Score > player2Score)
+                {
+                    //Make winner panel display for longer
+                    splashScreensScript.GameOverPanel(1);
+                    gameOver = true;
+
+                    audioSource.clip = winSound;
+                    audioSource.Play();
+                }
+                else if(player1Score == player2Score)
+                {
+                    splashScreensScript.RoundOverPanel(1);
+                }
             }
-            else
+            else if(dist.FindClosestBall() == 2)
             {
-                //Make winner panel display for longer
-                splashScreensScript.GameOverPanel(1);
-                gameOver = true;
+                player2Score += dist.CalculateScore();
 
-                audioSource.clip = winSound;
-                audioSource.Play();
+                if (player2Score > player1Score)
+                {
+                    //Make winner panel display for longer
+                    splashScreensScript.GameOverPanel(2);
+                    gameOver = true;
+
+                    audioSource.clip = winSound;
+                    audioSource.Play();
+                }
+                else if (player1Score == player2Score)
+                {
+                    splashScreensScript.RoundOverPanel(2);
+                }
             }
         }
         scoreboardScript.UpdateScoreboard();
@@ -547,6 +575,11 @@ public class Controller : MonoBehaviour {
     public int GetCurrentRound()
     {
         return currentRound;
+    }
+
+    public int GetMaximumRounds()
+    {
+        return maximumRounds;
     }
 
     public void reloadScene()

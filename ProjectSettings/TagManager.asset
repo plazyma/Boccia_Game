@@ -55,6 +55,7 @@ TagManager:
   - Letters
   - RoundOverPanel
   - GameOverPanel
+  - TieBreakPanel
   layers:
   - Default
   - TransparentFX

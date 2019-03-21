@@ -23,6 +23,8 @@ public class SplashScreens : MonoBehaviour
     public GameObject gameOverPanel;
     public List<Image> gameOverPanelImages = new List<Image>();
 
+    public GameObject tieBreakPanel;
+
     float timer;
 
     // Use this for initialization
@@ -109,16 +111,22 @@ public class SplashScreens : MonoBehaviour
             }
         }
 
+        if(!tieBreakPanel)
+        {
+            tieBreakPanel = GameObject.FindGameObjectWithTag("TieBreakPanel");
+        }
+
         //Disable all panels
         playerChangePanel.SetActive(false);
         roundOverPanel.SetActive(false);
         gameOverPanel.SetActive(false);
+        tieBreakPanel.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if ((playerChangePanel.activeSelf || gameStartPanel.activeSelf || roundOverPanel.activeSelf || gameOverPanel.activeSelf) && Input.anyKeyDown)
+        if ((playerChangePanel.activeSelf || gameStartPanel.activeSelf || roundOverPanel.activeSelf || gameOverPanel.activeSelf || tieBreakPanel.activeSelf) && Input.anyKeyDown)
         {
             if (!gameController.GetPlayRound())
             {
@@ -141,6 +149,10 @@ public class SplashScreens : MonoBehaviour
             else if (gameOverPanel.activeSelf)
             {
                 gameOverPanel.SetActive(false);
+            }
+            else if(tieBreakPanel.activeSelf)
+            {
+                tieBreakPanel.SetActive(false);
             }
 
             aimAssistScript.EnableHardAimAssist();
@@ -180,8 +192,15 @@ public class SplashScreens : MonoBehaviour
 
         if (roundNumber != null)
         {
-            //Display current round 
-            roundNumber.text = (gameController.GetCurrentRound() + 1).ToString();
+            if (gameController.GetCurrentRound() <= gameController.GetMaximumRounds())
+            {
+                //Display current round 
+                roundNumber.text = (gameController.GetCurrentRound() + 1).ToString();
+            }
+            else
+            {
+                roundNumber.text = ("TIEBREAK");
+            }
         }
 
     }
@@ -237,6 +256,14 @@ public class SplashScreens : MonoBehaviour
 
         aimAssistScript.DisableHardAimAssist();
     }
+    public void TieBreakPanel()
+    {
+        tieBreakPanel.SetActive(true);
+
+        gameController.SetPlayRound(false);
+
+        aimAssistScript.DisableHardAimAssist();
+    }
 
     public void GameOverPanel(int currPlayer)
     {
@@ -261,4 +288,5 @@ public class SplashScreens : MonoBehaviour
 
         aimAssistScript.DisableHardAimAssist();
     }
+
 }
