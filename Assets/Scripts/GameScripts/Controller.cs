@@ -52,17 +52,6 @@ public class Controller : MonoBehaviour {
 
     public List<GameObject> ballList;
 
-    public GameObject playerChangePanel;
-    public List<Image> playerChangePanelImages = new List<Image>();
-
-    public List<Sprite> playerChangePanelSprites = new List<Sprite>();
-
-    public GameObject gameStartPanel;
-    public GameObject gameStartPanelPlayer1;
-    public GameObject gameStartPanelPlayer2;
-    public List<Image> gameStartPanelPlayer1Images = new List<Image>();
-    public List<Image> gameStartPanelPlayer2Images = new List<Image>();
-
     //Faultboxes
     public GameObject faultBoxes;
     FaultBoxes faultBoxesScript;
@@ -85,7 +74,7 @@ public class Controller : MonoBehaviour {
 
     //Rounds
     int currentRound = 0;
-    const int maximumRounds = 4;
+    const int maximumRounds = 3;
     
 
     //Play Round bool
@@ -94,6 +83,8 @@ public class Controller : MonoBehaviour {
     public AudioVolume audioVolumeScript;
 
     public PauseMenu pauseMenuScript;
+
+    public SplashScreens splashScreensScript;
 
     // Use this for initialization
     void Start() {
@@ -145,50 +136,6 @@ public class Controller : MonoBehaviour {
         //get the music player
         musicSource = GameObject.FindGameObjectWithTag("MusicPlayer");
 
-        //Load in player change panel if it isnt already
-        if (!playerChangePanel)
-        {
-            playerChangePanel = GameObject.FindGameObjectWithTag("PlayerChangePanel");
-        }
-
-        //Load in images 
-        foreach (Image im in playerChangePanel.GetComponentsInChildren<Image>())
-        {
-            if (!im.CompareTag("PlayerChangePanel"))
-            {
-                playerChangePanelImages.Add(im);
-            }
-        }
-
-        //Load panels
-        gameStartPanel = GameObject.FindGameObjectWithTag("GameStartPanel");
-        gameStartPanelPlayer1 = GameObject.FindGameObjectWithTag("GameStartPanelP1");
-        gameStartPanelPlayer2 = GameObject.FindGameObjectWithTag("GameStartPanelP2");
-
-        //Load in sprites
-        foreach(Object sprite in Resources.LoadAll("Letters", typeof(Sprite)))
-        {
-            playerChangePanelSprites.Add((Sprite)sprite);
-        }
-
-        //Load images
-        foreach(Image im in gameStartPanelPlayer1.GetComponentsInChildren<Image>())
-        {
-            if(!im.CompareTag("GameStartPanelP1"))
-            {
-                gameStartPanelPlayer1Images.Add(im);
-            }
-        }
-
-        //Load images
-        foreach (Image im in gameStartPanelPlayer2.GetComponentsInChildren<Image>())
-        {
-            if (!im.CompareTag("GameStartPanelP2"))
-            {
-                gameStartPanelPlayer2Images.Add(im);
-            }
-        }
-
         if(!audioVolumeScript)
         {
             audioVolumeScript = GetComponent<AudioVolume>();
@@ -203,12 +150,12 @@ public class Controller : MonoBehaviour {
             pauseMenuScript.HidePauseMenu();
         }
 
-        //Disable all panels
-        playerChangePanel.SetActive(false);
+        if(!splashScreensScript)
+        {
+            splashScreensScript = GetComponent<SplashScreens>();
+        }
 
-
-        //Display panel
-        GameStartPanel();
+        splashScreensScript.GameStartPanel();
     }
 
     void spawnJack()
@@ -228,28 +175,6 @@ public class Controller : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        //If any of the panels are active, press return to confirm playing
-        if((playerChangePanel.activeSelf || gameStartPanel.activeSelf) && Input.GetKeyDown("return"))
-        {
-            if(!playRound)
-            {
-                playRound = true;
-            }
-
-            //Deactivate panels
-            if(playerChangePanel.activeSelf)
-            {
-                playerChangePanel.SetActive(false);
-            }
-            if(gameStartPanel.activeSelf)
-            {
-                gameStartPanel.SetActive(false);
-            }
-
-            aimAssistScript.EnableHardAimAssist();
-            aimAssistScript.EnableArenaBoundary();
-        }
-
         //If game is unpaused
         if (playRound)
         {
@@ -411,9 +336,11 @@ public class Controller : MonoBehaviour {
                 {
                     if (Time.time - throwScript.shotTime > 10)
                     {
+                        currentRound++;
                         //reload the level
                         reset();
                     }
+
                 }
                 else
                 {
@@ -525,7 +452,7 @@ public class Controller : MonoBehaviour {
             //give throwscript the new ball
             throwScript.setBall(newBall);
 
-            SetPlayerChangePanel(currentPlayer);
+            splashScreensScript.PlayerChangePanel(currentPlayer);
         }
     }
 
@@ -565,7 +492,7 @@ public class Controller : MonoBehaviour {
                 player1Score = player1Score + dist.CalculateScore();
 
                 //Make winner panel display for longer
-                SetPlayerChangePanel(1);
+                splashScreensScript.RoundOverPanel(1);
 
                 audioSource.clip = player1WinSound;
                 audioSource.Play();
@@ -575,19 +502,18 @@ public class Controller : MonoBehaviour {
                 //print("PLAYER 2 WINS");
                 player2Score = player2Score + dist.CalculateScore();
                 //Make winner panel display for longer
-                SetPlayerChangePanel(2);
+                splashScreensScript.RoundOverPanel(2);
 
                 audioSource.clip = player2WinSound;
                 audioSource.Play();
             }
-            currentRound++;
         }
         else
         {
             if (player1Score > player2Score)
             {
                 //Make winner panel display for longer
-                SetPlayerChangePanel(1);
+                splashScreensScript.GameOverPanel(1);
                 gameOver = true;
 
                 audioSource.clip = winSound;
@@ -596,7 +522,7 @@ public class Controller : MonoBehaviour {
             else
             {
                 //Make winner panel display for longer
-                SetPlayerChangePanel(1);
+                splashScreensScript.GameOverPanel(1);
                 gameOver = true;
 
                 audioSource.clip = winSound;
@@ -604,70 +530,6 @@ public class Controller : MonoBehaviour {
             }
         }
         scoreboardScript.UpdateScoreboard();
-    }
-
-    //Activate panel indicating players have changed
-    private void SetPlayerChangePanel(int currPlayer)
-    {
-        //Turn player names into a char array
-        char[] playerName;
-        if(currPlayer == 1)
-        {
-            playerName = GlobalVariables.player1.ToCharArray();
-        }
-        else 
-        {
-            playerName = GlobalVariables.player2.ToCharArray();
-        }
-
-        //Loop through all panel images to change
-        for(int i = 0; i < playerChangePanelImages.Count; i++)
-        {
-            //Set image sprite to the value at char array position - 65 (based on unicode decimal)
-            playerChangePanelImages[i].sprite = playerChangePanelSprites[playerName[i] - 65];
-        }
-
-        playerChangePanel.SetActive(true);
-        playRound = false;
-
-        //Disable aiming line
-        aimAssistScript.DisableHardAimAssist();
-    }
-
-    //Display player 1 name vs player 2 name and the logos
-    private void GameStartPanel()
-    {
-        //Enable panel
-        gameStartPanel.SetActive(true);
-        playRound = false;
-
-        //Get in players names into an array
-        char[] player1Name = GlobalVariables.player1.ToCharArray();
-        char[] player2Name = GlobalVariables.player2.ToCharArray();
-
-        //Loop through images to change sprites
-        for(int i = 0; i < gameStartPanelPlayer1Images.Count; i++)
-        {
-            //Set sprite to the value at array position - 65 (based on unicode decimal)
-            gameStartPanelPlayer1Images[i].sprite = playerChangePanelSprites[player1Name[i] - 65];
-        }
-
-        //Loop through images to change sprites
-        for (int i = 0; i < gameStartPanelPlayer2Images.Count; i++)
-        {
-            //Set sprite to the value at array position - 65 (based on unicode decimal)
-            gameStartPanelPlayer2Images[i].sprite = playerChangePanelSprites[player2Name[i] - 65];
-        }
-
-        //Text component to display current round
-        Text roundNumber = GameObject.FindGameObjectWithTag("RoundNumber").GetComponent<Text>();
-
-        if(roundNumber != null)
-        {
-            //Display current round 
-            roundNumber.text = (currentRound + 1).ToString();
-        }
-
     }
 
     //Return pause status
@@ -680,6 +542,11 @@ public class Controller : MonoBehaviour {
     public void SetPlayRound(bool play)
     {
         playRound = play;
+    }
+
+    public int GetCurrentRound()
+    {
+        return currentRound;
     }
 
     public void reloadScene()
@@ -738,7 +605,7 @@ public class Controller : MonoBehaviour {
 
         gameOver = false;
 
-        GameStartPanel();
+        splashScreensScript.GameStartPanel();
     }
 }
 

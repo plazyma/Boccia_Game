@@ -129,7 +129,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1137807789094620}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.547489, y: -12.362674, z: -24.157597}
+  m_LocalPosition: {x: 4.3887844, y: -12.402674, z: -23.596317}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children:
   - {fileID: 4447734632072438}
@@ -345,7 +345,7 @@ Animator:
   m_GameObject: {fileID: 1137807789094620}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: c30abb3398213af4dba04284c4375393, type: 3}
-  m_Controller: {fileID: 9100000, guid: 4e3809cdd1a49d14abc11a5c1914ace0, type: 2}
+  m_Controller: {fileID: 9100000, guid: 8e3a3e0d402dfde458e9390a4bd56d42, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -365,7 +365,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65f91113857ffd04e8b3712207b79c97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  miiAnimator: {fileID: 0}
+  miiAnimator: {fileID: 95001278979382916}
   throwScript: {fileID: 0}
   gameController: {fileID: 0}
-  faultBoxList: []
+  faultBoxList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

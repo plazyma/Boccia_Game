@@ -20,6 +20,7 @@ public class AnimationMiiClap : MonoBehaviour
 
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<Controller>();
 
+        faultBoxList.Clear();
         foreach (FaultBoxes fault in GameObject.FindGameObjectWithTag("FaultBoxes").GetComponentsInChildren<FaultBoxes>())
         {
             faultBoxList.Add(fault);

@@ -9,18 +9,31 @@ public class PauseMenu : MonoBehaviour {
     public GameObject pauseMenu;
     Controller gameController;
 
-    float timer = 0;
+    public GameObject menuConfirmation;
+    public GameObject desktopConfirmation;
+
 	// Use this for initialization
 	void Awake () {
 		if(!pauseMenu)
         {
             pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu");
         }
+        if(!menuConfirmation)
+        {
+            menuConfirmation = GameObject.FindGameObjectWithTag("MenuConfirmation");
+        }
+        if(!desktopConfirmation)
+        {
+            desktopConfirmation = GameObject.FindGameObjectWithTag("DesktopConfirmation");
+        }
         if(!gameController)
         {
             gameController = GetComponent<Controller>();
         }
-	}
+
+        menuConfirmation.SetActive(false);
+        desktopConfirmation.SetActive(false);
+    }
 
     // Update is called once per frame
     void Update()
@@ -66,6 +79,26 @@ public class PauseMenu : MonoBehaviour {
         Time.timeScale = 0.0f;
 
         gameController.SetPlayRound(false);
+    }
+
+    public void ShowMenuConfirmation()
+    {
+        menuConfirmation.SetActive(true);
+    }
+
+    public void HideMenuConfirmation()
+    {
+        menuConfirmation.SetActive(false);
+    }
+
+    public void ShowDesktopConfirmation()
+    {
+        desktopConfirmation.SetActive(true);
+    }
+
+    public void HideDesktopConfirmation()
+    {
+        desktopConfirmation.SetActive(false);
     }
 
     public void QuitToMenu()
