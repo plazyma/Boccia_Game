@@ -56,6 +56,8 @@ TagManager:
   - RoundOverPanel
   - GameOverPanel
   - TieBreakPanel
+  - TeamLeft
+  - TeamRight
   layers:
   - Default
   - TransparentFX
