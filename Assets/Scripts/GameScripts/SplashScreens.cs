@@ -7,6 +7,7 @@ public class SplashScreens : MonoBehaviour
 {
     public Controller gameController;
     public AimAssist aimAssistScript;
+    public PauseMenu pauseMenuScript;
 
     public GameObject playerChangePanel;
     public List<Image> playerChangePanelImages = new List<Image>();
@@ -35,12 +36,17 @@ public class SplashScreens : MonoBehaviour
     {
         if (!gameController)
         {
-            gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<Controller>();
+            gameController = GetComponent<Controller>();
         }
 
         if (!aimAssistScript)
         {
             aimAssistScript = GameObject.FindGameObjectWithTag("Player").GetComponent<AimAssist>();
+        }
+
+        if(!pauseMenuScript)
+        {
+            pauseMenuScript = GetComponent<PauseMenu>();
         }
 
         //Load in player change panel if it isnt already
@@ -162,6 +168,10 @@ public class SplashScreens : MonoBehaviour
             else if (gameOverPanel.activeSelf)
             {
                 gameOverPanel.SetActive(false);
+                if(gameController.gameOver)
+                {
+                    pauseMenuScript.GameOver();
+                }
             }
             else if(tieBreakPanel.activeSelf)
             {

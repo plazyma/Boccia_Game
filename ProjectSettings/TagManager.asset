@@ -62,6 +62,8 @@ TagManager:
   - Player2Logo
   - ScoreboardPlayer1Logo
   - ScoreboardPlayer2Logo
+  - GameOverMenu
+  - PauseMenuReturnButton
   layers:
   - Default
   - TransparentFX

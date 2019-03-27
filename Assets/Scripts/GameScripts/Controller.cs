@@ -357,7 +357,8 @@ public class Controller : MonoBehaviour {
                     {
                         if (gameOver && Time.time - throwScript.shotTime > 12)
                         {
-                            reloadScene();
+
+                           // reloadScene();
                         }
                     }
                 }

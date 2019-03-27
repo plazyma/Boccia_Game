@@ -28683,7 +28683,7 @@ GameObject:
   - component: {fileID: 804809546}
   m_Layer: 5
   m_Name: Return
-  m_TagString: Untagged
+  m_TagString: PauseMenuReturnButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59489,6 +59489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 0}
+  returnButton: {fileID: 0}
   menuConfirmation: {fileID: 0}
   desktopConfirmation: {fileID: 0}
 --- !u!114 &1630686053
@@ -59504,6 +59505,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameController: {fileID: 0}
   aimAssistScript: {fileID: 0}
+  pauseMenuScript: {fileID: 0}
   playerChangePanel: {fileID: 0}
   playerChangePanelImages: []
   chasLetterSprites: []
