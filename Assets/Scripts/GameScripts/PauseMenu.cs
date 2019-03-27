@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour {
 
     public GameObject pauseMenu;
     Controller gameController;
-
+    public Button returnButton; 
     public GameObject menuConfirmation;
     public GameObject desktopConfirmation;
 
@@ -30,6 +31,10 @@ public class PauseMenu : MonoBehaviour {
         {
             gameController = GetComponent<Controller>();
         }
+        if(!returnButton)
+        {
+            returnButton = GameObject.FindGameObjectWithTag("PauseMenuReturnButton").GetComponent<Button>();
+        }
 
         menuConfirmation.SetActive(false);
         desktopConfirmation.SetActive(false);
@@ -38,7 +43,7 @@ public class PauseMenu : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("escape"))
+        if (Input.GetKeyDown("escape") && !gameController.gameOver)
         {
             if(gameController.GetPlayRound())
             {
@@ -109,5 +114,14 @@ public class PauseMenu : MonoBehaviour {
     public void QuitToDesktop()
     {
         Application.Quit();
+    }
+
+    public void GameOver()
+    {
+        returnButton.GetComponentInChildren<Text>().text = "Play Again?";
+
+        ShowPauseMenu();
+
+        returnButton.onClick.AddListener(gameController.reloadScene);
     }
 }

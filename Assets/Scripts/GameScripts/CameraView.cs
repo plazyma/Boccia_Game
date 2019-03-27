@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CameraView : MonoBehaviour
 {
+    public Controller gameController;
+    public Scoreboard scoreboardScript;
     public Camera cameraAlt;
     public Camera cameraMain;
     public Camera cameraMove;
@@ -22,6 +24,9 @@ public class CameraView : MonoBehaviour
     Vector3 rightRot;
 
     Throw throwScript;
+
+    int currentCameraView = 0;
+    const int numCameraViews = 3;
     // Use this for initialization
     void Start()
     {
@@ -32,13 +37,13 @@ public class CameraView : MonoBehaviour
         throwScript = cameraMain.GetComponentInParent<Throw>();
 
         //Preset views
-        topPos = new Vector3(0.0f, 3.0f, 0.0f);
+        topPos = new Vector3(0.0f, 5.0f, 0.0f);
         topRot = new Vector3(90.0f, 0.0f, 0.0f);
 
-        leftPos = new Vector3(0.0f, 3.0f, 3.0f);
+        leftPos = new Vector3(0.0f, 4.0f, 3.0f);
         leftRot = new Vector3(45.0f, 180.0f, 0.0f);
 
-        rightPos = new Vector3(0.0f, 3.0f, -3.0f);
+        rightPos = new Vector3(0.0f, 4.0f, -3.0f);
         rightRot = new Vector3(45.0f, 0.0f, 0.0f);
 
         //Disable second camera
@@ -46,6 +51,15 @@ public class CameraView : MonoBehaviour
 
         //get hud2
         scoreboard2 = GameObject.FindWithTag("ScoreBoard2");
+
+        if (!gameController)
+        {
+            gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<Controller>();
+        }
+        if(!scoreboardScript)
+        {
+            scoreboardScript = GameObject.FindGameObjectWithTag("ScoreBoard").GetComponent<Scoreboard>();
+        }
     }
 
     // Update is called once per frame
@@ -57,66 +71,27 @@ public class CameraView : MonoBehaviour
             jack = GameObject.FindGameObjectWithTag("Jack");
         }
         //Only if jack has been thrown
-        if (throwScript.jackThrown && !throwScript.ballThrown)
+        if (throwScript.jackThrown && !throwScript.ballThrown && gameController.GetPlayRound())
         {
             //Go back to original view
-            if (Input.GetKeyDown("0"))
+            if (Input.GetAxis("Camera") > 0)
             {
-                //reset the camera
-                cameraReset();
+                if(currentCameraView < numCameraViews)
+                {
+                    currentCameraView += 1;
+                    ChangeCameraView();
+                    Input.ResetInputAxes();
+                }
             }
-
-            //Top down view
-            if (Input.GetKeyDown("1"))
+            if(Input.GetAxis("Camera") < 0)
             {
-                cameraAlt.transform.eulerAngles = origCameraRot;
-
-                //Switch cameras
-                cameraAlt.enabled = true;
-                cameraMain.enabled = false;
-
-                //Adjust position and rotation based on jack
-                cameraAlt.transform.position = jack.transform.position + topPos;
-                cameraAlt.transform.eulerAngles = topRot;
-
-                //enable second HUD
-                scoreboard2.SetActive(true);
-            }
-
-            //Side on from the right
-            if (Input.GetKeyDown("2"))
-            {
-                cameraAlt.transform.eulerAngles = origCameraRot;
-
-                //Switch cameras
-                cameraAlt.enabled = true;
-                cameraMain.enabled = false;
-
-                //Adjust position and rotation based on jack
-                cameraAlt.transform.position = jack.transform.position + rightPos;
-                cameraAlt.transform.eulerAngles = rightRot;
-
-                //enable second HUD
-                scoreboard2.SetActive(true);
-            }
-
-            //Side on from the left
-            if (Input.GetKeyDown("3"))
-            {
-                cameraAlt.transform.eulerAngles = origCameraRot;
-
-                //Switch cameras
-                cameraAlt.enabled = true;
-                cameraMain.enabled = false;
-
-                //Adjust position and rotation based on jack
-                cameraAlt.transform.position = jack.transform.position + leftPos;
-                cameraAlt.transform.eulerAngles = leftRot;
-
-                //enable second HUD
-                scoreboard2.SetActive(true);
-            }
-          
+                if(currentCameraView > 0)
+                {
+                    currentCameraView -= 1;
+                    ChangeCameraView();
+                    Input.ResetInputAxes();
+                }
+            }          
         }
         if (Input.GetKeyDown("c"))
         {
@@ -143,5 +118,61 @@ public class CameraView : MonoBehaviour
 
         //disable second HUD
         scoreboard2.SetActive(false);
+    }
+
+    private void ChangeCameraView()
+    {
+        if(currentCameraView == 0)
+        {
+            cameraReset();
+        }
+        else if(currentCameraView == 1)
+        {
+            cameraAlt.transform.eulerAngles = origCameraRot;
+
+            //Switch cameras
+            cameraAlt.enabled = true;
+            cameraMain.enabled = false;
+
+            //Adjust position and rotation based on jack
+            cameraAlt.transform.position = jack.transform.position + topPos;
+            cameraAlt.transform.eulerAngles = topRot;
+
+            scoreboardScript.UpdateCameraViewHUD("Above");
+            //enable second HUD
+            scoreboard2.SetActive(true);
+        }
+        else if(currentCameraView == 2)
+        {
+            cameraAlt.transform.eulerAngles = origCameraRot;
+
+            //Switch cameras
+            cameraAlt.enabled = true;
+            cameraMain.enabled = false;
+
+            //Adjust position and rotation based on jack
+            cameraAlt.transform.position = jack.transform.position + rightPos;
+            cameraAlt.transform.eulerAngles = rightRot;
+
+            scoreboardScript.UpdateCameraViewHUD("Right");
+            //enable second HUD
+            scoreboard2.SetActive(true);
+        }
+        else if(currentCameraView == 3)
+        {
+            cameraAlt.transform.eulerAngles = origCameraRot;
+
+            //Switch cameras
+            cameraAlt.enabled = true;
+            cameraMain.enabled = false;
+
+            //Adjust position and rotation based on jack
+            cameraAlt.transform.position = jack.transform.position + leftPos;
+            cameraAlt.transform.eulerAngles = leftRot;
+
+            scoreboardScript.UpdateCameraViewHUD("Left");
+            //enable second HUD
+            scoreboard2.SetActive(true);
+        }
     }
 }

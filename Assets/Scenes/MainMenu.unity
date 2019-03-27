@@ -4191,19 +4191,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   logoLoad:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 335818c3fd3170c49b6699a7cf85e4f2, type: 3}
+  - {fileID: 21300000, guid: 556aae78c6993d44b9996fac0a37b519, type: 3}
+  - {fileID: 21300000, guid: 6d5500353aba84143bda49cc318fbf56, type: 3}
+  - {fileID: 21300000, guid: 558f2ccefc42f7943bfca9f284fed6ad, type: 3}
+  - {fileID: 21300000, guid: fe5e8a72b8ce736419d62e873c3dd4ec, type: 3}
+  - {fileID: 21300000, guid: d69fff4d54b02d94fb746bacc59d85ad, type: 3}
+  - {fileID: 21300000, guid: dc42ee03343a73840a8a6e2ec182a731, type: 3}
+  - {fileID: 21300000, guid: 81b096c0c04cd8349b17393865182e56, type: 3}
+  - {fileID: 21300000, guid: 4096454276e500e4480ace4d94943f62, type: 3}
+  - {fileID: 21300000, guid: bdbc818271ae76544a376ccdbd9c78e2, type: 3}
+  - {fileID: 21300000, guid: 8e30f0a875d21f940b0ae620b8db9506, type: 3}
+  - {fileID: 21300000, guid: 7d14f454d30ecce40bccf6a33d25ee08, type: 3}
+  - {fileID: 21300000, guid: 46d43c220c7b5a64fa23d8c9f600cccb, type: 3}
   debugText1: 
   debugText2: 
   mv: 1
