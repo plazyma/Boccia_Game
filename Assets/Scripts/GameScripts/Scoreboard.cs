@@ -15,8 +15,7 @@ public class Scoreboard : MonoBehaviour {
     public Text player2Fault;
 
     //Display current player
-    public Text currentPlayer;
-    public Text currentPlayer2;
+    public Text cameraViewHUD;
 
     //Scoreboard for second camera
     public Text player1Count2;
@@ -66,7 +65,7 @@ public class Scoreboard : MonoBehaviour {
         player1Score2 = GameObject.Find("p1Score2").GetComponent<Text>();
         player2Score2 = GameObject.Find("p2Score2").GetComponent<Text>();
 
-        currentPlayer = GameObject.Find("currentPlayer").GetComponent<Text>();
+        cameraViewHUD = GameObject.Find("CameraViewHUD").GetComponent<Text>();
         //currentPlayer2 = GameObject.Find("currentPlayer2").GetComponent<Text>();
 
         //get the controller object
@@ -111,13 +110,13 @@ public class Scoreboard : MonoBehaviour {
         {
             player1Logo = GameObject.FindGameObjectWithTag("ScoreboardPlayer1Logo").GetComponent<Image>();
 
-            player1Logo.sprite = GlobalVariables.teamLogos[GlobalVariables.team1];
+            
         }
         if(!player2Logo)
         {
             player2Logo = GameObject.FindGameObjectWithTag("ScoreboardPlayer2Logo").GetComponent<Image>();
 
-            player2Logo.sprite = GlobalVariables.teamLogos[GlobalVariables.team2];
+            
         }
         UpdateScoreboard();
     }
@@ -128,11 +127,15 @@ public class Scoreboard : MonoBehaviour {
         p1BallsLeft = totalBalls - gameController.redBalls;
         p2BallsLeft = totalBalls - gameController.greenBalls;
 
+        //TODO::MOVE
+        player1Logo.sprite = GlobalVariables.teamLogos[GlobalVariables.team1];
+        player2Logo.sprite = GlobalVariables.teamLogos[GlobalVariables.team2];
+
         //// update the scores and balls thrown
         //player1Count.text = GlobalVariables.player1 + " Balls Left: " + p1BallsLeft;
         //player2Count.text = GlobalVariables.player2 + " Balls Left: " + p2BallsLeft;
         //player1Score.text = GlobalVariables.player1 + " Score: " + gameController.player1Score;
-       // player2Score.text = GlobalVariables.player2 + " Score: " + gameController.player2Score;
+        // player2Score.text = GlobalVariables.player2 + " Score: " + gameController.player2Score;
         player1Score.text = gameController.player1Score.ToString();
         player2Score.text = gameController.player2Score.ToString();
 
@@ -185,30 +188,6 @@ public class Scoreboard : MonoBehaviour {
                 }
             }
         }
-        ////Second scoreboard
-        //player1Count2.text = GlobalVariables.player1 + " Balls Left: " + p1BallsLeft;
-        //player2Count2.text = GlobalVariables.player2 + " Balls Left: " + p2BallsLeft;
-
-        //player1Score2.text = GlobalVariables.player1 + " Score: " + gameController.player1Score;
-        //player2Score2.text = GlobalVariables.player2 + " Score: " + gameController.player2Score;
-
-        //orangeBallCounter.sprite = orangeBallCounterList[gameController.redBalls];
-        //blueBallCounter.sprite = blueBallCounterList[gameController.greenBalls];
-        ////Move text indicating the current player
-        if (gameController.currentPlayer == 1)
-        {
-            //currentPlayer.rectTransform.anchoredPosition = new Vector3(-290, 0 , 0);
-            //currentPlayer2.rectTransform.anchoredPosition = new Vector3(-290, 0, 0);
-            currentPlayer.text = "Current Player: \n" + GlobalVariables.player1;
-            //currentPlayer2.text = "Current Player: \n" + GlobalVariables.player1;
-        }
-        else if (gameController.currentPlayer == 2)
-        {
-            //currentPlayer.rectTransform.anchoredPosition = new Vector3(290, 0, 0);
-            //currentPlayer2.rectTransform.anchoredPosition = new Vector3(290, 0, 0);
-            currentPlayer.text = "Current Player: \n" + GlobalVariables.player2;
-            //currentPlayer2.text = "Current Player: \n" + GlobalVariables.player2;
-        }
     }
 
     //Reset the scoreboard
@@ -225,5 +204,10 @@ public class Scoreboard : MonoBehaviour {
 			prevGreenBallsFaulty = 0;
 			prevRedballsFaulty = 0;
         }
+    }
+
+    public void UpdateCameraViewHUD(string txt)
+    {
+        cameraViewHUD.text = txt;
     }
 }

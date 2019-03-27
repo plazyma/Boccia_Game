@@ -50,9 +50,9 @@ public class SplashScreens : MonoBehaviour
         }
 
         //Load in images 
-        foreach (Image im in GameObject.FindGameObjectWithTag("Letters").GetComponentsInChildren<Image>())
+        foreach (Image im in playerChangePanel.GetComponentsInChildren<Image>())
         {
-            if (!im.CompareTag("Letters"))
+            if (!im.CompareTag("PlayerChangePanel"))
             {
                 playerChangePanelImages.Add(im);
             }

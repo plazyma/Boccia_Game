@@ -517,7 +517,9 @@ public class Controller : MonoBehaviour {
                 // print("PLAYER 1 WINS");
                 player1Score = player1Score + dist.CalculateScore();
 
+                camAlt.cameraReset();
                 splashScreensScript.RoundOverPanel(1);
+                
 
                 audioSource.clip = player1WinSound;
                 audioSource.Play();
@@ -527,6 +529,7 @@ public class Controller : MonoBehaviour {
                 //print("PLAYER 2 WINS");
                 player2Score = player2Score + dist.CalculateScore();
 
+                camAlt.cameraReset();
                 splashScreensScript.RoundOverPanel(2);
 
                 audioSource.clip = player2WinSound;
@@ -542,6 +545,7 @@ public class Controller : MonoBehaviour {
                 if (player1Score > player2Score)
                 {
                     //Make winner panel display for longer
+                    camAlt.cameraReset();
                     splashScreensScript.GameOverPanel(1);
                     gameOver = true;
 
@@ -550,6 +554,7 @@ public class Controller : MonoBehaviour {
                 }
                 else if(player1Score == player2Score)
                 {
+                    camAlt.cameraReset();
                     splashScreensScript.RoundOverPanel(1);
                 }
             }
@@ -560,6 +565,7 @@ public class Controller : MonoBehaviour {
                 if (player2Score > player1Score)
                 {
                     //Make winner panel display for longer
+                    camAlt.cameraReset();
                     splashScreensScript.GameOverPanel(2);
                     gameOver = true;
 
@@ -568,6 +574,7 @@ public class Controller : MonoBehaviour {
                 }
                 else if (player1Score == player2Score)
                 {
+                    camAlt.cameraReset();
                     splashScreensScript.RoundOverPanel(2);
                 }
             }
