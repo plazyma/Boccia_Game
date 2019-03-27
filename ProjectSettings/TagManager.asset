@@ -52,6 +52,13 @@ TagManager:
   - PauseMenu
   - TeamLeft
   - TeamRight
+  - Graphics
+  - Game
+  - Sound
+  - Back
+  - MasterSound
+  - SFXSound
+  - MusicSound
   layers:
   - Default
   - TransparentFX
@@ -61,7 +68,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Selector
   - 
   - 
   - 
