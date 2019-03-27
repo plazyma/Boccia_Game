@@ -58,6 +58,10 @@ TagManager:
   - TieBreakPanel
   - TeamLeft
   - TeamRight
+  - Player1Logo
+  - Player2Logo
+  - ScoreboardPlayer1Logo
+  - ScoreboardPlayer2Logo
   layers:
   - Default
   - TransparentFX

@@ -25,6 +25,9 @@ public class SplashScreens : MonoBehaviour
 
     public GameObject tieBreakPanel;
 
+    public Image gameStartPanelPlayer1Logo;
+    public Image gameStartPanelPlayer2Logo;
+
     float timer;
 
     // Use this for initialization
@@ -83,6 +86,16 @@ public class SplashScreens : MonoBehaviour
             {
                 gameStartPanelPlayer2Images.Add(im);
             }
+        }
+
+        if(!gameStartPanelPlayer1Logo)
+        {
+            gameStartPanelPlayer1Logo = GameObject.FindGameObjectWithTag("Player1Logo").GetComponent<Image>();
+        }
+
+        if(!gameStartPanelPlayer2Logo)
+        {
+            gameStartPanelPlayer2Logo = GameObject.FindGameObjectWithTag("Player2Logo").GetComponent<Image>();
         }
 
         if(!roundOverPanel)
@@ -186,6 +199,9 @@ public class SplashScreens : MonoBehaviour
             //Set sprite to the value at array position - 65 (based on unicode decimal)
             gameStartPanelPlayer2Images[i].sprite = chasLetterSprites[player2Name[i] - 65];
         }
+
+        gameStartPanelPlayer1Logo.sprite = GlobalVariables.teamLogos[GlobalVariables.team1];
+        gameStartPanelPlayer2Logo.sprite = GlobalVariables.teamLogos[GlobalVariables.team2];
 
         //Text component to display current round
         Text roundNumber = GameObject.FindGameObjectWithTag("RoundNumber").GetComponent<Text>();

@@ -42,6 +42,10 @@ public class Scoreboard : MonoBehaviour {
     public List<Image> blueBalls;
     public List<Image> blueBalls2;
 
+    //Object representing team logos
+    public Image player1Logo;
+    public Image player2Logo;
+
     //Sprites of balls for counter
     public Sprite orangeBallSprite;
     public Sprite blueBallSprite;
@@ -103,6 +107,18 @@ public class Scoreboard : MonoBehaviour {
             }
         }
 
+        if(!player1Logo)
+        {
+            player1Logo = GameObject.FindGameObjectWithTag("ScoreboardPlayer1Logo").GetComponent<Image>();
+
+            player1Logo.sprite = GlobalVariables.teamLogos[GlobalVariables.team1];
+        }
+        if(!player2Logo)
+        {
+            player2Logo = GameObject.FindGameObjectWithTag("ScoreboardPlayer2Logo").GetComponent<Image>();
+
+            player2Logo.sprite = GlobalVariables.teamLogos[GlobalVariables.team2];
+        }
         UpdateScoreboard();
     }
 	
