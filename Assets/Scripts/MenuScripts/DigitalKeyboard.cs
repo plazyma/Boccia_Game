@@ -30,7 +30,7 @@ public class DigitalKeyboard : MonoBehaviour {
     public GameObject up, down, left, right;
 
     //UI buttons
-    public GameObject back, cont, del;
+    public GameObject back, cont, del, tLeft, tRight;
 
     //default sprite for name entre
     public Sprite defaultSprite;
@@ -176,7 +176,7 @@ public class DigitalKeyboard : MonoBehaviour {
     void moveButtons()
     {
         // find the neighbouring letter and move the selector to it
-        if (Input.GetKeyDown("right") || Input.GetAxis("DPadX") == 1 && !dPadPressed)
+        if (selectedLetter.GetComponent<DigitalKeyboard>().right.activeInHierarchy == true && (Input.GetKeyDown("right") || Input.GetAxis("DPadX") == 1) && !dPadPressed)
         {
             selectedLetter = selectedLetter.GetComponent<DigitalKeyboard>().right;
 
@@ -185,7 +185,7 @@ public class DigitalKeyboard : MonoBehaviour {
             dPadPressed = true;
             selectorObject.GetComponent<Renderer>().enabled = true;
         }
-        if (Input.GetKeyDown("left") || Input.GetAxis("DPadX") == -1 && !dPadPressed)
+        if (selectedLetter.GetComponent<DigitalKeyboard>().left.activeInHierarchy == true && (Input.GetKeyDown("left") || Input.GetAxis("DPadX") == -1) && !dPadPressed )
         {
             selectedLetter = selectedLetter.GetComponent<DigitalKeyboard>().left;
 
@@ -195,7 +195,7 @@ public class DigitalKeyboard : MonoBehaviour {
             selectorObject.GetComponent<Renderer>().enabled = true;
         }
 
-        if (Input.GetKeyDown("up") || Input.GetAxis("DPadY") == 1 && !dPadPressed)
+        if (selectedLetter.GetComponent<DigitalKeyboard>().up.activeInHierarchy == true && (Input.GetKeyDown("up") || Input.GetAxis("DPadY") == 1) && !dPadPressed)
         {
             selectedLetter = selectedLetter.GetComponent<DigitalKeyboard>().up;
 
@@ -204,7 +204,7 @@ public class DigitalKeyboard : MonoBehaviour {
             dPadPressed = true;
             selectorObject.GetComponent<Renderer>().enabled = true;
         }
-        if (Input.GetKeyDown("down") || Input.GetAxis("DPadY") == -1 && !dPadPressed)
+        if (selectedLetter.GetComponent<DigitalKeyboard>().down.activeInHierarchy == true && (Input.GetKeyDown("down") || Input.GetAxis("DPadY") == -1) && !dPadPressed)
         {
             selectedLetter = selectedLetter.GetComponent<DigitalKeyboard>().down;
 
@@ -213,6 +213,7 @@ public class DigitalKeyboard : MonoBehaviour {
             dPadPressed = true;
             selectorObject.GetComponent<Renderer>().enabled = true;
         }
+        
         // reset one button press when no direction is held ( not the best way might look into cleaner way)
         if (Input.GetAxis("DPadY") == 0 && Input.GetAxis("DPadX") == 0)
         {
@@ -257,6 +258,9 @@ public class DigitalKeyboard : MonoBehaviour {
 
                     //update continue button
                     changeLogo();
+
+                    //reset and confirm the team
+                    confirmAndResetTeamLogo();
                 }
                 else
                 {
@@ -274,6 +278,36 @@ public class DigitalKeyboard : MonoBehaviour {
                 }
                 
             }
+            else if (selectedLetter == tLeft)
+            {    
+            //if the current team value gets to the start of the array then
+                if (currentTeam > 0)
+                {
+                    currentTeam--;
+                }
+                else
+                {
+                    currentTeam = GlobalVariables.TOTALTEAMS - 1;
+                }
+                
+
+                //update logo back to first team
+                teamLogo.GetComponent<Image>().sprite = GlobalVariables.teamLogos[selectorObject.GetComponent<DigitalKeyboard>().currentTeam];
+            }
+            else if (selectedLetter == tRight)
+            {
+                if (currentTeam < (GlobalVariables.TOTALTEAMS - 1))
+                {
+                    currentTeam++;
+                }
+                else
+                {
+                    currentTeam = 0;
+                }
+                //update logo back to first team
+                teamLogo.GetComponent<Image>().sprite = GlobalVariables.teamLogos[selectorObject.GetComponent<DigitalKeyboard>().currentTeam];
+            }
+            
             //if the selected object is the back button
             else if (selectedLetter == back)
             {

@@ -50,11 +50,8 @@ TagManager:
   - AimLine
   - AudioPlayer
   - PauseMenu
-  - MenuConfirmation
-  - DesktopConfirmation
-  - Letters
-  - RoundOverPanel
-  - GameOverPanel
+  - TeamLeft
+  - TeamRight
   layers:
   - Default
   - TransparentFX

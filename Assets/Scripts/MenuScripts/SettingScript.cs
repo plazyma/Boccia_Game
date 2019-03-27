@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class SettingScript : MonoBehaviour {
 
@@ -117,29 +118,34 @@ public class SettingScript : MonoBehaviour {
         graphicSettings.SetActive(false);
         gameSettings.SetActive(false);
         settings.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void gotoSoundSettings()
     {
         soundSettings.SetActive(true);
         settings.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void gotoGrpahicSettings()
     {
         graphicSettings.SetActive(true);
         settings.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void gotoMainMenu()
     {
         mainMenu.SetActive(true);
         settings.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(null);
     }
     public void gotoGameSettings()
     {
         gameSettings.SetActive(true);
         settings.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(null);
     }
         
  }
