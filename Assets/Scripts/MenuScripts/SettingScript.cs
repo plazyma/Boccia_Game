@@ -128,7 +128,7 @@ public class SettingScript : MonoBehaviour {
         EventSystem.current.SetSelectedGameObject(null);
     }
 
-    public void gotoGrpahicSettings()
+    public void gotoGraphicSettings()
     {
         graphicSettings.SetActive(true);
         settings.SetActive(false);

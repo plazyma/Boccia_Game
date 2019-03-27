@@ -58,6 +58,13 @@ TagManager:
   - TieBreakPanel
   - TeamLeft
   - TeamRight
+  - Graphics
+  - Game
+  - Sound
+  - Back
+  - MasterSound
+  - SFXSound
+  - MusicSound
   - Player1Logo
   - Player2Logo
   - ScoreboardPlayer1Logo
@@ -68,7 +75,6 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
   - Water
   - UI
   - 
