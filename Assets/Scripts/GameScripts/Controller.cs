@@ -74,7 +74,7 @@ public class Controller : MonoBehaviour {
     public float gameOverTime = 0.0f;
 
     //Rounds
-    int currentRound = 0;
+    int currentRound = 3;
     const int maximumRounds = 3;
     
 

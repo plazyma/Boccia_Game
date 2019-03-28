@@ -71,10 +71,12 @@ TagManager:
   - ScoreboardPlayer2Logo
   - GameOverMenu
   - PauseMenuReturnButton
+  - HowToPlay
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
+  - 
   - Water
   - UI
   - 

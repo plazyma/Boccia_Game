@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class PauseMenu : MonoBehaviour {
 
     public GameObject pauseMenu;
+    public GameObject howToPlayMenu;
     Controller gameController;
     public Button returnButton; 
     public GameObject menuConfirmation;
@@ -35,9 +36,14 @@ public class PauseMenu : MonoBehaviour {
         {
             returnButton = GameObject.FindGameObjectWithTag("PauseMenuReturnButton").GetComponent<Button>();
         }
+        if(!howToPlayMenu)
+        {
+            howToPlayMenu = GameObject.FindGameObjectWithTag("HowToPlay");
+        }
 
         menuConfirmation.SetActive(false);
         desktopConfirmation.SetActive(false);
+        howToPlayMenu.SetActive(false);
     }
 
     // Update is called once per frame
@@ -45,18 +51,23 @@ public class PauseMenu : MonoBehaviour {
     {
         if (Input.GetKeyDown("escape") && !gameController.gameOver)
         {
-            if(gameController.GetPlayRound())
+            if (gameController.GetPlayRound())
             {
-                if(!pauseMenu.activeSelf)
+                if (!pauseMenu.activeSelf)
                 {
                     ShowPauseMenu();
                 }
             }
             else
             {
-                if(pauseMenu.activeSelf)
+                if (pauseMenu.activeSelf)
                 {
                     HidePauseMenu();
+                }
+                else if (howToPlayMenu.activeSelf)
+                {
+                    ShowPauseMenu();
+                    HideHowToPlayMenu();
                 }
             }
         }
@@ -84,6 +95,18 @@ public class PauseMenu : MonoBehaviour {
         Time.timeScale = 0.0f;
 
         gameController.SetPlayRound(false);
+    }
+
+    public void ShowHowToPlayMenu()
+    {
+        howToPlayMenu.SetActive(true);
+        pauseMenu.SetActive(false);
+    }
+
+    public void HideHowToPlayMenu()
+
+    {
+        howToPlayMenu.SetActive(false);
     }
 
     public void ShowMenuConfirmation()
