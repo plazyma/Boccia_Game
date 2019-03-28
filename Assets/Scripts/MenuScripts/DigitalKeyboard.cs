@@ -169,7 +169,8 @@ public class DigitalKeyboard : MonoBehaviour {
     {
         //change from continue to play sprites for button
         button.GetComponent<Image>().sprite = playSprite;
-        playPressed.pressedSprite = playPressedSprite;
+        playPressed.pressedSprite = playSprite;
+        playPressed.highlightedSprite = playPressedSprite;
         button.spriteState = playPressed;
     }
 
