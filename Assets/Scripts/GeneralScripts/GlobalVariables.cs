@@ -13,6 +13,9 @@ public class GlobalVariables : MonoBehaviour {
 
     public static float masterVolume = 1.0f, audioVolume = 1.0f, musicVolume = 0.3f;
 
+    public Texture tex;
+
+
     //team array
     public const int  TOTALTEAMS = 13;
     public static Sprite [] teamLogos = new Sprite[TOTALTEAMS];
@@ -48,6 +51,7 @@ public class GlobalVariables : MonoBehaviour {
             teamLogos[i] = logoLoad[i];
         }
 
+        Cursor.SetCursor(null, Vector2.zero,CursorMode.ForceSoftware);
     }
 	
 	// Update is called once per frame
