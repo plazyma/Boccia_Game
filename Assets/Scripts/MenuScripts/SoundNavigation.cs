@@ -16,7 +16,9 @@ public class SoundNavigation : MonoBehaviour {
     public Sprite selectedSprite;
     public Sprite defaultSprite;
     public int selection = 0;
-   
+
+    public AudioSource audioSource;
+
 
     //single movement
     bool dPadPressed = false;
@@ -53,7 +55,7 @@ public class SoundNavigation : MonoBehaviour {
 
     void moveButton()
     {
-        if (Input.GetKeyDown("left"))
+        if (Input.GetKeyDown("left") || Input.GetAxis("DPadX") == -1 && !dPadPressed)
         {
             if (selection == 1)
             {
@@ -69,7 +71,7 @@ public class SoundNavigation : MonoBehaviour {
             }
         }
 
-        if (Input.GetKeyDown("right"))
+        if (Input.GetKeyDown("right") || Input.GetAxis("DPadX") == 1 && !dPadPressed)
         {
             if (selection == 1)
             {
@@ -158,7 +160,10 @@ public class SoundNavigation : MonoBehaviour {
                 //go back to settings
                 back.GetComponent<SettingScript>().gotoSettings();
             }
-            
+
+            //confirm sound
+            audioSource.GetComponent<PlaySound>().playSound();
+
         }
         if (Input.GetAxis("MouseX") != 0 || Input.GetAxis("MouseY") != 0)
         {

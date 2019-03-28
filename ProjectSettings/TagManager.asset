@@ -72,6 +72,8 @@ TagManager:
   - GameOverMenu
   - PauseMenuReturnButton
   - HowToPlay
+  - Walls
+  - Aids
   layers:
   - Default
   - TransparentFX
