@@ -374,6 +374,7 @@ MonoBehaviour:
   graphics: {fileID: 0}
   back: {fileID: 0}
   selectedObject: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!1 &96655357
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,6 +516,7 @@ MonoBehaviour:
   back: {fileID: 0}
   selectedObject: {fileID: 0}
   graphicsValue: 3
+  audioSource: {fileID: 0}
 --- !u!1 &102286760
 GameObject:
   m_ObjectHideFlags: 0
@@ -838,6 +840,7 @@ MonoBehaviour:
   back: {fileID: 0}
   selectedObject: {fileID: 0}
   graphicsValue: 0
+  audioSource: {fileID: 0}
 --- !u!1 &202969450
 GameObject:
   m_ObjectHideFlags: 0
@@ -2095,6 +2098,7 @@ MonoBehaviour:
   settings: {fileID: 0}
   back: {fileID: 0}
   selectedObject: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!1 &586865406
 GameObject:
   m_ObjectHideFlags: 0
@@ -2176,6 +2180,7 @@ MonoBehaviour:
   back: {fileID: 198360315}
   selectedObject: {fileID: 198360315}
   graphicsValue: 0
+  audioSource: {fileID: 0}
 --- !u!222 &586865410
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2298,6 +2303,7 @@ MonoBehaviour:
   settings: {fileID: 2129481930}
   exit: {fileID: 1038181469}
   selectedObject: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!114 &625125951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2576,6 +2582,7 @@ MonoBehaviour:
   settings: {fileID: 0}
   back: {fileID: 0}
   selectedObject: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!1 &709373219
 GameObject:
   m_ObjectHideFlags: 0
@@ -2946,6 +2953,7 @@ MonoBehaviour:
   back: {fileID: 0}
   selectedObject: {fileID: 0}
   graphicsValue: 5
+  audioSource: {fileID: 0}
 --- !u!1 &816798164
 GameObject:
   m_ObjectHideFlags: 0
@@ -3134,6 +3142,7 @@ MonoBehaviour:
   settings: {fileID: 0}
   back: {fileID: 1905471907}
   selectedObject: {fileID: 1905471907}
+  audioSource: {fileID: 0}
 --- !u!222 &831116532
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3281,6 +3290,7 @@ MonoBehaviour:
   back: {fileID: 0}
   selectedObject: {fileID: 0}
   graphicsValue: 0
+  audioSource: {fileID: 0}
 --- !u!1 &855488736
 GameObject:
   m_ObjectHideFlags: 0
@@ -3440,6 +3450,7 @@ MonoBehaviour:
   selectedSprite: {fileID: 21300000, guid: 6cabfa2356462044f9cfc335ba9b60f4, type: 3}
   defaultSprite: {fileID: 21300000, guid: 7a2405c435143804dbc0a340e93afa8b, type: 3}
   selection: 0
+  audioSource: {fileID: 0}
 --- !u!1 &875036855
 GameObject:
   m_ObjectHideFlags: 0
@@ -3897,6 +3908,7 @@ MonoBehaviour:
   settings: {fileID: 0}
   exit: {fileID: 0}
   selectedObject: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!1 &1080015921
 GameObject:
   m_ObjectHideFlags: 0
@@ -4136,6 +4148,7 @@ MonoBehaviour:
   selectedSprite: {fileID: 0}
   defaultSprite: {fileID: 0}
   selection: 0
+  audioSource: {fileID: 0}
 --- !u!1 &1093090978
 GameObject:
   m_ObjectHideFlags: 0
@@ -4638,6 +4651,7 @@ MonoBehaviour:
   graphics: {fileID: 0}
   back: {fileID: 0}
   selectedObject: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!1 &1176119801
 GameObject:
   m_ObjectHideFlags: 0
@@ -4855,7 +4869,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 35b7090ef7a4d02469aeda7b5c73bbd4, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -5189,6 +5203,7 @@ MonoBehaviour:
   settings: {fileID: 0}
   back: {fileID: 0}
   selectedObject: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!1 &1313496051
 GameObject:
   m_ObjectHideFlags: 0
@@ -5403,6 +5418,7 @@ MonoBehaviour:
   selectedSprite: {fileID: 0}
   defaultSprite: {fileID: 0}
   selection: 0
+  audioSource: {fileID: 0}
 --- !u!1 &1400132003
 GameObject:
   m_ObjectHideFlags: 0
@@ -5608,6 +5624,7 @@ MonoBehaviour:
   settings: {fileID: 0}
   exit: {fileID: 0}
   selectedObject: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!1 &1423632043
 GameObject:
   m_ObjectHideFlags: 0
@@ -5818,6 +5835,7 @@ MonoBehaviour:
   graphics: {fileID: 1473531390}
   back: {fileID: 1169098497}
   selectedObject: {fileID: 1998712615}
+  audioSource: {fileID: 0}
 --- !u!1 &1473531390
 GameObject:
   m_ObjectHideFlags: 0
@@ -5991,6 +6009,7 @@ MonoBehaviour:
   graphics: {fileID: 0}
   back: {fileID: 0}
   selectedObject: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!1 &1500127053
 GameObject:
   m_ObjectHideFlags: 0
@@ -6132,6 +6151,7 @@ MonoBehaviour:
   back: {fileID: 0}
   selectedObject: {fileID: 0}
   graphicsValue: 4
+  audioSource: {fileID: 0}
 --- !u!1 &1502778165
 GameObject:
   m_ObjectHideFlags: 0
@@ -6321,6 +6341,7 @@ MonoBehaviour:
   selectedSprite: {fileID: 0}
   defaultSprite: {fileID: 0}
   selection: 0
+  audioSource: {fileID: 0}
 --- !u!1 &1581522129
 GameObject:
   m_ObjectHideFlags: 0
@@ -7196,6 +7217,7 @@ MonoBehaviour:
   settings: {fileID: 0}
   back: {fileID: 0}
   selectedObject: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!1 &1873412286
 GameObject:
   m_ObjectHideFlags: 0
@@ -7289,6 +7311,7 @@ MonoBehaviour:
   settings: {fileID: 0}
   back: {fileID: 0}
   selectedObject: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!114 &1905471910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7624,6 +7647,7 @@ MonoBehaviour:
   selectedSprite: {fileID: 0}
   defaultSprite: {fileID: 0}
   selection: 0
+  audioSource: {fileID: 0}
 --- !u!1 &1952193853
 GameObject:
   m_ObjectHideFlags: 0
@@ -7795,6 +7819,7 @@ MonoBehaviour:
   back: {fileID: 0}
   selectedObject: {fileID: 0}
   graphicsValue: 1
+  audioSource: {fileID: 0}
 --- !u!1 &1994851630
 GameObject:
   m_ObjectHideFlags: 0
@@ -8042,6 +8067,7 @@ MonoBehaviour:
   graphics: {fileID: 0}
   back: {fileID: 0}
   selectedObject: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!1 &2025509882
 GameObject:
   m_ObjectHideFlags: 0
@@ -8209,6 +8235,7 @@ MonoBehaviour:
   settings: {fileID: 0}
   exit: {fileID: 0}
   selectedObject: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!1 &2031989333
 GameObject:
   m_ObjectHideFlags: 0
@@ -8520,6 +8547,7 @@ MonoBehaviour:
   back: {fileID: 0}
   selectedObject: {fileID: 0}
   graphicsValue: 2
+  audioSource: {fileID: 0}
 --- !u!1 &2109617807
 GameObject:
   m_ObjectHideFlags: 0
@@ -8974,3 +9002,4 @@ MonoBehaviour:
   settings: {fileID: 0}
   exit: {fileID: 0}
   selectedObject: {fileID: 0}
+  audioSource: {fileID: 0}

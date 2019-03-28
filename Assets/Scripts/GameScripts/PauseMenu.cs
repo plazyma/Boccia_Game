@@ -91,7 +91,6 @@ public class PauseMenu : MonoBehaviour {
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-
         Time.timeScale = 0.0f;
 
         gameController.SetPlayRound(false);
