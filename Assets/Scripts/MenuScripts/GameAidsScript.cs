@@ -27,9 +27,9 @@ public class GameAidsScript : MonoBehaviour {
 		
 	}
 
-    public void playerWalls()
+    public void playerWalls(string s)
     {
-        if (name == "P1Walls")
+        if (s == "P1Walls")
         {
             if (GlobalVariables.walls1 == true)
             {
@@ -45,7 +45,7 @@ public class GameAidsScript : MonoBehaviour {
             }
             
         }
-        else if (name == "P2Walls")
+        else if (s == "P2Walls")
         {
             if (GlobalVariables.walls2 == true)
             {
@@ -64,9 +64,9 @@ public class GameAidsScript : MonoBehaviour {
         EventSystem.current.SetSelectedGameObject(null);
     }
 
-    public void playerAids()
+    public void playerAids(string s)
     {
-        if (name == "P1Aim")
+        if (s == "P1Aim")
         {
             if (GlobalVariables.aim1 == true)
             {
@@ -82,7 +82,7 @@ public class GameAidsScript : MonoBehaviour {
             }
 
         }
-        else if (name == "P2Aim")
+        else if (s == "P2Aim")
         {
             if (GlobalVariables.aim2 == true)
             {

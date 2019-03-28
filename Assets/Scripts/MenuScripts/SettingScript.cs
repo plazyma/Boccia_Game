@@ -19,7 +19,7 @@ public class SettingScript : MonoBehaviour {
     public Slider slider;
     public float volume = 100.0f;
     public Text volumePercent;
- 
+
 
     // Use this for initialization
     void Start () {
@@ -66,29 +66,7 @@ public class SettingScript : MonoBehaviour {
         }
         
     }
-    void OnGUI()
-    {
-        if (graphicSettings.activeSelf == true)
-        {
-            string[] names = QualitySettings.names;
-            {
-                //GUILayout.BeginArea(new Rect(Screen.width/2 - (Screen.width / 3.5f), Screen.height / 2 + Screen.height / 12, 350, 50));
-                GUILayout.BeginArea(new Rect(Screen.width / 2 - 50 , Screen.height / 2 + 10, 100, 350));
-                //GUILayout.BeginHorizontal();
-                GUILayout.BeginVertical();
-                for (int i = 0; i < names.Length; i++)
-                {
-                    if (GUILayout.Button(names[i]))
-                    {
-                        QualitySettings.SetQualityLevel(i, true);
-                    }
-                }
-                GUILayout.EndVertical();
-                //GUILayout.EndHorizontal();
-                GUILayout.EndArea();
-            }
-        }
-    }
+   
     public void AdjustVolume()
     {
         volume = slider.value*100;

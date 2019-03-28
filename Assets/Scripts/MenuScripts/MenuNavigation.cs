@@ -5,12 +5,13 @@ using UnityEngine.EventSystems;
 
 public class MenuNavigation : MonoBehaviour {
 
-    //neighbouring letters
+    //neighbouring buttons
     public GameObject up, down;
     public GameObject quick, start, settings, exit;
 
     public GameObject selectedObject;
 
+    public AudioSource audioSource;
 
     //single movement
     bool dPadPressed = false;
@@ -84,6 +85,8 @@ public class MenuNavigation : MonoBehaviour {
             {
                 //goto player selection
                 exit.GetComponent<QuitScript>().doExitGame();
+                //confirm sound
+                audioSource.GetComponent<PlaySound>().playSound();
             }
         }
         if (Input.GetAxis("MouseX") != 0 || Input.GetAxis("MouseY") != 0)

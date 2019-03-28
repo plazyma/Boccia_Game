@@ -11,7 +11,7 @@ public class SettingsNavigation : MonoBehaviour {
 
     public GameObject selectedObject;
 
-
+    public AudioSource audioSource;
     //single movement
     bool dPadPressed = false;
 
@@ -93,6 +93,8 @@ public class SettingsNavigation : MonoBehaviour {
                 //goto player selection
                 back.GetComponent<SettingScript>().gotoMainMenu();
             }
+            //confirm sound
+            audioSource.GetComponent<PlaySound>().playSound();
         }
 
 
