@@ -116,6 +116,8 @@ public class CameraView : MonoBehaviour
         cameraAlt.enabled = false;
         cameraMain.enabled = true;
 
+        currentCameraView = 0;
+
         //disable second HUD
         scoreboard2.SetActive(false);
     }

@@ -7,7 +7,7 @@ public class PlayerControls : MonoBehaviour {
     //public fixed float positions[5];
     public float rotationSpeed = 20.0f;
     public float keyboardRotModifier = 2.0f;
-    public float powerRotModifier = 1.0f;
+    public float powerRotModifier = 1.1f;
 
     public GameObject arenaBoundary;
     Controller gameController;
@@ -66,7 +66,7 @@ public class PlayerControls : MonoBehaviour {
                     }
                     else
                     {
-                        transform.Rotate(0.0f, (-rotationSpeed * powerRotModifier) * Time.deltaTime * Time.deltaTime, 0.0f);
+                        transform.Rotate(0.0f, (-rotationSpeed * powerRotModifier) * Time.deltaTime, 0.0f);
                     }
                     //DEBUG
                     // print(transform.eulerAngles.y);

@@ -10,6 +10,7 @@ public class PauseMenu : MonoBehaviour {
     public GameObject pauseMenu;
     public GameObject howToPlayMenu;
     Controller gameController;
+    CameraView cameraViewScript;
     public Button returnButton; 
     public GameObject menuConfirmation;
     public GameObject desktopConfirmation;
@@ -31,6 +32,10 @@ public class PauseMenu : MonoBehaviour {
         if(!gameController)
         {
             gameController = GetComponent<Controller>();
+        }
+        if(!cameraViewScript)
+        {
+            cameraViewScript = GameObject.FindGameObjectWithTag("Player").GetComponent<CameraView>();
         }
         if(!returnButton)
         {
@@ -56,6 +61,7 @@ public class PauseMenu : MonoBehaviour {
                 if (!pauseMenu.activeSelf)
                 {
                     ShowPauseMenu();
+                    cameraViewScript.cameraReset();
                 }
             }
             else
