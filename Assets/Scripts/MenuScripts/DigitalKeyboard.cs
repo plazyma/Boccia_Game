@@ -89,7 +89,7 @@ public class DigitalKeyboard : MonoBehaviour {
                     if (letter.name == "Q")
                     {
                         //transform.position = letter.transform.position;
-                        transform.position = new Vector3(letter.transform.position.x, letter.transform.position.y, letter.transform.position.z - 1);
+                        transform.position = new Vector3(letter.transform.position.x, letter.transform.position.y, letter.transform.position.z - 2);
                         defaultLetter = letter;
                         selectedLetter = letter;
                     }
@@ -159,9 +159,12 @@ public class DigitalKeyboard : MonoBehaviour {
             GlobalVariables.team2 = selectorObject.GetComponent<DigitalKeyboard>().currentTeam;
         }
 
-        //reset logo back to first team
-        selectorObject.GetComponent<DigitalKeyboard>().teamLogo.GetComponent<Image>().sprite = GlobalVariables.teamLogos[0];
-        selectorObject.GetComponent<DigitalKeyboard>().currentTeam = 0;
+        if (playerNumber == 1)
+        {
+            //reset logo back to first team
+            selectorObject.GetComponent<DigitalKeyboard>().teamLogo.GetComponent<Image>().sprite = GlobalVariables.teamLogos[0];
+            selectorObject.GetComponent<DigitalKeyboard>().currentTeam = 0;
+        }
     }
 
 
@@ -181,7 +184,7 @@ public class DigitalKeyboard : MonoBehaviour {
         {
             selectedLetter = selectedLetter.GetComponent<DigitalKeyboard>().right;
 
-            transform.position = new Vector3(selectedLetter.transform.position.x, selectedLetter.transform.position.y, selectedLetter.transform.position.z - 1);
+            transform.position = new Vector3(selectedLetter.transform.position.x, selectedLetter.transform.position.y, selectedLetter.transform.position.z - 2);
 
             dPadPressed = true;
             selectorObject.GetComponent<Renderer>().enabled = true;
@@ -190,7 +193,7 @@ public class DigitalKeyboard : MonoBehaviour {
         {
             selectedLetter = selectedLetter.GetComponent<DigitalKeyboard>().left;
 
-            transform.position = new Vector3(selectedLetter.transform.position.x, selectedLetter.transform.position.y, selectedLetter.transform.position.z - 1);
+            transform.position = new Vector3(selectedLetter.transform.position.x, selectedLetter.transform.position.y, selectedLetter.transform.position.z - 2 );
 
             dPadPressed = true;
             selectorObject.GetComponent<Renderer>().enabled = true;
@@ -200,7 +203,7 @@ public class DigitalKeyboard : MonoBehaviour {
         {
             selectedLetter = selectedLetter.GetComponent<DigitalKeyboard>().up;
 
-            transform.position = new Vector3(selectedLetter.transform.position.x, selectedLetter.transform.position.y, selectedLetter.transform.position.z - 1);
+            transform.position = new Vector3(selectedLetter.transform.position.x, selectedLetter.transform.position.y, selectedLetter.transform.position.z - 2);
 
             dPadPressed = true;
             selectorObject.GetComponent<Renderer>().enabled = true;
@@ -209,7 +212,7 @@ public class DigitalKeyboard : MonoBehaviour {
         {
             selectedLetter = selectedLetter.GetComponent<DigitalKeyboard>().down;
 
-            transform.position = new Vector3(selectedLetter.transform.position.x, selectedLetter.transform.position.y, selectedLetter.transform.position.z - 1);
+            transform.position = new Vector3(selectedLetter.transform.position.x, selectedLetter.transform.position.y, selectedLetter.transform.position.z - 2);
 
             dPadPressed = true;
             selectorObject.GetComponent<Renderer>().enabled = true;
@@ -249,7 +252,7 @@ public class DigitalKeyboard : MonoBehaviour {
                     updateName();
 
                     //move selector back to original position
-                    transform.position = new Vector3(defaultLetter.transform.position.x, defaultLetter.transform.position.y, defaultLetter.transform.position.z - 1);
+                    transform.position = new Vector3(defaultLetter.transform.position.x, defaultLetter.transform.position.y, defaultLetter.transform.position.z - 2);
 
                     //update selected letter
                     selectedLetter = defaultLetter;
@@ -373,6 +376,7 @@ public class DigitalKeyboard : MonoBehaviour {
         }
         else if (name == "Continue")
         {
+          
             //update player
             confirmAndResetTeamLogo();
 
@@ -417,7 +421,8 @@ public class DigitalKeyboard : MonoBehaviour {
                     GlobalVariables.player2 = p2Name;
 
                     //load next scene
-                    SceneManager.LoadScene("Game", LoadSceneMode.Single);
+                    //SceneManager.LoadScene("Game", LoadSceneMode.Single);
+                    GetComponent<StartScript>().QuickPlay();
                 }
 
             }

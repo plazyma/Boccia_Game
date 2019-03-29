@@ -9398,6 +9398,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 20
   keyboardRotModifier: 1.5
+  powerRotModifier: 1
   arenaBoundary: {fileID: 0}
 --- !u!136 &256544276
 CapsuleCollider:
@@ -13906,7 +13907,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 38, y: 36.2}
+  m_AnchoredPosition: {x: 38, y: 46}
   m_SizeDelta: {x: 50, y: 120}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &376649998
@@ -14778,7 +14779,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 144, y: -76.3}
+  m_AnchoredPosition: {x: 0, y: -79}
   m_SizeDelta: {x: 750, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &410778822
@@ -14807,13 +14808,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 3
     m_MaxSize: 72
-    m_Alignment: 0
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: PRESS RETURN TO CONTINUE
+  m_Text: PRESS ANY KEY / BUTTON TO CONTINUE
 --- !u!222 &410778823
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -29634,13 +29635,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 3
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: PRESS RETURN TO CONTINUE
+  m_Text: PRESS ANY KEY / BUTTON TO CONTINUE
 --- !u!222 &821272654
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -32683,6 +32684,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f709cfe11f6bbe4fbedcc1ede38aa97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tex: {fileID: 0}
   logoLoad:
   - {fileID: 21300000, guid: 335818c3fd3170c49b6699a7cf85e4f2, type: 3}
   - {fileID: 21300000, guid: 556aae78c6993d44b9996fac0a37b519, type: 3}
@@ -62789,13 +62791,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 3
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: PRESS RETURN TO CONTINUE
+  m_Text: PRESS ANY KEY / BUTTON TO CONTINUE
 --- !u!222 &1686615774
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -64561,13 +64563,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 3
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: PRESS RETURN TO CONTINUE
+  m_Text: PRESS ANY KEY / BUTTON TO CONTINUE
 --- !u!222 &1733310730
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -65841,7 +65843,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -56.4, y: 107.5}
+  m_AnchoredPosition: {x: -56.4, y: 85.6}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1778705794

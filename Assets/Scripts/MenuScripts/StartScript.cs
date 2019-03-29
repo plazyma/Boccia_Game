@@ -13,9 +13,24 @@ public class StartScript : MonoBehaviour {
     }
 
     public void QuickPlay()
-    {
+    {  
+        // Use a coroutine to load the Scene in the background
+       StartCoroutine(LoadGame());
+    }
 
-        // Only specifying the sceneName or sceneBuildIndex will load the Scene with the Single mode
-        SceneManager.LoadScene("Game", LoadSceneMode.Single);
+    IEnumerator LoadGame()
+    {
+        // The Application loads the Scene in the background as the current Scene runs.
+        // This is particularly good for creating loading screens.
+        // You could also load the Scene by using sceneBuildIndex. In this case Scene2 has
+        // a sceneBuildIndex of 1 as shown in Build Settings.
+
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Game");
+
+        // Wait until the asynchronous scene fully loads
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
     }
 }
