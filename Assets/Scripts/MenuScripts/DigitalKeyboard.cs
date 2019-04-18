@@ -71,6 +71,7 @@ public class DigitalKeyboard : MonoBehaviour {
 
         //find the text on screen
         banner = GameObject.FindGameObjectWithTag("NameBanner");
+        selectorObject.GetComponent<AudioVolume>().SetVolumeLevels();
     }
 
     // Update is called once per frame
@@ -89,7 +90,7 @@ public class DigitalKeyboard : MonoBehaviour {
                     if (letter.name == "Q")
                     {
                         //transform.position = letter.transform.position;
-                        transform.position = new Vector3(letter.transform.position.x, letter.transform.position.y, letter.transform.position.z - 2);
+                        transform.position = new Vector3(letter.transform.position.x, letter.transform.position.y, letter.transform.position.z - 7);
                         defaultLetter = letter;
                         selectedLetter = letter;
                     }
@@ -121,13 +122,66 @@ public class DigitalKeyboard : MonoBehaviour {
         //if the current team value gets to the end of the array then
         if (direction == 1)
         {  
+            //if the current team is less than total teams
             if (selectorObject.GetComponent<DigitalKeyboard>().currentTeam < (GlobalVariables.TOTALTEAMS - 1))
             {
-                selectorObject.GetComponent<DigitalKeyboard>().currentTeam++;
+                //if player 2
+                if(selectorObject.GetComponent<DigitalKeyboard>().playerNumber == 2)
+                {
+                    //increment the team
+                    selectorObject.GetComponent<DigitalKeyboard>().currentTeam++;
+
+                    //if this new number matches player 1s chosen team
+                    if (selectorObject.GetComponent<DigitalKeyboard>().currentTeam == GlobalVariables.team1)
+                    {
+                        //if we are at the end of the array
+                        if (selectorObject.GetComponent<DigitalKeyboard>().currentTeam == GlobalVariables.TOTALTEAMS -1)
+                        {
+                            //goto the start
+                            selectorObject.GetComponent<DigitalKeyboard>().currentTeam = 0;
+                        }
+                        else
+                        {
+                            //otherwise move an extra space
+                            selectorObject.GetComponent<DigitalKeyboard>().currentTeam++;
+                        }
+                        
+                    }
+                    //if this does not match player ones team
+                    else
+                    {
+                        //
+                        if (selectorObject.GetComponent<DigitalKeyboard>().currentTeam == GlobalVariables.TOTALTEAMS)
+                        {
+                            if (GlobalVariables.team1 == 0)
+                            {
+                                selectorObject.GetComponent<DigitalKeyboard>().currentTeam = 1;
+                            }
+                            else
+                            {
+                                selectorObject.GetComponent<DigitalKeyboard>().currentTeam = 0;
+                            }
+                        }
+
+                    }
+                }
+                else
+                {
+                    selectorObject.GetComponent<DigitalKeyboard>().currentTeam++;
+                }
+                
             }
             else
             {
-                selectorObject.GetComponent<DigitalKeyboard>().currentTeam = 0;
+                if (GlobalVariables.team1 == 0)
+                {
+                    selectorObject.GetComponent<DigitalKeyboard>().currentTeam = 1;
+                }
+                else
+                {
+                    selectorObject.GetComponent<DigitalKeyboard>().currentTeam = 0;
+                }
+                
             }
         }
         //if the current team value gets to the start of the array then
@@ -135,11 +189,37 @@ public class DigitalKeyboard : MonoBehaviour {
         {
             if (selectorObject.GetComponent<DigitalKeyboard>().currentTeam > 0 )
             {
-                selectorObject.GetComponent<DigitalKeyboard>().currentTeam--;
+                if (selectorObject.GetComponent<DigitalKeyboard>().playerNumber == 2)
+                {
+                    selectorObject.GetComponent<DigitalKeyboard>().currentTeam--;
+                    if (selectorObject.GetComponent<DigitalKeyboard>().currentTeam == GlobalVariables.team1)
+                    {                    
+                        if (selectorObject.GetComponent<DigitalKeyboard>().currentTeam == 0)
+                        {
+                            selectorObject.GetComponent<DigitalKeyboard>().currentTeam = GlobalVariables.TOTALTEAMS - 1;
+                        }
+                        else
+                        {
+                            selectorObject.GetComponent<DigitalKeyboard>().currentTeam--;
+                        }
+                    }
+                }
+                else
+                {
+                    selectorObject.GetComponent<DigitalKeyboard>().currentTeam--;
+                }
             }
             else
             {
-                selectorObject.GetComponent<DigitalKeyboard>().currentTeam = GlobalVariables.TOTALTEAMS - 1;
+                if (GlobalVariables.team1 == GlobalVariables.TOTALTEAMS - 1)
+                {
+                    selectorObject.GetComponent<DigitalKeyboard>().currentTeam = GlobalVariables.TOTALTEAMS - 2;
+                }
+                else
+                {
+                    selectorObject.GetComponent<DigitalKeyboard>().currentTeam = GlobalVariables.TOTALTEAMS - 1;
+                }
+                
             }
         }
 
@@ -162,8 +242,17 @@ public class DigitalKeyboard : MonoBehaviour {
         if (playerNumber == 1)
         {
             //reset logo back to first team
-            selectorObject.GetComponent<DigitalKeyboard>().teamLogo.GetComponent<Image>().sprite = GlobalVariables.teamLogos[0];
-            selectorObject.GetComponent<DigitalKeyboard>().currentTeam = 0;
+            if (GlobalVariables.team1 != 0)
+            {
+                selectorObject.GetComponent<DigitalKeyboard>().currentTeam = 0;
+                selectorObject.GetComponent<DigitalKeyboard>().teamLogo.GetComponent<Image>().sprite = GlobalVariables.teamLogos[0];
+            }
+            else
+            {
+                selectorObject.GetComponent<DigitalKeyboard>().currentTeam = 1;
+                selectorObject.GetComponent<DigitalKeyboard>().teamLogo.GetComponent<Image>().sprite = GlobalVariables.teamLogos[1];
+            }
+            
         }
     }
 
@@ -184,7 +273,7 @@ public class DigitalKeyboard : MonoBehaviour {
         {
             selectedLetter = selectedLetter.GetComponent<DigitalKeyboard>().right;
 
-            transform.position = new Vector3(selectedLetter.transform.position.x, selectedLetter.transform.position.y, selectedLetter.transform.position.z - 2);
+            transform.position = new Vector3(selectedLetter.transform.position.x, selectedLetter.transform.position.y, selectedLetter.transform.position.z - 7);
 
             dPadPressed = true;
             selectorObject.GetComponent<Renderer>().enabled = true;
@@ -193,7 +282,7 @@ public class DigitalKeyboard : MonoBehaviour {
         {
             selectedLetter = selectedLetter.GetComponent<DigitalKeyboard>().left;
 
-            transform.position = new Vector3(selectedLetter.transform.position.x, selectedLetter.transform.position.y, selectedLetter.transform.position.z - 2 );
+            transform.position = new Vector3(selectedLetter.transform.position.x, selectedLetter.transform.position.y, selectedLetter.transform.position.z - 7 );
 
             dPadPressed = true;
             selectorObject.GetComponent<Renderer>().enabled = true;
@@ -203,7 +292,7 @@ public class DigitalKeyboard : MonoBehaviour {
         {
             selectedLetter = selectedLetter.GetComponent<DigitalKeyboard>().up;
 
-            transform.position = new Vector3(selectedLetter.transform.position.x, selectedLetter.transform.position.y, selectedLetter.transform.position.z - 2);
+            transform.position = new Vector3(selectedLetter.transform.position.x, selectedLetter.transform.position.y, selectedLetter.transform.position.z - 7);
 
             dPadPressed = true;
             selectorObject.GetComponent<Renderer>().enabled = true;
@@ -212,7 +301,7 @@ public class DigitalKeyboard : MonoBehaviour {
         {
             selectedLetter = selectedLetter.GetComponent<DigitalKeyboard>().down;
 
-            transform.position = new Vector3(selectedLetter.transform.position.x, selectedLetter.transform.position.y, selectedLetter.transform.position.z - 2);
+            transform.position = new Vector3(selectedLetter.transform.position.x, selectedLetter.transform.position.y, selectedLetter.transform.position.z - 7);
 
             dPadPressed = true;
             selectorObject.GetComponent<Renderer>().enabled = true;
@@ -252,7 +341,7 @@ public class DigitalKeyboard : MonoBehaviour {
                     updateName();
 
                     //move selector back to original position
-                    transform.position = new Vector3(defaultLetter.transform.position.x, defaultLetter.transform.position.y, defaultLetter.transform.position.z - 2);
+                    transform.position = new Vector3(defaultLetter.transform.position.x, defaultLetter.transform.position.y, defaultLetter.transform.position.z - 7);
 
                     //update selected letter
                     selectedLetter = defaultLetter;

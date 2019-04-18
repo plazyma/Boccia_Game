@@ -17,7 +17,11 @@ public class SoundNavigation : MonoBehaviour {
     public Sprite defaultSprite;
     public int selection = 0;
 
+    public GameObject selector;
+
     public AudioSource audioSource;
+    public AudioSource sfxSource;
+    public AudioSource musicSource;
 
 
     //single movement
@@ -60,15 +64,19 @@ public class SoundNavigation : MonoBehaviour {
             if (selection == 1)
             {
                 sfx.value -=  0.1f;
+                sfxSource.volume = sfx.value;
             }
             if (selection == 2)
             {
                 music.value -= 0.1f;
+                musicSource.volume = music.value;
             }
             if (selection == 3)
             {
                 master.value -= 0.1f;
             }
+           
+
         }
 
         if (Input.GetKeyDown("right") || Input.GetAxis("DPadX") == 1 && !dPadPressed)
@@ -76,15 +84,18 @@ public class SoundNavigation : MonoBehaviour {
             if (selection == 1)
             {
                 sfx.value += 0.1f;
+                sfxSource.volume = sfx.value;
             }
             if (selection == 2)
             {
                 music.value += 0.1f;
+                musicSource.volume = music.value;
             }
             if (selection == 3)
             {
                 master.value += 0.1f;
             }
+            musicSource.volume = music.value;
         }
 
         if ((Input.GetKeyDown("up") || Input.GetAxis("DPadY") == 1) && !dPadPressed)

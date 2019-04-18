@@ -19,6 +19,10 @@ public class SettingScript : MonoBehaviour {
     public Slider slider;
     public float volume = 100.0f;
     public Text volumePercent;
+    public AudioSource sfxSource;
+    public AudioSource musicSource;
+    public GameObject selector;
+    
 
 
     // Use this for initialization
@@ -81,10 +85,12 @@ public class SettingScript : MonoBehaviour {
         if (name == "Music")
         {
             GlobalVariables.musicVolume = slider.value;
+            selector.GetComponent<SoundNavigation>().musicSource.volume = slider.value;
         }
         else if (name == "SFX")
         {
             GlobalVariables.audioVolume = slider.value;
+            selector.GetComponent<SoundNavigation>().sfxSource.volume = slider.value;
         }
         volumePercent.text = (int)volume + "%";
     }
