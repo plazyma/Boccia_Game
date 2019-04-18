@@ -76,6 +76,14 @@ TagManager:
   - Aids
   - ScoreboardAltPlayer1Logo
   - ScoreboardAltPlayer2Logo
+  - PauseMenuSelection
+  - PauseMenuHowToPlayButton
+  - PauseMenuQuitToDesktopButton
+  - PauseMenuQuitToMenuButton
+  - PauseMenuQuitToDesktopButtonNo
+  - PauseMenuQuitToDesktopButtonYes
+  - PauseMenuQuitToMenuButtonNo
+  - PauseMenuQuitToMenuButtonYes
   layers:
   - Default
   - TransparentFX

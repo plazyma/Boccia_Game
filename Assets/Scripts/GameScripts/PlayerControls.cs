@@ -46,9 +46,6 @@ public class PlayerControls : MonoBehaviour {
                     }
                     //Show "arrow" to indicate where ball is pointing
                     //arrow.SetActive(true);
-
-                    //DEBUG
-                    //print(transform.eulerAngles.y);
                 }
             }
             //When left is pressed rotate in opposite direction
@@ -69,9 +66,6 @@ public class PlayerControls : MonoBehaviour {
                     {
                         transform.Rotate(0.0f, (-rotationSpeed * powerRotModifier) * Time.deltaTime, 0.0f);
                     }
-                    //DEBUG
-                    // print(transform.eulerAngles.y);
-
                 }
             }
 

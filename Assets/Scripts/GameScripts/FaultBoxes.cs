@@ -42,7 +42,6 @@ public class FaultBoxes : MonoBehaviour
             if (!faultyBalls.Contains(other.gameObject))
             {
                 faultyBalls.Add(other.gameObject);
-                print("OBJECT ADDED");
             }
         }
     }
@@ -63,7 +62,6 @@ public class FaultBoxes : MonoBehaviour
         if (faultyBalls.Contains(other.gameObject))
         {
             faultyBalls.Remove(other.gameObject);
-            print("OBJECT REMOVED");
         }
     }
 

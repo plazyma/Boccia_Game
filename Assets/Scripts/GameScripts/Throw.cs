@@ -119,7 +119,6 @@ public class Throw : MonoBehaviour {
 
                         //Update aim assist
                         aimAssistScript.CalculateAimIncreased();
-                        print(power);
 
                         //reduce player turning speed based on power
                         player.GetComponent<PlayerControls>().powerRotModifier -= 0.1f;

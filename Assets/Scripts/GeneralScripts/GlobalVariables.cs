@@ -11,7 +11,7 @@ public class GlobalVariables : MonoBehaviour {
     public static bool walls1 = true, walls2 = true;
     public static bool aim1 = true, aim2 = true;
 
-    public static float masterVolume = 1.0f, audioVolume = 1.0f, musicVolume = 0.3f;
+    public static float masterVolume = 0.5f, audioVolume = 0.6f, musicVolume = 0.3f;
 
     public Texture tex;
 

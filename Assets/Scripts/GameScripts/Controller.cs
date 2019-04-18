@@ -214,7 +214,6 @@ public class Controller : MonoBehaviour {
             {
                 char a = 'a';
 
-                print(a);
             }
             if (Input.GetKeyDown("[5]"))
             {
@@ -244,7 +243,6 @@ public class Controller : MonoBehaviour {
                         {
                             if (fault.GetJackFault())
                             {
-                                print(" Jack In Area");
                                 //Faulty throw
                                 faultyJack = true;
 
@@ -415,12 +413,10 @@ public class Controller : MonoBehaviour {
 
                 if (redBalls > 5)
                 {
-                    print("all reds thrown");
                     currentPlayer = 2;
                 }
                 if (greenBalls > 5)
                 {
-                    print("all greens thrown");
                     currentPlayer = 1;
                 }
             }
@@ -487,17 +483,11 @@ public class Controller : MonoBehaviour {
     {
         //make sure there is a green and red ball on the field before checking distances
         if (dist.FindClosestBall() == 1)
-        {
-            //throwScript.setPower(0.0f);
-            print("Player 1 is closest, returning player 1");
-            
+        {           
             return 1;
         }
         else if (dist.FindClosestBall() == 2)
         {
-            //throwScript.setPower(0.0f);
-            print("Player 2 is closest, returning player 2");
-            
             return 2;
         }
         else
@@ -515,7 +505,6 @@ public class Controller : MonoBehaviour {
             //do win stuff
             if (dist.FindClosestBall() == 1)
             {
-                // print("PLAYER 1 WINS");
                 player1Score = player1Score + dist.CalculateScore();
 
                 camAlt.cameraReset();
@@ -527,7 +516,6 @@ public class Controller : MonoBehaviour {
             }
             else if (dist.FindClosestBall() == 2)
             {
-                //print("PLAYER 2 WINS");
                 player2Score = player2Score + dist.CalculateScore();
 
                 camAlt.cameraReset();

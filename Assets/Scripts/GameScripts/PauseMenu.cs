@@ -11,10 +11,27 @@ public class PauseMenu : MonoBehaviour {
     public GameObject howToPlayMenu;
     Controller gameController;
     CameraView cameraViewScript;
-    public Button returnButton; 
+
+    public Button returnButton;
+    public Button howToPlayButton;
+    public Button quitToMenuButton;
+    public Button quitToDesktopButton;
+
+    public Button quitToMenuButtonNo;
+    public Button quitToMenuButtonYes;
+
+    public Button quitToDesktopButtonNo;
+    public Button quitToDesktopButtonYes;
+
     public GameObject menuConfirmation;
     public GameObject desktopConfirmation;
+    public GameObject pauseMenuSelection;
+    
+    int pauseSelection = 0;
 
+    int numOfButtons = 3;
+
+    int confirmationSelection = 0;
 	// Use this for initialization
 	void Awake () {
 		if(!pauseMenu)
@@ -41,9 +58,45 @@ public class PauseMenu : MonoBehaviour {
         {
             returnButton = GameObject.FindGameObjectWithTag("PauseMenuReturnButton").GetComponent<Button>();
         }
-        if(!howToPlayMenu)
+        if(!howToPlayButton)
+        {
+            howToPlayButton = GameObject.FindGameObjectWithTag("PauseMenuHowToPlayButton").GetComponent<Button>();
+        }
+        if(!quitToMenuButton)
+        {
+            quitToMenuButton = GameObject.FindGameObjectWithTag("PauseMenuQuitToMenuButton").GetComponent<Button>();
+        }
+        if(!quitToDesktopButton)
+        {
+            quitToDesktopButton = GameObject.FindGameObjectWithTag("PauseMenuQuitToDesktopButton").GetComponent<Button>();
+        }
+        if(!quitToDesktopButtonNo)
+        {
+            quitToDesktopButtonNo = GameObject.FindGameObjectWithTag("PauseMenuQuitToDesktopButtonNo").GetComponent<Button>();
+        }
+        if (!quitToDesktopButtonYes)
+        {
+            quitToDesktopButtonYes = GameObject.FindGameObjectWithTag("PauseMenuQuitToDesktopButtonYes").GetComponent<Button>();
+        }
+        if (!quitToMenuButtonNo)
+        {
+            quitToMenuButtonNo = GameObject.FindGameObjectWithTag("PauseMenuQuitToMenuButtonNo").GetComponent<Button>();
+        }
+        if(!quitToMenuButtonYes)
+        {
+            quitToMenuButtonYes = GameObject.FindGameObjectWithTag("PauseMenuQuitToMenuButtonYes").GetComponent<Button>();
+        }
+
+        if (!howToPlayMenu)
         {
             howToPlayMenu = GameObject.FindGameObjectWithTag("HowToPlay");
+        }
+        if(!pauseMenuSelection)
+        {
+            pauseMenuSelection = GameObject.FindGameObjectWithTag("PauseMenuSelection");
+            ResetSelectionPosition();
+            //pauseMenuSelection.SetActive(false);
+
         }
 
         menuConfirmation.SetActive(false);
@@ -54,6 +107,7 @@ public class PauseMenu : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        EventSystem.current.SetSelectedGameObject(null);
         if (Input.GetKeyDown("escape") && !gameController.gameOver)
         {
             if (gameController.GetPlayRound())
@@ -66,18 +120,189 @@ public class PauseMenu : MonoBehaviour {
             }
             else
             {
-                if (pauseMenu.activeSelf)
+                if (pauseMenu.activeSelf && (!menuConfirmation.activeSelf && !desktopConfirmation.activeSelf))
                 {
                     HidePauseMenu();
+                    ResetSelectionPosition();
                 }
                 else if (howToPlayMenu.activeSelf)
                 {
                     ShowPauseMenu();
                     HideHowToPlayMenu();
+                    ResetSelectionPosition();
+                }
+                else if(menuConfirmation.activeSelf)
+                {
+                    HideMenuConfirmation();
+                    ResetSelectionPosition();
+                }
+                else if(desktopConfirmation.activeSelf)
+                {
+                    HideDesktopConfirmation();
+                    ResetSelectionPosition();
                 }
             }
         }
-	}
+        if (pauseMenu.activeSelf == true && (menuConfirmation.activeSelf == false && desktopConfirmation.activeSelf == false))
+        {
+            if (Input.GetKeyDown("down"))
+            {
+                if (pauseMenuSelection.activeSelf)
+                {
+                    if (pauseSelection < numOfButtons)
+                    {
+                        pauseSelection += 1;
+                        UpdateSelection();
+                    }
+                }
+                else
+                {
+                    pauseMenuSelection.SetActive(true);
+                }
+            }
+            if (Input.GetKeyDown("up"))
+            {
+                if (pauseMenuSelection.activeSelf)
+                {
+                    if (pauseSelection > 0)
+                    {
+                        pauseSelection -= 1;
+                        UpdateSelection();
+                    }
+                }
+                else
+                {
+                    pauseMenuSelection.SetActive(true);
+                }
+            }
+            if (Input.GetButtonDown("Throw"))
+            {
+                switch (pauseSelection)
+                {
+                    case 0:
+                        ShowHowToPlayMenu();
+
+                        Input.ResetInputAxes();
+                        break;
+                    case 1:
+                        HidePauseMenu();
+
+                        Input.ResetInputAxes();
+                        break;
+                    case 2:
+                        ShowMenuConfirmation();
+                        pauseMenuSelection.transform.position = quitToMenuButtonNo.transform.position;
+
+                        Input.ResetInputAxes();
+                        break;
+                    case 3:
+                        ShowDesktopConfirmation();
+                        pauseMenuSelection.transform.position = quitToDesktopButtonNo.transform.position;
+
+                        Input.ResetInputAxes();
+                        break;
+                }
+            }
+        }
+
+        if(menuConfirmation.activeSelf)
+        {
+            if(Input.GetKeyDown("left"))
+            {
+                if(confirmationSelection == 1)
+                {
+                    confirmationSelection = 0;
+                    pauseMenuSelection.transform.position = quitToMenuButtonNo.transform.position;
+                }              
+            }
+            if(Input.GetKeyDown("right"))
+            {
+                if (confirmationSelection == 0)
+                {
+                    confirmationSelection = 1;
+                    pauseMenuSelection.transform.position = quitToMenuButtonYes.transform.position;
+                }
+            }
+
+            if(Input.GetKeyDown("space"))
+            {
+                if(confirmationSelection == 0)
+                {
+                    pauseSelection = 0;
+                    UpdateSelection();
+
+                    HideMenuConfirmation();
+                }
+                if(confirmationSelection == 1)
+                {
+                    QuitToMenu();
+                }
+            }
+        }
+
+        if (desktopConfirmation.activeSelf)
+        {
+            if (Input.GetKeyDown("left"))
+            {
+                if (confirmationSelection == 1)
+                {
+                    confirmationSelection = 0;
+                    pauseMenuSelection.transform.position = quitToDesktopButtonNo.transform.position;
+
+                }
+            }
+            if (Input.GetKeyDown("right"))
+            {
+                if (confirmationSelection == 0)
+                {
+                    confirmationSelection = 1;
+                    pauseMenuSelection.transform.position = quitToDesktopButtonYes.transform.position;
+
+                }
+            }
+
+            if (Input.GetButtonDown("Throw"))
+            {
+                if (confirmationSelection == 0)
+                {
+                    HideDesktopConfirmation();
+
+                    pauseSelection = 0;
+                    UpdateSelection();                    
+                }
+                if (confirmationSelection == 1)
+                {
+                    QuitToDesktop();
+                }
+            }
+        }
+    }
+
+    void ResetSelectionPosition()
+    {
+        pauseMenuSelection.transform.position = howToPlayButton.transform.position;
+        pauseSelection = 0;
+    }
+
+    void UpdateSelection()
+    {
+        switch (pauseSelection)
+        {
+            case 0:
+                pauseMenuSelection.transform.position = howToPlayButton.transform.position;
+                break;
+            case 1:
+                pauseMenuSelection.transform.position = returnButton.transform.position;
+                break;
+            case 2:
+                pauseMenuSelection.transform.position = quitToMenuButton.transform.position;
+                break;
+            case 3:
+                pauseMenuSelection.transform.position = quitToDesktopButton.transform.position;
+                break;
+        }
+
+    }
 
     public void HidePauseMenu()
     {
@@ -127,6 +352,8 @@ public class PauseMenu : MonoBehaviour {
     public void ShowDesktopConfirmation()
     {
         desktopConfirmation.SetActive(true);
+
+        confirmationSelection = 0;
     }
 
     public void HideDesktopConfirmation()
