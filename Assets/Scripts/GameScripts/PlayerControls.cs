@@ -11,7 +11,7 @@ public class PlayerControls : MonoBehaviour {
 
     public GameObject arenaBoundary;
     Controller gameController;
-
+    Throw throwClass;
     // Use this for initialization
     void Start () {
         //reset forward at start
@@ -20,12 +20,13 @@ public class PlayerControls : MonoBehaviour {
         arenaBoundary = GameObject.Find("ArenaWalls");
 
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<Controller>();
+        throwClass = GameObject.FindGameObjectWithTag("Player").GetComponent<Throw>();
     }
 	
 	// Update is called once per frame
 	void Update () {
         //If game is unpaused
-        if (gameController.GetPlayRound())
+        if (gameController.GetPlayRound() && !throwClass.ballThrown)
         {
             //When right is pressed rotate ball
             if (Input.GetKey("right") || Input.GetAxis("DPadX") == 1 || Input.GetAxis("MouseX") > 0)//|| Input.GetAxis("Joystick") > 0.5)

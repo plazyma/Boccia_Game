@@ -45,6 +45,9 @@ public class Scoreboard : MonoBehaviour {
     public Image player1Logo;
     public Image player2Logo;
 
+    public Image player1Logo2;
+    public Image player2Logo2;
+
     //Sprites of balls for counter
     public Sprite orangeBallSprite;
     public Sprite blueBallSprite;
@@ -109,14 +112,20 @@ public class Scoreboard : MonoBehaviour {
         if(!player1Logo)
         {
             player1Logo = GameObject.FindGameObjectWithTag("ScoreboardPlayer1Logo").GetComponent<Image>();
-
             
         }
         if(!player2Logo)
         {
             player2Logo = GameObject.FindGameObjectWithTag("ScoreboardPlayer2Logo").GetComponent<Image>();
-
             
+        }
+        if(!player1Logo2)
+        {
+            player1Logo2 = GameObject.FindGameObjectWithTag("ScoreboardAltPlayer1Logo").GetComponent<Image>();
+        }
+        if(!player2Logo2)
+        {
+            player2Logo2 = GameObject.FindGameObjectWithTag("ScoreboardAltPlayer2Logo").GetComponent<Image>();
         }
         UpdateScoreboard();
     }
@@ -129,7 +138,12 @@ public class Scoreboard : MonoBehaviour {
 
         //TODO::MOVE
         player1Logo.sprite = GlobalVariables.teamLogos[GlobalVariables.team1];
+        player1Logo2.sprite = GlobalVariables.teamLogos[GlobalVariables.team1];
+
         player2Logo.sprite = GlobalVariables.teamLogos[GlobalVariables.team2];
+        player2Logo2.sprite = GlobalVariables.teamLogos[GlobalVariables.team2];
+        
+        
 
         //// update the scores and balls thrown
         //player1Count.text = GlobalVariables.player1 + " Balls Left: " + p1BallsLeft;

@@ -74,6 +74,8 @@ TagManager:
   - HowToPlay
   - Walls
   - Aids
+  - ScoreboardAltPlayer1Logo
+  - ScoreboardAltPlayer2Logo
   layers:
   - Default
   - TransparentFX

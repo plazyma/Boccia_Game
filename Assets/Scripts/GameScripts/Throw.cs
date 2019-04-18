@@ -233,5 +233,7 @@ public class Throw : MonoBehaviour {
 
         //Update powerbar
         powerBar.updatePowerBar();
+
+        
     }
 }

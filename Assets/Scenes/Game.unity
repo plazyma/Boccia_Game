@@ -2878,7 +2878,7 @@ GameObject:
   - component: {fileID: 75040094}
   m_Layer: 5
   m_Name: Orange_Logo
-  m_TagString: Untagged
+  m_TagString: ScoreboardAltPlayer2Logo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2898,8 +2898,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -2.4999237, y: 17.099998}
-  m_SizeDelta: {x: 191.40002, y: 58.700012}
+  m_AnchoredPosition: {x: -2.4999237, y: -1.3999996}
+  m_SizeDelta: {x: 191.40002, y: 35}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &75040094
 MonoBehaviour:
@@ -2920,7 +2920,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 77c51d983b3bfb94b8e7cea2407e13f0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 46d43c220c7b5a64fa23d8c9f600cccb, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -7855,6 +7855,8 @@ MonoBehaviour:
   blueBalls2: []
   player1Logo: {fileID: 0}
   player2Logo: {fileID: 0}
+  player1Logo2: {fileID: 0}
+  player2Logo2: {fileID: 0}
   orangeBallSprite: {fileID: 0}
   blueBallSprite: {fileID: 0}
   blankBallSprite: {fileID: 0}
@@ -9334,6 +9336,8 @@ MonoBehaviour:
   blueBalls2: []
   player1Logo: {fileID: 0}
   player2Logo: {fileID: 0}
+  player1Logo2: {fileID: 0}
+  player2Logo2: {fileID: 0}
   orangeBallSprite: {fileID: 21300000, guid: 6cabfa2356462044f9cfc335ba9b60f4, type: 3}
   blueBallSprite: {fileID: 21300000, guid: 1b877d02ac385a54190f171a5832aebd, type: 3}
   blankBallSprite: {fileID: 21300000, guid: 7a2405c435143804dbc0a340e93afa8b, type: 3}
@@ -16653,6 +16657,8 @@ MonoBehaviour:
   blueBalls2: []
   player1Logo: {fileID: 0}
   player2Logo: {fileID: 0}
+  player1Logo2: {fileID: 0}
+  player2Logo2: {fileID: 0}
   orangeBallSprite: {fileID: 0}
   blueBallSprite: {fileID: 0}
   blankBallSprite: {fileID: 0}
@@ -22134,15 +22140,15 @@ Prefab:
     - target: {fileID: 2300018, guid: 073070c888ed1f44a991c0cadcbe69e7, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 825171ef1536877438b1b6a1ecd4382b, type: 2}
+      objectReference: {fileID: 2100000, guid: 5b87332974487cd46b4235144bab2805, type: 2}
     - target: {fileID: 2300020, guid: 073070c888ed1f44a991c0cadcbe69e7, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 3ad846241b54cd341897f251ed08c661, type: 2}
+      objectReference: {fileID: 2100000, guid: efb1a3f1a1fa08c41a00cdbbf95c89e5, type: 2}
     - target: {fileID: 2300000, guid: 073070c888ed1f44a991c0cadcbe69e7, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 93b633e7c63bc6d40b8df058a4ae8e98, type: 2}
+      objectReference: {fileID: 2100000, guid: d89ab7362cf67d641bfa075ab2767c61, type: 2}
     - target: {fileID: 2300010, guid: 073070c888ed1f44a991c0cadcbe69e7, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -22154,27 +22160,27 @@ Prefab:
     - target: {fileID: 2300014, guid: 073070c888ed1f44a991c0cadcbe69e7, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 8c58debddfaf3fe49a8d57ff698ddcb6, type: 2}
+      objectReference: {fileID: 2100000, guid: c8dad20f45dbfb24ca56046ce834c63a, type: 2}
     - target: {fileID: 2300008, guid: 073070c888ed1f44a991c0cadcbe69e7, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 8c58debddfaf3fe49a8d57ff698ddcb6, type: 2}
+      objectReference: {fileID: 2100000, guid: cb44bebc47d8f1042bf9cce0c43b0180, type: 2}
     - target: {fileID: 2300002, guid: 073070c888ed1f44a991c0cadcbe69e7, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: ccf82cc69e55e5b4b8d9ad0024cf26b1, type: 2}
+      objectReference: {fileID: 2100000, guid: 9c134fcddfa44f24f9ea1616a4a90957, type: 2}
     - target: {fileID: 2300006, guid: 073070c888ed1f44a991c0cadcbe69e7, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: ccf82cc69e55e5b4b8d9ad0024cf26b1, type: 2}
+      objectReference: {fileID: 2100000, guid: 9c134fcddfa44f24f9ea1616a4a90957, type: 2}
     - target: {fileID: 2300012, guid: 073070c888ed1f44a991c0cadcbe69e7, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 1c278abf405a327409fb1b0f00e2d06f, type: 2}
+      objectReference: {fileID: 2100000, guid: 2dd9c48b395ac39498aee33ef14c0d33, type: 2}
     - target: {fileID: 2300004, guid: 073070c888ed1f44a991c0cadcbe69e7, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 1c278abf405a327409fb1b0f00e2d06f, type: 2}
+      objectReference: {fileID: 2100000, guid: 2dd9c48b395ac39498aee33ef14c0d33, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 073070c888ed1f44a991c0cadcbe69e7, type: 3}
   m_IsPrefabParent: 0
@@ -22426,6 +22432,8 @@ MonoBehaviour:
   blueBalls2: []
   player1Logo: {fileID: 0}
   player2Logo: {fileID: 0}
+  player1Logo2: {fileID: 0}
+  player2Logo2: {fileID: 0}
   orangeBallSprite: {fileID: 21300000, guid: 6cabfa2356462044f9cfc335ba9b60f4, type: 3}
   blueBallSprite: {fileID: 21300000, guid: 1b877d02ac385a54190f171a5832aebd, type: 3}
   blankBallSprite: {fileID: 21300000, guid: 7a2405c435143804dbc0a340e93afa8b, type: 3}
@@ -26366,6 +26374,8 @@ MonoBehaviour:
   blueBalls2: []
   player1Logo: {fileID: 0}
   player2Logo: {fileID: 0}
+  player1Logo2: {fileID: 0}
+  player2Logo2: {fileID: 0}
   orangeBallSprite: {fileID: 21300000, guid: 6cabfa2356462044f9cfc335ba9b60f4, type: 3}
   blueBallSprite: {fileID: 21300000, guid: 1b877d02ac385a54190f171a5832aebd, type: 3}
   blankBallSprite: {fileID: 21300000, guid: 7a2405c435143804dbc0a340e93afa8b, type: 3}
@@ -34624,6 +34634,8 @@ MonoBehaviour:
   blueBalls2: []
   player1Logo: {fileID: 0}
   player2Logo: {fileID: 0}
+  player1Logo2: {fileID: 0}
+  player2Logo2: {fileID: 0}
   orangeBallSprite: {fileID: 0}
   blueBallSprite: {fileID: 0}
   blankBallSprite: {fileID: 0}
@@ -46132,7 +46144,7 @@ GameObject:
   - component: {fileID: 1277424113}
   m_Layer: 5
   m_Name: Orange_Logo
-  m_TagString: Untagged
+  m_TagString: ScoreboardAltPlayer1Logo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46152,8 +46164,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -2.4999237, y: 17.099998}
-  m_SizeDelta: {x: 191.40002, y: 58.700012}
+  m_AnchoredPosition: {x: -2.4999237, y: -1.3999996}
+  m_SizeDelta: {x: 191.40002, y: 35}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1277424113
 MonoBehaviour:
@@ -50172,6 +50184,8 @@ MonoBehaviour:
   blueBalls2: []
   player1Logo: {fileID: 0}
   player2Logo: {fileID: 0}
+  player1Logo2: {fileID: 0}
+  player2Logo2: {fileID: 0}
   orangeBallSprite: {fileID: 0}
   blueBallSprite: {fileID: 0}
   blankBallSprite: {fileID: 0}
@@ -62461,6 +62475,8 @@ MonoBehaviour:
   blueBalls2: []
   player1Logo: {fileID: 0}
   player2Logo: {fileID: 0}
+  player1Logo2: {fileID: 0}
+  player2Logo2: {fileID: 0}
   orangeBallSprite: {fileID: 0}
   blueBallSprite: {fileID: 0}
   blankBallSprite: {fileID: 0}
@@ -63502,6 +63518,8 @@ MonoBehaviour:
   blueBalls2: []
   player1Logo: {fileID: 0}
   player2Logo: {fileID: 0}
+  player1Logo2: {fileID: 0}
+  player2Logo2: {fileID: 0}
   orangeBallSprite: {fileID: 0}
   blueBallSprite: {fileID: 0}
   blankBallSprite: {fileID: 0}
@@ -63706,6 +63724,8 @@ MonoBehaviour:
   blueBalls2: []
   player1Logo: {fileID: 0}
   player2Logo: {fileID: 0}
+  player1Logo2: {fileID: 0}
+  player2Logo2: {fileID: 0}
   orangeBallSprite: {fileID: 0}
   blueBallSprite: {fileID: 0}
   blankBallSprite: {fileID: 0}
@@ -65748,7 +65768,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1777680910}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -29.41, y: -41.78, z: -31.48}
+  m_LocalPosition: {x: -29.41, y: -41.51, z: -31.48}
   m_LocalScale: {x: 0.2, y: 1, z: 0.5}
   m_Children: []
   m_Father: {fileID: 1212314519}
@@ -67005,6 +67025,8 @@ MonoBehaviour:
   blueBalls2: []
   player1Logo: {fileID: 0}
   player2Logo: {fileID: 0}
+  player1Logo2: {fileID: 0}
+  player2Logo2: {fileID: 0}
   orangeBallSprite: {fileID: 0}
   blueBallSprite: {fileID: 0}
   blankBallSprite: {fileID: 0}
@@ -68536,6 +68558,8 @@ MonoBehaviour:
   blueBalls2: []
   player1Logo: {fileID: 0}
   player2Logo: {fileID: 0}
+  player1Logo2: {fileID: 0}
+  player2Logo2: {fileID: 0}
   orangeBallSprite: {fileID: 0}
   blueBallSprite: {fileID: 0}
   blankBallSprite: {fileID: 0}
@@ -78831,6 +78855,8 @@ MonoBehaviour:
   blueBalls2: []
   player1Logo: {fileID: 0}
   player2Logo: {fileID: 0}
+  player1Logo2: {fileID: 0}
+  player2Logo2: {fileID: 0}
   orangeBallSprite: {fileID: 0}
   blueBallSprite: {fileID: 0}
   blankBallSprite: {fileID: 0}
