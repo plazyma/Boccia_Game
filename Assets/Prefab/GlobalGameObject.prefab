@@ -78,6 +78,26 @@ MonoBehaviour:
   aimm2: 1
   teams1: 0
   teams2: 0
+  teamLoadSounds:
+  - {fileID: 8300000, guid: 78a9a264171ddf749b0ddbac0cf094e0, type: 3}
+  - {fileID: 8300000, guid: fead6a55fcc5110429fe0dc7ec5e8584, type: 3}
+  - {fileID: 8300000, guid: a6f3971c8ff15b1479516908a3d8a69c, type: 3}
+  - {fileID: 8300000, guid: c5833c6bfb7d6e1419498b1e7c8df4a5, type: 3}
+  - {fileID: 8300000, guid: 564ae7d825a22a8489fc98471eca6c19, type: 3}
+  - {fileID: 8300000, guid: a5fd9c773049e5645bf6833acf2c23eb, type: 3}
+  - {fileID: 8300000, guid: e84eeb889880cb643aafa6b3f5e3572a, type: 3}
+  - {fileID: 8300000, guid: 2207ef77b9c51b647a46b6fb9d5d75fa, type: 3}
+  - {fileID: 8300000, guid: c60a63dcdc33a664c9f3a31e4568356a, type: 3}
+  - {fileID: 8300000, guid: 804b21227f64c0e4babc497e93fd696a, type: 3}
+  - {fileID: 8300000, guid: 77fbc48f51d999d468e2ab14594a7677, type: 3}
+  - {fileID: 8300000, guid: fde06caa46f142f46881749641d0bd88, type: 3}
+  - {fileID: 8300000, guid: 658d048e7d6a36b45b5225db8ee154bb, type: 3}
+  roundLoadSounds:
+  - {fileID: 8300000, guid: 242b6390c8d47fd47817148ce06d8c86, type: 3}
+  - {fileID: 8300000, guid: 6ffb8de45015f5449ada6c641d67f92c, type: 3}
+  - {fileID: 8300000, guid: ef682c47f1d4f5144a8123c012cc9f33, type: 3}
+  - {fileID: 8300000, guid: e0a596925f0c4424d9a333a7dfdbcd1c, type: 3}
+  - {fileID: 8300000, guid: fefbf9ba407f99948aed508cbd2094ae, type: 3}
 --- !u!114 &114853398195801030
 MonoBehaviour:
   m_ObjectHideFlags: 1

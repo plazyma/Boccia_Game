@@ -9579,7 +9579,7 @@ MonoBehaviour:
   gameController: {fileID: 0}
   player: {fileID: 0}
   audioSource: {fileID: 1206438247}
-  ballThrowSound: {fileID: 8300000, guid: d6f69d6ff773f7c438685fb7943053f5, type: 3}
+  ballThrowSound: {fileID: 8300000, guid: 17d65b1e0bd738646bfd83d1e0142ec8, type: 3}
   shotTime: 0
   ballFound: 0
   ballThrown: 0
@@ -28675,6 +28675,130 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 25cafca8dba2de348b12edac60278842, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &779697436
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 779697438}
+  - component: {fileID: 779697437}
+  m_Layer: 0
+  m_Name: Announcer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &779697437
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 779697436}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &779697438
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 779697436}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 25
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &784778069
 GameObject:
   m_ObjectHideFlags: 0
@@ -32854,7 +32978,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 900667908}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f709cfe11f6bbe4fbedcc1ede38aa97, type: 3}
   m_Name: 
@@ -32885,6 +33009,20 @@ MonoBehaviour:
   aimm2: 1
   teams1: 0
   teams2: 0
+  teamLoadSounds:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!4 &900667910
 Transform:
   m_ObjectHideFlags: 0
@@ -46368,6 +46506,52 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f7d9bc3a639826a4890d6be5b11a44cd, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1001 &1276625656
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4759814817994922, guid: f2ab70afb5d59894787c83153b605c3a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 309.56924
+      objectReference: {fileID: 0}
+    - target: {fileID: 4759814817994922, guid: f2ab70afb5d59894787c83153b605c3a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 365.90222
+      objectReference: {fileID: 0}
+    - target: {fileID: 4759814817994922, guid: f2ab70afb5d59894787c83153b605c3a, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -75.32165
+      objectReference: {fileID: 0}
+    - target: {fileID: 4759814817994922, guid: f2ab70afb5d59894787c83153b605c3a, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4759814817994922, guid: f2ab70afb5d59894787c83153b605c3a, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4759814817994922, guid: f2ab70afb5d59894787c83153b605c3a, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4759814817994922, guid: f2ab70afb5d59894787c83153b605c3a, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4759814817994922, guid: f2ab70afb5d59894787c83153b605c3a, type: 2}
+      propertyPath: m_RootOrder
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 1033343080196998, guid: f2ab70afb5d59894787c83153b605c3a, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: f2ab70afb5d59894787c83153b605c3a, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1276899187
 GameObject:
@@ -60971,11 +61155,21 @@ MonoBehaviour:
   cameraOverlay2: {fileID: 0}
   cameraAlt: {fileID: 869895149}
   audioSource: {fileID: 1206438247}
+  announcer: {fileID: 779697437}
   ballChangeSound: {fileID: 8300000, guid: 3c85c623dc5f75f44bace1e517ab8cb5, type: 3}
   player1WinSound: {fileID: 8300000, guid: f70e97f22f7752c4583f39f179049981, type: 3}
   player2WinSound: {fileID: 8300000, guid: 33c4e0200c1749a4aaec2d9ecbeb8c08, type: 3}
   winSound: {fileID: 8300000, guid: 84d7680731ffc274d961415a62459d76, type: 3}
-  fault: {fileID: 8300000, guid: d5b4d77eefcfbc947954ee2be7bdd4d8, type: 3}
+  fault: {fileID: 8300000, guid: 1dd523e24f82fe74eb22226af19b47a1, type: 3}
+  openingVoice: {fileID: 8300000, guid: aaf8c7c8120369846ad420df11be295e, type: 3}
+  closingVoice: {fileID: 8300000, guid: b7811f89bd66d7f4aa3527979e1d9969, type: 3}
+  versus: {fileID: 8300000, guid: 9e1ac9109d70eae48a560953e5b15a0b, type: 3}
+  roundSounds:
+  - {fileID: 8300000, guid: b5630cf3d3fcc1f439b61ce17390b151, type: 3}
+  - {fileID: 8300000, guid: 6ffb8de45015f5449ada6c641d67f92c, type: 3}
+  - {fileID: 8300000, guid: ef682c47f1d4f5144a8123c012cc9f33, type: 3}
+  - {fileID: 8300000, guid: e0a596925f0c4424d9a333a7dfdbcd1c, type: 3}
+  - {fileID: 8300000, guid: fefbf9ba407f99948aed508cbd2094ae, type: 3}
   musicSource: {fileID: 0}
   redMaterial: {fileID: 2100000, guid: 9a7166b7459f5fb45bb7f07278e5a4f0, type: 2}
   greenMaterial: {fileID: 2100000, guid: 80efd3f622fe3e44fb7a3936a4b191a6, type: 2}
@@ -60992,6 +61186,7 @@ MonoBehaviour:
   player2Score: 0
   gameOver: 0
   gameOverTime: 0
+  currentRound: 0
   audioVolumeScript: {fileID: 0}
   pauseMenuScript: {fileID: 0}
   splashScreensScript: {fileID: 0}
@@ -61021,6 +61216,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 0}
   musicSource: {fileID: 0}
+  aS: 0
+  ASG: 0
+  mS: 0
+  MSG: 0
 --- !u!114 &1630686052
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+
 public class Controller : MonoBehaviour {
 
     public int currentPlayer;
@@ -12,6 +13,7 @@ public class Controller : MonoBehaviour {
 
     public bool faultyBall = false;
     public bool successBall = false;
+    bool starting = true;
 
     public GameObject jackPrefab;
     GameObject jack;
@@ -37,11 +39,16 @@ public class Controller : MonoBehaviour {
 
     //Audio
     public AudioSource audioSource;
+    public AudioSource announcer;
     public AudioClip ballChangeSound;
     public AudioClip player1WinSound;
     public AudioClip player2WinSound;
     public AudioClip winSound;
     public AudioClip fault;
+    public AudioClip openingVoice;
+    public AudioClip closingVoice;
+    public AudioClip versus;
+    public AudioClip[] roundSounds = new AudioClip[5];
     public GameObject musicSource;
     bool paused = false;
 
@@ -67,14 +74,14 @@ public class Controller : MonoBehaviour {
     public int greenBallsFaulty = 0;
     public int redBallsFaulty = 0;
 
-    public int player1Score = 0;
-    public int player2Score = 0;
+    public int player1Score = 2;
+    public int player2Score = 1;
 
     public bool gameOver;
     public float gameOverTime = 0.0f;
 
     //Rounds
-    int currentRound = 0;
+    public int currentRound = 0;
     const int maximumRounds = 3;
     
 
@@ -90,6 +97,8 @@ public class Controller : MonoBehaviour {
     // Use this for initialization
     void Start() {
         gameOver = false;
+
+       
         //setup scoreboard
         scoreboardScript = GameObject.FindGameObjectWithTag("ScoreBoard").GetComponent<Scoreboard>();
 
@@ -157,6 +166,8 @@ public class Controller : MonoBehaviour {
         }
 
         splashScreensScript.GameStartPanel();
+
+        
     }
 
     void spawnJack()
@@ -173,9 +184,59 @@ public class Controller : MonoBehaviour {
         throwScript.jackThrown = false;
     }
 
+    IEnumerator Introduction()
+    {
+        //play voice
+        announcer.clip = openingVoice;
+        announcer.Play();
+        yield return new WaitForSeconds(announcer.clip.length);
+        announcer.clip = GlobalVariables.teamSounds[GlobalVariables.team1];
+        announcer.Play();
+        yield return new WaitForSeconds(announcer.clip.length);
+        announcer.clip = versus;
+        announcer.Play();
+        yield return new WaitForSeconds(announcer.clip.length);
+        announcer.clip = GlobalVariables.teamSounds[GlobalVariables.team2];
+        announcer.Play();
+        yield return new WaitForSeconds(announcer.clip.length);
+        announcer.clip = roundSounds[currentRound];
+        announcer.Play();
+    }
+
+    IEnumerator RoundEnd()
+    {
+        //play voice        
+        yield return new WaitForSeconds(announcer.clip.length);
+        announcer.clip = roundSounds[currentRound];
+        announcer.Play();
+    }
+    IEnumerator EndofGame()
+    {
+        //play voice        
+        if (player1Score > player2Score)
+        {
+            announcer.clip = GlobalVariables.teamSounds[GlobalVariables.team1];
+            announcer.Play();
+        }
+        else if (player2Score > player1Score)
+        {
+            announcer.clip = GlobalVariables.teamSounds[GlobalVariables.team2];
+            announcer.Play();
+        }
+        yield return new WaitForSeconds(audioSource.clip.length);
+        announcer.clip = closingVoice;
+        announcer.Play();        
+    }
+
     // Update is called once per frame
     void Update()
     {
+       if (starting)
+        {
+            //play the intro voice over
+            StartCoroutine(Introduction());            
+            starting = false;
+        }
         //If game is unpaused
         if (playRound)
         {
@@ -223,7 +284,7 @@ public class Controller : MonoBehaviour {
             }
 
             //quit the game
-            if (Input.GetKeyDown("q") || Input.GetButtonDown("Start Button"))
+            if (Input.GetKeyDown("o"))
             {
                 Application.Quit();
             }
@@ -338,6 +399,8 @@ public class Controller : MonoBehaviour {
                         currentRound++;
                         //reload the level
                         reset();
+                        //next round
+                        StartCoroutine(RoundEnd());
                     }
 
                 }
@@ -349,14 +412,16 @@ public class Controller : MonoBehaviour {
                         {
                             currentRound++;
                             reset();
+                            //next round
+                            StartCoroutine(RoundEnd());
                         }
                     }
                     else
                     {
                         if (gameOver && Time.time - throwScript.shotTime > 12)
                         {
-
-                           // reloadScene();
+                          
+                            // reloadScene();
                         }
                     }
                 }
@@ -513,6 +578,8 @@ public class Controller : MonoBehaviour {
 
                 audioSource.clip = player1WinSound;
                 audioSource.Play();
+
+                
             }
             else if (dist.FindClosestBall() == 2)
             {
@@ -524,6 +591,7 @@ public class Controller : MonoBehaviour {
                 audioSource.clip = player2WinSound;
                 audioSource.Play();
             }
+            
         }
         else
         {
@@ -538,8 +606,10 @@ public class Controller : MonoBehaviour {
                     splashScreensScript.GameOverPanel(1);
                     gameOver = true;
 
-                    audioSource.clip = winSound;
-                    audioSource.Play();
+                    //play win sound
+                    StartCoroutine(EndofGame());
+                    //audioSource.clip = winSound;
+                    //audioSource.Play();
                 }
                 else if(player1Score == player2Score)
                 {
@@ -558,8 +628,10 @@ public class Controller : MonoBehaviour {
                     splashScreensScript.GameOverPanel(2);
                     gameOver = true;
 
-                    audioSource.clip = winSound;
-                    audioSource.Play();
+                    //play win sound
+                    StartCoroutine(EndofGame());
+                    //audioSource.clip = winSound;
+                    //audioSource.Play();
                 }
                 else if (player1Score == player2Score)
                 {

@@ -33,8 +33,9 @@ public class GlobalVariables : MonoBehaviour {
 
     public int teams1, teams2;
 
-
-
+    //array of team sounds
+    public static AudioClip[] teamSounds = new AudioClip[TOTALTEAMS];
+    public AudioClip[] teamLoadSounds = new AudioClip[TOTALTEAMS];
 
     // Use this for initialization
     void Start () {
@@ -42,13 +43,19 @@ public class GlobalVariables : MonoBehaviour {
         player1 = "ONE";
         player2 = "TWO";
         DontDestroyOnLoad(gameObject);
-        team1 = 1;
-        team2 = 2;
+        team1 = 0;
+        team2 = 1;
 
         //load all of the teams into static variable
         for (int i = 0; i < TOTALTEAMS; i++)
         {
             teamLogos[i] = logoLoad[i];
+        }
+
+        //load all of the teams into static variable
+        for (int i = 0; i < TOTALTEAMS; i++)
+        {
+            teamSounds[i] = teamLoadSounds[i];
         }
 
         Cursor.SetCursor(null, Vector2.zero,CursorMode.ForceSoftware);
