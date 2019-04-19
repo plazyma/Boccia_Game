@@ -213,15 +213,9 @@ public class SplashScreens : MonoBehaviour
 
         if (roundNumber != null)
         {
-            if (gameController.GetCurrentRound() <= gameController.GetMaximumRounds())
-            {
-                //Display current round 
-                roundNumber.text = (gameController.GetCurrentRound() + 1).ToString();
-            }
-            else
-            {
-                roundNumber.text = ("TIEBREAK");
-            }
+            print(gameController.GetCurrentRound() + 1);
+            //Display current round 
+            roundNumber.text = (gameController.GetCurrentRound() + 1).ToString();
         }
 
     }

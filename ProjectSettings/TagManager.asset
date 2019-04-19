@@ -85,6 +85,10 @@ TagManager:
   - PauseMenuQuitToMenuButtonNo
   - PauseMenuQuitToMenuButtonYes
   - CrowdAudioPlayer
+  - HowToPlay2
+  - HowToPlay3
+  - HowToPlay4
+  - HowToPlay5
   layers:
   - Default
   - TransparentFX

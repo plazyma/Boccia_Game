@@ -9,6 +9,13 @@ public class PauseMenu : MonoBehaviour {
 
     public GameObject pauseMenu;
     public GameObject howToPlayMenu;
+    public GameObject howToPlayMenu2;
+    public GameObject howToPlayMenu3;
+    public GameObject howToPlayMenu4;
+    public GameObject howToPlayMenu5;
+
+    public List<GameObject> howToPlayList = new List<GameObject>();
+
     Controller gameController;
     CameraView cameraViewScript;
 
@@ -90,8 +97,34 @@ public class PauseMenu : MonoBehaviour {
         if (!howToPlayMenu)
         {
             howToPlayMenu = GameObject.FindGameObjectWithTag("HowToPlay");
+            howToPlayList.Add(howToPlayMenu);
+            howToPlayMenu.SetActive(false);
         }
-        if(!pauseMenuSelection)
+        if (!howToPlayMenu2)
+        {
+            howToPlayMenu2 = GameObject.FindGameObjectWithTag("HowToPlay2");
+            howToPlayList.Add(howToPlayMenu2);
+            howToPlayMenu2.SetActive(false);
+        }
+        if (!howToPlayMenu3)
+        {
+            howToPlayMenu3 = GameObject.FindGameObjectWithTag("HowToPlay3");
+            howToPlayList.Add(howToPlayMenu3);
+            howToPlayMenu3.SetActive(false);
+        }
+        if (!howToPlayMenu4)
+        {
+            howToPlayMenu4 = GameObject.FindGameObjectWithTag("HowToPlay4");
+            howToPlayList.Add(howToPlayMenu4);
+            howToPlayMenu4.SetActive(false);
+        }
+        if (!howToPlayMenu5)
+        {
+            howToPlayMenu5 = GameObject.FindGameObjectWithTag("HowToPlay5");
+            howToPlayList.Add(howToPlayMenu5);
+            howToPlayMenu5.SetActive(false);
+        }
+        if (!pauseMenuSelection)
         {
             pauseMenuSelection = GameObject.FindGameObjectWithTag("PauseMenuSelection");
             ResetSelectionPosition();
@@ -101,7 +134,7 @@ public class PauseMenu : MonoBehaviour {
 
         menuConfirmation.SetActive(false);
         desktopConfirmation.SetActive(false);
-        howToPlayMenu.SetActive(false);
+        
     }
 
     // Update is called once per frame
@@ -273,6 +306,36 @@ public class PauseMenu : MonoBehaviour {
                 if (confirmationSelection == 1)
                 {
                     QuitToDesktop();
+                }
+            }
+        }
+
+        for(int i = 0; i < howToPlayList.Count; i++)
+        {
+            if(howToPlayList[i].activeSelf)
+            {
+                if(Input.GetButtonDown("Throw") || Input.GetButtonDown("LeftMouseButton"))
+                {
+                    if (i == howToPlayList.Count - 1)
+                    {
+                        howToPlayList[i].SetActive(false);
+                        ShowPauseMenu();
+                        ResetSelectionPosition();
+                        Input.ResetInputAxes();
+                    }
+                    else
+                    {
+                        howToPlayList[i + 1].SetActive(true);
+                        howToPlayList[i].SetActive(false);
+                        Input.ResetInputAxes();
+                    }
+                }
+                if(Input.GetButtonDown("Menu"))
+                {
+                    howToPlayList[i].SetActive(false);
+                    ShowPauseMenu();
+                    ResetSelectionPosition();
+                    Input.ResetInputAxes();
                 }
             }
         }
