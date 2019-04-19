@@ -84,6 +84,7 @@ TagManager:
   - PauseMenuQuitToDesktopButtonYes
   - PauseMenuQuitToMenuButtonNo
   - PauseMenuQuitToMenuButtonYes
+  - CrowdAudioPlayer
   layers:
   - Default
   - TransparentFX

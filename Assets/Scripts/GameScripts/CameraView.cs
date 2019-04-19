@@ -74,7 +74,7 @@ public class CameraView : MonoBehaviour
         if (throwScript.jackThrown && !throwScript.ballThrown && gameController.GetPlayRound())
         {
             //Go back to original view
-            if (Input.GetAxis("Camera") > 0)
+            if (Input.GetButtonDown("Camera"))
             {
                 if(currentCameraView < numCameraViews)
                 {
@@ -82,17 +82,15 @@ public class CameraView : MonoBehaviour
                     ChangeCameraView();
                     Input.ResetInputAxes();
                 }
-            }
-            if(Input.GetAxis("Camera") < 0)
-            {
-                if(currentCameraView > 0)
+                else if(currentCameraView == numCameraViews)
                 {
-                    currentCameraView -= 1;
+                    currentCameraView = 0;
                     ChangeCameraView();
                     Input.ResetInputAxes();
                 }
-            }          
+            }       
         }
+
         if (Input.GetKeyDown("c"))
         {
             if (cameraMain.enabled == true)
