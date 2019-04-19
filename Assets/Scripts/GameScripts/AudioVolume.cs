@@ -5,6 +5,8 @@ using UnityEngine;
 public class AudioVolume : MonoBehaviour {
     public AudioSource audioSource;
     public AudioSource musicSource;
+
+    public float aS, ASG, mS, MSG;
 	// Use this for initialization
 	void Awake () {
         //Find audio source
@@ -21,7 +23,10 @@ public class AudioVolume : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        aS = audioSource.volume;
+        ASG = GlobalVariables.audioVolume;
+        mS = musicSource.volume;
+        MSG = GlobalVariables.musicVolume;
 	}
 
     public void SetVolumeLevels()

@@ -87,6 +87,7 @@ public class MenuNavigation : MonoBehaviour {
                 exit.GetComponent<QuitScript>().doExitGame();
                 //confirm sound
                 audioSource.GetComponent<PlaySound>().playSound();
+                
             }
         }
         if (Input.GetAxis("MouseX") != 0 || Input.GetAxis("MouseY") != 0)
