@@ -108,7 +108,7 @@ public class PauseMenu : MonoBehaviour {
     void Update()
     {
         EventSystem.current.SetSelectedGameObject(null);
-        if (Input.GetKeyDown("escape") && !gameController.gameOver)
+        if (Input.GetButtonDown("Menu") && !gameController.gameOver)
         {
             if (gameController.GetPlayRound())
             {
@@ -145,7 +145,7 @@ public class PauseMenu : MonoBehaviour {
         }
         if (pauseMenu.activeSelf == true && (menuConfirmation.activeSelf == false && desktopConfirmation.activeSelf == false))
         {
-            if (Input.GetKeyDown("down"))
+            if (Input.GetButtonDown("Power Down"))
             {
                 if (pauseMenuSelection.activeSelf)
                 {
@@ -160,7 +160,7 @@ public class PauseMenu : MonoBehaviour {
                     pauseMenuSelection.SetActive(true);
                 }
             }
-            if (Input.GetKeyDown("up"))
+            if (Input.GetButtonDown("Power Up"))
             {
                 if (pauseMenuSelection.activeSelf)
                 {
@@ -207,7 +207,7 @@ public class PauseMenu : MonoBehaviour {
 
         if(menuConfirmation.activeSelf)
         {
-            if(Input.GetKeyDown("left"))
+            if(Input.GetButtonDown("Turn Left") || Input.GetAxis("DPadX") < 0)
             {
                 if(confirmationSelection == 1)
                 {
@@ -215,7 +215,7 @@ public class PauseMenu : MonoBehaviour {
                     pauseMenuSelection.transform.position = quitToMenuButtonNo.transform.position;
                 }              
             }
-            if(Input.GetKeyDown("right"))
+            if(Input.GetButtonDown("Turn Right") || Input.GetAxis("DPadX") > 0)
             {
                 if (confirmationSelection == 0)
                 {
@@ -224,7 +224,7 @@ public class PauseMenu : MonoBehaviour {
                 }
             }
 
-            if(Input.GetKeyDown("space"))
+            if(Input.GetButtonDown("Throw"))
             {
                 if(confirmationSelection == 0)
                 {
@@ -242,7 +242,7 @@ public class PauseMenu : MonoBehaviour {
 
         if (desktopConfirmation.activeSelf)
         {
-            if (Input.GetKeyDown("left"))
+            if (Input.GetButtonDown("Turn Left") || Input.GetAxis("DPadX") < 0)
             {
                 if (confirmationSelection == 1)
                 {
@@ -251,7 +251,7 @@ public class PauseMenu : MonoBehaviour {
 
                 }
             }
-            if (Input.GetKeyDown("right"))
+            if (Input.GetButtonDown("Turn Right") || Input.GetAxis("DPadX") > 0)
             {
                 if (confirmationSelection == 0)
                 {

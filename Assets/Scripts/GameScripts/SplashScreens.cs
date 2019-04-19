@@ -8,6 +8,7 @@ public class SplashScreens : MonoBehaviour
     public Controller gameController;
     public AimAssist aimAssistScript;
     public PauseMenu pauseMenuScript;
+    public CrowdCheerAudio crowdCheerAudioScript;
 
     public GameObject playerChangePanel;
     public List<Image> playerChangePanelImages = new List<Image>();
@@ -35,6 +36,10 @@ public class SplashScreens : MonoBehaviour
         if (!gameController)
         {
             gameController = GetComponent<Controller>();
+        }
+        if(!crowdCheerAudioScript)
+        {
+            crowdCheerAudioScript = GameObject.FindGameObjectWithTag("CrowdAudioPlayer").GetComponent<CrowdCheerAudio>();
         }
 
         if (!aimAssistScript)
@@ -170,6 +175,8 @@ public class SplashScreens : MonoBehaviour
             aimAssistScript.EnableArenaBoundary();
 
             Input.ResetInputAxes();
+
+            crowdCheerAudioScript.SetCrowdLoop();
         }
     }
 
@@ -269,6 +276,7 @@ public class SplashScreens : MonoBehaviour
         gameController.SetPlayRound(false);
 
         aimAssistScript.DisableHardAimAssist();
+        crowdCheerAudioScript.SetCrowdHigh();
     }
 
     public void GameOverPanel(int currPlayer)
@@ -293,6 +301,7 @@ public class SplashScreens : MonoBehaviour
         gameController.SetPlayRound(false);
 
         aimAssistScript.DisableHardAimAssist();
+        crowdCheerAudioScript.SetCrowdHigh();
     }
 
 }
