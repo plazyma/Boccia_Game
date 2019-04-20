@@ -223,7 +223,7 @@ public class Controller : MonoBehaviour {
             announcer.clip = GlobalVariables.teamSounds[GlobalVariables.team2];
             announcer.Play();
         }
-        yield return new WaitForSeconds(audioSource.clip.length);
+        yield return new WaitForSeconds(announcer.clip.length);
         announcer.clip = closingVoice;
         announcer.Play();        
     }

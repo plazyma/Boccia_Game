@@ -31,6 +31,7 @@ ModelImporter:
     4300006: Arm_1
     7400000: Shake_Mii
     9500000: //RootNode
+    2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -43,7 +44,8 @@ ModelImporter:
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
-    rigImportErrors: 
+    rigImportErrors: "Invalid Avatar Rig Configuration. Missing or invalid transform:\n\tRequired
+      human bone 'Hips' not found\n"
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
@@ -51,9 +53,9 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
-    animationPositionError: 0.5
+    animationPositionError: 0
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
@@ -75,13 +77,38 @@ ModelImporter:
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
+      keepOriginalOrientation: 1
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
+      curves:
+      - name: Curve
+        curve:
+          serializedVersion: 2
+          curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          preInfinity: 3
+          postInfinity: 3
+          rotationOrder: 4
       events: []
       transformMask: []
       maskType: 3
@@ -120,7 +147,32 @@ ModelImporter:
   humanDescription:
     serializedVersion: 2
     human: []
-    skeleton: []
+    skeleton:
+    - name: Shake_Animation_Mii_Unwraped(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Arm_1
+      parentName: Shake_Animation_Mii_Unwraped(Clone)
+      position: {x: -7.909528, y: 10.288953, z: -0.2856718}
+      rotation: {x: -0.709567, y: 0.00024090371, z: -0.00023923024, w: 0.7046379}
+      scale: {x: 6.7320347, y: 6.7320366, z: 6.9709935}
+    - name: Box001
+      parentName: Shake_Animation_Mii_Unwraped(Clone)
+      position: {x: -7.927004, y: -0.17753062, z: -0.43511122}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 13.249798, y: 13.249798, z: 13.249798}
+    - name: Box002
+      parentName: Shake_Animation_Mii_Unwraped(Clone)
+      position: {x: -7.15052, y: 11.076085, z: -1.0796571}
+      rotation: {x: -0.6967099, y: 0, z: -0, w: 0.71735305}
+      scale: {x: 12.192316, y: 11.557385, z: 11.557385}
+    - name: ch2 arms
+      parentName: Shake_Animation_Mii_Unwraped(Clone)
+      position: {x: -7.909528, y: 10.288953, z: -0.2856718}
+      rotation: {x: -0.709567, y: -0.00022750042, z: 0.00022592006, w: 0.7046379}
+      scale: {x: 6.7320356, y: 6.7320356, z: 6.970995}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -128,13 +180,13 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    rootMotionBoneName: 
+    rootMotionBoneName: Box001
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 3
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

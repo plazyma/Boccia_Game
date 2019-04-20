@@ -39,6 +39,8 @@ public class PauseMenu : MonoBehaviour {
     int numOfButtons = 3;
 
     int confirmationSelection = 0;
+
+    bool buttonPressed = false;
 	// Use this for initialization
 	void Awake () {
 		if(!pauseMenu)
@@ -178,7 +180,7 @@ public class PauseMenu : MonoBehaviour {
         }
         if (pauseMenu.activeSelf == true && (menuConfirmation.activeSelf == false && desktopConfirmation.activeSelf == false))
         {
-            if (Input.GetButtonDown("Power Down"))
+            if ((Input.GetAxis("DPadY") == -1 || Input.GetButtonDown("Down")) && !buttonPressed)
             {
                 if (pauseMenuSelection.activeSelf)
                 {
@@ -186,6 +188,7 @@ public class PauseMenu : MonoBehaviour {
                     {
                         pauseSelection += 1;
                         UpdateSelection();
+                        buttonPressed = true;
                     }
                 }
                 else
@@ -193,7 +196,7 @@ public class PauseMenu : MonoBehaviour {
                     pauseMenuSelection.SetActive(true);
                 }
             }
-            if (Input.GetButtonDown("Power Up"))
+            if ((Input.GetAxis("DPadY") == 1 || Input.GetButtonDown("Up"))&& !buttonPressed)
             {
                 if (pauseMenuSelection.activeSelf)
                 {
@@ -201,6 +204,7 @@ public class PauseMenu : MonoBehaviour {
                     {
                         pauseSelection -= 1;
                         UpdateSelection();
+                        buttonPressed = true;
                     }
                 }
                 else
@@ -208,7 +212,11 @@ public class PauseMenu : MonoBehaviour {
                     pauseMenuSelection.SetActive(true);
                 }
             }
-            if (Input.GetButtonDown("Throw"))
+            if (Input.GetAxis("DPadY") == 0)
+            {
+                buttonPressed = false;
+            }
+            if (Input.GetButtonDown("A"))
             {
                 switch (pauseSelection)
                 {
@@ -257,7 +265,7 @@ public class PauseMenu : MonoBehaviour {
                 }
             }
 
-            if(Input.GetButtonDown("Throw"))
+            if(Input.GetButtonDown("A"))
             {
                 if(confirmationSelection == 0)
                 {
@@ -294,7 +302,7 @@ public class PauseMenu : MonoBehaviour {
                 }
             }
 
-            if (Input.GetButtonDown("Throw"))
+            if (Input.GetButtonDown("A"))
             {
                 if (confirmationSelection == 0)
                 {
