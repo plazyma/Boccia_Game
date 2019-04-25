@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEditor;
 
-public class Throw : MonoBehaviour {
+public class Throw : MonoBehaviour
+{
     //Initializing
     float power;
     Rigidbody rb;
@@ -34,7 +35,8 @@ public class Throw : MonoBehaviour {
     Scoreboard scoreBoardScript2;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         //get controller, player and some scripts
         gameController = GameObject.FindWithTag("GameController");
         cont = gameController.gameObject.GetComponent<Controller>();
@@ -46,12 +48,12 @@ public class Throw : MonoBehaviour {
         // startPosition = new Vector3(-17.73f, 1.68f, 2.38f);
         loadSound();
 
-        if(!aimAssistScript)
+        if (!aimAssistScript)
         {
             aimAssistScript = GetComponent<AimAssist>();
         }
 
-        if(!powerBar)
+        if (!powerBar)
         {
             powerBar = GameObject.FindGameObjectWithTag("ScoreBoard").GetComponent<Powerbar>();
         }
@@ -64,16 +66,17 @@ public class Throw : MonoBehaviour {
         Object[] powerBarSounds = Resources.LoadAll("Power", typeof(AudioClip));
 
         //Populate list
-        foreach(Object sound in powerBarSounds)
+        foreach (Object sound in powerBarSounds)
         {
             powerBarAudioClips.Add((AudioClip)sound);
         }
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
         //If list of sounds is empty, populate it
-        if(powerBarAudioClips.Count == 0)
+        if (powerBarAudioClips.Count == 0)
         {
             loadSound();
         }
@@ -92,7 +95,7 @@ public class Throw : MonoBehaviour {
         //if ball isn't thrown
         if (ballThrown == false)
         {
-           
+
             //update balls position until thrown
             ball.transform.position = transform.position + (transform.forward * 2);
             ball.transform.rotation = transform.rotation;
@@ -101,7 +104,7 @@ public class Throw : MonoBehaviour {
             if (cont.GetPlayRound())
             {
                 //Increase x - power by 1
-                if (Input.GetAxis("Power") > 0)
+                if (Input.GetKeyDown("up") || Input.GetButtonDown("B") || Input.GetAxis("MouseScrollWheel") > 0)
                 {
                     if (power < 10)
                     {
@@ -125,10 +128,9 @@ public class Throw : MonoBehaviour {
                     }
                     //Update powerbar
                     powerBar.updatePowerBar();
-                    Input.ResetInputAxes();
                 }
                 //Decrease x - power by 1
-                if (Input.GetAxis("Power") < 0)
+                if (Input.GetKeyDown("down") || Input.GetButtonDown("A") || Input.GetAxis("MouseScrollWheel") < 0)
                 {
                     if (power > 0)
                     {
@@ -152,11 +154,10 @@ public class Throw : MonoBehaviour {
                     }
                     //Update powerbar
                     powerBar.updatePowerBar();
-                    Input.ResetInputAxes();
                 }
 
                 //Apply force on release
-                if (Input.GetButton("Throw"))
+                if (Input.GetKeyDown("space") || Input.GetButtonDown("X") || Input.GetButtonDown("LeftMouseButton"))
                 {
                     //rb.useGravity = true;
                     //Apply force to ball
@@ -186,7 +187,7 @@ public class Throw : MonoBehaviour {
                     player.GetComponent<PlayerControls>().powerRotModifier = 1.1f;
                 }
             }
-            
+
         }
         //Reset position of the ball and scene
         if (Input.GetKeyDown("r"))
@@ -235,6 +236,6 @@ public class Throw : MonoBehaviour {
         //Update powerbar
         powerBar.updatePowerBar();
 
-        
+
     }
 }

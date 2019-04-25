@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PauseMenu : MonoBehaviour {
+public class PauseMenu : MonoBehaviour
+{
 
     public GameObject pauseMenu;
     public GameObject howToPlayMenu;
@@ -15,6 +16,8 @@ public class PauseMenu : MonoBehaviour {
     public GameObject howToPlayMenu5;
 
     public List<GameObject> howToPlayList = new List<GameObject>();
+
+
 
     Controller gameController;
     CameraView cameraViewScript;
@@ -35,7 +38,7 @@ public class PauseMenu : MonoBehaviour {
     public GameObject pauseMenuSelection;
 
     public List<Button> buttonList = new List<Button>();
-    
+
     int pauseSelection = 0;
 
     int numOfButtons = 3;
@@ -43,53 +46,54 @@ public class PauseMenu : MonoBehaviour {
     int confirmationSelection = 0;
 
     bool buttonPressed = false;
-	// Use this for initialization
-	void Awake () {
-		if(!pauseMenu)
+    // Use this for initialization
+    void Awake()
+    {
+        if (!pauseMenu)
         {
             pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu");
         }
-        if(!menuConfirmation)
+        if (!menuConfirmation)
         {
             menuConfirmation = GameObject.FindGameObjectWithTag("MenuConfirmation");
         }
-        if(!desktopConfirmation)
+        if (!desktopConfirmation)
         {
             desktopConfirmation = GameObject.FindGameObjectWithTag("DesktopConfirmation");
         }
-        if(!gameController)
+        if (!gameController)
         {
             gameController = GetComponent<Controller>();
         }
-        if(!cameraViewScript)
+        if (!cameraViewScript)
         {
             cameraViewScript = GameObject.FindGameObjectWithTag("Player").GetComponent<CameraView>();
         }
-        if(!returnButton)
+        if (!returnButton)
         {
             returnButton = GameObject.FindGameObjectWithTag("PauseMenuReturnButton").GetComponent<Button>();
 
             buttonList.Add(returnButton);
         }
-        if(!howToPlayButton)
+        if (!howToPlayButton)
         {
             howToPlayButton = GameObject.FindGameObjectWithTag("PauseMenuHowToPlayButton").GetComponent<Button>();
 
             buttonList.Add(howToPlayButton);
         }
-        if(!quitToMenuButton)
+        if (!quitToMenuButton)
         {
             quitToMenuButton = GameObject.FindGameObjectWithTag("PauseMenuQuitToMenuButton").GetComponent<Button>();
 
             buttonList.Add(quitToMenuButton);
         }
-        if(!quitToDesktopButton)
+        if (!quitToDesktopButton)
         {
             quitToDesktopButton = GameObject.FindGameObjectWithTag("PauseMenuQuitToDesktopButton").GetComponent<Button>();
 
             buttonList.Add(quitToDesktopButton);
         }
-        if(!quitToDesktopButtonNo)
+        if (!quitToDesktopButtonNo)
         {
             quitToDesktopButtonNo = GameObject.FindGameObjectWithTag("PauseMenuQuitToDesktopButtonNo").GetComponent<Button>();
 
@@ -107,12 +111,13 @@ public class PauseMenu : MonoBehaviour {
 
             buttonList.Add(quitToMenuButtonNo);
         }
-        if(!quitToMenuButtonYes)
+        if (!quitToMenuButtonYes)
         {
             quitToMenuButtonYes = GameObject.FindGameObjectWithTag("PauseMenuQuitToMenuButtonYes").GetComponent<Button>();
 
             buttonList.Add(quitToMenuButtonYes);
         }
+
 
         if (!howToPlayMenu)
         {
@@ -154,7 +159,7 @@ public class PauseMenu : MonoBehaviour {
 
         menuConfirmation.SetActive(false);
         desktopConfirmation.SetActive(false);
-        
+
     }
 
     // Update is called once per frame
@@ -184,12 +189,12 @@ public class PauseMenu : MonoBehaviour {
                     HideHowToPlayMenu();
                     ResetSelectionPosition();
                 }
-                else if(menuConfirmation.activeSelf)
+                else if (menuConfirmation.activeSelf)
                 {
                     HideMenuConfirmation();
                     ResetSelectionPosition();
                 }
-                else if(desktopConfirmation.activeSelf)
+                else if (desktopConfirmation.activeSelf)
                 {
                     HideDesktopConfirmation();
                     ResetSelectionPosition();
@@ -198,8 +203,7 @@ public class PauseMenu : MonoBehaviour {
         }
         if (pauseMenu.activeSelf == true && (menuConfirmation.activeSelf == false && desktopConfirmation.activeSelf == false))
         {
-
-            if ((Input.GetAxisRaw("Power") < 0) && !buttonPressed)
+            if ((Input.GetAxis("DPadY") == -1 || Input.GetButtonDown("Down")) && !buttonPressed)
             {
                 if (pauseMenuSelection.activeSelf)
                 {
@@ -208,16 +212,14 @@ public class PauseMenu : MonoBehaviour {
                         pauseSelection += 1;
                         UpdateSelection();
                         buttonPressed = true;
-                        
                     }
                 }
                 else
                 {
                     pauseMenuSelection.SetActive(true);
                 }
-                
             }
-            if ((Input.GetAxisRaw("Power") > 0) && !buttonPressed)
+            if ((Input.GetAxis("DPadY") == 1 || Input.GetButtonDown("Up")) && !buttonPressed)
             {
                 if (pauseMenuSelection.activeSelf)
                 {
@@ -233,11 +235,11 @@ public class PauseMenu : MonoBehaviour {
                     pauseMenuSelection.SetActive(true);
                 }
             }
-            if (Input.GetAxisRaw("Power") == 0)
+            if (Input.GetAxis("DPadY") == 0)
             {
                 buttonPressed = false;
             }
-            if (Input.GetButtonDown("Throw"))
+            if (Input.GetButtonDown("A"))
             {
                 switch (pauseSelection)
                 {
@@ -267,37 +269,35 @@ public class PauseMenu : MonoBehaviour {
             }
         }
 
-        if(menuConfirmation.activeSelf)
+        if (menuConfirmation.activeSelf)
         {
-            if(Input.GetAxisRaw("Turn (Keyboard)") < 0 || Input.GetAxisRaw("Turn") < -0.8)
+            if (Input.GetButtonDown("Turn Left") || Input.GetAxis("DPadX") < 0)
             {
-                if(confirmationSelection == 1)
+                if (confirmationSelection == 1)
                 {
                     confirmationSelection = 0;
                     pauseMenuSelection.transform.position = quitToMenuButtonNo.transform.position;
                 }
-               // Input.ResetInputAxes();
             }
-            if(Input.GetAxisRaw("Turn (Keyboard)") > 0 || Input.GetAxisRaw("Turn") > 0.8)
+            if (Input.GetButtonDown("Turn Right") || Input.GetAxis("DPadX") > 0)
             {
                 if (confirmationSelection == 0)
                 {
                     confirmationSelection = 1;
                     pauseMenuSelection.transform.position = quitToMenuButtonYes.transform.position;
                 }
-               // Input.ResetInputAxes();
             }
 
-            if(Input.GetButtonDown("Throw"))
+            if (Input.GetButtonDown("A"))
             {
-                if(confirmationSelection == 0)
+                if (confirmationSelection == 0)
                 {
                     pauseSelection = 0;
                     UpdateSelection();
 
                     HideMenuConfirmation();
                 }
-                if(confirmationSelection == 1)
+                if (confirmationSelection == 1)
                 {
                     QuitToMenu();
                 }
@@ -306,7 +306,7 @@ public class PauseMenu : MonoBehaviour {
 
         if (desktopConfirmation.activeSelf)
         {
-            if (Input.GetAxisRaw("Turn (Keyboard)") < 0)
+            if (Input.GetButtonDown("Turn Left") || Input.GetAxis("DPadX") < 0)
             {
                 if (confirmationSelection == 1)
                 {
@@ -314,9 +314,8 @@ public class PauseMenu : MonoBehaviour {
                     pauseMenuSelection.transform.position = quitToDesktopButtonNo.transform.position;
 
                 }
-                Input.ResetInputAxes();
             }
-            if (Input.GetAxisRaw("Turn (Keyboard)") > 0)
+            if (Input.GetButtonDown("Turn Right") || Input.GetAxis("DPadX") > 0)
             {
                 if (confirmationSelection == 0)
                 {
@@ -324,17 +323,16 @@ public class PauseMenu : MonoBehaviour {
                     pauseMenuSelection.transform.position = quitToDesktopButtonYes.transform.position;
 
                 }
-                Input.ResetInputAxes();
             }
 
-            if (Input.GetButtonDown("Throw"))
+            if (Input.GetButtonDown("A"))
             {
                 if (confirmationSelection == 0)
                 {
                     HideDesktopConfirmation();
 
                     pauseSelection = 0;
-                    UpdateSelection();                    
+                    UpdateSelection();
                 }
                 if (confirmationSelection == 1)
                 {
@@ -343,31 +341,32 @@ public class PauseMenu : MonoBehaviour {
             }
         }
 
-        for(int i = 0; i < howToPlayList.Count; i++)
+        for (int i = 0; i < howToPlayList.Count; i++)
         {
-            if(howToPlayList[i].activeSelf)
+            if (howToPlayList[i].activeSelf)
             {
-                print(howToPlayList[i]);
-                if(Input.GetButtonDown("Throw"))
+                if (Input.GetButtonDown("Throw") || Input.GetButtonDown("LeftMouseButton"))
                 {
                     if (i == howToPlayList.Count - 1)
                     {
                         howToPlayList[i].SetActive(false);
                         ShowPauseMenu();
                         ResetSelectionPosition();
+                        Input.ResetInputAxes();
                     }
                     else
                     {
                         howToPlayList[i + 1].SetActive(true);
                         howToPlayList[i].SetActive(false);
+                        Input.ResetInputAxes();
                     }
-                    Input.ResetInputAxes();
                 }
-                if(Input.GetButtonDown("Menu"))
+                if (Input.GetButtonDown("Menu"))
                 {
                     howToPlayList[i].SetActive(false);
                     ShowPauseMenu();
                     ResetSelectionPosition();
+                    Input.ResetInputAxes();
                 }
             }
         }
@@ -469,7 +468,7 @@ public class PauseMenu : MonoBehaviour {
 
         foreach (Button butt in buttonList)
         {
-            if (butt == quitToMenuButtonNo || butt == quitToMenuButtonYes)
+            if (butt == quitToDesktopButtonNo || butt == quitToDesktopButtonYes)
             {
                 butt.interactable = true;
             }
