@@ -101,7 +101,7 @@ public class Throw : MonoBehaviour {
             if (cont.GetPlayRound())
             {
                 //Increase x - power by 1
-                if (Input.GetKeyDown("up") || Input.GetButtonDown("A") || Input.GetAxis("MouseScrollWheel") > 0)
+                if (Input.GetAxis("Power") > 0)
                 {
                     if (power < 10)
                     {
@@ -125,9 +125,10 @@ public class Throw : MonoBehaviour {
                     }
                     //Update powerbar
                     powerBar.updatePowerBar();
+                    Input.ResetInputAxes();
                 }
                 //Decrease x - power by 1
-                if (Input.GetKeyDown("down") || Input.GetButtonDown("B") || Input.GetAxis("MouseScrollWheel") < 0)
+                if (Input.GetAxis("Power") < 0)
                 {
                     if (power > 0)
                     {
@@ -151,10 +152,11 @@ public class Throw : MonoBehaviour {
                     }
                     //Update powerbar
                     powerBar.updatePowerBar();
+                    Input.ResetInputAxes();
                 }
 
                 //Apply force on release
-                if (Input.GetKeyDown("space") || Input.GetButtonDown("X") || Input.GetButtonDown("LeftMouseButton"))
+                if (Input.GetButton("Throw"))
                 {
                     //rb.useGravity = true;
                     //Apply force to ball

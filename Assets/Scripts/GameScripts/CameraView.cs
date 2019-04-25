@@ -74,7 +74,7 @@ public class CameraView : MonoBehaviour
         if (throwScript.jackThrown && !throwScript.ballThrown && gameController.GetPlayRound())
         {
             //Go back to original view
-            if (Input.GetButtonDown("Camera"))
+            if (Input.GetButtonDown("Camera Angles"))
             {
                 if(currentCameraView < numCameraViews)
                 {

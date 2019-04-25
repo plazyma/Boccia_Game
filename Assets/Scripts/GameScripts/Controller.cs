@@ -270,12 +270,6 @@ public class Controller : MonoBehaviour {
             {
                 jackCamera.getJack();
             }
-
-            if (Input.GetKeyDown("p"))
-            {
-                char a = 'a';
-
-            }
             if (Input.GetKeyDown("[5]"))
             {
                 amountOfBalls = amountOfBalls + 2;

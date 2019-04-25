@@ -29,43 +29,35 @@ public class PlayerControls : MonoBehaviour {
         if (gameController.GetPlayRound() && !throwClass.ballThrown)
         {
             //When right is pressed rotate ball
-            if (Input.GetKey("right") || Input.GetAxis("DPadX") == 1 || Input.GetAxis("MouseX") > 0)//|| Input.GetAxis("Joystick") > 0.5)
+            if (Input.GetAxis("Turn") > 0.8)
             {
                 //Restrict how far user can rotate
                 if (transform.localEulerAngles.y < 160 && transform.localEulerAngles.y > 10)
                 {
-                    //adjust rotation for keyboard
-                    if (Input.GetKey("right"))
-                    {
-
-                        transform.Rotate(0.0f, (rotationSpeed * keyboardRotModifier * powerRotModifier) * Time.deltaTime , 0.0f);
-                    }
-                    else
-                    {
-                        transform.Rotate(0.0f, (rotationSpeed * powerRotModifier) * Time.deltaTime , 0.0f);
-                    }
-                    //Show "arrow" to indicate where ball is pointing
-                    //arrow.SetActive(true);
+                       transform.Rotate(0.0f, (rotationSpeed * powerRotModifier) * Time.deltaTime , 0.0f);
                 }
             }
+            if(Input.GetAxis("Turn (Keyboard)") > 0)
+            {
+                if(transform.localEulerAngles.y < 160 && transform.localEulerAngles.y > 10)
+                {
+                    transform.Rotate(0.0f, (rotationSpeed * keyboardRotModifier * powerRotModifier) * Time.deltaTime, 0.0f);
+                }    
+            }
             //When left is pressed rotate in opposite direction
-            if (Input.GetKey("left") || Input.GetAxis("DPadX") == -1 || Input.GetAxis("MouseX") < 0) //|| Input.GetAxis("Joystick") < -0.5)
+            if (Input.GetAxis("Turn") < -0.8)
             {
                 //Restrict how far user can rotate
                 if (transform.localEulerAngles.y < 170 && transform.localEulerAngles.y > 20)
                 {
-                    //Show arrow to indicate where ball is pointing
-                    //arrow.SetActive(true);
-                    //adjust rotation for keyboard
-                    if (Input.GetKey("left"))
-                    {
-
-                        transform.Rotate(0.0f, (-rotationSpeed * keyboardRotModifier * powerRotModifier) * Time.deltaTime, 0.0f);
-                    }
-                    else
-                    {
-                        transform.Rotate(0.0f, (-rotationSpeed * powerRotModifier) * Time.deltaTime, 0.0f);
-                    }
+                    transform.Rotate(0.0f, (-rotationSpeed * powerRotModifier) * Time.deltaTime, 0.0f);
+                }
+            }
+            if(Input.GetAxis("Turn (Keyboard)") < 0)
+            {
+                if (transform.localEulerAngles.y < 170 && transform.localEulerAngles.y > 20)
+                {
+                    transform.Rotate(0.0f, (-rotationSpeed * keyboardRotModifier * powerRotModifier) * Time.deltaTime, 0.0f);
                 }
             }
 

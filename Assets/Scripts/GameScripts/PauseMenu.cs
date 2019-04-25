@@ -198,7 +198,8 @@ public class PauseMenu : MonoBehaviour {
         }
         if (pauseMenu.activeSelf == true && (menuConfirmation.activeSelf == false && desktopConfirmation.activeSelf == false))
         {
-            if ((Input.GetAxis("DPadY") == -1 || Input.GetButtonDown("Down")) && !buttonPressed)
+
+            if ((Input.GetAxisRaw("Power") < 0) && !buttonPressed)
             {
                 if (pauseMenuSelection.activeSelf)
                 {
@@ -207,14 +208,16 @@ public class PauseMenu : MonoBehaviour {
                         pauseSelection += 1;
                         UpdateSelection();
                         buttonPressed = true;
+                        
                     }
                 }
                 else
                 {
                     pauseMenuSelection.SetActive(true);
                 }
+                
             }
-            if ((Input.GetAxis("DPadY") == 1 || Input.GetButtonDown("Up"))&& !buttonPressed)
+            if ((Input.GetAxisRaw("Power") > 0) && !buttonPressed)
             {
                 if (pauseMenuSelection.activeSelf)
                 {
@@ -230,11 +233,11 @@ public class PauseMenu : MonoBehaviour {
                     pauseMenuSelection.SetActive(true);
                 }
             }
-            if (Input.GetAxis("DPadY") == 0)
+            if (Input.GetAxisRaw("Power") == 0)
             {
                 buttonPressed = false;
             }
-            if (Input.GetButtonDown("A"))
+            if (Input.GetButtonDown("Throw"))
             {
                 switch (pauseSelection)
                 {
@@ -266,24 +269,26 @@ public class PauseMenu : MonoBehaviour {
 
         if(menuConfirmation.activeSelf)
         {
-            if(Input.GetButtonDown("Turn Left") || Input.GetAxis("DPadX") < 0)
+            if(Input.GetAxisRaw("Turn (Keyboard)") < 0 || Input.GetAxisRaw("Turn") < -0.8)
             {
                 if(confirmationSelection == 1)
                 {
                     confirmationSelection = 0;
                     pauseMenuSelection.transform.position = quitToMenuButtonNo.transform.position;
-                }              
+                }
+               // Input.ResetInputAxes();
             }
-            if(Input.GetButtonDown("Turn Right") || Input.GetAxis("DPadX") > 0)
+            if(Input.GetAxisRaw("Turn (Keyboard)") > 0 || Input.GetAxisRaw("Turn") > 0.8)
             {
                 if (confirmationSelection == 0)
                 {
                     confirmationSelection = 1;
                     pauseMenuSelection.transform.position = quitToMenuButtonYes.transform.position;
                 }
+               // Input.ResetInputAxes();
             }
 
-            if(Input.GetButtonDown("A"))
+            if(Input.GetButtonDown("Throw"))
             {
                 if(confirmationSelection == 0)
                 {
@@ -301,7 +306,7 @@ public class PauseMenu : MonoBehaviour {
 
         if (desktopConfirmation.activeSelf)
         {
-            if (Input.GetButtonDown("Turn Left") || Input.GetAxis("DPadX") < 0)
+            if (Input.GetAxisRaw("Turn (Keyboard)") < 0)
             {
                 if (confirmationSelection == 1)
                 {
@@ -309,8 +314,9 @@ public class PauseMenu : MonoBehaviour {
                     pauseMenuSelection.transform.position = quitToDesktopButtonNo.transform.position;
 
                 }
+                Input.ResetInputAxes();
             }
-            if (Input.GetButtonDown("Turn Right") || Input.GetAxis("DPadX") > 0)
+            if (Input.GetAxisRaw("Turn (Keyboard)") > 0)
             {
                 if (confirmationSelection == 0)
                 {
@@ -318,9 +324,10 @@ public class PauseMenu : MonoBehaviour {
                     pauseMenuSelection.transform.position = quitToDesktopButtonYes.transform.position;
 
                 }
+                Input.ResetInputAxes();
             }
 
-            if (Input.GetButtonDown("A"))
+            if (Input.GetButtonDown("Throw"))
             {
                 if (confirmationSelection == 0)
                 {
@@ -340,28 +347,27 @@ public class PauseMenu : MonoBehaviour {
         {
             if(howToPlayList[i].activeSelf)
             {
-                if(Input.GetButtonDown("Throw") || Input.GetButtonDown("LeftMouseButton"))
+                print(howToPlayList[i]);
+                if(Input.GetButtonDown("Throw"))
                 {
                     if (i == howToPlayList.Count - 1)
                     {
                         howToPlayList[i].SetActive(false);
                         ShowPauseMenu();
                         ResetSelectionPosition();
-                        Input.ResetInputAxes();
                     }
                     else
                     {
                         howToPlayList[i + 1].SetActive(true);
                         howToPlayList[i].SetActive(false);
-                        Input.ResetInputAxes();
                     }
+                    Input.ResetInputAxes();
                 }
                 if(Input.GetButtonDown("Menu"))
                 {
                     howToPlayList[i].SetActive(false);
                     ShowPauseMenu();
                     ResetSelectionPosition();
-                    Input.ResetInputAxes();
                 }
             }
         }
@@ -434,7 +440,7 @@ public class PauseMenu : MonoBehaviour {
 
         foreach (Button butt in buttonList)
         {
-            if(butt == quitToMenuButtonNo || butt == quitToMenuButtonYes)
+            if (butt == quitToMenuButtonNo || butt == quitToMenuButtonYes)
             {
                 butt.interactable = true;
             }
@@ -442,7 +448,7 @@ public class PauseMenu : MonoBehaviour {
             {
                 butt.interactable = false;
             }
-        }              
+        }
     }
 
     public void HideMenuConfirmation()
