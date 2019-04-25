@@ -33,6 +33,8 @@ public class PauseMenu : MonoBehaviour {
     public GameObject menuConfirmation;
     public GameObject desktopConfirmation;
     public GameObject pauseMenuSelection;
+
+    public List<Button> buttonList = new List<Button>();
     
     int pauseSelection = 0;
 
@@ -66,34 +68,50 @@ public class PauseMenu : MonoBehaviour {
         if(!returnButton)
         {
             returnButton = GameObject.FindGameObjectWithTag("PauseMenuReturnButton").GetComponent<Button>();
+
+            buttonList.Add(returnButton);
         }
         if(!howToPlayButton)
         {
             howToPlayButton = GameObject.FindGameObjectWithTag("PauseMenuHowToPlayButton").GetComponent<Button>();
+
+            buttonList.Add(howToPlayButton);
         }
         if(!quitToMenuButton)
         {
             quitToMenuButton = GameObject.FindGameObjectWithTag("PauseMenuQuitToMenuButton").GetComponent<Button>();
+
+            buttonList.Add(quitToMenuButton);
         }
         if(!quitToDesktopButton)
         {
             quitToDesktopButton = GameObject.FindGameObjectWithTag("PauseMenuQuitToDesktopButton").GetComponent<Button>();
+
+            buttonList.Add(quitToDesktopButton);
         }
         if(!quitToDesktopButtonNo)
         {
             quitToDesktopButtonNo = GameObject.FindGameObjectWithTag("PauseMenuQuitToDesktopButtonNo").GetComponent<Button>();
+
+            buttonList.Add(quitToDesktopButtonNo);
         }
         if (!quitToDesktopButtonYes)
         {
             quitToDesktopButtonYes = GameObject.FindGameObjectWithTag("PauseMenuQuitToDesktopButtonYes").GetComponent<Button>();
+
+            buttonList.Add(quitToDesktopButtonYes);
         }
         if (!quitToMenuButtonNo)
         {
             quitToMenuButtonNo = GameObject.FindGameObjectWithTag("PauseMenuQuitToMenuButtonNo").GetComponent<Button>();
+
+            buttonList.Add(quitToMenuButtonNo);
         }
         if(!quitToMenuButtonYes)
         {
             quitToMenuButtonYes = GameObject.FindGameObjectWithTag("PauseMenuQuitToMenuButtonYes").GetComponent<Button>();
+
+            buttonList.Add(quitToMenuButtonYes);
         }
 
         if (!howToPlayMenu)
@@ -413,11 +431,28 @@ public class PauseMenu : MonoBehaviour {
     public void ShowMenuConfirmation()
     {
         menuConfirmation.SetActive(true);
+
+        foreach (Button butt in buttonList)
+        {
+            if(butt == quitToMenuButtonNo || butt == quitToMenuButtonYes)
+            {
+                butt.interactable = true;
+            }
+            else
+            {
+                butt.interactable = false;
+            }
+        }              
     }
 
     public void HideMenuConfirmation()
     {
         menuConfirmation.SetActive(false);
+
+        foreach (Button butt in buttonList)
+        {
+            butt.interactable = true;
+        }
     }
 
     public void ShowDesktopConfirmation()
@@ -425,11 +460,28 @@ public class PauseMenu : MonoBehaviour {
         desktopConfirmation.SetActive(true);
 
         confirmationSelection = 0;
+
+        foreach (Button butt in buttonList)
+        {
+            if (butt == quitToMenuButtonNo || butt == quitToMenuButtonYes)
+            {
+                butt.interactable = true;
+            }
+            else
+            {
+                butt.interactable = false;
+            }
+        }
     }
 
     public void HideDesktopConfirmation()
     {
         desktopConfirmation.SetActive(false);
+
+        foreach (Button butt in buttonList)
+        {
+            butt.interactable = true;
+        }
     }
 
     public void QuitToMenu()
