@@ -331,9 +331,6 @@ public class DigitalKeyboard : MonoBehaviour {
                     //update global name
                     GlobalVariables.player1 = p1Name;
 
-                    //move to next player
-                    
-
                     //clear the name array
                     playerName.Clear();
 
@@ -355,6 +352,7 @@ public class DigitalKeyboard : MonoBehaviour {
                     //reset and confirm the team
                     confirmAndResetTeamLogo();
 
+                    //move to next player
                     playerNumber++;
                 }
                 else

@@ -240,14 +240,6 @@ public class Controller : MonoBehaviour {
         //If game is unpaused
         if (playRound)
         {
-            //Debug
-            if (Input.GetKeyDown("'"))
-            {
-                foreach (FaultBoxes fault in faultBoxList)
-                {
-                    print(fault.GetJackFault());
-                }
-            }
 
             //pause and unpause the music
             if (Input.GetKeyDown("m") && paused == false)
@@ -259,28 +251,6 @@ public class Controller : MonoBehaviour {
             {
                 musicSource.GetComponent<AudioSource>().Play();
                 paused = false;
-            }
-
-            //update jack cam
-            if (Input.GetKeyDown("t"))
-            {
-                reset();
-            }
-            if (Input.GetKeyDown("j"))
-            {
-                jackCamera.getJack();
-            }
-            if (Input.GetKeyDown("[5]"))
-            {
-                amountOfBalls = amountOfBalls + 2;
-                greenBalls++;
-                redBalls++;
-            }
-
-            //quit the game
-            if (Input.GetKeyDown("o"))
-            {
-                Application.Quit();
             }
 
 
@@ -330,7 +300,6 @@ public class Controller : MonoBehaviour {
                         player.transform.eulerAngles = new Vector3(0, 90, 0);
 
                         //update scoreboard
-                        //score.UpdateScoreboard();
 
                         //activate jack camera
                         cameraOverlay.SetActive(false);
