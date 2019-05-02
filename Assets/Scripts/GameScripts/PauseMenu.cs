@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
+    public Sprite playAgainSprite;
+    public Sprite playAgainSpritePressed;
 
     public GameObject pauseMenu;
     public GameObject howToPlayMenu;
@@ -239,28 +241,47 @@ public class PauseMenu : MonoBehaviour
             {
                 buttonPressed = false;
             }
-            if (Input.GetButtonDown("A"))
+            if (Input.GetButtonDown("A") || Input.GetKeyDown("space"))
             {
                 switch (pauseSelection)
                 {
                     case 0:
-                        ShowHowToPlayMenu();
+                        if (howToPlayButton.IsActive())
+                        {
+                            ShowHowToPlayMenu();
+                        }
 
                         Input.ResetInputAxes();
                         break;
                     case 1:
-                        HidePauseMenu();
+                        if (returnButton.IsActive())
+                        {
+                            if (gameController.gameOver && gameController.GetCurrentRound() >= 3)
+                            {
+                                gameController.reloadScene();
+                            }
+                            else
+                            {
+                                HidePauseMenu();
+                            }
+                        }
 
                         Input.ResetInputAxes();
                         break;
                     case 2:
-                        ShowMenuConfirmation();
+                        if (quitToMenuButton.IsActive())
+                        {
+                            ShowMenuConfirmation();
+                        }
                         pauseMenuSelection.transform.position = quitToMenuButtonNo.transform.position;
 
                         Input.ResetInputAxes();
                         break;
                     case 3:
-                        ShowDesktopConfirmation();
+                        if (quitToDesktopButton.IsActive())
+                        {
+                            ShowDesktopConfirmation();
+                        }
                         pauseMenuSelection.transform.position = quitToDesktopButtonNo.transform.position;
 
                         Input.ResetInputAxes();
@@ -269,6 +290,7 @@ public class PauseMenu : MonoBehaviour
             }
         }
 
+        //Input for menu confirmation
         if (menuConfirmation.activeSelf)
         {
             if (Input.GetButtonDown("Turn Left") || Input.GetAxis("DPadX") < 0)
@@ -288,7 +310,7 @@ public class PauseMenu : MonoBehaviour
                 }
             }
 
-            if (Input.GetButtonDown("A"))
+            if (Input.GetButtonDown("A") || Input.GetKeyDown("space"))
             {
                 if (confirmationSelection == 0)
                 {
@@ -304,6 +326,7 @@ public class PauseMenu : MonoBehaviour
             }
         }
 
+        //Input for desktop confirmation
         if (desktopConfirmation.activeSelf)
         {
             if (Input.GetButtonDown("Turn Left") || Input.GetAxis("DPadX") < 0)
@@ -325,7 +348,7 @@ public class PauseMenu : MonoBehaviour
                 }
             }
 
-            if (Input.GetButtonDown("A"))
+            if (Input.GetButtonDown("A") || Input.GetKeyDown("space"))
             {
                 if (confirmationSelection == 0)
                 {
@@ -341,6 +364,7 @@ public class PauseMenu : MonoBehaviour
             }
         }
 
+        //Cycle through how to play screens
         for (int i = 0; i < howToPlayList.Count; i++)
         {
             if (howToPlayList[i].activeSelf)
@@ -372,32 +396,47 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    //Reset the selector's position to the first button
     void ResetSelectionPosition()
     {
         pauseMenuSelection.transform.position = howToPlayButton.transform.position;
         pauseSelection = 0;
     }
 
+    //Update the rendering of the selector
     void UpdateSelection()
     {
         switch (pauseSelection)
         {
             case 0:
-                pauseMenuSelection.transform.position = howToPlayButton.transform.position;
+                if (howToPlayButton.IsActive())
+                {
+                    pauseMenuSelection.transform.position = howToPlayButton.transform.position;
+                }
                 break;
             case 1:
-                pauseMenuSelection.transform.position = returnButton.transform.position;
+                if (returnButton.IsActive())
+                {
+                    pauseMenuSelection.transform.position = returnButton.transform.position;
+                }
                 break;
             case 2:
-                pauseMenuSelection.transform.position = quitToMenuButton.transform.position;
+                if (quitToMenuButton.IsActive())
+                {
+                    pauseMenuSelection.transform.position = quitToMenuButton.transform.position;
+                }
                 break;
             case 3:
-                pauseMenuSelection.transform.position = quitToDesktopButton.transform.position;
+                if (quitToDesktopButton.IsActive())
+                {
+                    pauseMenuSelection.transform.position = quitToDesktopButton.transform.position;
+                }
                 break;
         }
 
     }
 
+    // Hide pause menu
     public void HidePauseMenu()
     {
         pauseMenu.SetActive(false);
@@ -410,29 +449,35 @@ public class PauseMenu : MonoBehaviour
         gameController.SetPlayRound(true);
     }
 
+    //Show pause menu
     public void ShowPauseMenu()
     {
         pauseMenu.SetActive(true);
 
+        //Hide cursor
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        //Stop game from running
         Time.timeScale = 0.0f;
 
         gameController.SetPlayRound(false);
     }
 
+    //Show how to play
     public void ShowHowToPlayMenu()
     {
         howToPlayMenu.SetActive(true);
         pauseMenu.SetActive(false);
     }
 
+    //Hide how to play 
     public void HideHowToPlayMenu()
 
     {
         howToPlayMenu.SetActive(false);
     }
 
+    //Show yes/no for menu confirmation
     public void ShowMenuConfirmation()
     {
         menuConfirmation.SetActive(true);
@@ -450,6 +495,7 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    //Hide yes/no for going to menu
     public void HideMenuConfirmation()
     {
         menuConfirmation.SetActive(false);
@@ -460,6 +506,7 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    //show yes/no for quitting to desktop
     public void ShowDesktopConfirmation()
     {
         desktopConfirmation.SetActive(true);
@@ -479,6 +526,7 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    //Hide yes/no for quititng to desktop
     public void HideDesktopConfirmation()
     {
         desktopConfirmation.SetActive(false);
@@ -501,7 +549,28 @@ public class PauseMenu : MonoBehaviour
 
     public void GameOver()
     {
-        returnButton.GetComponentInChildren<Text>().text = "Play Again?";
+        //returnButton.GetComponentInChildren<Text>().text = "Play Again?";
+        howToPlayButton.gameObject.SetActive(false);
+        howToPlayButton.interactable = false;
+
+
+        pauseMenuSelection.transform.position = returnButton.transform.position;
+
+        //Change sprite
+        returnButton.image.sprite = playAgainSprite;
+
+        //Sprite state for changing highlighted sprite
+        SpriteState playAgainSpriteState = new SpriteState();
+
+        //Get button's state
+        playAgainSpriteState = returnButton.spriteState;
+
+        //Change sprites
+        playAgainSpriteState.highlightedSprite = playAgainSpritePressed;
+        playAgainSpriteState.pressedSprite = playAgainSprite;
+
+        //Set state
+        returnButton.spriteState = playAgainSpriteState;
 
         ShowPauseMenu();
 

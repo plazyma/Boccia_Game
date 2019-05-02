@@ -189,25 +189,6 @@ public class Throw : MonoBehaviour
             }
 
         }
-        //Reset position of the ball and scene
-        if (Input.GetKeyDown("r"))
-        {
-
-            //reload the level
-            Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
-            //commented out for now
-            ////Set velocity to 0
-            //rb.velocity = new Vector3(0.0f, 0.0f, 0.0f);
-            //rb.angularVelocity = new Vector3(0.0f, 0.0f, 0.0f);
-
-            ////rest position
-            //ball.transform.position = startPosition;
-
-            //rb.useGravity = false;
-
-            //power = 0.0f;
-
-        }
     }
 
     //Return the power

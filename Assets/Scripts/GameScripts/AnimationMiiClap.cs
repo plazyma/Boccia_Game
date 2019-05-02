@@ -36,11 +36,21 @@ public class AnimationMiiClap : MonoBehaviour
             if (!isPlaying)
             {
                 //Check fault boxes starting at 2 - dont want to check below the V
-                for (int i = 2; i < faultBoxList.Count - 1; i++)
+                for (int i = 0; i < faultBoxList.Count - 1; i++)
                 {
-                    if (faultBoxList[i].ballFault)
+                    if (i > 1)
                     {
-                        playFaultAnim = true;
+                        if (faultBoxList[i].ballFault || faultBoxList[i].GetJackFault())
+                        {
+                            playFaultAnim = true;
+                        }
+                    }
+                    else
+                    {
+                        if (faultBoxList[i].GetJackFault())
+                        {
+                            playFaultAnim = true;
+                        }
                     }
                 }
                 //Play shake

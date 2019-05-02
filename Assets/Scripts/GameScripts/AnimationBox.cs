@@ -34,12 +34,21 @@ public class AnimationBox : MonoBehaviour {
             if (!isPlaying)
             {
                 //Loop through fault boxes - start at 2, dont want boxes below V
-                for (int i = 2; i < faultBoxList.Count - 1; i++)
+                for (int i = 0; i < faultBoxList.Count - 1; i++)
                 {
-                    //If faulty ball in one of the boxes
-                    if(faultBoxList[i].ballFault)
+                    if(i > 1)
                     {
-                        playFaultAnim = true;
+                        if (faultBoxList[i].ballFault || faultBoxList[i].GetJackFault())
+                        {
+                            playFaultAnim = true;
+                        }
+                    }
+                    else
+                    {
+                        if(faultBoxList[i].GetJackFault())
+                        {
+                            playFaultAnim = true;
+                        }
                     }
                 }
                 //Play shake animation

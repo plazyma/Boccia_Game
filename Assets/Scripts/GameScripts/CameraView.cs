@@ -90,21 +90,6 @@ public class CameraView : MonoBehaviour
                 }
             }       
         }
-
-        if (Input.GetKeyDown("c"))
-        {
-            if (cameraMain.enabled == true)
-            {
-                cameraMove.enabled = true;
-                cameraMain.enabled = false;
-            }
-            else if(cameraMain.enabled == false)
-            {
-                cameraMove.enabled = false;
-                cameraMain.enabled = true;
-            }
-
-        }
     }
 
     //reset camera after throw

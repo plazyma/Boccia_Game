@@ -58,7 +58,6 @@ public class PlayerControls : MonoBehaviour
                 if (transform.localEulerAngles.y < 170 && transform.localEulerAngles.y > 20)
                 {
                     //Show arrow to indicate where ball is pointing
-                    //arrow.SetActive(true);
                     //adjust rotation for keyboard
                     if (Input.GetKey("left"))
                     {
@@ -70,33 +69,7 @@ public class PlayerControls : MonoBehaviour
                         transform.Rotate(0.0f, (-rotationSpeed * powerRotModifier) * Time.deltaTime, 0.0f);
                     }
                 }
-            }
-
-            if (Input.GetKeyDown("v"))
-            {
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
-            }
-
-            if (Input.GetKeyDown("/"))
-            {
-                if (arenaBoundary.activeSelf)
-                {
-                    arenaBoundary.SetActive(false);
-                }
-                else
-                {
-                    arenaBoundary.SetActive(true);
-                }
-            }
-
-
+            }        
         }
-
-
-
-        //reset mouse position to the center of the screen
-        //Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false;
     }
 }
