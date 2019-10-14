@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+
 public class Controller : MonoBehaviour {
 
     public int currentPlayer;
     public bool jackThrown = false;
     public bool firstThrows = true;
     public bool faultyJack = false;
+
+    public bool faultyBall = false;
+    public bool successBall = false;
+    bool starting = true;
 
     public GameObject jackPrefab;
     GameObject jack;
@@ -34,10 +39,16 @@ public class Controller : MonoBehaviour {
 
     //Audio
     public AudioSource audioSource;
+    public AudioSource announcer;
     public AudioClip ballChangeSound;
     public AudioClip player1WinSound;
     public AudioClip player2WinSound;
     public AudioClip winSound;
+    public AudioClip fault;
+    public AudioClip openingVoice;
+    public AudioClip closingVoice;
+    public AudioClip versus;
+    public AudioClip[] roundSounds = new AudioClip[5];
     public GameObject musicSource;
     bool paused = false;
 
@@ -48,12 +59,6 @@ public class Controller : MonoBehaviour {
     public Material greenMaterial;
 
     public List<GameObject> ballList;
-
-    public GameObject winPanel;
-    public Text winText;
-
-    public GameObject gameWinPanel;
-    public Text gameWinText;
 
     //Faultboxes
     public GameObject faultBoxes;
@@ -69,20 +74,31 @@ public class Controller : MonoBehaviour {
     public int greenBallsFaulty = 0;
     public int redBallsFaulty = 0;
 
-    public int player1Score = 0;
-    public int player2Score = 0;
+    public int player1Score = 2;
+    public int player2Score = 1;
 
     public bool gameOver;
     public float gameOverTime = 0.0f;
 
-    int currentRound = 0;
+    //Rounds
+    public int currentRound = 0;
+    const int maximumRounds = 3;
+    
+
+    //Play Round bool
+    bool playRound = false;
+
+    public AudioVolume audioVolumeScript;
+
+    public PauseMenu pauseMenuScript;
+
+    public SplashScreens splashScreensScript;
 
     // Use this for initialization
     void Start() {
-        winPanel.SetActive(false);
-        gameWinPanel.SetActive(false);
-
         gameOver = false;
+
+       
         //setup scoreboard
         scoreboardScript = GameObject.FindGameObjectWithTag("ScoreBoard").GetComponent<Scoreboard>();
 
@@ -129,11 +145,33 @@ public class Controller : MonoBehaviour {
 
         //get the music player
         musicSource = GameObject.FindGameObjectWithTag("MusicPlayer");
+
+        if(!audioVolumeScript)
+        {
+            audioVolumeScript = GetComponent<AudioVolume>();
+
+            audioVolumeScript.SetVolumeLevels();
+        }
+
+        if(!pauseMenuScript)
+        {
+            pauseMenuScript = GetComponent<PauseMenu>();
+
+            pauseMenuScript.HidePauseMenu();
+        }
+
+        if(!splashScreensScript)
+        {
+            splashScreensScript = GetComponent<SplashScreens>();
+        }
+
+        splashScreensScript.GameStartPanel();
+
+        
     }
 
     void spawnJack()
     { 
-        winPanel.SetActive(false);
         //setup player for spawning balls
         Quaternion spawnRotation = Quaternion.identity;
         Vector3 playerForward = new Vector3(player.transform.forward.x * 2, player.transform.forward.y * 2, player.transform.forward.z * 2);
@@ -146,182 +184,214 @@ public class Controller : MonoBehaviour {
         throwScript.jackThrown = false;
     }
 
+    IEnumerator Introduction()
+    {
+        //play voice
+        announcer.clip = openingVoice;
+        announcer.Play();
+        yield return new WaitForSeconds(announcer.clip.length);
+        announcer.clip = GlobalVariables.teamSounds[GlobalVariables.team1];
+        announcer.Play();
+        yield return new WaitForSeconds(announcer.clip.length);
+        announcer.clip = versus;
+        announcer.Play();
+        yield return new WaitForSeconds(announcer.clip.length);
+        announcer.clip = GlobalVariables.teamSounds[GlobalVariables.team2];
+        announcer.Play();
+        yield return new WaitForSeconds(announcer.clip.length);
+        announcer.clip = roundSounds[currentRound];
+        announcer.Play();
+    }
+
+    IEnumerator RoundEnd()
+    {
+        //play voice        
+        yield return new WaitForSeconds(announcer.clip.length);
+        announcer.clip = roundSounds[currentRound];
+        announcer.Play();
+    }
+    IEnumerator EndofGame()
+    {
+        //play voice        
+        if (player1Score > player2Score)
+        {
+            announcer.clip = GlobalVariables.teamSounds[GlobalVariables.team1];
+            announcer.Play();
+        }
+        else if (player2Score > player1Score)
+        {
+            announcer.clip = GlobalVariables.teamSounds[GlobalVariables.team2];
+            announcer.Play();
+        }
+        yield return new WaitForSeconds(announcer.clip.length);
+        announcer.clip = closingVoice;
+        announcer.Play();        
+    }
+
     // Update is called once per frame
     void Update()
     {
-        //Debug
-        if(Input.GetKeyDown("'"))
+       if (starting)
         {
-            foreach(FaultBoxes fault in faultBoxList)
+            //play the intro voice over
+            StartCoroutine(Introduction());            
+            starting = false;
+        }
+        //If game is unpaused
+        if (playRound)
+        {
+
+            //pause and unpause the music
+            if (Input.GetKeyDown("m") && paused == false)
             {
-                print(fault.GetJackFault());
+                musicSource.GetComponent<AudioSource>().Pause();
+                paused = true;
             }
-        }
-
-        //pause and unpause the music
-        if (Input.GetKeyDown("m") && paused == false)
-        {
-            musicSource.GetComponent<AudioSource>().Pause();
-            paused = true;
-        }
-        else if (Input.GetKeyDown("m") && paused == true)
-        {
-            musicSource.GetComponent<AudioSource>().Play();
-            paused = false;
-        }
-
-        //update jack cam
-        if (Input.GetKeyDown("t"))
-        {
-            reset();
-        }
-        if (Input.GetKeyDown("j"))
-        {
-            jackCamera.getJack();
-        }
-
-        if (Input.GetKeyDown("p"))
-        {
-            //player1Score++;
-            scoreboardScript.UpdateScoreboard();
-            // jack.transform.position = faultBoxCross.transform.position;
-            print(dist.CalculateScore());
-            //print(jack.transform.localScale.z);
-            //jack.transform.position = new Vector3(jack.transform.position.x, jack.transform.position.y, jack.transform.position.z + (jack.GetComponent<SphereCollider>().radius * jack.transform.localScale.z));
-        }
-        if(Input.GetKeyDown("[5]"))
-        {
-            amountOfBalls = amountOfBalls + 2;
-            greenBalls++;
-            redBalls++;
-        }
-
-        //quit the game
-        if (Input.GetKeyDown("q")|| Input.GetButtonDown("Start Button"))
-        {
-            Application.Quit();
-        }
-
-        if (throwScript.jackThrown && !jackThrown)
-        {
-
-            //after 4 seconds have passed since throwing
-            if (Time.time - throwScript.shotTime > 4)
+            else if (Input.GetKeyDown("m") && paused == true)
             {
-                jackThrown = true;
-                //Check all faulty areas for jack
-                foreach (FaultBoxes fault in faultBoxList)
+                musicSource.GetComponent<AudioSource>().Play();
+                paused = false;
+            }
+
+
+            if (throwScript.jackThrown && !jackThrown)
+            {
+
+                //after 4 seconds have passed since throwing
+                if (Time.time - throwScript.shotTime > 4)
                 {
-                    if (fault != faultBoxList[faultBoxList.Count - 1])
+                    jackThrown = true;
+                    //Check all faulty areas for jack
+                    foreach (FaultBoxes fault in faultBoxList)
                     {
-                        if (fault.GetJackFault())
+                        if (fault != faultBoxList[faultBoxList.Count - 1])
                         {
-                            print(" Jack In Area");
-                            //Faulty throw
-                            faultyJack = true;
+                            if (fault.GetJackFault())
+                            {
+                                //Faulty throw
+                                faultyJack = true;
 
-                            //Reset fault check
-                            fault.SetJackFaultFalse();
+                                //Reset fault check
+                                fault.SetJackFaultFalse();
 
-                            aimAssistScript.ResetAim();
+                                aimAssistScript.ResetAim();
+                            }
                         }
                     }
-                }
-                //set jack as thrown on this script, create a new ball and tell throw that there is a new ball
+                    //set jack as thrown on this script, create a new ball and tell throw that there is a new ball
 
-                if (!faultyJack)
-                {
-                    if (currentPlayer == 1)
+                    if (!faultyJack)
                     {
-                        newBall = Instantiate(redBall, player.transform.position + (player.transform.forward * 2), player.transform.rotation);
-                        redBalls++;
+                        if (currentPlayer == 1)
+                        {
+                            newBall = Instantiate(redBall, player.transform.position + (player.transform.forward * 2), player.transform.rotation);
+                            redBalls++;
+                        }
+                        else if (currentPlayer == 2)
+                        {
+                            newBall = Instantiate(greenBall, player.transform.position + (player.transform.forward * 2), player.transform.rotation);
+                            greenBalls++;
+                        }
+                        ballList.Add(newBall);
+                        //give throwscript the new ball
+                        throwScript.setPower(0.0f);
+                        throwScript.setBall(newBall);
+
+                        player.transform.eulerAngles = new Vector3(0, 90, 0);
+
+                        //update scoreboard
+
+                        //activate jack camera
+                        cameraOverlay.SetActive(false);
+                        cameraOverlay2.SetActive(false);
                     }
-                    else if (currentPlayer == 2)
-                    {
-                        newBall = Instantiate(greenBall, player.transform.position + (player.transform.forward * 2), player.transform.rotation);
-                        greenBalls++;
-                    }
-                    ballList.Add(newBall);
-                    //give throwscript the new ball
-                    throwScript.setPower(0.0f);
-                    throwScript.setBall(newBall);
 
-                    player.transform.eulerAngles = new Vector3(0, 90, 0);
-
-                    //update scoreboard
-                    //score.UpdateScoreboard();
-
-                    //activate jack camera
-                    cameraOverlay.SetActive(false);
-                    cameraOverlay2.SetActive(false);
                 }
-              
             }
-        }
-        //spawn a new ball
-        if (!gameOver)
-        {
-            //If faulty jack throw
-            if(faultyJack)
-            {
-                //Destroy jack
-                Object.Destroy(jack);
-
-                //Reset bools
-                throwScript.jackThrown = false;
-                throwScript.ballThrown = false;
-
-                jackThrown = false;
-
-                //Reset power
-                throwScript.setPower(0);
-
-                //Reset player rotation               
-                player.transform.eulerAngles = new Vector3(0, 90, 0);
-
-                //Spawn new jack
-                spawnJack();
-
-                //Script gets disabled on jack creation - force enable
-                //jack.GetComponent<Collision>().enabled = true;
-
-                //Reset bool
-                faultyJack = false;
-
-            }
-            else
-            {
-                spawnBall(); 
-            }
-            
-        }
-
-        //10 balls have been thrown
-        if (amountOfBalls > 11 && Time.time - throwScript.shotTime > 5)
-        {
+            //spawn a new ball
             if (!gameOver)
             {
-                checkWinner();
-                gameOver = true;
+                //If faulty jack throw
+                if (faultyJack)
+                {
+                    //Destroy jack
+                    Object.Destroy(jack);
+
+                    //Reset bools
+                    throwScript.jackThrown = false;
+                    throwScript.ballThrown = false;
+
+                    jackThrown = false;
+
+                    //Reset power
+                    throwScript.setPower(0);
+
+                    //Reset player rotation               
+                    player.transform.eulerAngles = new Vector3(0, 90, 0);
+
+                    //Spawn new jack
+                    spawnJack();
+
+                    //Script gets disabled on jack creation - force enable
+                    //jack.GetComponent<Collision>().enabled = true;
+
+                    //Reset bool
+                    faultyJack = false;
+
+                }
+                else
+                {
+                    spawnBall();
+                }
+
             }
 
-            if (currentRound == 1)
+            //10 balls have been thrown
+            if (amountOfBalls > 11 && Time.time - throwScript.shotTime > 5)
             {
-                if (Time.time - throwScript.shotTime > 10)
+                if (!gameOver)
                 {
-                    //reload the level
-                    reset();
+                    checkWinner();
+                    gameOver = true;
                 }
-            }
-            else
-            {
-                if (gameOver && Time.time - throwScript.shotTime > 12)
+
+                if (currentRound < maximumRounds)
                 {
-                    reloadScene();
+                    if (Time.time - throwScript.shotTime > 10)
+                    {
+                        currentRound++;
+                        //reload the level
+                        reset();
+                        //next round
+                        StartCoroutine(RoundEnd());
+                    }
+
+                }
+                else
+                {
+                    if (player1Score == player2Score)
+                    {
+                        if (Time.time - throwScript.shotTime > 10)
+                        {
+                            currentRound++;
+                            reset();
+                            //next round
+                            StartCoroutine(RoundEnd());
+                        }
+                    }
+                    else
+                    {
+                        if (gameOver && Time.time - throwScript.shotTime > 12)
+                        {
+                          
+                            // reloadScene();
+                        }
+                    }
                 }
             }
         }
     }
+
     public void spawnBall()
     {
         if (amountOfBalls < 12 && throwScript.ballThrown && Time.time - throwScript.shotTime > 4)
@@ -329,8 +399,19 @@ public class Controller : MonoBehaviour {
             //Loop through list of faults, starting with 2 - don't want to check the boxes before the "v line"
             for (int i = 2; i < faultBoxList.Count - 1; i++)
             {
-                faultBoxList[i].deleteBalls();
+                if(faultBoxList[i].deleteBalls())
+                {
+                    faultyBall = true;
+
+                }
                 faultBoxList[i].ResetJack(jack);
+            }
+
+            if(faultyBall)
+            {
+                audioSource.clip = fault;
+                audioSource.Play();
+                faultyBall = false;
             }
 
             player.transform.eulerAngles = new Vector3(0, 90, 0);
@@ -345,10 +426,12 @@ public class Controller : MonoBehaviour {
                 if (currentPlayer == 1)
                 {
                     currentPlayer = 2;
+                    
                 }
                 else if (currentPlayer == 2)
                 {
                     currentPlayer = 1;
+                    
                 }
                 //If 0 returned == no balls on field - keep same player
                 else if (currentPlayer == 0)
@@ -358,12 +441,10 @@ public class Controller : MonoBehaviour {
 
                 if (redBalls > 5)
                 {
-                    print("all reds thrown");
                     currentPlayer = 2;
                 }
                 if (greenBalls > 5)
                 {
-                    print("all greens thrown");
                     currentPlayer = 1;
                 }
             }
@@ -393,8 +474,11 @@ public class Controller : MonoBehaviour {
                 //update scoreboard
                 //score.UpdateScoreboard();
 
-                audioSource.clip = ballChangeSound;
-                audioSource.Play();
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.clip = ballChangeSound;
+                    audioSource.Play();
+                }
             }
             else if (currentPlayer == 1)
             {
@@ -408,13 +492,18 @@ public class Controller : MonoBehaviour {
                 //update scoreboard
                 //score.UpdateScoreboard();
 
-                audioSource.clip = ballChangeSound;
-                audioSource.Play();
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.clip = ballChangeSound;
+                    audioSource.Play();
+                }
             }
             ballList.Add(newBall);
 
             //give throwscript the new ball
             throwScript.setBall(newBall);
+
+            splashScreensScript.PlayerChangePanel(currentPlayer);
         }
     }
 
@@ -422,17 +511,11 @@ public class Controller : MonoBehaviour {
     {
         //make sure there is a green and red ball on the field before checking distances
         if (dist.FindClosestBall() == 1)
-        {
-            //throwScript.setPower(0.0f);
-            print("Player 1 is closest, returning player 1");
-            
+        {           
             return 1;
         }
         else if (dist.FindClosestBall() == 2)
         {
-            //throwScript.setPower(0.0f);
-            print("Player 2 is closest, returning player 2");
-            
             return 2;
         }
         else
@@ -445,52 +528,104 @@ public class Controller : MonoBehaviour {
 
     public void checkWinner()
     {
-        if (currentRound < 2)
+        if (currentRound < maximumRounds)
         {
             //do win stuff
             if (dist.FindClosestBall() == 1)
             {
-                // print("PLAYER 1 WINS");
-                winText.text = "Player 1 Wins!";
                 player1Score = player1Score + dist.CalculateScore();
 
-                winPanel.SetActive(true);
+                camAlt.cameraReset();
+                splashScreensScript.RoundOverPanel(1);
+                
+
                 audioSource.clip = player1WinSound;
                 audioSource.Play();
+
+                
             }
             else if (dist.FindClosestBall() == 2)
             {
-                //print("PLAYER 2 WINS");
-                winText.text = "Player 2 Wins!";
                 player2Score = player2Score + dist.CalculateScore();
-                winPanel.SetActive(true);
+
+                camAlt.cameraReset();
+                splashScreensScript.RoundOverPanel(2);
+
                 audioSource.clip = player2WinSound;
                 audioSource.Play();
             }
-            currentRound++;
+            
         }
         else
         {
-            if (player1Score > player2Score)
+            if(dist.FindClosestBall() == 1)
             {
-                gameWinText.text = "Player 1 Wins The Game!!!!!!!!!!";
-                gameWinPanel.SetActive(true);
-                gameOver = true;
+                player1Score += dist.CalculateScore();
 
-                audioSource.clip = winSound;
-                audioSource.Play();
+                if (player1Score > player2Score)
+                {
+                    //Make winner panel display for longer
+                    camAlt.cameraReset();
+                    splashScreensScript.GameOverPanel(1);
+                    gameOver = true;
+
+                    //play win sound
+                    StartCoroutine(EndofGame());
+                    //audioSource.clip = winSound;
+                    //audioSource.Play();
+                }
+                else if(player1Score == player2Score)
+                {
+                    camAlt.cameraReset();
+                    splashScreensScript.RoundOverPanel(1);
+                }
             }
-            else
+            else if(dist.FindClosestBall() == 2)
             {
-                gameWinText.text = "Player 2 Wins The Game!!!!!!!!!";
-                gameWinPanel.SetActive(true);
-                gameOver = true;
+                player2Score += dist.CalculateScore();
 
-                audioSource.clip = winSound;
-                audioSource.Play();
+                if (player2Score > player1Score)
+                {
+                    //Make winner panel display for longer
+                    camAlt.cameraReset();
+                    splashScreensScript.GameOverPanel(2);
+                    gameOver = true;
+
+                    //play win sound
+                    StartCoroutine(EndofGame());
+                    //audioSource.clip = winSound;
+                    //audioSource.Play();
+                }
+                else if (player1Score == player2Score)
+                {
+                    camAlt.cameraReset();
+                    splashScreensScript.RoundOverPanel(2);
+                }
             }
         }
         scoreboardScript.UpdateScoreboard();
+    }
+
+    //Return pause status
+    public bool GetPlayRound()
+    {
+        return playRound;
+    }
+
+    //Set pause status
+    public void SetPlayRound(bool play)
+    {
+        playRound = play;
+    }
+
+    public int GetCurrentRound()
+    {
+        return currentRound;
+    }
+
+    public int GetMaximumRounds()
+    {
+        return maximumRounds;
     }
 
     public void reloadScene()
@@ -543,11 +678,13 @@ public class Controller : MonoBehaviour {
 
         //Clear aim assist
         aimAssistScript.ResetAim();
-
+        aimAssistScript.DisableHardAimAssist();
         //Reset player position
         player.transform.eulerAngles = new Vector3(0, 90, 0);
 
         gameOver = false;
+
+        splashScreensScript.GameStartPanel();
     }
 }
 

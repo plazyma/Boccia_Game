@@ -14,7 +14,6 @@ public class JackCamera : MonoBehaviour {
 
     public void getJack()
     {
-        print("get jack");
     //get the jack
         jack = GameObject.FindGameObjectWithTag("Jack");
         rb = jack.GetComponent<Rigidbody>();

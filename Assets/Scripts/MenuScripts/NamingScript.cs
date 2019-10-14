@@ -19,9 +19,9 @@ public class NamingScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        p1name = "empty";
-        p2name = "empty";
-        nameInput.text = "Enter Player1 Name...";
+        p1name = "Player 1";
+        p2name = "Player 2";
+        nameInput.text = "Enter Player 1 Name...";
         cont = GameObject.FindGameObjectWithTag("PlayGameButton");
         button = cont.GetComponent<NamingButtonScript>();
         banner = GameObject.FindGameObjectWithTag("NameBanner");
@@ -39,23 +39,23 @@ public class NamingScript : MonoBehaviour {
     public void checkNames()
     {
 
-        if (p1name == "empty")
+        if (p1name == "Player 1")
         {
             p1name = nameInput.text;
             nameInput.Select();
             nameInput.text = "";
-            nameInput.placeholder.GetComponent<Text>().text = "Enter Player2 Name...";
+            nameInput.placeholder.GetComponent<Text>().text = "Enter Player 2 Name...";
             banner.GetComponent<Text>().text = "Player 2 \n Enter Name";
         }
-        else if (p2name == "empty")
+        else if (p2name == "Player 2")
         {
             p2name = nameInput.text;
         }
 
-        if (p1name != "empty")
+        if (p1name != "Player 1")
         {
             button.changeLogo();
-            if (p2name != "empty")
+            if (p2name != "Player 2")
             {
                 GlobalVariables.player1 = p1name;
                 GlobalVariables.player2 = p2name;

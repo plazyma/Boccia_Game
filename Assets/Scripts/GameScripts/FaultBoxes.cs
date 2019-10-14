@@ -6,7 +6,7 @@ public class FaultBoxes : MonoBehaviour
 {
 
     bool jackFault;
-    bool ballFault;
+    public bool ballFault;
 
     Controller gameController;
     public GameObject centreBox;
@@ -42,7 +42,6 @@ public class FaultBoxes : MonoBehaviour
             if (!faultyBalls.Contains(other.gameObject))
             {
                 faultyBalls.Add(other.gameObject);
-                print("OBJECT ADDED");
             }
         }
     }
@@ -63,11 +62,10 @@ public class FaultBoxes : MonoBehaviour
         if (faultyBalls.Contains(other.gameObject))
         {
             faultyBalls.Remove(other.gameObject);
-            print("OBJECT REMOVED");
         }
     }
 
-    public void deleteBalls()
+    public bool deleteBalls()
     {
         if (faultyBalls.Count > 0)
         {
@@ -88,6 +86,13 @@ public class FaultBoxes : MonoBehaviour
             }
             //Update scoreboard
             scoreBoardScript.UpdateScoreboard();
+
+            ballFault = false;
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 

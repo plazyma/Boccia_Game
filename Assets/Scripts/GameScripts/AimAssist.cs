@@ -5,11 +5,14 @@ using UnityEngine;
 public class AimAssist : MonoBehaviour {
 
     public GameObject player;
-    public GameObject gameController;
+    public Controller gameController;
     public List<GameObject> aimPlanes;
     public Throw throwScript;
-	// Use this for initialization
-	void Start () {
+    public GameObject aimLine;
+
+    public GameObject arenaBoundary;
+    // Use this for initialization
+    void Awake () {
         //Find player
         if(!player)
         {
@@ -32,77 +35,103 @@ public class AimAssist : MonoBehaviour {
         {
             throwScript = GetComponent<Throw>();
         }
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+        if(!gameController)
+        {
+            gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<Controller>();
+        }
+        if(!aimLine)
+        {
+            aimLine = GameObject.FindGameObjectWithTag("AimLine");
+
+        }
+
+        if (!arenaBoundary)
+        {
+            arenaBoundary = GameObject.Find("ArenaWalls");
+        }
+    }
+
+    private void Start()
+    {
+        aimLine.SetActive(false);
+    }
+
+    // Update is called once per frame
+    void Update () {
+
+
+    }
     
     //Enable aim assist objects when increasing power
     public void CalculateAimIncreased()
     {
-        //When power is less than 7, enable (power *2) +2 objects
-        if (throwScript.getPower() < 7)
+        if ((gameController.currentPlayer == 1 && GlobalVariables.aim1) || (gameController.currentPlayer == 2 && GlobalVariables.aim2))
         {
-            for (int i = 0; i < (throwScript.getPower() * 2) + 2; i++)
+            //When power is less than 7, enable (power *2) +2 objects
+            if (throwScript.getPower() < 7)
             {
-                aimPlanes[i].SetActive(true);
+                for (int i = 0; i < (throwScript.getPower() * 2) + 2; i++)
+                {
+                    aimPlanes[i].SetActive(true);
+                }
             }
-        }
-        //When power is less than 9, enable (power *2) +3 objects
-        else if (throwScript.getPower() < 9)
-        {
-            for (int i = 0; i < (throwScript.getPower() * 2) + 3; i++)
+            //When power is less than 9, enable (power *2) +3 objects
+            else if (throwScript.getPower() < 9)
             {
-                aimPlanes[i].SetActive(true);
+                for (int i = 0; i < (throwScript.getPower() * 2) + 3; i++)
+                {
+                    aimPlanes[i].SetActive(true);
+                }
             }
-        }
-        //Enable power * 2 + 4 objects
-        else
-        {
-            for (int i = 0; i < (throwScript.getPower() * 2) + 4; i++)
+            //Enable power * 2 + 4 objects
+            else
             {
-                aimPlanes[i].SetActive(true);
+                for (int i = 0; i < (throwScript.getPower() * 2) + 4; i++)
+                {
+                    aimPlanes[i].SetActive(true);
+                }
             }
         }
     }
     public void CalculateAimReduced()
     {
-        //When power is below 6, disable objects between current power *2 +2 and power + 1 *2 +2 (previous power)
-        if (throwScript.getPower() < 6)
+        if ((gameController.currentPlayer == 1 && GlobalVariables.aim1) || (gameController.currentPlayer == 2 && GlobalVariables.aim2))
         {
-            for (int i = (int)(throwScript.getPower() * 2) + 2; i < ((throwScript.getPower() + 1) * 2) + 2; i++)
+            //When power is below 6, disable objects between current power *2 +2 and power + 1 *2 +2 (previous power)
+            if (throwScript.getPower() < 6)
             {
-                aimPlanes[i].SetActive(false);
+                for (int i = (int)(throwScript.getPower() * 2) + 2; i < ((throwScript.getPower() + 1) * 2) + 2; i++)
+                {
+                    aimPlanes[i].SetActive(false);
+                }
             }
-        }
-        else if(throwScript.getPower() == 6)
-        {
-            for (int i = (int)(throwScript.getPower() * 2) + 2; i < ((throwScript.getPower() + 1) * 2) + 3; i++)
+            else if (throwScript.getPower() == 6)
             {
-                aimPlanes[i].SetActive(false);
+                for (int i = (int)(throwScript.getPower() * 2) + 2; i < ((throwScript.getPower() + 1) * 2) + 3; i++)
+                {
+                    aimPlanes[i].SetActive(false);
+                }
             }
-        }
-        else if(throwScript.getPower() == 7)
-        {
-            for (int i = (int)(throwScript.getPower() * 2) + 3; i < ((throwScript.getPower() + 1) * 2) + 3; i++)
+            else if (throwScript.getPower() == 7)
             {
-                aimPlanes[i].SetActive(false);
+                for (int i = (int)(throwScript.getPower() * 2) + 3; i < ((throwScript.getPower() + 1) * 2) + 3; i++)
+                {
+                    aimPlanes[i].SetActive(false);
+                }
             }
-        }
-        else if (throwScript.getPower() == 8)
-        {
-            for (int i = (int)(throwScript.getPower() * 2) + 3; i < ((throwScript.getPower() + 1) * 2) + 4; i++)
+            else if (throwScript.getPower() == 8)
             {
-                aimPlanes[i].SetActive(false);
+                for (int i = (int)(throwScript.getPower() * 2) + 3; i < ((throwScript.getPower() + 1) * 2) + 4; i++)
+                {
+                    aimPlanes[i].SetActive(false);
+                }
             }
-        }
-        else
-        {
-            for (int i = (int)(throwScript.getPower() * 2) + 4; i < ((throwScript.getPower() + 1) * 2) + 4; i++)
+            else
             {
-                aimPlanes[i].SetActive(false);
+                for (int i = (int)(throwScript.getPower() * 2) + 4; i < ((throwScript.getPower() + 1) * 2) + 4; i++)
+                {
+                    aimPlanes[i].SetActive(false);
+                }
             }
         }
     }
@@ -112,6 +141,35 @@ public class AimAssist : MonoBehaviour {
         for(int i = 0; i < aimPlanes.Count; i++)
         {
             aimPlanes[i].SetActive(false);
+        }
+    }
+
+    public void EnableHardAimAssist()
+    {
+        if ((gameController.currentPlayer == 1 && !GlobalVariables.aim1) || (gameController.currentPlayer == 2 && !GlobalVariables.aim2))
+        {
+            aimLine.SetActive(true);
+        }
+        else
+        {
+            aimLine.SetActive(false);
+        }
+    }
+
+    public void DisableHardAimAssist()
+    {
+        aimLine.SetActive(false);
+    }
+
+    public void EnableArenaBoundary()
+    {
+        if ((gameController.currentPlayer == 1 && GlobalVariables.walls1) || (gameController.currentPlayer == 2 && GlobalVariables.walls2))
+        {
+            arenaBoundary.SetActive(true);
+        }
+        else
+        {
+            arenaBoundary.SetActive(false);
         }
     }
 }

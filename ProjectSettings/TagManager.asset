@@ -37,6 +37,58 @@ TagManager:
   - Screen
   - Screen2
   - MusicPlayer
+  - Selector
+  - Letter
+  - PlayerChangePanel
+  - GlobalVariables
+  - GameStartPanelP1
+  - GameStartPanelP2
+  - GameStartPanel
+  - GameSettings
+  - ReturnButton
+  - RoundNumber
+  - AimLine
+  - AudioPlayer
+  - PauseMenu
+  - MenuConfirmation
+  - DesktopConfirmation
+  - Letters
+  - RoundOverPanel
+  - GameOverPanel
+  - TieBreakPanel
+  - TeamLeft
+  - TeamRight
+  - Graphics
+  - Game
+  - Sound
+  - Back
+  - MasterSound
+  - SFXSound
+  - MusicSound
+  - Player1Logo
+  - Player2Logo
+  - ScoreboardPlayer1Logo
+  - ScoreboardPlayer2Logo
+  - GameOverMenu
+  - PauseMenuReturnButton
+  - HowToPlay
+  - Walls
+  - Aids
+  - ScoreboardAltPlayer1Logo
+  - ScoreboardAltPlayer2Logo
+  - PauseMenuSelection
+  - PauseMenuHowToPlayButton
+  - PauseMenuQuitToDesktopButton
+  - PauseMenuQuitToMenuButton
+  - PauseMenuQuitToDesktopButtonNo
+  - PauseMenuQuitToDesktopButtonYes
+  - PauseMenuQuitToMenuButtonNo
+  - PauseMenuQuitToMenuButtonYes
+  - CrowdAudioPlayer
+  - HowToPlay2
+  - HowToPlay3
+  - HowToPlay4
+  - HowToPlay5
   layers:
   - Default
   - TransparentFX
@@ -73,4 +125,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 3723484759
     locked: 0
