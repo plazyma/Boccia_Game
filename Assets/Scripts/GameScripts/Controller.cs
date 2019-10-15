@@ -98,6 +98,25 @@ public class Controller : MonoBehaviour {
     void Start() {
         gameOver = false;
 
+
+        if(!audioVolumeScript)
+        {
+            audioVolumeScript = GetComponent<AudioVolume>();
+
+            audioVolumeScript.SetVolumeLevels();
+        }
+
+        if(!pauseMenuScript)
+        {
+            pauseMenuScript = GetComponent<PauseMenu>();
+
+            pauseMenuScript.HidePauseMenu();
+        }
+
+        if(!splashScreensScript)
+        {
+            splashScreensScript = GetComponent<SplashScreens>();
+        }
        
         //setup scoreboard
         scoreboardScript = GameObject.FindGameObjectWithTag("ScoreBoard").GetComponent<Scoreboard>();
@@ -146,24 +165,6 @@ public class Controller : MonoBehaviour {
         //get the music player
         musicSource = GameObject.FindGameObjectWithTag("MusicPlayer");
 
-        if(!audioVolumeScript)
-        {
-            audioVolumeScript = GetComponent<AudioVolume>();
-
-            audioVolumeScript.SetVolumeLevels();
-        }
-
-        if(!pauseMenuScript)
-        {
-            pauseMenuScript = GetComponent<PauseMenu>();
-
-            pauseMenuScript.HidePauseMenu();
-        }
-
-        if(!splashScreensScript)
-        {
-            splashScreensScript = GetComponent<SplashScreens>();
-        }
 
         splashScreensScript.GameStartPanel();
 
@@ -182,6 +183,8 @@ public class Controller : MonoBehaviour {
         dist = jack.GetComponent<BallDistance>();
 
         throwScript.jackThrown = false;
+		
+		splashScreensScript.PlayerTurnPrompt(currentPlayer);
     }
 
     IEnumerator Introduction()
@@ -504,6 +507,7 @@ public class Controller : MonoBehaviour {
             throwScript.setBall(newBall);
 
             splashScreensScript.PlayerChangePanel(currentPlayer);
+			splashScreensScript.PlayerTurnPrompt(currentPlayer);
         }
     }
 

@@ -24,6 +24,12 @@ public class SplashScreens : MonoBehaviour
 
     public GameObject gameOverPanel;
     public List<Image> gameOverPanelImages = new List<Image>();
+	
+	public GameObject playerTurnPrompt;
+	public List<Image> playerTurnPromptPlayerNameImages = new List<Image>();
+	
+	public Sprite bluePrompt;
+	public Sprite orangePrompt;
 
     public Image gameStartPanelPlayer1Logo;
     public Image gameStartPanelPlayer2Logo;
@@ -132,11 +138,20 @@ public class SplashScreens : MonoBehaviour
                 gameOverPanelImages.Add(im);
             }
         }
+		
+		foreach(Image im in playerTurnPrompt.GetComponentsInChildren<Image>())
+		{
+			if(!im.CompareTag("PlayerTurnPrompt"))
+			{
+			playerTurnPromptPlayerNameImages.Add(im);
+			}
+		}
 
         //Disable all panels
         playerChangePanel.SetActive(false);
         roundOverPanel.SetActive(false);
         gameOverPanel.SetActive(false);
+		playerTurnPrompt.SetActive(false);
     }
 
     // Update is called once per frame
@@ -170,6 +185,13 @@ public class SplashScreens : MonoBehaviour
                     pauseMenuScript.GameOver();
                 }
             }
+			
+			
+			if (!playerTurnPrompt.activeSelf)
+			{
+				playerTurnPrompt.SetActive(true);
+			}
+
 
             aimAssistScript.EnableHardAimAssist();
             aimAssistScript.EnableArenaBoundary();
@@ -183,6 +205,8 @@ public class SplashScreens : MonoBehaviour
     //Display player 1 name vs player 2 name and the logos
     public void GameStartPanel()
     {
+		playerTurnPrompt.SetActive(false);
+		
         //Enable panel
         gameStartPanel.SetActive(true);
         gameController.SetPlayRound(false);
@@ -223,6 +247,8 @@ public class SplashScreens : MonoBehaviour
     //Activate panel indicating players have changed
     public void PlayerChangePanel(int currPlayer)
     {
+		playerTurnPrompt.SetActive(false);
+		
         //Turn player names into a char array
         char[] playerName;
         if (currPlayer == 1)
@@ -250,6 +276,8 @@ public class SplashScreens : MonoBehaviour
 
     public void RoundOverPanel(int currPlayer)
     {
+		playerTurnPrompt.SetActive(false);
+		
         char[] playerName;
 
         if(currPlayer == 1)
@@ -275,15 +303,19 @@ public class SplashScreens : MonoBehaviour
 
     public void GameOverPanel(int currPlayer)
     {
+		playerTurnPrompt.SetActive(false);
+		
         char[] playerName;
 
         if(currPlayer == 1)
         {
             playerName = GlobalVariables.player1.ToCharArray();
+
         }
         else
         {
             playerName = GlobalVariables.player2.ToCharArray();
+	
         }
 
         for(int i = 0; i < gameOverPanelImages.Count; i++)
@@ -297,5 +329,30 @@ public class SplashScreens : MonoBehaviour
         aimAssistScript.DisableHardAimAssist();
         crowdCheerAudioScript.SetCrowdHigh();
     }
+	
+	public void PlayerTurnPrompt(int currPlayer)
+	{
+		char[] playerName;
+		
+		if(currPlayer == 1)
+		{
+			playerName = GlobalVariables.player1.ToCharArray();
+			
+			playerTurnPrompt.GetComponent<Image>().sprite = orangePrompt;
+		}
+		else
+		{
+			playerName = GlobalVariables.player2.ToCharArray();
+			
+			playerTurnPrompt.GetComponent<Image>().sprite = bluePrompt;
+		}
+		
+		for(int i = 0; i < playerTurnPromptPlayerNameImages.Count; i++)
+		{
+			playerTurnPromptPlayerNameImages[i].sprite = chasLetterSprites[playerName[i] - 65];
+		}
+		
+		//playerTurnPrompt.SetActive(true);
+	}
 
 }
