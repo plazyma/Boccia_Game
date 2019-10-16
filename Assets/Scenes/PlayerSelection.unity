@@ -526,6 +526,20 @@ MonoBehaviour:
   aimm2: 1
   teams1: 0
   teams2: 0
+  teamLoadSounds:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!4 &139332800
 Transform:
   m_ObjectHideFlags: 0
@@ -5149,7 +5163,7 @@ RectTransform:
   m_GameObject: {fileID: 1375496368}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 865}
-  m_LocalScale: {x: 0.8, y: 2.6, z: 1}
+  m_LocalScale: {x: 0.7, y: 3.5, z: 1}
   m_Children:
   - {fileID: 2014333369}
   m_Father: {fileID: 116632273}
@@ -5396,7 +5410,7 @@ RectTransform:
   m_GameObject: {fileID: 1378190163}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 865.0001}
-  m_LocalScale: {x: 0.8, y: 2.6, z: 1}
+  m_LocalScale: {x: 0.7, y: 3.5, z: 1}
   m_Children:
   - {fileID: 753772837}
   m_Father: {fileID: 116632273}
@@ -6689,8 +6703,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1782940775}
   m_LocalRotation: {x: -0.7071068, y: -0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -4.8, z: 2.87}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: 0, y: 0.96, z: 2.87}
+  m_LocalScale: {x: 1.4250001, y: 2, z: 0.8078126}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
