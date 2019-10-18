@@ -89,6 +89,7 @@ TagManager:
   - HowToPlay3
   - HowToPlay4
   - HowToPlay5
+  - PlayerTurnPrompt
   layers:
   - Default
   - TransparentFX
