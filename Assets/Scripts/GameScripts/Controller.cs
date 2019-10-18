@@ -307,6 +307,8 @@ public class Controller : MonoBehaviour {
                         //activate jack camera
                         cameraOverlay.SetActive(false);
                         cameraOverlay2.SetActive(false);
+
+                        splashScreensScript.PlayerTurnPrompt(currentPlayer);
                     }
 
                 }

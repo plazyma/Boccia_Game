@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class SplashScreens : MonoBehaviour
 {
@@ -31,8 +32,19 @@ public class SplashScreens : MonoBehaviour
 	public Sprite bluePrompt;
 	public Sprite orangePrompt;
 
+    public Sprite blueJackPrompt;
+    public Sprite orangeJackPrompt;
+
     public Image gameStartPanelPlayer1Logo;
     public Image gameStartPanelPlayer2Logo;
+
+    public VideoClip blueWinRound;
+    public VideoClip blueWinGame;
+
+    public VideoClip orangeWinRound;
+    public VideoClip orangeWinGame;
+
+    public GameObject videoObject;
 
     float timer;
 
@@ -152,6 +164,8 @@ public class SplashScreens : MonoBehaviour
         roundOverPanel.SetActive(false);
         gameOverPanel.SetActive(false);
 		playerTurnPrompt.SetActive(false);
+
+        videoObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -176,11 +190,13 @@ public class SplashScreens : MonoBehaviour
             else if (roundOverPanel.activeSelf)
             {
                 roundOverPanel.SetActive(false);
+                videoObject.SetActive(false);
             }
             else if (gameOverPanel.activeSelf)
             {
                 gameOverPanel.SetActive(false);
-                if(gameController.gameOver)
+                videoObject.SetActive(false);
+                if (gameController.gameOver)
                 {
                     pauseMenuScript.GameOver();
                 }
@@ -283,10 +299,15 @@ public class SplashScreens : MonoBehaviour
         if(currPlayer == 1)
         {
             playerName = GlobalVariables.player1.ToCharArray();
+
+            roundOverPanel.GetComponent<VideoPlayer>().clip = orangeWinRound;
+
         }
         else
         {
             playerName = GlobalVariables.player2.ToCharArray();
+
+            roundOverPanel.GetComponent<VideoPlayer>().clip = blueWinRound;
         }
 
         for(int i = 0; i < roundOverPanelImages.Count; i++)
@@ -295,6 +316,8 @@ public class SplashScreens : MonoBehaviour
         }
 
         roundOverPanel.SetActive(true);
+        videoObject.SetActive(true);
+
         gameController.SetPlayRound(false);
 
         aimAssistScript.DisableHardAimAssist();
@@ -311,11 +334,15 @@ public class SplashScreens : MonoBehaviour
         {
             playerName = GlobalVariables.player1.ToCharArray();
 
+            gameOverPanel.GetComponent<VideoPlayer>().clip = orangeWinGame;
+
         }
         else
         {
             playerName = GlobalVariables.player2.ToCharArray();
-	
+
+            gameOverPanel.GetComponent<VideoPlayer>().clip = blueWinGame;
+
         }
 
         for(int i = 0; i < gameOverPanelImages.Count; i++)
@@ -324,6 +351,8 @@ public class SplashScreens : MonoBehaviour
         }
 
         gameOverPanel.SetActive(true);
+        videoObject.SetActive(true);
+
         gameController.SetPlayRound(false);
 
         aimAssistScript.DisableHardAimAssist();
@@ -338,18 +367,44 @@ public class SplashScreens : MonoBehaviour
 		{
 			playerName = GlobalVariables.player1.ToCharArray();
 			
-			playerTurnPrompt.GetComponent<Image>().sprite = orangePrompt;
-		}
+            if(!gameController.jackThrown)
+            {
+                playerTurnPrompt.GetComponent<Image>().sprite = orangeJackPrompt;
+
+            }
+            else
+            {
+                playerTurnPrompt.GetComponent<Image>().sprite = orangePrompt;
+            }
+
+        }
 		else
 		{
 			playerName = GlobalVariables.player2.ToCharArray();
-			
-			playerTurnPrompt.GetComponent<Image>().sprite = bluePrompt;
-		}
+
+            if (!gameController.jackThrown)
+            {
+                playerTurnPrompt.GetComponent<Image>().sprite = blueJackPrompt;
+            }
+            else
+            {
+                playerTurnPrompt.GetComponent<Image>().sprite = bluePrompt;
+            }
+
+        }
 		
 		for(int i = 0; i < playerTurnPromptPlayerNameImages.Count; i++)
 		{
 			playerTurnPromptPlayerNameImages[i].sprite = chasLetterSprites[playerName[i] - 65];
+
+            if(!gameController.jackThrown)
+            {
+                playerTurnPromptPlayerNameImages[i].gameObject.SetActive(false);
+            }
+            else
+            {
+                playerTurnPromptPlayerNameImages[i].gameObject.SetActive(true);
+            }
 		}
 		
 		//playerTurnPrompt.SetActive(true);
