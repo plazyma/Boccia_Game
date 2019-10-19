@@ -12,6 +12,7 @@ public class SettingScript : MonoBehaviour {
     public GameObject soundSettings;
     public GameObject graphicSettings;
     public GameObject gameSettings;
+    public GameObject creditsMenu;
 
     bool unloadUI = true;
 
@@ -61,6 +62,7 @@ public class SettingScript : MonoBehaviour {
             graphicSettings.SetActive(false);
             soundSettings.SetActive(false);
             gameSettings.SetActive(false);
+            creditsMenu.SetActive(false);
             unloadUI = false;
         }
 
@@ -102,6 +104,7 @@ public class SettingScript : MonoBehaviour {
         graphicSettings.SetActive(false);
         gameSettings.SetActive(false);
         settings.SetActive(true);
+        creditsMenu.SetActive(false);
         EventSystem.current.SetSelectedGameObject(null);
     }
 
